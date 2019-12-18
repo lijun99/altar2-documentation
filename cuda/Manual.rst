@@ -1,26 +1,5 @@
-Skip to content
-Search or jump to…
 
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@lijun99 
-Learn Git and GitHub without any code!
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-
-
-2
-17lijun99/altar
-forked from AlTarFramework/altar
- Code Pull requests 0 Actions Projects 1 Wiki Security Insights Settings
-Editing AlTar 2.0 CUDA User Guide
-AlTar 2.0 CUDA User Guide
- 
-    
-Edit mode: 
-
+#########################
 AlTar 2.0 CUDA User Guide
 #########################
 
