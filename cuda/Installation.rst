@@ -396,7 +396,7 @@ FAQs
 .. _pyre: https://github.com/pyre/pyre
 .. _pyre cuda branch: https://github.com/lijun99/pyre
 .. _mm: https://github.com/aivazis/mm
-.. _altar-install: https://github.com/lijun99/altar-install
-.. _User Guide: https://github.com/lijun99/altar/wiki/AlTar-2.0-CUDA-User-Guide
+.. _altar-install: ../config.mm
+.. _User Guide: Manual.rst
 
 
