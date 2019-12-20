@@ -6,38 +6,33 @@
 
 ; the linear app
 linear:
-    ; test case configuration
+    ; the model configuration
     model:
-        ; the name of the test case
+        ; the name of the test case, also as the directory for input files
         case = patch-9
         ; the number of free parameters
         parameters = 18
         ; the number of observations
         observations = 108
 
-        ; sample initializer
+        ; prior distribution for parameters
+        ; use a prep distribution to initialize samples, if different
         prep:
+            ; default distribution is gaussian
             parameters = {linear.model.parameters}
+            center = 0.0
             sigma = 0.5
 
         ; prior
         prior:
             parameters = {linear.model.parameters}
+            center = 0.0
             sigma = 0.5
-
-    ; shell
-    ; shell = mpi.shells.mpirun ; for running with mpi
 
     ; run configuration
     job.tasks = 1 ; number of tasks per host
     job.gpus = 0  ; number of gpus per task
     job.chains = 2**10 ; number of chains per task
 
-
-
-; for parallel runs
-mpi.shells.mpirun # altar.plexus.shell:
-    tasks = 2
-    extra = -mca btl self,tcp
 
 ; end of file
