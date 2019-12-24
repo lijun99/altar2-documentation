@@ -8,4 +8,9 @@ CUDA version:
 
 [User Guide](cuda/Manual.rst)
 
+[Tutorials (jupyter notebook)](jupyter):
+
+- [An introduction to AlTar/pyre applications (HelloApp)](jupyter/hello.ipynb)
+- [An introduction to the AlTar framework (linear model)](jupyter/linear.ipynb)
+
 [Programming Guide](cuda/Programming.rst)
