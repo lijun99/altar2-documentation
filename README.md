@@ -10,7 +10,7 @@ CUDA version:
 
 [Tutorials (jupyter notebook)](jupyter):
 
-- [An introduction to AlTar/pyre applications (HelloApp)](jupyter/hello.ipynb)
-- [An introduction to the AlTar framework (linear model)](jupyter/linear.ipynb)
+- [An introduction to AlTar/pyre applications (HelloApp)](jupyter/hello/hello.ipynb)
+- [An introduction to the AlTar framework (linear model)](jupyter/linear/linear.ipynb)
 
 [Programming Guide](cuda/Programming.rst)
