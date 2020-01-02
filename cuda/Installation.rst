@@ -9,7 +9,7 @@ AlTar 2.0 CUDA Installation Guide
 Overview
 ========
 
-The AlTar application is built upon pyre_, a framework to build Python scientific applications. In order to install and run altar, one needs to download the source code of pyre_ and altar_, and compile/install these two packages from the source code. (Other installation methods, such as conda, pip, or docker container may be supported in the future). 
+The AlTar application is built upon pyre_, a framework to build Python scientific applications. In order to install and run altar, one needs to download the source code of pyre_ and altar_, and compile/install these two packages from the source code. (Other installation methods, such as conda, pip, or docker container may be supported in the future).
 
 In brief, the steps to install AlTar are as follows:
 
@@ -17,30 +17,29 @@ In brief, the steps to install AlTar are as follows:
 #. download the source code of pyre_ and altar_ (for GPU/CUDA versions, download from `pyre cuda branch`_ and `altar cuda branch`_ instead), as well as the mm_ build tool from github;
 #. prepare ``config.mm`` file to provide path information of the prerequisite libraries/packages;
 #. compile and install ``pyre``; add the path information for ``pyre`` products to ``config.mm``;
-#. compile and install ``altar``. 
+#. compile and install ``altar``.
 
+An altar/pyre application package in general has mixed Python and C/C++/CUDA/Fortran source codes, as well as Python extension/wrappers. Here is an overview of how different files are organized for altar(``SRC`` is the root directory of the source files of the package, e.g., ``altar`` for the AlTar application; ``DEST`` is the root directory of compiled products, e.g., ``altar/products/debug-shared-linux-x86_64``):
 
+* The C/C++/CUDA/Fortran source files as well as their header files are located at ``SRC\lib``. They are compiled into a shared library ``libaltar.so`` to ``DEST/lib`` while the header files are copied to ``DEST/include``.
+* The source files of Python extension/wrappers for C/C++/CUDA/Fortran routines are located at ``SRC/ext`` (altar uses the cpython approach; other semi-automatic wrapping tools such as cython, SWIG are also supported by pyre_ and mm_). They are compiled into a shared library ``altar.cpython-XXX.so`` to ``DEST/packages/altar/ext`` directory; these modules can be loaded in Python, e.g., ``import altar.ext.altar as libaltar``. The header file ``capsules.h`` which contains definitions of Python capsules for C/C++ objects is copied to ``DEST\include`` as APIs.
+* the Python programs/scripts are located at ``SRC/altar``. They are copied/compiled to ``DEST/packages/altar``. One could add ``DEST/packages`` to the environmental variable ``PYTHONPATH`` for Python to load the packages.
+* The executables, e.g., altar, dedicated Python scripts to invoke the application, are located at ``SRC/bin`` and are copied to ``DEST/bin`` upon compilation.
+* An application may also have documentations, examples, tests in additional directories, which can be compiled together or separately with the above core components.
+* Models are located at ``SRC\models``. Each model has the same source file structure and is compiled in the same fashion as altar.
 
-An altar/pyre application package (including altar itself and various packages in pyre) in general has mixed Python and C/C++/CUDA/Fortran code, as well as Python extension/wrappers. The convention to organize the source files (e.g., in SRC directory) and the compiled products (e.g., in DEST directory) is as follows, taking an application named MyApp as an example,
-
-* The C/C++/CUDA/Fortran source files as well as their header files are located at ``SRC/lib``. They are compiled into a shared library ``libMyApp.so`` to ``DEST/lib`` while the header files are copied to ``DEST/include``.
-* The source files of Python extension/wrappers for C/C++/CUDA/Fortran routines are located at ``SRC/ext`` (we recommend the cpython approach, while other semi-automatic wrapping tools such as cython, SWIG are also supported). They are compiled into a shared library ``MyApp.cpython-XXX.so`` to ``DEST/packages/MyApp/ext`` directory; these modules can be loaded in Python, e.g., ``import MyApp.ext.MyApp as libMyApp``. The header file ``capsules.h`` which contains definitions of Python capsules for C/C++ objects is copied to ``DEST\include`` as APIs. 
-* the Python programs/scripts are located at ``SRC/MyApp`` or ``SRC/packages/MyApp``. They are copied/compiled to ``DEST/packages/MyApp``. One could add ``DEST/packages`` to the environmental variable ``PYTHONPATH`` for Python to load the packages.
-* The executables, e.g., MyApp, a dedicated Python script to invoke the application, are located at ``SRC/bin`` and are copied to ``DEST/bin`` upon compilation. 
-An application may also have documentations, examples, tests in additional directories, which can be compiled together or separately with the above core components. 
-
-We adopt the mm_ build tool (please note that it is different from the old mm, or `config <https://github.com/aivazis/config>`__ build tool) to compile/install pyre and altar. The ``mm``  build automation tool follows the source/products file organizations as described above. Each altar/pyre application requires an ``mm`` build description file, similar to Makefile in GNU Make, e.g., ``MyApp.mm`` located at ``SRC/.mm`` directory. For altar and pyre, ``altar.mm`` and ``pyre.mm`` are provided with the source code. An altar/pyre application may also depend on other libraries/packages (as prerequisites). Users are required to prepare a ``config.mm`` file to provide the path information of these libraries or packages according to their specific computer system. For example, Python3 are required for altar, pyre and other altar/pyre applications. If you use Anaconda3 located as ``/opt/anaconda3``, you may add the following settings to ``config.mm``
+We adopt the mm_ build tool (please note that it is different from the old mm, or `config <https://github.com/aivazis/config>`__ build tool) to compile/install pyre and altar. The ``mm``  build automation tool follows the source/products file organizations as described above. Each altar/pyre application requires an ``mm`` build description file, similar to Makefile in GNU Make, e.g., ``altar.mm`` located at ``SRC/.mm`` directory. For altar and pyre, ``altar.mm`` and ``pyre.mm`` are provided with the source code. An altar/pyre application may also depend on other libraries/packages (as prerequisites). Users are required to prepare a ``config.mm`` file to provide the path information of these libraries or packages which depends on their specific computer system. For example, Python3 are required for altar, pyre and other altar/pyre applications. If you use Anaconda3 located as ``/opt/anaconda3``, you may add the following settings to ``config.mm``
 ::
- 
+
     python.version = 3.7
     python.dir = /opt/anaconda3
     python.binpath = /opt/anaconda3/bin
     python.incpath = /opt/anaconda3/include/python3.7m
     python.libpath = /opt/anaconda3/lib
 
-Examples of ``config.mm`` for various systems can be found at github: altar2-install_. 
+Examples of ``config.mm`` for various systems are provided `here <../config.mm>`__.
 
-You may put the ``config.mm`` file in the ``SRC/.mm`` directory, e.g., ``altar/.mm``, or in the ``${HOME}/.mm`` directory to be shared by all altar/pyre applications.
+You may leave the ``config.mm`` file in the ``SRC/.mm`` directory, e.g., ``altar/.mm``, or in the ``${HOME}/.mm`` directory to be shared by all altar/pyre applications.
 
 Prerequisites
 =============
@@ -52,22 +51,22 @@ To compile altar/pyre, the libraries or packages are required:
 * ``python3  >= 3.6``
 *  Python packages: ``numpy``, ``h5py``
 * ``gcc >= gcc6``
-* ``gsl`` 
-* ``hdf5`` 
-* ``postgresql`` 
-* ``mpi``:   ``openmpi`` with ``--enable-mpi-cxx`` option. Other MPI implementations such as MPICH, Intel MPI are also supported. 
+* ``gsl``
+* ``hdf5``
+* ``postgresql``
+* ``mpi``:   ``openmpi`` with ``--enable-mpi-cxx`` option. Other MPI implementations such as MPICH, Intel MPI are also supported.
 *  ``make >= 4.2.1``
-*  ``cuda >= 9.0`` (certain linear algebra routines are only available after 9.0)   
-* An accelerated BLAS library (recommended), such as ``atlas``, ``openblas``, ``mkl``. 
+*  ``cuda >= 9.0`` (certain linear algebra routines are only available after 9.0)
+* An accelerated BLAS library (recommended), such as ``atlas``, ``openblas``, or ``mkl``.
 
 Downloads
 =========
 
-Currently, the CUDA extensions are not fully merged to the master branch. To install and run the CUDA version of AlTar 2.0, one needs to use ``git`` to pull pyre and altar packages from `pyre cuda branch`_ and `altar cuda branch`_, respectively.
+Currently, the CUDA extensions to altar are not fully merged to the master branch. To install and run the CUDA version of AlTar 2.0, one needs to use ``git`` to pull pyre and altar packages from `pyre cuda branch`_ and `altar cuda branch`_, respectively.
 
-The first step is to choose a directory where you plan to put all files, e.g., ``${HOME}/tools``, (if you have admin privileges to your system, you may choose a system folder such as ``/usr/local/`` or ``/opt``) 
+The first step is to choose a directory where you plan to put all files, e.g., ``${HOME}/tools``, (if you have admin privileges to your system, you may choose a system folder such as ``/usr/local/`` or ``/opt``)
 ::
-      
+
       $ mkdir -p ${HOME}/tools/src
       $ cd ${HOME}/tools/src
 
@@ -78,13 +77,13 @@ Download the mm/pyre/altar from their ``github`` repositories
       $ git clone https://github.com/lijun99/pyre.git
       $ git clone https://github.com/lijun99/altar.git
 
-You shall observe three directories ``mm``, ``pyre``, ``altar`` under ``${HOME}/tools/src`` directory. 
-
+You shall observe three directories ``mm``, ``pyre``, ``altar`` under ``${HOME}/tools/src`` directory.
 
 
 Prepare the ``config.mm`` file
-------------------------------
-The ``mm`` build tool requires ``config.mm`` to locate dependent libraries or packages. Taking Ubuntu 18.04 as an example, the ``config.mm`` file appear as 
+==============================
+The ``mm`` build tool requires ``config.mm`` to locate dependent libraries or packages. Taking Ubuntu 18.04 as an example, the ``config.mm`` file appear as
+.. _ubuntu_18.04_config:
 ::
 
     # file config.mm
@@ -135,49 +134,54 @@ The ``mm`` build tool requires ``config.mm`` to locate dependent libraries or pa
 
     # end of file
 
-The ``config.mm`` can be kept at ``PROJ/.mm`` directory (e.g., ``pyre/.mm``), or user's home directory ``${HOME}/.mm`` to be shared by all pyre/altar projects.
-    
+We recommend to save the ``config.mm`` file to ``${HOME}/.mm`` to be shared by all pyre/altar projects. Alternatively, you need to copy the file to
+both ``pyre/.mm`` and ``altar/.mm`` directories.
+
+Some examples for different operating systems are provided below.
+
+Instructions for specific operating systems
+===========================================
+
 Linux: Ubuntu (18.04) and Debian
 --------------------------------
 
 Install required packages
-~~~~~~~~~~~~~~~~~~~~~~~~~
 ::
 
     $ sudo apt update && sudo apt install -y gcc g++ python3 python3-dev python3-numpy python3-h5py libgsl-dev libopenblas-dev libpq-dev libopenmpi-dev libhdf5-serial-dev make git
 
+Prepare ``config.mm``
 
-``config.mm``
-~~~~~~~~~~~~~
-See above.
-
-
+An example is provided `above <ubuntu_18.04_config>`__, which is also available for download `here <../config.mm/ubuntu-18.04/config.mm>`__.
 
 Linux: REHL, CentOS, Fedora
 ---------------------------
+TBD
 
 Linux: Anaconda3
 ----------------------
-Download the most recent version of `Anaconda3 <https://www.anaconda.com/distribution/#download-section>`__, and install it, e.g., to ${HOME}/anaconda3 directory. 
+
+Download and install Anaconda3
+
+Download the most recent version of `Anaconda3 <https://www.anaconda.com/distribution/#download-section>`__, and install it, e.g., to ${HOME}/anaconda3 directory.
 
 Install the required libraries/packages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ::
 
   $ conda install -c conda-forge gcc_linux-64 gxx_linux-64 make openmpi gsl postgresql hdf5
 
 Make some links
 ::
-  
+
     $ cd ${HOME}/anaconda3/bin
     $ ln -sf make gmake
     $ ln -sf x86_64-conda_cos6-linux-gnu-gcc gcc
     $ ln -sf x86_64-conda_cos6-linux-gnu-g++ g++
     $ ln -sf x86_64-conda_cos6-linux-gnu-ld ld
-   
-Prepare a ``config.mm`` file 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-in ${HOME}/.mm/
+
+Prepare ``config.mm``
+
+In ${HOME}/.mm/, prepare a ``config.mm`` file as follows, or download from `here <../config.mm/anaconda/config.mm>`__.
 ::
 
     # file config.mm
@@ -186,7 +190,7 @@ in ${HOME}/.mm/
 
     # gsl
     gsl.dir = ${conda.dir}
-   
+
     # mpi
     mpi.dir = ${conda.dir}
     mpi.binpath = /usr/bin
@@ -197,7 +201,7 @@ in ${HOME}/.mm/
     hdf5.dir = ${conda.dir}
 
     # postgresql
-    libpq.dir = ${conda.dir} 
+    libpq.dir = ${conda.dir}
 
     # python3
     python.version = 3.7
@@ -218,19 +222,21 @@ in ${HOME}/.mm/
 
 Linux: with environment modules
 -------------------------------
+TBD
 
-MacOSX: Macports 
+MacOSX: Macports
 ----------------
+TBD
 
 Build pyre
 ==========
-After preparing all required libraries/packages and the ``config.mm`` file (in ``pyre/.mm`` or ``${HOME}/.mm``), you need to compile and install pyre at first. 
+After preparing all required libraries/packages and the ``config.mm`` file (in ``pyre/.mm`` or ``${HOME}/.mm``), you need to compile and install pyre at first.
 
 Make an alias of the mm_ command, in ``bash``
 ::
 
     $ alias mm='python3 ${HOME}/tools/src/mm/mm.py'
- 
+
 or in ``csh/tcsh``,
 ::
 
@@ -254,9 +260,9 @@ For example, if you prefer to install pyre to a system folder, you may use ``--p
 
 
 After compiling/installation, you need to set up some environmental variables for other applications to access
-``pyre``, for example, create a ``${HOME}/.pyre.rc`` for ``bash``, 
+``pyre``, for example, create a ``${HOME}/.pyre.rc`` for ``bash``,
 ::
-    
+
     # file .pyre.rc
     export PYRE_DIR=${HOME}/tools/src/pyre/products/debug-shared-linux-x86_64
     export PATH=${PYRE_DIR}/bin:$PATH
@@ -268,6 +274,7 @@ After compiling/installation, you need to set up some environmental variables fo
 
 or ``${HOME}/.pyre.cshrc`` for ``csh/tcsh``,
 ::
+
     # file .pyre.cshrc
     setenv PYRE_DIR "${HOME}/tools/src/pyre/products/debug-shared-linux-x86_64"
     setenv PATH "${PYRE_DIR}/bin:$PATH"
@@ -288,10 +295,12 @@ You will also need to append ``pyre`` configurations to ``${HOME}/.mm/config.mm`
 
 Build AlTar2
 ============
-First, make sure that you have a prepared ``config.mm`` file, which also includes the ``pyre`` configuration, in either ``altar/.mm/`` or ``${HOME}/.mm`` directory. For example 
+First, make sure that you have a prepared ``config.mm`` file, which also includes the ``pyre`` configuration, in either ``altar/.mm/`` or ``${HOME}/.mm`` directory. For example
 ::
+
     $ cd ${HOME}/tools/src/altar
     $ cp ${HOME}/tools/src/pyre/.mm/config.mm .mm/
+
 and append ``pyre.dir`` and ``pyre.libraries`` to ``.mm/config.mm`` as shown above.
 
 Then you can build AlTar2 by
@@ -300,11 +309,11 @@ Then you can build AlTar2 by
     $ cd ${HOME}/tools/src/altar
     $ mm
 
-Similar to ``pyre`` installation, the products are located at ``${HOME}/tools/src/altar/products/debug-shared-linux-x86_64``. You may choose to customize the installation with ``mm`` options, or simply copy the products to somewhere you prefer. 
+Similar to ``pyre`` installation, the products are located at ``${HOME}/tools/src/altar/products/debug-shared-linux-x86_64``. You may choose to customize the installation with ``mm`` options, or simply copy the products to somewhere you prefer.
 
 Also, you need to set up some environmental variables for ``altar`` as well, for example, create a ``${HOME}/.altar2.rc`` for ``bash``,
 ::
-    
+
     # file .altar2.rc
     export ALTAR2_DIR=${HOME}/tools/src/altar/products/debug-shared-linux-x86_64
     export PATH=${ALTAR2_DIR}/bin:$PATH
@@ -314,12 +323,13 @@ Also, you need to set up some environmental variables for ``altar`` as well, for
 
 or ``${HOME}/.altar2.cshrc`` for ``csh/tcsh``,
 ::
+
     # file .altar2.cshrc
     setenv ALTAR2_DIR "${HOME}/tools/src/altar/products/debug-shared-linux-x86_64"
     setenv PATH "${ALTAR2_DIR}/bin:$PATH"
     setenv LD_LIBRARY_PATH "${ALTAR2_DIR}/lib:$LD_LIBRARY_PATH"
     setenv PYTHONPATH "${ALTAR2_DIR}/packages:$PYTHONPATH"
-    # end of file 
+    # end of file
 
 Before running an altar/pyre application, you need to load the altar/pyre environmental settings
 ::
@@ -330,27 +340,32 @@ Before running an altar/pyre application, you need to load the altar/pyre enviro
 
 Tests and Examples
 ==================
-Pyre tests are available at ``${HOME}/tools/src/pyre/tests``. 
+Pyre tests are available at ``${HOME}/tools/src/pyre/tests``.
 
-AlTar examples are are available for different models. Taking the linear model as an example, 
+AlTar examples are are available for different models. Taking the linear model as an example,
 ::
 
     $ cd ${HOME}/tools/src/altar/models/linear/examples
     $ linear
 
-For details how to run AlTar applications, please refer to `User Guide`_. 
+For details how to run AlTar applications, please refer to `User Guide`_.
 
-Common issues
-=============
+Uninstall altar and/or pyre
+===========================
+You may run ``mm clean`` under the source directory to uninstall altar and/or pyre. Or, you may simply remove the compiled products, e.g.,
+``rm -rf ${HOME}/tools/src/altar/products/debug-shared-linux-x86_64``.
+
+FAQs amd Common issues
+======================
 
 locales
 -------
-If you see the error 
+If you see the error
 ::
-  
+
     UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 18: ordinal not in range(128)
 
-you might need to update your locale, e.g., 
+you might need to update your locale, e.g.,
 ::
 
     $ sudo apt install locales
@@ -358,7 +373,7 @@ you might need to update your locale, e.g.,
     $ sudo update-locale LANG=en_US.UTF-8 LANGUAGE
 
 
-GNU make version 
+GNU make version
 ----------------
 For Ubuntu 18.04, the system installed make version is 4.1; you need to update make
 ::
@@ -369,7 +384,7 @@ For Ubuntu 18.04, the system installed make version is 4.1; you need to update m
 
 Cannot find ``gmake``
 ---------------------
-when the command of GNU make is ``make`` instead of ``gmake``, please set the environmental variable 
+when the command of GNU make is ``make`` instead of ``gmake``, please set the environmental variable
 ::
 
     $ export GNU_MAKE=make # for bash
@@ -377,18 +392,19 @@ when the command of GNU make is ``make`` instead of ``gmake``, please set the en
 
 or set the variable when calling mm,
 ::
-    
+
     $ GNU_MAKE=make mm
 
 
-Cannot find ``cublas_v2.h`` 
+Cannot find ``cublas_v2.h``
 ---------------------------
-For certain Linux systems, NVIDIA installer installs ``cublas`` to the system directory ``/usr/include`` and ``/usr/lib/x86_64-linux-gnu`` instead of ``/usr/local/cuda``. In this case, please add the include and library paths to ``cuda.incpath`` and ``cuda.libpath`` in ``config.mm`` file. 
- 
+For certain Linux systems, NVIDIA installer installs ``cublas`` to the system directory ``/usr/include`` and ``/usr/lib/x86_64-linux-gnu`` instead of ``/usr/local/cuda``. In this case, please add the include and library paths to ``cuda.incpath`` and ``cuda.libpath`` in ``config.mm`` file.
 
-FAQs
+
+Help
 ====
-      
+* raise your issues or questions at `github <https://github.com/AlTarFramework/altar/issues>`__.
+* join the `slack discussion group <https://altar-group.slack.com/>`__ (currently by invitations only).
 
 
 .. _altar: https://github.com/AlTarFramework/altar
@@ -396,7 +412,7 @@ FAQs
 .. _pyre: https://github.com/pyre/pyre
 .. _pyre cuda branch: https://github.com/lijun99/pyre
 .. _mm: https://github.com/aivazis/mm
-.. _altar-install: ../config.mm
+.. _config.mm: ../config.mm
 .. _User Guide: Manual.rst
 
 
