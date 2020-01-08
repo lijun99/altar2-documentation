@@ -17,21 +17,45 @@ Data Types and Structures
 Configurable properties
 -----------------------
 
-pyre.properties.array(       pyre.properties.dimensional( pyre.properties.istream(     pyre.properties.set(        
-pyre.properties.bool(        pyre.properties.envpath(     pyre.properties.list(        pyre.properties.str(        
-pyre.properties.catalog(     pyre.properties.envvar(      pyre.properties.normalizer(  pyre.properties.strings(    
-pyre.properties.complex(     pyre.properties.facility(    pyre.properties.object(      pyre.properties.time(       
-pyre.properties.converter(   pyre.properties.float(       pyre.properties.ostream(     pyre.properties.tuple(      
-pyre.properties.date(        pyre.properties.identity(    pyre.properties.path(        pyre.properties.uri(        
-pyre.properties.decimal(     pyre.properties.inet(        pyre.properties.paths(       pyre.properties.uris(       
-pyre.properties.dict(        pyre.properties.int(         pyre.properties.property(    pyre.properties.validator( 
+pyre.properties.array
+pyre.properties.bool
+pyre.properties.catalog
+pyre.properties.complex
+pyre.properties.converter
+pyre.properties.date
+pyre.properties.decimal
+pyre.properties.dict
+pyre.properties.dimensional
+pyre.properties.envpath
+pyre.properties.envvar
+pyre.properties.facility
+pyre.properties.float
+pyre.properties.identity
+pyre.properties.inet
+pyre.properties.int
+pyre.properties.istream
+pyre.properties.list
+pyre.properties.normalizer
+pyre.properties.object
+pyre.properties.ostream
+pyre.properties.path
+pyre.properties.paths
+pyre.properties.property
+pyre.properties.set
+pyre.properties.str
+pyre.properties.strings
+pyre.properties.time
+pyre.properties.tuple
+pyre.properties.uri
+pyre.properties.uris
+pyre.properties.validator
 
 
 Matrix/Vector
 -------------
-The Matrix/Vector is based on GSL Matrix/Vector. 
+The Matrix/Vector is based on GSL Matrix/Vector.
 
-GSL matrix (size1, size2) -> (rows, cols) and is row-major. 
+GSL matrix (size1, size2) -> (rows, cols) and is row-major.
 
 Convert altar array to gsl_vector
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,8 +73,8 @@ Basic matrix/vector operations
 
     mat = altar.matrix(shape=(rows, cols)) # create a new matrix with dimension rows x cols (row-major)
     mat.zero() # initialize 0 to each element
-    mat.fill(number) # 
-    mat_clone = mat.clone() # 
+    mat.fill(number) #
+    mat_clone = mat.clone() #
     mat1.copy(mat2)
 
 
@@ -60,42 +84,42 @@ Altar framework
 Application
 -----------
 
-An altar application, as an instance of `altar.shells.application`, is the executor of altar programs and the organizer of other altar components. The four primary components of an altar application are 
+An altar application, as an instance of `altar.shells.application`, is the executor of altar programs and the organizer of other altar components. The four primary components of an altar application are
 
 - job : to config the run environment, such as number of tasks per host, number of hosts, number of gpus
 - controller: to control the adaptive annealing process, the default is `altar.bayesian.Annealer.Annealer`
 - model: a user-defined package specifying parameters, data, the forward model, as well as other necessary components to construct prior, likelihood, and posterior probabilities pursuant to the Bayes' theorem
-- rng: the random number generator, the default is gsl.rng. 
+- rng: the random number generator, the default is gsl.rng.
 
 Other altar components include
 
-- distributions: common pdf functions used for prior distributions    
-- norms: the distance functions used for computing likelihood, such as L2-norm. 
+- distributions: common pdf functions used for prior distributions
+- norms: the distance functions used for computing likelihood, such as L2-norm.
 
 
 
 Controller
 ----------
 
-An altar controller is a Markov-Chain Monte-Carlo sampler. The current controller is based on the CATMIP, or an adaptive annealing algorithm. Here, we assign a `beta` power to the likelihood and vary `beta` from 0 to 1 in steps.   
+An altar controller is a Markov-Chain Monte-Carlo sampler. The current controller is based on the CATMIP, or an adaptive annealing algorithm. Here, we assign a `beta` power to the likelihood and vary `beta` from 0 to 1 in steps.
 
 - scheduler: control how beta varies, the default is COV scheduler.
 - sampler: Metropolis sampler for each beta step, as a burn-in process
 - worker: sequential, mpi, cuda annealing methods
-- Coolingstep: 
--  
+- Coolingstep:
+-
 
 Altar application configuration file `.pfg`
 ===========================================
 
-Most configurations are loaded by the configuration file (for most classes, current __init__.py method takes no input parameters). 
+Most configurations are loaded by the configuration file (for most classes, current __init__.py method takes no input parameters).
 
 
 Writing Python bindings for C/C++ modules
 =========================================
 
-Let's use an example of vector copy . 
-Define in ``copy.h`` the 
+Let's use an example of vector copy .
+Define in ``copy.h`` the
 
 ::
 
@@ -146,6 +170,6 @@ The source code ``copy.cc``
     }
 
 
- 
+
 
 
