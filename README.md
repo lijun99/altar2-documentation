@@ -8,7 +8,7 @@ AlTar focuses on the [Cascading Adaptive Tempered Metropolis In Parallel (CATMIP
 (work in progress, currently for AlTar 2.0 CUDA version only)
 
 [Readthedocs](https://altar.readthedocs.io) (html/pdf/epub):
-| [Installation Guide](https://altar.readthedocs.io/en/cuda/Installation.html) | [User Guide](https://altar.readthedocs.io/en/cuda/Manual.html) | [Programming Guide](https://altar.readthedocs.io/en/cuda/Programming.html) |[API Reference](https://altar.readthedocs.io/en/cuda/api/index.html) |
+| [Installation Guide](https://altar.readthedocs.io/en/cuda/cuda/Installation.html) | [User Guide](https://altar.readthedocs.io/en/cuda/cuda/Manual.html) | [Programming Guide](https://altar.readthedocs.io/en/cuda/cuda/Programming.html) | [API Reference](https://altar.readthedocs.io/en/cuda/api/index.html) |
 
 [github](https://github.com/lijun99/altar2-documentation) (rst) :
 | [Installation Guide](docs/cuda/Installation.rst) | [User Guide](docs/cuda/Manual.rst) | [Programming Guide](docs/cuda/Programming.rst) |
