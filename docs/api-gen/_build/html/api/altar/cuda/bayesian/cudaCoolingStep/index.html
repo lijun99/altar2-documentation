@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.cuda.bayesian.cudaCoolingStep &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaCoolingStep</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep">cudaCoolingStep</a><ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.beta">beta</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.theta">theta</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.prior">prior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.data">data</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.posterior">posterior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.precision">precision</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.samples">samples</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.parameters">parameters</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.start">start</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.alloc">alloc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.clone">clone</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.computePosterior">computePosterior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.copyFromCPU">copyFromCPU</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.copyToCPU">copyToCPU</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaCoolingStep</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/api/altar/cuda/bayesian/cudaCoolingStep/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.cuda.bayesian.cudaCoolingStep">
+<span id="altar-cuda-bayesian-cudacoolingstep"></span><h1><a class="reference internal" href="#module-altar.cuda.bayesian.cudaCoolingStep" title="altar.cuda.bayesian.cudaCoolingStep"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaCoolingStep</span></code></a><a class="headerlink" href="#module-altar.cuda.bayesian.cudaCoolingStep" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep">
+<em class="property">class </em><code class="sig-prename descclassname">altar.cuda.bayesian.cudaCoolingStep.</code><code class="sig-name descname">cudaCoolingStep</code><span class="sig-paren">(</span><em class="sig-param">beta</em>, <em class="sig-param">theta</em>, <em class="sig-param">likelihoods</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulation of the state of the calculation at some particular β value</p>
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.beta">
+<code class="sig-name descname">beta</code><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.beta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.theta">
+<code class="sig-name descname">theta</code><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.theta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.prior">
+<code class="sig-name descname">prior</code><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.prior" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.data">
+<code class="sig-name descname">data</code><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.posterior">
+<code class="sig-name descname">posterior</code><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.posterior" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.precision">
+<code class="sig-name descname">precision</code><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.precision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.samples">
+<em class="property">property </em><code class="sig-name descname">samples</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of samples</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.parameters">
+<em class="property">property </em><code class="sig-name descname">parameters</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of model parameters</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.start">
+<em class="property">classmethod </em><code class="sig-name descname">start</code><span class="sig-paren">(</span><em class="sig-param">cls</em>, <em class="sig-param">annealer</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the first cooling step by asking {model} to produce a sample set from its
+initializing prior, compute the likelihood of this sample given the data, and compute a
+(perhaps trivial) posterior</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.alloc">
+<em class="property">classmethod </em><code class="sig-name descname">alloc</code><span class="sig-paren">(</span><em class="sig-param">cls</em>, <em class="sig-param">samples</em>, <em class="sig-param">parameters</em>, <em class="sig-param">dtype</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.alloc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allocate storage for the parts of a cooling step</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.clone">
+<code class="sig-name descname">clone</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.clone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a new step with a duplicate of my state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.computePosterior">
+<code class="sig-name descname">computePosterior</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">batch=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.computePosterior" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Re-)Compute the posterior from prior, data, and (updated) beta</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.copyFromCPU">
+<code class="sig-name descname">copyFromCPU</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.copyFromCPU" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy cpu step to gpu step</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.copyToCPU">
+<code class="sig-name descname">copyToCPU</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaCoolingStep.cudaCoolingStep.copyToCPU" title="Permalink to this definition">¶</a></dt>
+<dd><p>copy gpu step to cpu step</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.cuda.norms.cudaL2 &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.norms.cudaL2</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.cuda.norms.cudaL2.cudaL2">cudaL2</a><ul>
+<li><a class="reference internal" href="#altar.cuda.norms.cudaL2.cudaL2.cuEval">cuEval</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.norms.cudaL2.cudaL2.cuEvalLikelihood">cuEvalLikelihood</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.norms.cudaL2</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/api/altar/cuda/norms/cudaL2/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.cuda.norms.cudaL2">
+<span id="altar-cuda-norms-cudal2"></span><h1><a class="reference internal" href="#module-altar.cuda.norms.cudaL2" title="altar.cuda.norms.cudaL2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.norms.cudaL2</span></code></a><a class="headerlink" href="#module-altar.cuda.norms.cudaL2" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.cuda.norms.cudaL2.cudaL2">
+<em class="property">class </em><code class="sig-prename descclassname">altar.cuda.norms.cudaL2.</code><code class="sig-name descname">cudaL2</code><a class="headerlink" href="#altar.cuda.norms.cudaL2.cudaL2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../norms/L2/index.html#altar.norms.L2.L2" title="altar.norms.L2.L2"><code class="xref py py-class docutils literal notranslate"><span class="pre">altar.norms.L2.L2</span></code></a></p>
+<p>The L2 norm</p>
+<dl class="method">
+<dt id="altar.cuda.norms.cudaL2.cudaL2.cuEval">
+<code class="sig-name descname">cuEval</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">data</em>, <em class="sig-param">out=None</em>, <em class="sig-param">batch=None</em>, <em class="sig-param">cdinv=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.norms.cudaL2.cudaL2.cuEval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the L2 norm of the given data  ||x||
+Arguments:</p>
+<blockquote>
+<div><p>data - matrix (samples x observations)
+batch - number of samples to be computed (first rows)
+cdinv - inverse covariance matrix (observations x observations) in its Cholesky decomposed form (Upper Triangle)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Return:</dt><dd><p>out - norm vector (samples)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.norms.cudaL2.cudaL2.cuEvalLikelihood">
+<code class="sig-name descname">cuEvalLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">data</em>, <em class="sig-param">constant=0.0</em>, <em class="sig-param">out=None</em>, <em class="sig-param">batch=None</em>, <em class="sig-param">cdinv=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.norms.cudaL2.cudaL2.cuEvalLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the L2 norm data likelihood of the given data  const - ||x||^2/2
+Arguments:</p>
+<blockquote>
+<div><p>data - matrix (samples x observations)
+batch - number of samples to be computed (first rows)
+constant - normalization constant
+cdinv - inverse covariance matrix (observations x observations) in its Cholesky decomposed form (Upper Triangle)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Return:</dt><dd><p>out -  data likelihood vector (samples)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

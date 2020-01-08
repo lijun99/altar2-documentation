@@ -3,15 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-AlTar 2 documentation: A Python framework for Bayesian inference
-================================================================
+AlTar 2.0: A Bayesian framework for inverse problems
+====================================================
 
 .. toctree::
    :maxdepth: 3
    :caption: Contents:
 
-   Installation
-   Manual
+   cuda/Installation
+   cuda/Manual
+   cuda/Programming
    api/index
 
 Indices and tables

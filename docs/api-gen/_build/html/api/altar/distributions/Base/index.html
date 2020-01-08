@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.distributions.Base &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.Base</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base">Base</a><ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.parameters">parameters</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.offset">offset</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.pdf">pdf</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.initializeSample">initializeSample</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.priorLikelihood">priorLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.verify">verify</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.sample">sample</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.density">density</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.vector">vector</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.matrix">matrix</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.distributions.Base.Base.restrict">restrict</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.Base</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/api/altar/distributions/Base/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.distributions.Base">
+<span id="altar-distributions-base"></span><h1><a class="reference internal" href="#module-altar.distributions.Base" title="altar.distributions.Base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.Base</span></code></a><a class="headerlink" href="#module-altar.distributions.Base" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.distributions.Base.Base">
+<em class="property">class </em><code class="sig-prename descclassname">altar.distributions.Base.</code><code class="sig-name descname">Base</code><a class="headerlink" href="#altar.distributions.Base.Base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>The base class for probability distributions</p>
+<dl class="attribute">
+<dt id="altar.distributions.Base.Base.parameters">
+<code class="sig-name descname">parameters</code><a class="headerlink" href="#altar.distributions.Base.Base.parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.distributions.Base.Base.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the number of model parameters that belong to me</em><a class="headerlink" href="#altar.distributions.Base.Base.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.distributions.Base.Base.offset">
+<code class="sig-name descname">offset</code><a class="headerlink" href="#altar.distributions.Base.Base.offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the starting point of my parameters in the overall model state</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.distributions.Base.Base.pdf">
+<code class="sig-name descname">pdf</code><a class="headerlink" href="#altar.distributions.Base.Base.pdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.distributions.Base.Base.initialize">
+<em class="property">abstract </em><code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">rng</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.distributions.Base.Base.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize with the given random number generator</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.distributions.Base.Base.initializeSample">
+<code class="sig-name descname">initializeSample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.distributions.Base.Base.initializeSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill my portion of {theta} with initial random values from my distribution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.distributions.Base.Base.priorLikelihood">
+<code class="sig-name descname">priorLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">likelihood</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.distributions.Base.Base.priorLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill my portion of {likelihood} with the likelihoods of the samples in {theta}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.distributions.Base.Base.verify">
+<em class="property">abstract </em><code class="sig-name descname">verify</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">mask</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.distributions.Base.Base.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether my portion of the samples in {theta} are consistent with my constraints, and
+update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.distributions.Base.Base.sample">
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.distributions.Base.Base.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample the distribution using a random number generator</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.distributions.Base.Base.density">
+<code class="sig-name descname">density</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.distributions.Base.Base.density" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the probability density of the distribution at {x}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.distributions.Base.Base.vector">
+<code class="sig-name descname">vector</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">vector</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.distributions.Base.Base.vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {vector} with random values</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.distributions.Base.Base.matrix">
+<code class="sig-name descname">matrix</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">matrix</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.distributions.Base.Base.matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {matrix} with random values</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.distributions.Base.Base.restrict">
+<code class="sig-name descname">restrict</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.distributions.Base.Base.restrict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return my portion of the {theta}</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

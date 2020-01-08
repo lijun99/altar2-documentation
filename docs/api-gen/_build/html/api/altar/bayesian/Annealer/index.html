@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.bayesian.Annealer &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Annealer</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer">Annealer</a><ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.sampler">sampler</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.scheduler">scheduler</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.dispatcher">dispatcher</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.archiver">archiver</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.model">model</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.worker">worker</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.info">info</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.warning">warning</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.error">error</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.debug">debug</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.firewall">firewall</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.posterior">posterior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.deduceAnnealingMethod">deduceAnnealingMethod</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.sequential">sequential</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.cuda">cuda</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.threaded">threaded</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Annealer.Annealer.mpi">mpi</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Annealer</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/api/altar/bayesian/Annealer/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.bayesian.Annealer">
+<span id="altar-bayesian-annealer"></span><h1><a class="reference internal" href="#module-altar.bayesian.Annealer" title="altar.bayesian.Annealer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Annealer</span></code></a><a class="headerlink" href="#module-altar.bayesian.Annealer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.bayesian.Annealer.Annealer">
+<em class="property">class </em><code class="sig-prename descclassname">altar.bayesian.Annealer.</code><code class="sig-name descname">Annealer</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>A Bayesian controller that uses an annealing schedule and MCMC to approximate the posterior
+distribution of a model</p>
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.sampler">
+<code class="sig-name descname">sampler</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.sampler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the sampler of the posterior distribution</em><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.scheduler">
+<code class="sig-name descname">scheduler</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.scheduler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the generator of the annealing schedule</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.dispatcher">
+<code class="sig-name descname">dispatcher</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.dispatcher" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the event dispatcher that activates the registered handlers</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.archiver">
+<code class="sig-name descname">archiver</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.archiver" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the archiver of simulation state</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.worker">
+<code class="sig-name descname">worker</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.worker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.warning">
+<code class="sig-name descname">warning</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.error">
+<code class="sig-name descname">error</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.debug">
+<code class="sig-name descname">debug</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Annealer.Annealer.firewall">
+<code class="sig-name descname">firewall</code><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.firewall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Annealer.Annealer.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize me and my parts given an {application} context</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Annealer.Annealer.posterior">
+<code class="sig-name descname">posterior</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">model</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.posterior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample the posterior distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Annealer.Annealer.deduceAnnealingMethod">
+<code class="sig-name descname">deduceAnnealingMethod</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">job</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.deduceAnnealingMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate an annealing method compatible the user choices</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Annealer.Annealer.sequential">
+<code class="sig-name descname">sequential</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.sequential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the plain sequential annealing method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Annealer.Annealer.cuda">
+<code class="sig-name descname">cuda</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.cuda" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate a CUDA aware annealing method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Annealer.Annealer.threaded">
+<code class="sig-name descname">threaded</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">threads</em>, <em class="sig-param">worker</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.threaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the multi-threaded annealing method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Annealer.Annealer.mpi">
+<code class="sig-name descname">mpi</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">worker</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Annealer.Annealer.mpi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the MPI aware annealing method</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.cuda.distributions.cudaGaussian &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaGaussian</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian">cudaGaussian</a><ul>
+<li><a class="reference internal" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.mean">mean</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.sigma">sigma</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.cuInitSample">cuInitSample</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.cuVerify">cuVerify</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.cuEvalPrior">cuEvalPrior</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaGaussian</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/api/altar/cuda/distributions/cudaGaussian/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.cuda.distributions.cudaGaussian">
+<span id="altar-cuda-distributions-cudagaussian"></span><h1><a class="reference internal" href="#module-altar.cuda.distributions.cudaGaussian" title="altar.cuda.distributions.cudaGaussian"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaGaussian</span></code></a><a class="headerlink" href="#module-altar.cuda.distributions.cudaGaussian" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.cuda.distributions.cudaGaussian.cudaGaussian">
+<em class="property">class </em><code class="sig-prename descclassname">altar.cuda.distributions.cudaGaussian.</code><code class="sig-name descname">cudaGaussian</code><a class="headerlink" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../cudaDistribution/index.html#altar.cuda.distributions.cudaDistribution.cudaDistribution" title="altar.cuda.distributions.cudaDistribution.cudaDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaDistribution.cudaDistribution</span></code></a></p>
+<p>The cuda gaussian probability distribution</p>
+<dl class="attribute">
+<dt id="altar.cuda.distributions.cudaGaussian.cudaGaussian.mean">
+<code class="sig-name descname">mean</code><a class="headerlink" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.distributions.cudaGaussian.cudaGaussian.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the mean value</em><a class="headerlink" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.distributions.cudaGaussian.cudaGaussian.sigma">
+<code class="sig-name descname">sigma</code><a class="headerlink" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.sigma" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> =  the standard deviation</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.distributions.cudaGaussian.cudaGaussian.cuInitSample">
+<code class="sig-name descname">cuInitSample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.cuInitSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill my portion of {theta} with initial random values from my distribution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.distributions.cudaGaussian.cudaGaussian.cuVerify">
+<code class="sig-name descname">cuVerify</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">mask</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.cuVerify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether my portion of the samples in {theta} are consistent with my constraints, and
+update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
+Arguments:</p>
+<blockquote>
+<div><p>theta cuArray (samples x total_parameters)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.distributions.cudaGaussian.cudaGaussian.cuEvalPrior">
+<code class="sig-name descname">cuEvalPrior</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">prior</em>, <em class="sig-param">batch</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.distributions.cudaGaussian.cudaGaussian.cuEvalPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill my portion of {likelihood} with the likelihoods of the samples in {theta}</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

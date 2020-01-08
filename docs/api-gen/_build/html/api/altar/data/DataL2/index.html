@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.data.DataL2 &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data.DataL2</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2">DataL2</a><ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.data_file">data_file</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.observations">observations</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.cd_file">cd_file</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.cd_std">cd_std</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.norm">norm</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.ifs">ifs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.samples">samples</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.dataobs">dataobs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.dataobs_batch">dataobs_batch</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.cd">cd</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.cd_inv">cd_inv</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.error">error</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.evalLikelihood">evalLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.dataobsBatch">dataobsBatch</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.loadData">loadData</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.initializeCovariance">initializeCovariance</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.updateCovariance">updateCovariance</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.computeNormalization">computeNormalization</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.data.DataL2.DataL2.computeCovarianceInverse">computeCovarianceInverse</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data.DataL2</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/api/altar/data/DataL2/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.data.DataL2">
+<span id="altar-data-datal2"></span><h1><a class="reference internal" href="../index.html#altar.data.DataL2" title="altar.data.DataL2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data.DataL2</span></code></a><a class="headerlink" href="#module-altar.data.DataL2" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.data.DataL2.DataL2">
+<em class="property">class </em><code class="sig-prename descclassname">altar.data.DataL2.</code><code class="sig-name descname">DataL2</code><a class="headerlink" href="#altar.data.DataL2.DataL2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>The observed data with L2 norm</p>
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.data_file">
+<code class="sig-name descname">data_file</code><a class="headerlink" href="#altar.data.DataL2.DataL2.data_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the name of the file with the observations</em><a class="headerlink" href="#altar.data.DataL2.DataL2.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.observations">
+<code class="sig-name descname">observations</code><a class="headerlink" href="#altar.data.DataL2.DataL2.observations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the number of observed data</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.cd_file">
+<code class="sig-name descname">cd_file</code><a class="headerlink" href="#altar.data.DataL2.DataL2.cd_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the name of the file with the data covariance matrix</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.cd_std">
+<code class="sig-name descname">cd_std</code><a class="headerlink" href="#altar.data.DataL2.DataL2.cd_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">cd_std</code><em class="property"> = the constant covariance for data</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.norm">
+<code class="sig-name descname">norm</code><a class="headerlink" href="#altar.data.DataL2.DataL2.norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the norm to use when computing the data log likelihood</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.ifs">
+<code class="sig-name descname">ifs</code><a class="headerlink" href="#altar.data.DataL2.DataL2.ifs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.samples">
+<code class="sig-name descname">samples</code><a class="headerlink" href="#altar.data.DataL2.DataL2.samples" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.dataobs">
+<code class="sig-name descname">dataobs</code><a class="headerlink" href="#altar.data.DataL2.DataL2.dataobs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.dataobs_batch">
+<code class="sig-name descname">dataobs_batch</code><a class="headerlink" href="#altar.data.DataL2.DataL2.dataobs_batch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.cd">
+<code class="sig-name descname">cd</code><a class="headerlink" href="#altar.data.DataL2.DataL2.cd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.cd_inv">
+<code class="sig-name descname">cd_inv</code><a class="headerlink" href="#altar.data.DataL2.DataL2.cd_inv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.data.DataL2.DataL2.error">
+<code class="sig-name descname">error</code><a class="headerlink" href="#altar.data.DataL2.DataL2.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.data.DataL2.DataL2.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.data.DataL2.DataL2.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize data obs from model</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.data.DataL2.DataL2.evalLikelihood">
+<code class="sig-name descname">evalLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">prediction</em>, <em class="sig-param">likelihood</em>, <em class="sig-param">residual=True</em>, <em class="sig-param">batch=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.data.DataL2.DataL2.evalLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute the datalikelihood for prediction (samples x observations)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.data.DataL2.DataL2.dataobsBatch">
+<code class="sig-name descname">dataobsBatch</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.data.DataL2.DataL2.dataobsBatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a batch of duplicated dataobs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.data.DataL2.DataL2.loadData">
+<code class="sig-name descname">loadData</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.data.DataL2.DataL2.loadData" title="Permalink to this definition">¶</a></dt>
+<dd><p>load data and covariance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.data.DataL2.DataL2.initializeCovariance">
+<code class="sig-name descname">initializeCovariance</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">cd</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.data.DataL2.DataL2.initializeCovariance" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a given data covariance cd, compute L2 likelihood normalization, inverse of cd in Cholesky decomposed form,
+and merge cd with data observation, d-&gt; L*d with cd^{-1} = L L*
+:param cd:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.data.DataL2.DataL2.updateCovariance">
+<code class="sig-name descname">updateCovariance</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">cp</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.data.DataL2.DataL2.updateCovariance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update data covariance with cp, cd -&gt; cd + cp
+:param cp: a matrix with shape (obs, obs)
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.data.DataL2.DataL2.computeNormalization">
+<code class="sig-name descname">computeNormalization</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">observations</em>, <em class="sig-param">cd</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.data.DataL2.DataL2.computeNormalization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the normalization of the L2 norm</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.data.DataL2.DataL2.computeCovarianceInverse">
+<code class="sig-name descname">computeCovarianceInverse</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">cd</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.data.DataL2.DataL2.computeCovarianceInverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the inverse of the data covariance matrix</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

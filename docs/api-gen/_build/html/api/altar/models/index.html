@@ -1,0 +1,751 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.models &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li><a class="reference internal" href="#altar.models.model">model</a><ul>
+<li><a class="reference internal" href="#altar.models.model.posterior">posterior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.initializeSample">initializeSample</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.priorLikelihood">priorLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.dataLikelihood">dataLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.posteriorLikelihood">posteriorLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.likelihoods">likelihoods</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.verify">verify</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.top">top</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.bottom">bottom</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.model.pyre_default">pyre_default</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.parameterset">parameterset</a><ul>
+<li><a class="reference internal" href="#altar.models.parameterset.count">count</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.parameterset.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.parameterset.prior">prior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.parameterset.prep">prep</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.parameterset.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.parameterset.initializeSample">initializeSample</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.parameterset.priorLikelihood">priorLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.parameterset.verify">verify</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.parameterset.pyre_default">pyre_default</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian">bayesian</a><ul>
+<li><a class="reference internal" href="#altar.models.bayesian.offset">offset</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.parameters">parameters</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.psets">psets</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.default">default</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.rng">rng</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.controller">controller</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.job">job</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.info">info</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.warning">warning</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.error">error</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.firewall">firewall</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.posterior">posterior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.initializeSample">initializeSample</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.priorLikelihood">priorLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.dataLikelihood">dataLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.posteriorLikelihood">posteriorLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.likelihoods">likelihoods</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.verify">verify</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.top">top</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.bottom">bottom</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.mountInputDataspace">mountInputDataspace</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.bayesian.restrict">restrict</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.null">null</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.ensemble">ensemble</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.contiguous">contiguous</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/api/altar/models/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.models">
+<span id="altar-models"></span><h1><a class="reference internal" href="#module-altar.models" title="altar.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a><a class="headerlink" href="#module-altar.models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cdm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cdm/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.ext</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdm/CDM/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.CDM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdm/CUDA/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.CUDA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdm/Data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdm/Fast/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Fast</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdm/Native/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Native</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdm/Source/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Source</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdm/libcdm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.libcdm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdm/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cudalinear/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cudalinear</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cudalinear/cudaLinear/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cudalinear.cudaLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cudalinear/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cudalinear.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="emhp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.emhp</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="emhp/EMHP/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.emhp.EMHP</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="emhp/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.emhp.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gaussian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.gaussian</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gaussian/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.gaussian.ext</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gaussian/Gaussian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.gaussian.Gaussian</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gaussian/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.gaussian.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linear/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.linear</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linear/Linear/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.linear.Linear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.linear.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mogi/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mogi/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.ext</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mogi/CUDA/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.CUDA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mogi/Data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mogi/Fast/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Fast</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mogi/Mogi/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Mogi</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mogi/Native/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Native</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mogi/Source/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Source</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mogi/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="seismic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="seismic/cuda/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="seismic/cuda/cudaCascaded/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaCascaded</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="seismic/cuda/cudaKinematicG/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicG</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="seismic/cuda/cudaKinematicGCp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicGCp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="seismic/cuda/cudaMoment/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaMoment</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="seismic/cuda/cudaStatic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaStatic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="seismic/cuda/cudaStaticCp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaStaticCp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="seismic/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.ext</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="seismic/Moment/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.Moment</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="seismic/Static/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.Static</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="seismic/StaticCp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.StaticCp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="seismic/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.meta</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Bayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Bayesian</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contiguous/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Contiguous</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ensemble/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Ensemble</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Model</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Null/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Null</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParameterSet/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.ParameterSet</span></code></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.models.model">
+<em class="property">class </em><code class="sig-prename descclassname">altar.models.</code><code class="sig-name descname">model</code><a class="headerlink" href="#altar.models.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar models must implement</p>
+<dl class="method">
+<dt id="altar.models.model.posterior">
+<code class="sig-name descname">posterior</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.posterior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample my posterior distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the state of the model given a {problem} specification</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.initializeSample">
+<code class="sig-name descname">initializeSample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.initializeSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {step.theta} with an initial random sample from my prior distribution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.priorLikelihood">
+<code class="sig-name descname">priorLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.priorLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {step.prior} with the likelihoods of the samples in {step.theta} in the prior
+distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.dataLikelihood">
+<code class="sig-name descname">dataLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.dataLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {step.data} with the likelihoods of the samples in {step.theta} given the available
+data. This is what is usually referred to as the “forward model”</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.posteriorLikelihood">
+<code class="sig-name descname">posteriorLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.posteriorLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the {step.prior} and {step.data} likelihoods, compute a generalized posterior using
+{step.beta} and deposit the result in {step.post}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.likelihoods">
+<code class="sig-name descname">likelihoods</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.likelihoods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function that computes all three likelihoods at once given the current {step}
+of the problem</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.verify">
+<code class="sig-name descname">verify</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em>, <em class="sig-param">mask</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the samples in {step.theta} are consistent with the model requirements and
+update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.top">
+<code class="sig-name descname">top</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.top" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notification that a β step is about to start</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.bottom">
+<code class="sig-name descname">bottom</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.bottom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notification that a β step just ended</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.model.pyre_default">
+<em class="property">classmethod </em><code class="sig-name descname">pyre_default</code><span class="sig-paren">(</span><em class="sig-param">cls</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.model.pyre_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altar.models.parameterset">
+<em class="property">class </em><code class="sig-prename descclassname">altar.models.</code><code class="sig-name descname">parameterset</code><a class="headerlink" href="#altar.models.parameterset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar parameter sets must implement</p>
+<dl class="attribute">
+<dt id="altar.models.parameterset.count">
+<code class="sig-name descname">count</code><a class="headerlink" href="#altar.models.parameterset.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.parameterset.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the number of parameters in this set</em><a class="headerlink" href="#altar.models.parameterset.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.parameterset.prior">
+<code class="sig-name descname">prior</code><a class="headerlink" href="#altar.models.parameterset.prior" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the prior distribution</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.parameterset.prep">
+<code class="sig-name descname">prep</code><a class="headerlink" href="#altar.models.parameterset.prep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the distribution to use to initialize this parameter set</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.models.parameterset.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">model</em>, <em class="sig-param">offset</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.parameterset.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the parameter set given the {model} that owns it</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.parameterset.initializeSample">
+<code class="sig-name descname">initializeSample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.parameterset.initializeSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {theta} with an initial random sample from my prior distribution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.parameterset.priorLikelihood">
+<code class="sig-name descname">priorLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">priorLLK</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.parameterset.priorLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {priorLLK} with the likelihoods of the samples in {theta} in my prior distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.parameterset.verify">
+<code class="sig-name descname">verify</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">mask</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.parameterset.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the samples in {theta} are consistent with the model requirements and update
+the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.parameterset.pyre_default">
+<em class="property">classmethod </em><code class="sig-name descname">pyre_default</code><span class="sig-paren">(</span><em class="sig-param">cls</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.parameterset.pyre_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altar.models.bayesian">
+<em class="property">class </em><code class="sig-prename descclassname">altar.models.</code><code class="sig-name descname">bayesian</code><a class="headerlink" href="#altar.models.bayesian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>The base class of AlTar models that are compatible with Bayesian explorations</p>
+<dl class="attribute">
+<dt id="altar.models.bayesian.offset">
+<code class="sig-name descname">offset</code><a class="headerlink" href="#altar.models.bayesian.offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the starting point of my state in the overall controller state</em><a class="headerlink" href="#altar.models.bayesian.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.parameters">
+<code class="sig-name descname">parameters</code><a class="headerlink" href="#altar.models.bayesian.parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the number of model degrees of freedom</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.psets">
+<code class="sig-name descname">psets</code><a class="headerlink" href="#altar.models.bayesian.psets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.default">
+<code class="sig-name descname">default</code><a class="headerlink" href="#altar.models.bayesian.default" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = an ensemble of parameter sets in the model</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.rng">
+<code class="sig-name descname">rng</code><a class="headerlink" href="#altar.models.bayesian.rng" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.controller">
+<code class="sig-name descname">controller</code><a class="headerlink" href="#altar.models.bayesian.controller" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.job">
+<code class="sig-name descname">job</code><a class="headerlink" href="#altar.models.bayesian.job" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.info">
+<code class="sig-name descname">info</code><a class="headerlink" href="#altar.models.bayesian.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.warning">
+<code class="sig-name descname">warning</code><a class="headerlink" href="#altar.models.bayesian.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.error">
+<code class="sig-name descname">error</code><a class="headerlink" href="#altar.models.bayesian.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">default</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.bayesian.firewall">
+<code class="sig-name descname">firewall</code><a class="headerlink" href="#altar.models.bayesian.firewall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the state of the model given an {application} context</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.posterior">
+<code class="sig-name descname">posterior</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.posterior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample my posterior distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.initializeSample">
+<code class="sig-name descname">initializeSample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.initializeSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {step.theta} with an initial random sample from my prior distribution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.priorLikelihood">
+<code class="sig-name descname">priorLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.priorLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {step.prior} with the likelihoods of the samples in {step.theta} in the prior
+distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.dataLikelihood">
+<code class="sig-name descname">dataLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.dataLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {step.data} with the likelihoods of the samples in {step.theta} given the available
+data. This is what is usually referred to as the “forward model”</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.posteriorLikelihood">
+<code class="sig-name descname">posteriorLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.posteriorLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the {step.prior} and {step.data} likelihoods, compute a generalized posterior using
+{step.beta} and deposit the result in {step.post}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.likelihoods">
+<code class="sig-name descname">likelihoods</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.likelihoods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function that computes all three likelihoods at once given the current {step}
+of the problem</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.verify">
+<em class="property">abstract </em><code class="sig-name descname">verify</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em>, <em class="sig-param">mask</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the samples in {step.theta} are consistent with the model requirements and
+update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.top">
+<code class="sig-name descname">top</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.top" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notification that a β step is about to start</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.bottom">
+<code class="sig-name descname">bottom</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.bottom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notification that a β step just ended</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.mountInputDataspace">
+<code class="sig-name descname">mountInputDataspace</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">pfs</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.mountInputDataspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mount the directory with my input files</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.bayesian.restrict">
+<code class="sig-name descname">restrict</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.bayesian.restrict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return my portion of the sample matrix {theta}</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="altar.models.null">
+<code class="sig-prename descclassname">altar.models.</code><code class="sig-name descname">null</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.null" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="altar.models.ensemble">
+<code class="sig-prename descclassname">altar.models.</code><code class="sig-name descname">ensemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.ensemble" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="altar.models.contiguous">
+<code class="sig-prename descclassname">altar.models.</code><code class="sig-name descname">contiguous</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.contiguous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

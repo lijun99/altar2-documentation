@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'AlTar'
-copyright = '2020, AlTar Developers'
-author = 'AlTar Developers'
+project = 'AlTar 2.0'
+copyright = '2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology.'
+author = 'AlTar Development Team'
 
 # The full version, including alpha/beta/rc tags
 release = '2.0'

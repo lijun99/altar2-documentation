@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.models.seismic.cuda.cudaKinematicGCp &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicGCp</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp">cudaKinematicGCp</a><ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.nCmu">nCmu</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.cmu_file">cmu_file</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.kmu_file">kmu_file</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.initial_model_file">initial_model_file</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.beta_cp_start">beta_cp_start</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.beta_use_initial_model">beta_use_initial_model</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.mean_model">mean_model</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.initializeCp">initializeCp</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.updateModel">updateModel</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.computeCp">computeCp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicGCp</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../../_sources/api/altar/models/seismic/cuda/cudaKinematicGCp/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.models.seismic.cuda.cudaKinematicGCp">
+<span id="altar-models-seismic-cuda-cudakinematicgcp"></span><h1><a class="reference internal" href="#module-altar.models.seismic.cuda.cudaKinematicGCp" title="altar.models.seismic.cuda.cudaKinematicGCp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicGCp</span></code></a><a class="headerlink" href="#module-altar.models.seismic.cuda.cudaKinematicGCp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp">
+<em class="property">class </em><code class="sig-prename descclassname">altar.models.seismic.cuda.cudaKinematicGCp.</code><code class="sig-name descname">cudaKinematicGCp</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../cudaKinematicG/index.html#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG" title="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG"><code class="xref py py-class docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG</span></code></a></p>
+<p>KinematicG inversion with Cp (prediction error due to model parameter uncertainty)</p>
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.nCmu">
+<code class="sig-name descname">nCmu</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.nCmu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the number of model parameters with uncertainties (or to be considered)</em><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.cmu_file">
+<code class="sig-name descname">cmu_file</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.cmu_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the covariance describing the uncertainty of model parameter, a nCmu x nCmu matrix</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.kmu_file">
+<code class="sig-name descname">kmu_file</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.kmu_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the sensitivity kernel of model parameters, a hdf5 file including nCmu kernel data sets</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.initial_model_file">
+<code class="sig-name descname">initial_model_file</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.initial_model_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the initial mean model</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.beta_cp_start">
+<code class="sig-name descname">beta_cp_start</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.beta_cp_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = for beta &gt;= beta_cp_start, incorporate Cp into Cd</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.beta_use_initial_model">
+<code class="sig-name descname">beta_use_initial_model</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.beta_use_initial_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = for beta &lt;= beta_use_initial_model, use initial_model instead of mean model</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.mean_model">
+<code class="sig-name descname">mean_model</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.mean_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the state of the model given a {problem} specification</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.initializeCp">
+<code class="sig-name descname">initializeCp</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.initializeCp" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.updateModel">
+<code class="sig-name descname">updateModel</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.updateModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model method called by Sampler before Metropolis sampling for each beta step starts,
+employed to compute Cp and merge Cp with data covariance
+:param annealer: the annealer for application
+:return: True or False if model parameters are updated or remain the same</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.computeCp">
+<code class="sig-name descname">computeCp</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">model</em>, <em class="sig-param">cp=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp.computeCp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Cp with a mean model
+:param model:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

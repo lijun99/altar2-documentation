@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.models.cdm.Source &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Source</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source">Source</a><ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.x">x</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.y">y</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.d">d</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.ax">ax</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.ay">ay</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.az">az</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.omegaX">omegaX</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.omegaY">omegaY</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.omegaZ">omegaZ</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.opening">opening</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.v">v</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.cdm.Source.Source.displacements">displacements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Source</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/api/altar/models/cdm/Source/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.models.cdm.Source">
+<span id="altar-models-cdm-source"></span><h1><a class="reference internal" href="#module-altar.models.cdm.Source" title="altar.models.cdm.Source"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Source</span></code></a><a class="headerlink" href="#module-altar.models.cdm.Source" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.models.cdm.Source.Source">
+<em class="property">class </em><code class="sig-prename descclassname">altar.models.cdm.Source.</code><code class="sig-name descname">Source</code><span class="sig-paren">(</span><em class="sig-param">x=x</em>, <em class="sig-param">y=y</em>, <em class="sig-param">d=d</em>, <em class="sig-param">ax=ax</em>, <em class="sig-param">ay=ay</em>, <em class="sig-param">az=az</em>, <em class="sig-param">omegaX=omegaX</em>, <em class="sig-param">omegaY=omegaY</em>, <em class="sig-param">omegaZ=omegaZ</em>, <em class="sig-param">opening=opening</em>, <em class="sig-param">v=v</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.Source.Source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The source response for a Compound Dislocation Model in an elastic half space.</p>
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.x">
+<code class="sig-name descname">x</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.y">
+<code class="sig-name descname">y</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.d">
+<code class="sig-name descname">d</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.ax">
+<code class="sig-name descname">ax</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.ax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.ay">
+<code class="sig-name descname">ay</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.ay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.az">
+<code class="sig-name descname">az</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.az" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.omegaX">
+<code class="sig-name descname">omegaX</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.omegaX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.omegaY">
+<code class="sig-name descname">omegaY</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.omegaY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.omegaZ">
+<code class="sig-name descname">omegaZ</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.omegaZ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.opening">
+<code class="sig-name descname">opening</code><em class="property"> = 0</em><a class="headerlink" href="#altar.models.cdm.Source.Source.opening" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.cdm.Source.Source.v">
+<code class="sig-name descname">v</code><em class="property"> = 0.25</em><a class="headerlink" href="#altar.models.cdm.Source.Source.v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.models.cdm.Source.Source.displacements">
+<code class="sig-name descname">displacements</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">locations</em>, <em class="sig-param">los</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.Source.Source.displacements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the expected displacements at a set of observation locations from a compound
+(triaxial) dislocation source at depth.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

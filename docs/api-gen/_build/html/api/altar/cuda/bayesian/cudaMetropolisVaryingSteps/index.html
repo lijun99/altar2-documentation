@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.cuda.bayesian.cudaMetropolisVaryingSteps &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaMetropolisVaryingSteps</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps">cudaMetropolisVaryingSteps</a><ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.scaling">scaling</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.acceptanceWeight">acceptanceWeight</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.rejectionWeight">rejectionWeight</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.max_mc_steps">max_mc_steps</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.corr_check_steps">corr_check_steps</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.target_correlation">target_correlation</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.mcsteps">mcsteps</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.dispatcher">dispatcher</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.ginit">ginit</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gstep">gstep</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gcandidate">gcandidate</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gproposal">gproposal</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gsigma_chol">gsigma_chol</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gvalid_indices">gvalid_indices</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gvalid_samples">gvalid_samples</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.ginvalid_flags">ginvalid_flags</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gacceptance_flags">gacceptance_flags</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.precision">precision</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gdice">gdice</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.curng">curng</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.cuInitialize">cuInitialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.samplePosterior">samplePosterior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.resample">resample</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.prepareSamplingPDF">prepareSamplingPDF</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.finishSamplingPDF">finishSamplingPDF</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.walkChains">walkChains</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.displace">displace</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.adjustCovarianceScaling">adjustCovarianceScaling</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.allocateGPUData">allocateGPUData</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaMetropolisVaryingSteps</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/api/altar/cuda/bayesian/cudaMetropolisVaryingSteps/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.cuda.bayesian.cudaMetropolisVaryingSteps">
+<span id="altar-cuda-bayesian-cudametropolisvaryingsteps"></span><h1><a class="reference internal" href="#module-altar.cuda.bayesian.cudaMetropolisVaryingSteps" title="altar.cuda.bayesian.cudaMetropolisVaryingSteps"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaMetropolisVaryingSteps</span></code></a><a class="headerlink" href="#module-altar.cuda.bayesian.cudaMetropolisVaryingSteps" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps">
+<em class="property">class </em><code class="sig-prename descclassname">altar.cuda.bayesian.cudaMetropolisVaryingSteps.</code><code class="sig-name descname">cudaMetropolisVaryingSteps</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>The Metropolis algorithm as a sampler of the posterior distribution</p>
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.scaling">
+<code class="sig-name descname">scaling</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.scaling" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the parameter covariance Σ is scaled by the square of this</em><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.acceptanceWeight">
+<code class="sig-name descname">acceptanceWeight</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.acceptanceWeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the weight of accepted samples during covariance rescaling</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.rejectionWeight">
+<code class="sig-name descname">rejectionWeight</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.rejectionWeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the weight of rejected samples during covariance rescaling</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.max_mc_steps">
+<code class="sig-name descname">max_mc_steps</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.max_mc_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the maximum Monte-Carlo steps for one beta step</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.corr_check_steps">
+<code class="sig-name descname">corr_check_steps</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.corr_check_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the Monte-Carlo steps to compute the de</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.target_correlation">
+<code class="sig-name descname">target_correlation</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.target_correlation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the threshold of correlation to stop the chain</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.mcsteps">
+<code class="sig-name descname">mcsteps</code><em class="property"> = 1</em><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.mcsteps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.dispatcher">
+<code class="sig-name descname">dispatcher</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.dispatcher" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.ginit">
+<code class="sig-name descname">ginit</code><em class="property"> = False</em><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.ginit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gstep">
+<code class="sig-name descname">gstep</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gstep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gcandidate">
+<code class="sig-name descname">gcandidate</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gcandidate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gproposal">
+<code class="sig-name descname">gproposal</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gproposal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gsigma_chol">
+<code class="sig-name descname">gsigma_chol</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gsigma_chol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gvalid_indices">
+<code class="sig-name descname">gvalid_indices</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gvalid_indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gvalid_samples">
+<code class="sig-name descname">gvalid_samples</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gvalid_samples" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.ginvalid_flags">
+<code class="sig-name descname">ginvalid_flags</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.ginvalid_flags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gacceptance_flags">
+<code class="sig-name descname">gacceptance_flags</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gacceptance_flags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.precision">
+<code class="sig-name descname">precision</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.precision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gdice">
+<code class="sig-name descname">gdice</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.gdice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.curng">
+<code class="sig-name descname">curng</code><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.curng" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize me and my parts given an {application} context</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.cuInitialize">
+<code class="sig-name descname">cuInitialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.cuInitialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.samplePosterior">
+<code class="sig-name descname">samplePosterior</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.samplePosterior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample the posterior distribution
+Arguments:</p>
+<blockquote>
+<div><p>annealer - the controller
+step - cpu CoolingStep</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Return:</dt><dd><p>statistics (accepted/rejected/invalid) or (accepted/unlikely/rejected)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.resample">
+<code class="sig-name descname">resample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em>, <em class="sig-param">statistics</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update my statistics based on the results of walking my Markov chains</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.prepareSamplingPDF">
+<code class="sig-name descname">prepareSamplingPDF</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.prepareSamplingPDF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Re-scale and decompose the parameter covariance matrix, in preparation for the
+Metropolis update</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.finishSamplingPDF">
+<code class="sig-name descname">finishSamplingPDF</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.finishSamplingPDF" title="Permalink to this definition">¶</a></dt>
+<dd><p>procedures after sampling, e.g, copy data back to cpu</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.walkChains">
+<code class="sig-name descname">walkChains</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.walkChains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the Metropolis algorithm on the Markov chains
+Arguments:</p>
+<blockquote>
+<div><p>annealer: cudaAnnealer
+step: cudaCoolingStep</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Return:</dt><dd><p>statistics = (accepted, rejected, unlikely)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.displace">
+<code class="sig-name descname">displace</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">displacement</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.displace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a set of displacement vectors for the random walk from a distribution with zero
+mean and my covariance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.adjustCovarianceScaling">
+<code class="sig-name descname">adjustCovarianceScaling</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">accepted</em>, <em class="sig-param">invalid</em>, <em class="sig-param">rejected</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.adjustCovarianceScaling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a new value for the covariance sacling factor based on the acceptance/rejection
+ratio</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.allocateGPUData">
+<code class="sig-name descname">allocateGPUData</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">samples</em>, <em class="sig-param">parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolisVaryingSteps.cudaMetropolisVaryingSteps.allocateGPUData" title="Permalink to this definition">¶</a></dt>
+<dd><p>initialize gpu work data</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

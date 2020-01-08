@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.bayesian.Notifier &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Notifier</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier">Notifier</a><ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.start">start</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.samplePosteriorStart">samplePosteriorStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.prepareSamplingPDFStart">prepareSamplingPDFStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.prepareSamplingPDFFinish">prepareSamplingPDFFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.betaStart">betaStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.walkChainsStart">walkChainsStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.chainAdvanceStart">chainAdvanceStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.verifyStart">verifyStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.verifyFinish">verifyFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.priorStart">priorStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.priorFinish">priorFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.dataStart">dataStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.dataFinish">dataFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.posteriorStart">posteriorStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.posteriorFinish">posteriorFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.acceptStart">acceptStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.acceptFinish">acceptFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.chainAdvanceFinish">chainAdvanceFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.walkChainsFinish">walkChainsFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.resampleStart">resampleStart</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.resampleFinish">resampleFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.betaFinish">betaFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.samplePosteriorFinish">samplePosteriorFinish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.finish">finish</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.register">register</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.Notifier.Notifier.notify">notify</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Notifier</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/api/altar/bayesian/Notifier/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.bayesian.Notifier">
+<span id="altar-bayesian-notifier"></span><h1><a class="reference internal" href="#module-altar.bayesian.Notifier" title="altar.bayesian.Notifier"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Notifier</span></code></a><a class="headerlink" href="#module-altar.bayesian.Notifier" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.bayesian.Notifier.Notifier">
+<em class="property">class </em><code class="sig-prename descclassname">altar.bayesian.Notifier.</code><code class="sig-name descname">Notifier</code><span class="sig-paren">(</span><em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Notifier.Notifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>A dispatcher of events generated during the annealing process</p>
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.start">
+<code class="sig-name descname">start</code><em class="property"> = simulationStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.samplePosteriorStart">
+<code class="sig-name descname">samplePosteriorStart</code><em class="property"> = samplePosteriorStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.samplePosteriorStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.prepareSamplingPDFStart">
+<code class="sig-name descname">prepareSamplingPDFStart</code><em class="property"> = prepareSamplingPDFStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.prepareSamplingPDFStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.prepareSamplingPDFFinish">
+<code class="sig-name descname">prepareSamplingPDFFinish</code><em class="property"> = prepareSamplingPDFFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.prepareSamplingPDFFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.betaStart">
+<code class="sig-name descname">betaStart</code><em class="property"> = betaStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.betaStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.walkChainsStart">
+<code class="sig-name descname">walkChainsStart</code><em class="property"> = walkChainsStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.walkChainsStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.chainAdvanceStart">
+<code class="sig-name descname">chainAdvanceStart</code><em class="property"> = chainAdvanceStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.chainAdvanceStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.verifyStart">
+<code class="sig-name descname">verifyStart</code><em class="property"> = verifyStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.verifyStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.verifyFinish">
+<code class="sig-name descname">verifyFinish</code><em class="property"> = verifyFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.verifyFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.priorStart">
+<code class="sig-name descname">priorStart</code><em class="property"> = priorStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.priorStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.priorFinish">
+<code class="sig-name descname">priorFinish</code><em class="property"> = priorFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.priorFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.dataStart">
+<code class="sig-name descname">dataStart</code><em class="property"> = dataStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.dataStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.dataFinish">
+<code class="sig-name descname">dataFinish</code><em class="property"> = dataFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.dataFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.posteriorStart">
+<code class="sig-name descname">posteriorStart</code><em class="property"> = posteriorStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.posteriorStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.posteriorFinish">
+<code class="sig-name descname">posteriorFinish</code><em class="property"> = posteriorFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.posteriorFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.acceptStart">
+<code class="sig-name descname">acceptStart</code><em class="property"> = acceptStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.acceptStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.acceptFinish">
+<code class="sig-name descname">acceptFinish</code><em class="property"> = acceptFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.acceptFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.chainAdvanceFinish">
+<code class="sig-name descname">chainAdvanceFinish</code><em class="property"> = chainAdvanceFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.chainAdvanceFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.walkChainsFinish">
+<code class="sig-name descname">walkChainsFinish</code><em class="property"> = walkChainsFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.walkChainsFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.resampleStart">
+<code class="sig-name descname">resampleStart</code><em class="property"> = resampleStart</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.resampleStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.resampleFinish">
+<code class="sig-name descname">resampleFinish</code><em class="property"> = resampleFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.resampleFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.betaFinish">
+<code class="sig-name descname">betaFinish</code><em class="property"> = betaFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.betaFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.samplePosteriorFinish">
+<code class="sig-name descname">samplePosteriorFinish</code><em class="property"> = samplePosteriorFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.samplePosteriorFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.Notifier.Notifier.finish">
+<code class="sig-name descname">finish</code><em class="property"> = simulationFinish</em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.finish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Notifier.Notifier.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize me given an {application} context</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Notifier.Notifier.register">
+<code class="sig-name descname">register</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">monitor</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable {monitor} as an observer of simulation events</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.Notifier.Notifier.notify">
+<code class="sig-name descname">notify</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">event</em>, <em class="sig-param">controller</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notify all handlers that are waiting for {event}</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

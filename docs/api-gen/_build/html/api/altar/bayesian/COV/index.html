@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.bayesian.COV &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.COV</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV">COV</a><ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.target">target</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.solver">solver</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.check_positive_definiteness">check_positive_definiteness</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.min_eigenvalue_ratio">min_eigenvalue_ratio</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.w">w</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.cov">cov</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.uniform">uniform</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.rng">rng</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.update">update</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.updateTemperature">updateTemperature</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.computeCovariance">computeCovariance</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.rank">rank</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.resampling">resampling</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.conditionCovariance">conditionCovariance</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.computeSampleMultiplicities">computeSampleMultiplicities</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.bayesian.COV.COV.buildHistogramRanges">buildHistogramRanges</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.COV</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/api/altar/bayesian/COV/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.bayesian.COV">
+<span id="altar-bayesian-cov"></span><h1><a class="reference internal" href="#module-altar.bayesian.COV" title="altar.bayesian.COV"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.COV</span></code></a><a class="headerlink" href="#module-altar.bayesian.COV" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.bayesian.COV.COV">
+<em class="property">class </em><code class="sig-prename descclassname">altar.bayesian.COV.</code><code class="sig-name descname">COV</code><a class="headerlink" href="#altar.bayesian.COV.COV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>Annealing schedule based on attaining a particular value for the coefficient of variation
+(COV) of the data likelihood; after Ching[2007].</p>
+<p>The goal is to compute a proposed update δβ_m to the temperature β_m such that the vector
+of weights w_m given by</p>
+<blockquote>
+<div><p>w_m := π(D|θ_m)^{δβ_m}</p>
+</div></blockquote>
+<p>has a particular target value for</p>
+<blockquote>
+<div><p>COV(w_m) := &lt;w_m&gt; / sqrt{&lt;(w_m-&lt;w_m&gt;)^2&gt;}</p>
+</div></blockquote>
+<dl class="attribute">
+<dt id="altar.bayesian.COV.COV.target">
+<code class="sig-name descname">target</code><a class="headerlink" href="#altar.bayesian.COV.COV.target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.COV.COV.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the target value for COV</em><a class="headerlink" href="#altar.bayesian.COV.COV.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.COV.COV.solver">
+<code class="sig-name descname">solver</code><a class="headerlink" href="#altar.bayesian.COV.COV.solver" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the δβ solver</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.COV.COV.check_positive_definiteness">
+<code class="sig-name descname">check_positive_definiteness</code><a class="headerlink" href="#altar.bayesian.COV.COV.check_positive_definiteness" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = whether to check the positive definiteness of Σ matrix and condition it accordingly</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.COV.COV.min_eigenvalue_ratio">
+<code class="sig-name descname">min_eigenvalue_ratio</code><a class="headerlink" href="#altar.bayesian.COV.COV.min_eigenvalue_ratio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the desired minimal eigenvalue of Σ matrix, as a ratio to the max eigenvalue</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.COV.COV.w">
+<code class="sig-name descname">w</code><a class="headerlink" href="#altar.bayesian.COV.COV.w" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.COV.COV.cov">
+<code class="sig-name descname">cov</code><em class="property"> = 0.0</em><a class="headerlink" href="#altar.bayesian.COV.COV.cov" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.COV.COV.uniform">
+<code class="sig-name descname">uniform</code><a class="headerlink" href="#altar.bayesian.COV.COV.uniform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.bayesian.COV.COV.rng">
+<code class="sig-name descname">rng</code><a class="headerlink" href="#altar.bayesian.COV.COV.rng" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.COV.COV.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.COV.COV.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize me and my parts given an {application} context</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.COV.COV.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.COV.COV.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Push {step} forward along the annealing schedule</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.COV.COV.updateTemperature">
+<code class="sig-name descname">updateTemperature</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.COV.COV.updateTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the next temperature increment</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.COV.COV.computeCovariance">
+<code class="sig-name descname">computeCovariance</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.COV.COV.computeCovariance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the parameter covariance Σ of the sample in {step}</p>
+<blockquote>
+<div><p>Σ = c_m^2 sum_{i in samples}        ilde{w}_{i} θ_i θ_i^T} - ar{θ} ar{θ}^Τ</p>
+</div></blockquote>
+<p>where</p>
+<blockquote>
+<div><p>ar{θ} = sum_{i in samples}         ilde{w}_{i} θ_{i}</p>
+</div></blockquote>
+<p>The covariance Σ gets used to build a proposal pdf for the posterior</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.COV.COV.rank">
+<code class="sig-name descname">rank</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.COV.COV.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rebuild the sample and its statistics sorted by the likelihood of the parameter values</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.COV.COV.resampling">
+<code class="sig-name descname">resampling</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.COV.COV.resampling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rebuild the sample and its statistics sorted by the likelihood of the parameter values</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.COV.COV.conditionCovariance">
+<code class="sig-name descname">conditionCovariance</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">Σ</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.COV.COV.conditionCovariance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make sure the covariance matrix Σ is symmetric and positive definite</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.COV.COV.computeSampleMultiplicities">
+<code class="sig-name descname">computeSampleMultiplicities</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.COV.COV.computeSampleMultiplicities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare a frequency vector for the new samples given the scaled data log-likelihood in
+{w} for this cooling step</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.bayesian.COV.COV.buildHistogramRanges">
+<code class="sig-name descname">buildHistogramRanges</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">w</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.COV.COV.buildHistogramRanges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build histogram bins based on the scaled data log-likelihood</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

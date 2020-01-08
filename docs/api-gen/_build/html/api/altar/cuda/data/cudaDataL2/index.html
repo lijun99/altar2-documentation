@@ -1,0 +1,459 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.cuda.data.cudaDataL2 &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.data.cudaDataL2</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2">cudaDataL2</a><ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.data_file">data_file</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.observations">observations</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.cd_file">cd_file</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.cd_std">cd_std</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.merge_cd_to_data">merge_cd_to_data</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.norm">norm</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.default">default</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.normalization">normalization</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.precision">precision</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.gdataObs">gdataObs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.gdataObsBatch">gdataObsBatch</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.gcd">gcd</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.gcd_inv">gcd_inv</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.cuEvalLikelihood">cuEvalLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.cd_inv">cd_inv</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.dataobsBatch">dataobsBatch</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.loadFile">loadFile</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.initializeCovariance">initializeCovariance</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.updateCovariance">updateCovariance</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.checkPostivieDefiniteness">checkPostivieDefiniteness</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.cuda.data.cudaDataL2.cudaDataL2.mergeCdtoData">mergeCdtoData</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.data.cudaDataL2</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/api/altar/cuda/data/cudaDataL2/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.cuda.data.cudaDataL2">
+<span id="altar-cuda-data-cudadatal2"></span><h1><a class="reference internal" href="#module-altar.cuda.data.cudaDataL2" title="altar.cuda.data.cudaDataL2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.data.cudaDataL2</span></code></a><a class="headerlink" href="#module-altar.cuda.data.cudaDataL2" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2">
+<em class="property">class </em><code class="sig-prename descclassname">altar.cuda.data.cudaDataL2.</code><code class="sig-name descname">cudaDataL2</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../data/DataL2/index.html#altar.data.DataL2.DataL2" title="altar.data.DataL2.DataL2"><code class="xref py py-class docutils literal notranslate"><span class="pre">altar.data.DataL2.DataL2</span></code></a></p>
+<p>The observed data with L2 norm</p>
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.data_file">
+<code class="sig-name descname">data_file</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.data_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the name of the file with the observations</em><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.observations">
+<code class="sig-name descname">observations</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.observations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the number of observed data</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.cd_file">
+<code class="sig-name descname">cd_file</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.cd_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the name of the file with the data covariance matrix</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.cd_std">
+<code class="sig-name descname">cd_std</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.cd_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the constant covariance for data, sigma^2</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.merge_cd_to_data">
+<code class="sig-name descname">merge_cd_to_data</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.merge_cd_to_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = whether to merge Cd with observed data</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.norm">
+<code class="sig-name descname">norm</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.default">
+<code class="sig-name descname">default</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.default" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = l2 norm for calculating likelihood</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.normalization">
+<code class="sig-name descname">normalization</code><em class="property"> = 0</em><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.normalization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.precision">
+<code class="sig-name descname">precision</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.precision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.gdataObs">
+<code class="sig-name descname">gdataObs</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.gdataObs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.gdataObsBatch">
+<code class="sig-name descname">gdataObsBatch</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.gdataObsBatch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.gcd">
+<code class="sig-name descname">gcd</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.gcd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.gcd_inv">
+<code class="sig-name descname">gcd_inv</code><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.gcd_inv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize data obs from model</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.cuEvalLikelihood">
+<code class="sig-name descname">cuEvalLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">prediction</em>, <em class="sig-param">likelihood</em>, <em class="sig-param">residual=True</em>, <em class="sig-param">batch=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.cuEvalLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute the datalikelihood for prediction (samples x observations)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.cd_inv">
+<em class="property">property </em><code class="sig-name descname">cd_inv</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.cd_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse of data covariance, in Cholesky decomposed form</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.dataobsBatch">
+<em class="property">property </em><code class="sig-name descname">dataobsBatch</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.dataobsBatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>A batch of duplicated observations</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.loadFile">
+<code class="sig-name descname">loadFile</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">filename</em>, <em class="sig-param">shape</em>, <em class="sig-param">dataset=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.loadFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an input file to a numpy array (for both float32/64 support)
+Supported format:
+1. text file in ‘.txt’ suffix, stored in prescribed shape
+2. binary file with ‘.bin’ or ‘.dat’ suffix,</p>
+<blockquote>
+<div><p>the precision must be same as the desired gpuprecision,
+and users must specify the shape of the data</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><dl class="simple">
+<dt>(preferred) hdf5 file in ‘.h5’ suffix (preferred)</dt><dd><p>the metadata of shape, precision is included in .h5 file</p>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – str, the input file name</p></li>
+<li><p><strong>shape</strong> – list of int</p></li>
+<li><p><strong>dataset</strong> – str, name/key of dataset for h5 input only</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>output numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.initializeCovariance">
+<code class="sig-name descname">initializeCovariance</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.initializeCovariance" title="Permalink to this definition">¶</a></dt>
+<dd><p>initialize gpu data and data covariance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.updateCovariance">
+<code class="sig-name descname">updateCovariance</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">cp=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.updateCovariance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the data covariance C_chi = Cd + Cp
+:param cp: cuda matrix with shape(obs, obs), data covariance due to model uncertainty
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.checkPostivieDefiniteness">
+<code class="sig-name descname">checkPostivieDefiniteness</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">matrix</em>, <em class="sig-param">name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.checkPostivieDefiniteness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check positive definiteness of a GPU matrix
+:param matrix: a real symmetric (GPU) matrix
+:return: true or false</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.cuda.data.cudaDataL2.cudaDataL2.mergeCdtoData">
+<code class="sig-name descname">mergeCdtoData</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">cd_inv</em>, <em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.data.cudaDataL2.cudaDataL2.mergeCdtoData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge the data covariance matrix to observed data
+:param cd_inv: the inverse of covariance matrix in Cholesky-decomposed form, with Lower matrix filled
+:param data: raw observed data
+:return:  cd_inv*data, a cuda vector</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

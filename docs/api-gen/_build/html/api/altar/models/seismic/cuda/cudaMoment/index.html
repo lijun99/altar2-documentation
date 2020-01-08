@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.models.seismic.cuda.cudaMoment &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaMoment</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment">cudaMoment</a><ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patch_file">area_patch_file</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.area">area</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_mean">Mw_mean</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_sigma">Mw_sigma</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mu">Mu</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.slip_sign">slip_sign</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.validators">validators</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patches">area_patches</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.mu_patches">mu_patches</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.patches">patches</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.rng">rng</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitialize">cuInitialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitSample">cuInitSample</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaMoment</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../../_sources/api/altar/models/seismic/cuda/cudaMoment/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.models.seismic.cuda.cudaMoment">
+<span id="altar-models-seismic-cuda-cudamoment"></span><h1><a class="reference internal" href="#module-altar.models.seismic.cuda.cudaMoment" title="altar.models.seismic.cuda.cudaMoment"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaMoment</span></code></a><a class="headerlink" href="#module-altar.models.seismic.cuda.cudaMoment" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment">
+<em class="property">class </em><code class="sig-prename descclassname">altar.models.seismic.cuda.cudaMoment.</code><code class="sig-name descname">cudaMoment</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../../cuda/distributions/cudaUniform/index.html#altar.cuda.distributions.cudaUniform.cudaUniform" title="altar.cuda.distributions.cudaUniform.cudaUniform"><code class="xref py py-class docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaUniform.cudaUniform</span></code></a></p>
+<p>The probability distribution for displacements (D) conforming to a given Moment magnitude scale
+Mw = (log M0 - 9.1)/1.5 (Hiroo Kanamori)
+M0 = Mu A D
+It serves to initialize samples only, with combined gaussian and dirichlet distributions.
+It inherits uniform distribution for verification and density calculations.</p>
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patch_file">
+<code class="sig-name descname">area_patch_file</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patch_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.doc">
+<code class="sig-name descname">doc</code><em class="property"> = input file for area of each patch, in unit of km^2</em><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.area">
+<code class="sig-name descname">area</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.area" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = area of each patch in unit of km^2, provide one value if the same for all patches</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_mean">
+<code class="sig-name descname">Mw_mean</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> =  the mean moment magnitude scale</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_sigma">
+<code class="sig-name descname">Mw_sigma</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_sigma" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> =  the variance of moment magnitude scale</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.Mu">
+<code class="sig-name descname">Mu</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the shear modulus for each patch in unit of GPa, provide one value if the same for all patches</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.slip_sign">
+<code class="sig-name descname">slip_sign</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.slip_sign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.validators">
+<code class="sig-name descname">validators</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.validators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the sign of slips, all positive or all negative</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patches">
+<code class="sig-name descname">area_patches</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patches" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.mu_patches">
+<code class="sig-name descname">mu_patches</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.mu_patches" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.patches">
+<code class="sig-name descname">patches</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.patches" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.rng">
+<code class="sig-name descname">rng</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.rng" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize with the given random number generator</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitialize">
+<code class="sig-name descname">cuInitialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>cuda interface of initialization</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitSample">
+<code class="sig-name descname">cuInitSample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill my portion of {theta} with initial random values from my distribution.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

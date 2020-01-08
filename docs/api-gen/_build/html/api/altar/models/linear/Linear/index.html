@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.models.linear.Linear &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.linear.Linear</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear">Linear</a><ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.parameters">parameters</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.observations">observations</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.prep">prep</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.default">default</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.prior">prior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.norm">norm</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.case">case</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.green">green</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.data">data</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.cd">cd</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.ifs">ifs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.G">G</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.d">d</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.Cd">Cd</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.Cd_inv">Cd_inv</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.residuals">residuals</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.normalization">normalization</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.initializeSample">initializeSample</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.priorLikelihood">priorLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.dataLikelihood">dataLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.verify">verify</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.mountInputDataspace">mountInputDataspace</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.loadInputs">loadInputs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.computeCovarianceInverse">computeCovarianceInverse</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.computeNormalization">computeNormalization</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.linear.Linear.Linear.initializeResiduals">initializeResiduals</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.linear.Linear</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/api/altar/models/linear/Linear/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.models.linear.Linear">
+<span id="altar-models-linear-linear"></span><h1><a class="reference internal" href="#module-altar.models.linear.Linear" title="altar.models.linear.Linear"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.linear.Linear</span></code></a><a class="headerlink" href="#module-altar.models.linear.Linear" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.models.linear.Linear.Linear">
+<em class="property">class </em><code class="sig-prename descclassname">altar.models.linear.Linear.</code><code class="sig-name descname">Linear</code><a class="headerlink" href="#altar.models.linear.Linear.Linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../index.html#altar.models.bayesian" title="altar.models.bayesian"><code class="xref py py-class docutils literal notranslate"><span class="pre">altar.models.bayesian</span></code></a></p>
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.parameters">
+<code class="sig-name descname">parameters</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the number of parameters in the model</em><a class="headerlink" href="#altar.models.linear.Linear.Linear.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.observations">
+<code class="sig-name descname">observations</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.observations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the number of data samples</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.prep">
+<code class="sig-name descname">prep</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.prep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.default">
+<code class="sig-name descname">default</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.default" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the distribution used to generate the initial sample</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.prior">
+<code class="sig-name descname">prior</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.prior" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">default</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the prior distribution</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.norm">
+<code class="sig-name descname">norm</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.norm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">default</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the norm to use when computing the data log likelihood</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.case">
+<code class="sig-name descname">case</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.case" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the directory with the input files</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.green">
+<code class="sig-name descname">green</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.green" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the name of the file with the Green functions</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.data">
+<code class="sig-name descname">data</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the name of the file with the observations</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.cd">
+<code class="sig-name descname">cd</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.cd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the name of the file with the data covariance matrix</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.ifs">
+<code class="sig-name descname">ifs</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.ifs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.G">
+<code class="sig-name descname">G</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.G" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.d">
+<code class="sig-name descname">d</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.Cd">
+<code class="sig-name descname">Cd</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.Cd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.Cd_inv">
+<code class="sig-name descname">Cd_inv</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.Cd_inv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.residuals">
+<code class="sig-name descname">residuals</code><a class="headerlink" href="#altar.models.linear.Linear.Linear.residuals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.linear.Linear.Linear.normalization">
+<code class="sig-name descname">normalization</code><em class="property"> = 1</em><a class="headerlink" href="#altar.models.linear.Linear.Linear.normalization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the state of the model given a {problem} specification</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.initializeSample">
+<code class="sig-name descname">initializeSample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.initializeSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {step.θ} with an initial random sample from my prior distribution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.priorLikelihood">
+<code class="sig-name descname">priorLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.priorLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {step.prior} with the likelihoods of the samples in {step.theta} in the prior
+distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.dataLikelihood">
+<code class="sig-name descname">dataLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.dataLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {step.data} with the likelihoods of the samples in {step.theta} given the available
+data. This is what is usually referred to as the “forward model”</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.verify">
+<code class="sig-name descname">verify</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em>, <em class="sig-param">mask</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the samples in {step.theta} are consistent with the model requirements and
+update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.mountInputDataspace">
+<code class="sig-name descname">mountInputDataspace</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">pfs</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.mountInputDataspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mount the directory with my input files</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.loadInputs">
+<code class="sig-name descname">loadInputs</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.loadInputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the data in the input files into memory</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.computeCovarianceInverse">
+<code class="sig-name descname">computeCovarianceInverse</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">cd</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.computeCovarianceInverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the inverse of the data covariance matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.computeNormalization">
+<code class="sig-name descname">computeNormalization</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">observations</em>, <em class="sig-param">cd</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.computeNormalization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the normalization of the L2 norm</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.linear.Linear.Linear.initializeResiduals">
+<code class="sig-name descname">initializeResiduals</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">samples</em>, <em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.linear.Linear.Linear.initializeResiduals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prime the matrix that will hold the residuals (G θ - d) for each sample by duplicating the
+observation vector as many times as there are samples</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

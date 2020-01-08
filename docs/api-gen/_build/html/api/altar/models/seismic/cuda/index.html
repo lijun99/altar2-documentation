@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.models.seismic.cuda &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda</span></code></a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model">model</a><ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.parameters">parameters</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.cascaded">cascaded</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.embedded">embedded</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.psets_list">psets_list</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.psets">psets</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.default">default</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.dataobs">dataobs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.case">case</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.idx_map">idx_map</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.observations">observations</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.device">device</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.precision">precision</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.ifs">ifs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.gidx_map">gidx_map</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.gtheta">gtheta</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.cuInitialize">cuInitialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.posterior">posterior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.cuInitSample">cuInitSample</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.cuVerify">cuVerify</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.cuEvalPrior">cuEvalPrior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.cuEvalLikelihood">cuEvalLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.cuEvalPosterior">cuEvalPosterior</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.likelihoods">likelihoods</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.verify">verify</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.updateModel">updateModel</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.mountInputDataspace">mountInputDataspace</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.loadFile">loadFile</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.loadFileToGPU">loadFileToGPU</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.model.restricted">restricted</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.moment">moment</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.static">static</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.staticcp">staticcp</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.kinematicg">kinematicg</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cascaded">cascaded</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/api/altar/models/seismic/cuda/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.models.seismic.cuda">
+<span id="altar-models-seismic-cuda"></span><h1><a class="reference internal" href="#module-altar.models.seismic.cuda" title="altar.models.seismic.cuda"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda</span></code></a><a class="headerlink" href="#module-altar.models.seismic.cuda" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cudaCascaded/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaCascaded</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudaKinematicG/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicG</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudaKinematicGCp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicGCp</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudaMoment/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaMoment</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudaStatic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaStatic</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudaStaticCp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaStaticCp</span></code></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.models.seismic.cuda.model">
+<em class="property">class </em><code class="sig-prename descclassname">altar.models.seismic.cuda.</code><code class="sig-name descname">model</code><a class="headerlink" href="#altar.models.seismic.cuda.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../Bayesian/index.html#altar.models.Bayesian.Bayesian" title="altar.models.Bayesian.Bayesian"><code class="xref py py-class docutils literal notranslate"><span class="pre">altar.models.Bayesian.Bayesian</span></code></a></p>
+<p>The base class of AlTar models that are compatible with Bayesian explorations</p>
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.parameters">
+<code class="sig-name descname">parameters</code><a class="headerlink" href="#altar.models.seismic.cuda.model.parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the number of model degrees of freedom</em><a class="headerlink" href="#altar.models.seismic.cuda.model.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.cascaded">
+<code class="sig-name descname">cascaded</code><a class="headerlink" href="#altar.models.seismic.cuda.model.cascaded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = whether the model is cascaded (annealing temperature is fixed at 1)</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.embedded">
+<code class="sig-name descname">embedded</code><a class="headerlink" href="#altar.models.seismic.cuda.model.embedded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = whether the model is embedded in an ensemble of models</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.psets_list">
+<code class="sig-name descname">psets_list</code><a class="headerlink" href="#altar.models.seismic.cuda.model.psets_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = list of parameter sets, used to set orders</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.psets">
+<code class="sig-name descname">psets</code><a class="headerlink" href="#altar.models.seismic.cuda.model.psets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.default">
+<code class="sig-name descname">default</code><a class="headerlink" href="#altar.models.seismic.cuda.model.default" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = an ensemble of parameter sets in the model</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.dataobs">
+<code class="sig-name descname">dataobs</code><a class="headerlink" href="#altar.models.seismic.cuda.model.dataobs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">default</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = observed data</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.case">
+<code class="sig-name descname">case</code><a class="headerlink" href="#altar.models.seismic.cuda.model.case" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the directory with the input files</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.idx_map">
+<code class="sig-name descname">idx_map</code><a class="headerlink" href="#altar.models.seismic.cuda.model.idx_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">default</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the indices for model parameters in whole theta set</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.observations">
+<code class="sig-name descname">observations</code><a class="headerlink" href="#altar.models.seismic.cuda.model.observations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.device">
+<code class="sig-name descname">device</code><a class="headerlink" href="#altar.models.seismic.cuda.model.device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.precision">
+<code class="sig-name descname">precision</code><a class="headerlink" href="#altar.models.seismic.cuda.model.precision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.ifs">
+<code class="sig-name descname">ifs</code><a class="headerlink" href="#altar.models.seismic.cuda.model.ifs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.gidx_map">
+<code class="sig-name descname">gidx_map</code><a class="headerlink" href="#altar.models.seismic.cuda.model.gidx_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.model.gtheta">
+<code class="sig-name descname">gtheta</code><a class="headerlink" href="#altar.models.seismic.cuda.model.gtheta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the state of the model given an {application} context</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.cuInitialize">
+<code class="sig-name descname">cuInitialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.cuInitialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>cuda interface</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.posterior">
+<code class="sig-name descname">posterior</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.posterior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample my posterior distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.cuInitSample">
+<code class="sig-name descname">cuInitSample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.cuInitSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {theta} with an initial random sample from my prior distribution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.cuVerify">
+<code class="sig-name descname">cuVerify</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">mask</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.cuVerify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the samples in {step.theta} are consistent with the model requirements and
+update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.cuEvalPrior">
+<code class="sig-name descname">cuEvalPrior</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">prior</em>, <em class="sig-param">batch</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.cuEvalPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill {priorLLK} with the log likelihoods of the samples in {theta} in my prior distribution</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.cuEvalLikelihood">
+<code class="sig-name descname">cuEvalLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">likelihood</em>, <em class="sig-param">batch</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.cuEvalLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate data likelihood and add it to step.prior or step.data</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.cuEvalPosterior">
+<code class="sig-name descname">cuEvalPosterior</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em>, <em class="sig-param">batch</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.cuEvalPosterior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the {step.prior} and {step.data} likelihoods, compute a generalized posterior using
+{step.beta} and deposit the result in {step.post}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.likelihoods">
+<code class="sig-name descname">likelihoods</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em>, <em class="sig-param">step</em>, <em class="sig-param">batch=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.likelihoods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function that computes all three likelihoods at once given the current {step}
+of the problem</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.verify">
+<code class="sig-name descname">verify</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">step</em>, <em class="sig-param">mask</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the samples in {step.theta} are consistent with the model requirements and
+update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.updateModel">
+<code class="sig-name descname">updateModel</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">annealer</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.updateModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update Model parameters if needed
+:param annealer:
+:return: default is False</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.mountInputDataspace">
+<code class="sig-name descname">mountInputDataspace</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">pfs</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.mountInputDataspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mount the directory with my input files</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.loadFile">
+<code class="sig-name descname">loadFile</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">filename</em>, <em class="sig-param">shape=None</em>, <em class="sig-param">dataset=None</em>, <em class="sig-param">dtype=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.loadFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an input file to a numpy array (for both float32/64 support)
+Supported format:
+1. text file in ‘.txt’ suffix, stored in prescribed shape
+2. binary file with ‘.bin’ or ‘.dat’ suffix,</p>
+<blockquote>
+<div><p>the precision must be same as the desired gpuprecision,
+and users must specify the shape of the data</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><dl class="simple">
+<dt>(preferred) hdf5 file in ‘.h5’ suffix (preferred)</dt><dd><p>the metadata of shape, precision is included in .h5 file</p>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – str, the input file name</p></li>
+<li><p><strong>shape</strong> – list of int</p></li>
+<li><p><strong>dataset</strong> – str, name/key of dataset for h5 input only</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>output numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.loadFileToGPU">
+<code class="sig-name descname">loadFileToGPU</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">filename</em>, <em class="sig-param">shape=None</em>, <em class="sig-param">dataset=None</em>, <em class="sig-param">out=None</em>, <em class="sig-param">dtype=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.loadFileToGPU" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an input file to a gpu (for both float32/64 support)
+Supported format:
+1. text file in ‘.txt’ suffix, stored in prescribed shape
+2. binary file with ‘.bin’ or ‘.dat’ suffix,</p>
+<blockquote>
+<div><p>the precision must be same as the desired gpuprecision,
+and users must specify the shape of the data</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><dl class="simple">
+<dt>(preferred) hdf5 file in ‘.h5’ suffix (preferred)</dt><dd><p>the metadata of shape, precision is included in .h5 file</p>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – str, the input file name</p></li>
+<li><p><strong>shape</strong> – list of int</p></li>
+<li><p><strong>dataset</strong> – str, name/key of dataset for h5 input only</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>out altar.cuda.matrix/vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.model.restricted">
+<code class="sig-name descname">restricted</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">batch</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.model.restricted" title="Permalink to this definition">¶</a></dt>
+<dd><p>extract theta which contains model’s own parameters</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="altar.models.seismic.cuda.moment">
+<code class="sig-prename descclassname">altar.models.seismic.cuda.</code><code class="sig-name descname">moment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.moment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="altar.models.seismic.cuda.static">
+<code class="sig-prename descclassname">altar.models.seismic.cuda.</code><code class="sig-name descname">static</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.static" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="altar.models.seismic.cuda.staticcp">
+<code class="sig-prename descclassname">altar.models.seismic.cuda.</code><code class="sig-name descname">staticcp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.staticcp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="altar.models.seismic.cuda.kinematicg">
+<code class="sig-prename descclassname">altar.models.seismic.cuda.</code><code class="sig-name descname">kinematicg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.kinematicg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="altar.models.seismic.cuda.cascaded">
+<code class="sig-prename descclassname">altar.models.seismic.cuda.</code><code class="sig-name descname">cascaded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cascaded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

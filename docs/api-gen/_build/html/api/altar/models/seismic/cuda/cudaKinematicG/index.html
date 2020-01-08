@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>altar.models.seismic.cuda.cudaKinematicG &mdash; AlTar2 API 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../../index.html" class="icon icon-home"> AlTar2 API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicG</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG">cudaKinematicG</a><ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.dataobs">dataobs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.default">default</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.doc">doc</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.green">green</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Nas">Nas</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Ndd">Ndd</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Nmesh">Nmesh</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.dsp">dsp</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Nt">Nt</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Npt">Npt</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.dt">dt</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.t0s">t0s</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.cmodel">cmodel</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.GF">GF</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.gGF">gGF</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.gDprediction">gDprediction</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.cublas_handle">cublas_handle</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.NGbparameters">NGbparameters</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.gt0s">gt0s</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.initialize">initialize</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.forwardModelBatched">forwardModelBatched</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.forwardModel">forwardModel</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.castSlipsOfTime">castSlipsOfTime</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.linearGM">linearGM</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.cuEvalLikelihood">cuEvalLikelihood</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.mergeCovarianceToGF">mergeCovarianceToGF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">AlTar2 API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicG</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../../_sources/api/altar/models/seismic/cuda/cudaKinematicG/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-altar.models.seismic.cuda.cudaKinematicG">
+<span id="altar-models-seismic-cuda-cudakinematicg"></span><h1><a class="reference internal" href="#module-altar.models.seismic.cuda.cudaKinematicG" title="altar.models.seismic.cuda.cudaKinematicG"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicG</span></code></a><a class="headerlink" href="#module-altar.models.seismic.cuda.cudaKinematicG" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG">
+<em class="property">class </em><code class="sig-prename descclassname">altar.models.seismic.cuda.cudaKinematicG.</code><code class="sig-name descname">cudaKinematicG</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../../cuda/models/cudaBayesian/index.html#altar.cuda.models.cudaBayesian.cudaBayesian" title="altar.cuda.models.cudaBayesian.cudaBayesian"><code class="xref py py-class docutils literal notranslate"><span class="pre">altar.cuda.models.cudaBayesian.cudaBayesian</span></code></a></p>
+<p>KinematicG model with cuda</p>
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.dataobs">
+<code class="sig-name descname">dataobs</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.dataobs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.default">
+<code class="sig-name descname">default</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.default" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.doc">
+<code class="sig-name descname">doc</code><em class="property"> = the observed data</em><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.green">
+<code class="sig-name descname">green</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.green" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the name of the file with the Green functions</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Nas">
+<code class="sig-name descname">Nas</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Nas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = number of patches along strike direction</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Ndd">
+<code class="sig-name descname">Ndd</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Ndd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = number of patches along dip direction</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Nmesh">
+<code class="sig-name descname">Nmesh</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Nmesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = number of mesh points for each patch for fastsweeping</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.dsp">
+<code class="sig-name descname">dsp</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.dsp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the distance unit for each patch, in km</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Nt">
+<code class="sig-name descname">Nt</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Nt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = number of time intervals for kinematic process</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Npt">
+<code class="sig-name descname">Npt</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.Npt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = number of mesh points for each time interval for fastsweeping</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.dt">
+<code class="sig-name descname">dt</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.dt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the time unit for each time interval (in s)</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.t0s">
+<code class="sig-name descname">t0s</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.t0s" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">doc</code><em class="property"> = the start time for each patch</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.cmodel">
+<code class="sig-name descname">cmodel</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.cmodel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.GF">
+<code class="sig-name descname">GF</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.GF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.gGF">
+<code class="sig-name descname">gGF</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.gGF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.gDprediction">
+<code class="sig-name descname">gDprediction</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.gDprediction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.cublas_handle">
+<code class="sig-name descname">cublas_handle</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.cublas_handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.NGbparameters">
+<code class="sig-name descname">NGbparameters</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.NGbparameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.gt0s">
+<code class="sig-name descname">gt0s</code><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.gt0s" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">application</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the state of the model given a {problem} specification</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.forwardModelBatched">
+<code class="sig-name descname">forwardModelBatched</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">gf</em>, <em class="sig-param">prediction</em>, <em class="sig-param">batch</em>, <em class="sig-param">observation=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.forwardModelBatched" title="Permalink to this definition">¶</a></dt>
+<dd><p>KinematicG forward model in batch: cast Mb(x,y,t)
+:param theta: matrix (samples, parameters), sampling parameters
+:param gf: matrix (2*Ndd*Nas*Nt, observations), kinematicG green’s function
+:param prediction: matrix (samples, observations), the predicted data or residual between predicted and observed data
+:param batch: integer, the number of samples to be computed batch&lt;=samples
+:param observation: matrix (samples, observations), duplicates of observed data
+:return: prediction as predicted data(observation=None) or residual (observation is provided)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.forwardModel">
+<code class="sig-name descname">forwardModel</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">gf</em>, <em class="sig-param">prediction</em>, <em class="sig-param">observation=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.forwardModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>KinematicG forward model for single sample: cast Mb(x,y,t)
+:param theta: vector (parameters), sampling parameters
+:param gf: matrix (2*Ndd*Nas*Nt, observations), kinematicG green’s function
+:param prediction: vector (observations), the predicted data or residual between predicted and observed data
+:param observation: vector (observations), duplicates of observed data
+:return: prediction as predicted data(observation=None) or residual (observation is provided)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.castSlipsOfTime">
+<code class="sig-name descname">castSlipsOfTime</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">Mb=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.castSlipsOfTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Mb (slips of patches over time) from a given set of parameters
+:param theta: a vector arranged in [slip (strike and dip), risetime, …]
+:param Mb:
+:return: Mb</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.linearGM">
+<code class="sig-name descname">linearGM</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">gf</em>, <em class="sig-param">Mb</em>, <em class="sig-param">prediction=None</em>, <em class="sig-param">observation=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.linearGM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform prediction = Gb * Mb
+:param Gb:
+:param Mb:
+:param prediction:
+:return:  prediction</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.cuEvalLikelihood">
+<code class="sig-name descname">cuEvalLikelihood</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">theta</em>, <em class="sig-param">likelihood</em>, <em class="sig-param">batch</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.cuEvalLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>to be loaded by super class cuEvalLikelihood which already decides where the local likelihood is added to</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.mergeCovarianceToGF">
+<code class="sig-name descname">mergeCovarianceToGF</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG.mergeCovarianceToGF" title="Permalink to this definition">¶</a></dt>
+<dd><p>merge cd with green function</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, AlTar Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
