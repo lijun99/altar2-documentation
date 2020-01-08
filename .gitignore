@@ -1,0 +1,18 @@
+# ignore rules
+
+# junk
+*~
+__pycache__
+.DS_Store
+
+# the default build locations
+/builds
+/products
+
+# the developer
+.idea
+
+# the sphinx doc build directory
+_build
+
+# end of file
