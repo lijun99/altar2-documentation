@@ -17,7 +17,7 @@ The prediction covariance matrix `Cp` can be included in the inversion following
 
 **Second approach: Updated Cp**
 
-The alternative approach, implemented in AlTar, is to update Cp with interim models at each step of the tempered inversion . The covariance matrix `Cp` is calculated from 3 variables: a sensitivity kernel for every investigated parameter, the standard deviation of the a priori distribution of investigated parameters, and an initial model chosen a priori. In this approach, `Cp` is re-calculated at each tempering step by choosing the mean of tested samples as the assumed initial model.
+The alternative approach, implemented in AlTar, is to update Cp with interim models at each step of the tempered inversion. The covariance matrix `Cp` is calculated from 3 variables: a sensitivity kernel for every investigated parameter, the standard deviation of the a priori distribution of investigated parameters, and an initial model chosen a priori. In this approach, `Cp` is re-calculated at each tempering step by choosing the mean of tested samples as the assumed initial model.
 
 
         ; sensitivity kernels
