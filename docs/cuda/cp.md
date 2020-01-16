@@ -6,6 +6,7 @@ In addition to observational errors, one can calculate epistemic uncertainties (
 To estimate epistemic uncertainties, we assume that the real surface displacement follows a Gaussian distribution centred on the predictions with a prediction covariance matrix Cp that depends on the resulting source model. The misfit covariance matrix characterizing the misfit function becomes `Cx = Cd + Cp`.
 
 **First approach: static Cp**
+
 The prediction covariance matrix `Cp` can be included in the inversion following two different approaches. In the first, `Cp` is calculated a priori and included in the inversion process within `Cx`. In this case, the full `Cx` matrix replaces the `Cd ` matrix:
 
         dataobs = altar.cuda.data.datal2
@@ -15,6 +16,7 @@ The prediction covariance matrix `Cp` can be included in the inversion following
             cd_file = cx.txt ; Cx contains both Cd and Cp
 
 **Second approach: Updated Cp**
+
 The alternative approach, implemented in AlTar, is to update Cp with interim models at each step of the tempered inversion . The covariance matrix `Cp` is calculated from 3 variables: a sensitivity kernel for every investigated parameter, the standard deviation of the a priori distribution of investigated parameters, and an initial model chosen a priori. In this approach, `Cp` is re-calculated at each tempering step by choosing the mean of tested samples as the assumed initial model.
 
 
