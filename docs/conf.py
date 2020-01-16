@@ -32,7 +32,8 @@ release = '2.0'
 extensions = [
     'sphinx.ext.autodoc',
     'nbsphinx',
-    'sphinx.ext.mathjax'
+    'sphinx.ext.mathjax',
+    'recommonmark'
 ]
 
 # needed for readthedocs

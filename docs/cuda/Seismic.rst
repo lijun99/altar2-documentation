@@ -198,6 +198,7 @@ while ``output_freq`` specifies how frequent (in beta steps) you prefer the samp
 
 Each output is in HDF5 format, with names ``step_nnn.h5``. ``nnn`` is the number of the beta step. The HDF5 includes three data groups, Annealer, ParameterSets, and Bayesian. Annealer group includes datasets which provide annealing information, such as beta, the covariance matrix for gaussian proposal. Parametersets group includes all parametersets. Instead of one big theta, we now sort them into different datasets according to their names, each data set has the dimension (samples, count). Bayesian group includes prior, datalikelihood, and posterior datasets (each has the dimension samples), which are Bayesian statistics for each sample.
 
+.. include:: cp.md
 
 .. _altar: https://github.com/AlTarFramework/altar
 .. _altar cuda branch: https://github.com/lijun99/altar
