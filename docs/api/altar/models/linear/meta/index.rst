@@ -8,7 +8,7 @@ Module Contents
 ---------------
 
 .. data:: date
-   :annotation: = Tue Jan 7 23:58:11 UTC 2020
+   :annotation: = Thu Jan 9 18:55:16 UTC 2020
 
    
 

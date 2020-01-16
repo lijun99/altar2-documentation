@@ -16,6 +16,11 @@ AlTar 2.0: A Bayesian framework for inverse problems
    cuda/Programming
    api/index
 
+Tutorials
+=========
+   jupyter/hello/hello.ipynb
+   jupyter/linear/linear.ipynb
+
 Indices and tables
 ==================
 
