@@ -2,3 +2,4 @@ sphinx-autoapi
 sphinx-rtd-theme
 ipykernel
 nbsphinx
+m2r

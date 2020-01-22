@@ -30,9 +30,10 @@ release = '2.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'nbsphinx',
-    'sphinx.ext.mathjax'
+    'sphinx.ext.autodoc', # import the modules
+    'nbsphinx', # include jupyter notebooks
+    'm2r', # include markdown
+    'sphinx.ext.mathjax', # render math via JavaScript, another option is sphinx.ext.imgmath
 ]
 
 # needed for readthedocs
@@ -45,8 +46,11 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'api-gen', '**.ipynb_checkpoints']
-
+exclude_patterns = ['_build',
+                    'Thumbs.db', '.DS_Store',
+                    'api-gen', # ignore api reference generators
+                    '**.ipynb_checkpoints', # jupyter notebook progress
+                    ]
 
 # -- Options for HTML output -------------------------------------------------
 

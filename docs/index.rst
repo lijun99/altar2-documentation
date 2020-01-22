@@ -10,7 +10,7 @@ AlTar 2.0: A Bayesian framework for inverse problems
    :maxdepth: 3
    :caption: Contents:
 
-   cuda/Introduction
+   README.md
    cuda/Installation
    cuda/Manual
    cuda/Programming
