@@ -1,12 +1,10 @@
-###############
-AlTar Framework
-###############
+###################
+The AlTar Framework
+###################
 
-
-
-
-AlTar Applications :mod:`altar.shells.application`
-===================================================
+Applications
+============
+:mod:`altar.shells.application`
 
 An AlTar application is the main
 

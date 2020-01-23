@@ -1,7 +1,8 @@
 
+QuickStart
+==========
 
-Linear Model
-============
+
 
 AlTar 2.0  is based on the pyre_ framework. Each altar/pyre application has certain configurable components (usually a base class object implementing a corresponding protocol, which can be configured into different implementations of the same protocol) as well as traits (constant variables, such as string: altar.properties.str, integer: altar.properties.int, ...). Each component then could have its own configurable components and traits.
 
