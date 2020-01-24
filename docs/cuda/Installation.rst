@@ -1,6 +1,10 @@
+.. _Installation Guide:
+
 ##################
 Installation Guide
 ##################
+
+.. _Installation Overview
 
 Overview
 ========

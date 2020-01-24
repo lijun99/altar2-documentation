@@ -1,6 +1,10 @@
+.. _AlTar Framework:
+
 ###################
 The AlTar Framework
 ###################
+
+
 
 Applications
 ============

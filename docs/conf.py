@@ -31,6 +31,7 @@ release = '2.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc', # import the modules
+    'sphinx.ext.autosectionlabel', # auto label sections
     'nbsphinx', # include jupyter notebooks
     'm2r', # include markdown
     'sphinx.ext.mathjax', # render math via JavaScript, another option is sphinx.ext.imgmath
