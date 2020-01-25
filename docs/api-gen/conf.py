@@ -26,7 +26,8 @@ release = '2.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'autoapi.extension'
+    'autoapi.extension',
+    'sphinx.ext.napoleon', # Numpy and Google style docstrings
 ]
 
 # Add any python package paths for autoapi

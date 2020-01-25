@@ -32,6 +32,7 @@ release = '2.0'
 extensions = [
     'sphinx.ext.autodoc', # import the modules
     'sphinx.ext.autosectionlabel', # auto label sections
+    'sphinx.ext.extlinks', # for shared external links
     'nbsphinx', # include jupyter notebooks
     'm2r', # include markdown
     'sphinx.ext.mathjax', # render math via JavaScript, another option is sphinx.ext.imgmath
@@ -75,3 +76,26 @@ source_suffix = {
 mathjax_config = {
     'TeX': {'equationNumbers': {'autoNumber': 'AMS', 'useLabelIds': True}},
 }
+
+# -- Common used hyperlinks ---------------------------------------------------
+# altar_ will be converted to <a href="https://github.com/AlTarFramework/altar">altar</a>
+rst_epilog = """
+.. _altar: https://github.com/AlTarFramework/altar
+.. _altar cuda branch: https://github.com/lijun99/altar
+.. _AlTar Documentation: https://altar.readthedocs.io
+.. _pyre: https://github.com/pyre/pyre
+.. _pyre cuda branch: https://github.com/lijun99/pyre
+.. _pyre Documentation: https://pyre-doc.readthedocs.io
+.. _mm: https://github.com/aivazis/mm
+.. _config.mm: https://github.com/lijun99/altar2-documentation/tree/cuda/config.mm
+"""
+
+# --- external links --------------
+# 'altar': ('link', prefix)
+extlinks = {
+    'altar_src': ('https://github.com/lijun99/altar/tree/cuda/%s', None),
+    'pyre_src': ('https://github.com/lijun99/pyre/tree/cuda/%s', None),
+    'altar_doc_src': ('https://github.com/lijun99/altar2-documentation/tree/cuda/%s', None),
+    'tutorials': ('https://github.com/lijun99/altar2-documentation/tree/cuda/jupyter/%s', 'Tutorials:')
+}
+

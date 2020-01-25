@@ -407,12 +407,5 @@ Help
 * join the `slack discussion group <https://altar-group.slack.com/>`__ (currently by invitations only).
 
 
-.. _altar: https://github.com/AlTarFramework/altar
-.. _altar cuda branch: https://github.com/lijun99/altar
-.. _pyre: https://github.com/pyre/pyre
-.. _pyre cuda branch: https://github.com/lijun99/pyre
-.. _mm: https://github.com/aivazis/mm
-.. _config.mm: ../config.mm
-.. _User Guide: Manual.rst
 
 

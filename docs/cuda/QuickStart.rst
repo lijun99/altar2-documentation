@@ -1,68 +1,42 @@
-.. _quickstart:
+.. _QuickStart:
 
-Using AlTar: A QuickStart
-=========================
+Getting Started
+================
 
-In this quickstart guide, we use a linear model example to demonstrate how to run AlTar.
 
-To run AlTar simulations on a specific model, users can follow the following four steps:
+Please follow the :ref:`Installation Guide` to install AlTar 2.0 (as well as pyre_).
 
-#. Prepare a configuration file, e.g., `linear.pfg`, including various configurations to the model as well as the AlTar framework;
-#. Prepare other input files for the model, e.g., for the linear model, the Green's function (`green.txt`), the observed data (`data.txt`), and the covariance (uncertainties or errors) of the observed data(`cd.txt`);
-#. Run a dedicated python script (as a shell command) to invoke the AlTar application for the model, e.g., `linear` for the linear model.
-#. Collect
 
-The illustrated example is available as a jupyter notebook at `github <https://github.com/lijun99/altar2-documentation/tree/cuda/jupyter/linear>`_, and comes with the AlTar source, `${ALTAR_SRC_DIR}/models/linear/examples`, where `${ALTAR_SRC_DIR}` is the
 
+
+As a quick start, we use the linear model as an example to demonstrate how to use AlTar.
+
+To run an AlTar simulation on a specific model, users can follow these steps:
+
+#. Prepare a configuration file, e.g., ``linear.pfg``, to specify various settings/configurations to the model and the AlTar framework;
+#. Prepare input data files, e.g., for the linear model, the observed data, the data covariance and the Green's function;
+#. Run a dedicated python script (as a shell command) to invoke the AlTar application for the model, e.g., ``linear`` for the linear model;
+#. Collect and analyze the simulation results.
+
+The linear model example demonstrated below comes with the AlTar source code, under the directory :altar_src:`models/linear/examples <models/linear/examples>`. It is also available as a jupyter notebook in :tutorials:`linear`.
+
+For each model in AlTar, we have prepared examples included in the source code package. Users may use these examples as templates to prepare their own projects. Detailed instructions for each model are also provided in this Guide.
 
 Prepare the configuration file
 ------------------------------
 
-AlTar 2.0
+AlTar 2.0 is based on the pyre_  framework, and accepts ``.pfg`` (pyre config)  configuration files. While other pyre configuration formats such as ``.pml`` (pyre XML) and ``.cfg`` (an INI-style configuration file used in AlTar 1.1) are also accepted, we recommend ``.pfg`` for its human-readable data serialization format, similar to JSON and YAML.
 
-The configuration of components and traits can be assigned by a configuration file or as command line arguments.   Taking the ``linear`` application as an example, its configuration script ``linear.pfg`` appears as
-::
+An example of the configuration file ``linear.pfg`` for the linear model appears as
 
-    ; the application
-    linear:
-        ; the model
-        model = linear
-        ; the linear model configurations
-        model:
-            ; the directory for input files
-            case = patch-9
-            ; the number of parameters
-            parameters = 18
+.. literalinclude:: ../../jupyter/linear/linear.pfg
+    :language: none
+    :linenos:
 
-            ; the number of observations
-            observations = 108
-            ; the data observations file
-            data = data.txt
-            ; the data covariance file
-            cd = cd.txt
+One of the key concepts in AlTar programming, as inherited from the pyre_ framework, is ``components``, which may appear like Python Class variables but have extended functionalities: they are highly configurable and can be specified by users at runtime.
 
-            ; prior distribution for parameters
-            ; prior is used to calculate the prior probability
-            ;    and check ranges during the simulation
-            prior = gaussian
-            ; prior configurations
-            prior:
-                parameters = {linear.model.parameters}
-                center = 0.0
-                sigma = 0.5
-            ; prep is used to initialize the samples in the beginning of the simulation
-            ; it can be different from prior
-            prep = uniform
-            prep:
-                parameters = {linear.model.parameters}
-                support = (-0.5, 0.5)
 
-        ; run configuration
-        job.tasks = 1 ; number of tasks per host
-        job.gpus = 0  ; number of gpus per task
-        job.chains = 2**10 ; number of chains per task
-
-    ; end of file
+Users are encouraged to read the `pyre Documentation`_ for better understandings of the pyre_ framework as well as the ``.pfg`` configuration file.
 
 
 Prepare input files
@@ -81,10 +55,4 @@ If you prefer to run the model with different configurations, e.g., ``linear_mpi
 
     $ linear --config=linear_mpi.pfg
 
-
-An altar application has following configurable components:
-* shell, which manages where the job is deployed, e.g.,
-    * mpi for job.tasks >1  ``$ linear --shell=mpi.shells.mpirun --job.tasks=4``
-    * slurm job scheduler  ``$ linear --shell=mpi.shells.slurm``
-* jobs, which manages the size of the job
 
