@@ -3,11 +3,7 @@
 Getting Started
 ================
 
-
-Please follow the :ref:`Installation Guide` to install AlTar 2.0 (as well as pyre_).
-
-
-
+Please follow the :ref:`Installation Guide` to install AlTar 2.0.
 
 As a quick start, we use the linear model as an example to demonstrate how to use AlTar.
 
@@ -18,22 +14,31 @@ To run an AlTar simulation on a specific model, users can follow these steps:
 #. Run a dedicated python script (as a shell command) to invoke the AlTar application for the model, e.g., ``linear`` for the linear model;
 #. Collect and analyze the simulation results.
 
-The linear model example demonstrated below comes with the AlTar source code, under the directory :altar_src:`models/linear/examples <models/linear/examples>`. It is also available as a jupyter notebook in :tutorials:`linear`.
+The linear model example demonstrated here comes with the AlTar source package, under the directory :altar_src:`models/linear/examples <models/linear/examples>`. It is also available as a jupyter notebook in :tutorials:`linear`.
 
-For each model in AlTar, we have prepared examples included in the source code package. Users may use these examples as templates to prepare their own projects. Detailed instructions for each model are also provided in this Guide.
+For each model in AlTar, examples are provided in the source package. Users may use these examples as templates to prepare their own projects. Model-specific instructions are also provided in this Guide.
 
 Prepare the configuration file
 ------------------------------
 
-AlTar 2.0 is based on the pyre_  framework, and accepts ``.pfg`` (pyre config)  configuration files. While other pyre configuration formats such as ``.pml`` (pyre XML) and ``.cfg`` (an INI-style configuration file used in AlTar 1.1) are also accepted, we recommend ``.pfg`` for its human-readable data serialization format, similar to JSON and YAML.
+One prominent feature of AlTar is that it allows users to configure all the public settings in a program at run time, through the ``components``-based Python programming introduced by pyre_. Components are configurable Python class variables which can be used to set a parameter, an array, or to choose an implementation of a certain functionality. Settings of components can be passed to the program as command line arguments, or more conveniently, by a configuration file.
 
-An example of the configuration file ``linear.pfg`` for the linear model appears as
+Three types of configuration files are supported by pyre_, and therefore AlTar: ``.pml`` (XML-style), ``.cfg`` (an INI-style format used in AlTar 1.1), and ``.pfg`` (JSON/YAML-style). We recommend ``.pfg`` for its human-readable data serialization format.
+
+An example configuration file for the linear model, ``linear.pfg`` , appears as
 
 .. literalinclude:: ../../jupyter/linear/linear.pfg
     :language: none
     :linenos:
 
-One of the key concepts in AlTar programming, as inherited from the pyre_ framework, is ``components``, which may appear like Python Class variables but have extended functionalities: they are highly configurable and can be specified by users at runtime.
+The instance name of the AlTar application, ``linear`` is set as the root. Configurable components of the ``linear`` application, such as ``model``, ``controller``, ``job``, are listed under ``linear`` with indentation. Subsequently, components of ``model`` are listed under ``model``.
+
+.. note::
+   - If a component is not specified or listed in the configuration file, a default value/implementation is chosen instead.
+   - Whitespace indentation is used for denoting structure, or hierarchy; however, tab characters are not allowed.
+
+
+
 
 
 Users are encouraged to read the `pyre Documentation`_ for better understandings of the pyre_ framework as well as the ``.pfg`` configuration file.
