@@ -16,14 +16,14 @@ To run an AlTar simulation on a specific model, users can follow these steps:
 
 The linear model example demonstrated here comes with the AlTar source package, under the directory :altar_src:`models/linear/examples <models/linear/examples>`. It is also available as a jupyter notebook in :tutorials:`linear`.
 
-For each model in AlTar, examples are provided in the source package. Users may use these examples as templates to prepare their own projects. Model-specific instructions are also provided in this Guide.
+For each model in AlTar, examples are provided in the source package. Users may use these examples as templates to prepare their own projects.
 
 Prepare the configuration file
 ------------------------------
 
 One prominent feature of AlTar is that it allows users to configure all the public settings in a program at run time, through the ``components``-based Python programming introduced by pyre_. Components are configurable Python class variables which can be used to set a parameter, an array, or to choose an implementation of a certain functionality. Settings of components can be passed to the program as command line arguments, or more conveniently, by a configuration file.
 
-Three types of configuration files are supported by pyre_, and therefore AlTar: ``.pml`` (XML-style), ``.cfg`` (an INI-style format used in AlTar 1.1), and ``.pfg`` (JSON/YAML-style). We recommend ``.pfg`` for its human-readable data serialization format.
+Three types of configuration files are supported by pyre_/AlTar: ``.pml`` (XML-style), ``.cfg`` (an INI-style format used in AlTar 1.1), and ``.pfg`` (YAML/JSON-style). We recommend ``.pfg`` for its human-readable data serialization format.
 
 An example configuration file for the linear model, ``linear.pfg`` , appears as
 
@@ -31,21 +31,53 @@ An example configuration file for the linear model, ``linear.pfg`` , appears as
     :language: none
     :linenos:
 
-The instance name of the AlTar application, ``linear`` is set as the root. Configurable components of the ``linear`` application, such as ``model``, ``controller``, ``job``, are listed under ``linear`` with indentation. Subsequently, components of ``model`` are listed under ``model``.
+The name of the AlTar application (instance), ``linear``, is set as the root. Configurable components of the ``linear`` application, such as ``model``, ``controller``, ``job``, are listed under ``linear`` with indentation. Subsequently, components of ``model`` are listed under ``model`` with additional indents.
 
-.. note::
-   - If a component is not specified or listed in the configuration file, a default value/implementation is chosen instead.
-   - Whitespace indentation is used for denoting structure, or hierarchy; however, tab characters are not allowed.
+Some basic rules of ``.pfg`` format are
 
+- If a component is not specified or listed in the configuration file, a default value/implementation specified in the Python program will be used instead.
+- Strings such as paths, names, don't need quotation marks.
+- Whitespace indentation is used for denoting structure, or hierarchy; however, tab characters are not allowed.
+- Hierarchy of components can be specified by indentation, or by explicit full path, or by a combination of partial path with indentation. For example, these three configurations are equivalent:
 
+.. code-block:: none
 
+    ; method 1: all by indentation
+    linear:
+        job:
+            tasks = 1
+            gpus = 0
+            chains = 2**10
 
+    ; method 2: all by full path
+    linear.job.tasks = 1
+    linear.job.gpus = 0
+    linear.job.chains = 2**10
+
+    ; method 3: combination with partial path and indentation
+    linear:
+        job.tasks = 1
+        job.gpus = 0
+        job.chains = 2**10
 
 Users are encouraged to read the `pyre Documentation`_ for better understandings of the pyre_ framework as well as the ``.pfg`` configuration file.
+
+For an AlTar application, users are required to prepare (or modify from the examples) the following sections:
+
+- ``model``, for model specific configurations, such as the prior distributions of the model parameters, the forward modelling, and the data observations. Models are developed. Model-specific instructions are provided in the respective sections of this Guide.
+- ``job``, which configures the size of the simulation, and how the job will be deployed: single or multiple threads, CPU or GPU.
+- ``controller``,  the Bayesian MCMC procedure.
+. :ref:`AlTar Framework`
 
 
 Prepare input files
 -------------------
+
+Each model requires certain inputs. For the linear model
+
+.. math::
+
+    d_i = G_{ij} \theta_j
 
 
 
