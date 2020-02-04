@@ -148,7 +148,7 @@ Linux: Ubuntu (18.04) and Debian
 Install required packages
 ::
 
-    $ sudo apt update && sudo apt install -y gcc g++ python3 python3-dev python3-numpy python3-h5py libgsl-dev libopenblas-dev libpq-dev libopenmpi-dev libhdf5-serial-dev make git
+    $ sudo apt update && sudo apt install -y gcc g++ python3 python3-dev python3-numpy python3-h5py libgsl-dev libopenblas-dev libpq-dev postgresql-server-dev-all libopenmpi-dev libhdf5-serial-dev make git
 
 Prepare ``config.mm``
 
