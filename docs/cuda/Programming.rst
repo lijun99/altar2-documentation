@@ -78,8 +78,20 @@ Basic matrix/vector operations
 Altar framework
 ===============
 
+An altar/pyre application package in general has mixed Python and C/C++/CUDA/Fortran source codes, as well as Python extension/wrappers. Here is an overview of how different files are organized for altar(``SRC`` is the root directory of the source files of the package, e.g., ``altar`` for the AlTar application; ``DEST`` is the root directory of compiled products, e.g., ``altar/products/debug-shared-linux-x86_64``):
+
+* The C/C++/CUDA/Fortran source files as well as their header files are located at ``SRC\lib``. They are compiled into a shared library ``libaltar.so`` to ``DEST/lib`` while the header files are copied to ``DEST/include``.
+* The source files of Python extension/wrappers for C/C++/CUDA/Fortran routines are located at ``SRC/ext`` (altar uses the cpython approach; other semi-automatic wrapping tools such as cython, SWIG are also supported by pyre_ and mm_). They are compiled into a shared library ``altar.cpython-XXX.so`` to ``DEST/packages/altar/ext`` directory; these modules can be loaded in Python, e.g., ``import altar.ext.altar as libaltar``. The header file ``capsules.h`` which contains definitions of Python capsules for C/C++ objects is copied to ``DEST\include`` as APIs.
+* the Python programs/scripts are located at ``SRC/altar``. They are copied/compiled to ``DEST/packages/altar``. One could add ``DEST/packages`` to the environmental variable ``PYTHONPATH`` for Python to load the packages.
+* The executables, e.g., altar, dedicated Python scripts to invoke the application, are located at ``SRC/bin`` and are copied to ``DEST/bin`` upon compilation.
+* An application may also have documentations, examples, tests in additional directories, which can be compiled together or separately with the above core components.
+* Models are located at ``SRC\models``. Each model has the same source file structure and is compiled in the same fashion as altar.
+
+
 Application
 -----------
+
+
 
 An altar application, as an instance of `altar.shells.application`, is the executor of altar programs and the organizer of other altar components. The four primary components of an altar application are
 

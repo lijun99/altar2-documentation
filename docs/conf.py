@@ -81,6 +81,7 @@ mathjax_config = {
 # altar_ will be converted to <a href="https://github.com/AlTarFramework/altar">altar</a>
 rst_epilog = """
 .. _altar: https://github.com/AlTarFramework/altar
+.. _AlTar: https://github.com/AlTarFramework/altar
 .. _altar cuda branch: https://github.com/lijun99/altar
 .. _AlTar Documentation: https://altar.readthedocs.io
 .. _pyre: https://github.com/pyre/pyre
