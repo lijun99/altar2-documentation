@@ -148,6 +148,16 @@ You will also need a c++ compiler.
 
     $ sudo xcode-select --switch /Library/Developer/CommandLineTools/
 
+- Conda also offers compiler packages,
+  ::
+
+    # for Linux
+    $ conda install gcc_linux-64 gxx_linux-64 gfortran_linux-64
+    # for Mac
+    $ conda install clang_osx-64 clangxx_osx-64 gfortran_osx-64
+
+    It works well for most systems (Redhat, Mac, ...) but has some library issues on Ubuntu.
+
 If you would like to use a c++ compiler other than the default version, or the version (auto) discovered by ``cmake``, you may use ``-DCMAKE_CXX_COMPILER=...`` to specify the compiler.
 
 
