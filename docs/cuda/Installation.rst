@@ -120,7 +120,6 @@ If Anaconda3 is not installed, please `download <https://docs.conda.io/projects/
     $ echo ${CONDA_PREFIX}
     /opt/anaconda3
 
-
 Install prerequisites
 ---------------------
 
@@ -128,6 +127,28 @@ Install the required libraries and packages by Conda:
 ::
 
     $ conda install git make cmake hdf5 h5py openmpi gsl postgresql numpy
+
+
+You will also need a c++ compiler.
+
+- Ubuntu 18.04:  GCC 7.4.0 is installed by default and is sufficient. If GCC/G++ are not installed, run
+  ::
+
+    $ sudo apt install gcc g++
+
+- Redhat/CentOS 7: GCC 4.x is installed by default. Higher versions of GCC are offered through ``devtoolset``. Please follow instructions for `Redhat <https://access.redhat.com/documentation/en-us/red_hat_developer_toolset/7/>`__ or `CentOS <https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/>`__ to install, e.g., ``devtoolset-7``.
+
+- MacOSX: you will need to install either the full version of Xcode or the (compact) Command Line Tools. Xcode can be installed from the App Store. To install the Command Line Tools, run
+  ::
+
+    $ sudo xcode-select --install
+
+  To select or switch compilers,
+  ::
+
+    $ sudo xcode-select --switch /Library/Developer/CommandLineTools/
+
+If you would like to use a c++ compiler other than the default version, or the version (auto) discovered by ``cmake``, you may use ``-DCMAKE_CXX_COMPILER=...`` to specify the compiler.
 
 
 Install pyre
