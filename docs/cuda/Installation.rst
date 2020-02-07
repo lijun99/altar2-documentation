@@ -20,7 +20,7 @@ In brief, the installation steps consist of:
 
 Step-by-step instructions are provided for:
 
-- :ref:`Anaconda3 with CMake (Linux/MacOSX/Windows) <Anaconda3>` *recommended method*
+- :ref:`Anaconda3 with CMake (Linux/MacOSX) <Anaconda3>` *recommended method*
 - :ref:`Ubuntu with CMake <Ubuntu>` *a standard platform*
 - :ref:`Linux with environmental modules <lmod>` *for Linux clusters*
 - :ref:`Docker container <Docker>` *out-of-the-box delivery*
@@ -48,8 +48,7 @@ Operation systems
 - Linux: any distribution should work though not all are tested;
 - Linux clusters: with MPI support and a job queue scheduler (PBS/Slurm);
 - MacOSX: with `MacPorts <https://www.macports.org/>`__ or `Anaconda <https://www.anaconda.com/distribution/#macos>`__;
-- Windows: with `Anaconda <https://www.anaconda.com/distribution/#windows>`__ (not tested).
-
+- Windows: not supported; `Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`__ or `Cygwin <https://www.cygwin.com/>`__ should work.
 
 .. _Prerequisites:
 
@@ -105,8 +104,8 @@ Upon successful downloads, you shall observe two directories ``pyre``, ``altar``
 
 .. _Anaconda3:
 
-Anaconda3 with CMake (Linux/MacOSX/Windows)
-===========================================
+Anaconda3 with CMake (Linux/MacOSX)
+===================================
 
 Conda(Anaconda/Miniconda) offers an easy way to install Python, packages and libraries on different platforms, especially for users without the admin privilege to their computers. We recommend a full version of `Anaconda3 <https://www.anaconda.com/distribution/>`__. If disk space is an issue, you may use `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ instead.
 
@@ -435,7 +434,7 @@ In another terminal, find out the *CONTAINER ID* for this image, named *cuda/nvi
 
     $ docker commit CONTAINER_ID altar2:2.0.1
 
-To run AlTar from a the container
+To run AlTar from the container
 ::
 
     $ docker run --gpus all -ti -v ${PWD}:/mnt altar2:2.0.1
