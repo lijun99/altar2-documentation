@@ -5,9 +5,12 @@ User Guide
 ##########
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   Background
-   QuickStart
-   AlTarFramework
-   Seismic
+    Overview
+    QuickStart
+    Pyre
+    AlTarFramework
+    Priors
+    Static
+    StaticCp

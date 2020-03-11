@@ -3,23 +3,39 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-AlTar 2.0: A Bayesian framework for inverse problems
-====================================================
+.. title:: AlTar 2.0: A Bayesian framework for inverse problems
+
+.. raw:: html
+
+    <div class="banner">
+        <h1>AlTar 2.0</h1>
+        <h2>
+            A Bayesian framework for inverse problems
+        </h2>
+    </div>
+
 
 .. toctree::
-   :maxdepth: 3
-   :caption: Contents:
+    :maxdepth: 2
+    :caption: Contents
 
-   README.md
-   cuda/Installation
-   cuda/Manual
-   cuda/Programming
-   api/index
+    README.md
+    cuda/Background
+    cuda/Installation
+    cuda/Manual
+    cuda/Programming
 
-Tutorials
-=========
-   jupyter/hello/hello.ipynb
-   jupyter/linear/linear.ipynb
+.. toctree::
+    :maxdepth: 1
+    :caption: Tutorials
+
+    cuda/jupyter/hello/hello.ipynb
+
+.. toctree::
+    :maxdepth: 1
+    :caption: References
+
+    api/index
 
 Indices and tables
 ==================

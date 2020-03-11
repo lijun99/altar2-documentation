@@ -1,16 +1,16 @@
 .. _Background:
 
-#############
-Background
-#############
+########################################
+Bayesian Inference for Inverse Problems
+########################################
 
 Inverse problem
 ===============
 
 An inverse problem in science is to infer a set of model parameters, :math:`{\boldsymbol \theta} = \{ \theta_1, \theta_2, \ldots, \theta_m \}`, given a model :math:`{ G}({\boldsymbol \theta})` and a set of observations :math:`{\bf d}=\{d_1, d_2, \ldots, d_n\}`. For example, in Seismology,  we deduce the earthquake rupture information :math:`{\boldsymbol \theta}` from ground motions :math:`{\bf d}` measured by seismometers, GPS, InSAR and other methods.  Here, the forward problem :math:`{\bf d} = G({\boldsymbol \theta})` is well defined but the inverse :math:`{\boldsymbol \theta} = G^{-1}({\bf d})`, in most cases, is not.  This happens to linear systems :math:`G({\boldsymbol \theta})= {\bf G} {\boldsymbol \theta}` when the observation matrix :math:`{\bf G}` is ill-posed, and nonlinear systems where the inverse is inherently difficult.
 
-Bayesian Approach to Inverse problems
-=====================================
+Bayesian Approach
+=================
 
 Bayesian inference offers a statistical solution to inverse problems by modelling unknown parameters :math:`{\boldsymbol \theta}` as random variables subject to a conditional probability :math:`$P({\boldsymbol \theta}|{\bf d})`. According to Bayes' theorem, the probability is given by
 
@@ -29,7 +29,7 @@ where :math:`P({\bf d})` is the same for all possible :math:`{\boldsymbol \theta
 .. math::
 
     \begin{eqnarray}
-    P({\bf d}| {\bf \theta}) & =& e^{-\frac 12 \left[ {\bf d} - G({\boldsymbol \theta}) \right]^T C_\chi^{-1} \left[ {\bf d} - G({\boldsymbol \theta}) \right]},
+    P({\bf d}| {\boldsymbol \theta}) & \propto & e^{-\frac 12 \left[ {\bf d} - G({\boldsymbol \theta}) \right]^T C_\chi^{-1} \left[ {\bf d} - G({\boldsymbol \theta}) \right]},
     \end{eqnarray}
 
 where the covariance matrix :math:`C_{\chi}` captures noises/errors in observations :math:`{\bf d}`, as well as uncertainties in the forward function :math:`G({\boldsymbol \theta})`.
@@ -37,6 +37,8 @@ where the covariance matrix :math:`C_{\chi}` captures noises/errors in observati
 
 The set of model parameters :math:`{\boldsymbol \theta}` with the maximum posterior probability (MAP) provides an estimate solution to the inverse problem. By fully evaluating the posterior density, Bayesian approach can also address situations when several sets of :math:`{\boldsymbol \theta}` have equal or comparable probabilities, or the posterior distribution is not unimodal, which other point estimators fail to. In addition, Bayesian approach accommodates uncertainty quantification, by including various types of uncertainties in the calculation.
 
+
+.. _CATMIP:
 
 CATPMIP Algorithm
 =================

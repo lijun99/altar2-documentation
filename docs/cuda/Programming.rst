@@ -1,3 +1,6 @@
+
+.. _Programming Guide:
+
 #################
 Programming Guide
 #################

@@ -34,16 +34,18 @@ Tutorials presented with jupyter notebooks:
 
 ## Copyright
 
+```text
     Copyright (c) 2013-2020 ParaSim Inc.
     Copyright (c) 2010-2020 California Institute of Technology
     All Rights Reserved
-
+    
     This software is subject to the provisions of its LICENSE, a copy of
     which should accompany all distributions, in both source and binary
     form. If you received this software without a copy of the LICENSE,
     please contact the author at michael.aivazis@para-sim.com.
-
+    
     THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
     WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
     WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
     FOR A PARTICULAR PURPOSE.
+```
