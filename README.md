@@ -23,6 +23,11 @@ Tutorials presented with jupyter notebooks:
 - [An introduction to AlTar/pyre applications: HelloApp](https://github.com/lijun99/altar2-documentation/tree/cuda/jupyter/hello/hello.ipynb)
 - [An overview of the AlTar framework](https://github.com/lijun99/altar2-documentation/tree/cuda/jupyter/linear/linear.ipynb)
 
+- Static slip inversion: a toy model with epistemic uncertainties
+
+  - [Step 1: prepare the input files](https://github.com/lijun99/altar2-documentation/blob/thearagon-patch-1/jupyter/intro_cp/toymodel_step1.ipynb)
+  - [Step 2: run AlTar2](https://github.com/lijun99/altar2-documentation/blob/thearagon-patch-1/jupyter/intro_cp/toymodel_step2.ipynb)
+
 ## Discussion groups
 
 - [AlTar mailing list](http://lists.gps.caltech.edu/mailman/listinfo/altar)
