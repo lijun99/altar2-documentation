@@ -34,7 +34,8 @@ extensions = [
     'sphinx.ext.autosectionlabel', # auto label sections
     'sphinx.ext.extlinks', # for shared external links
     'nbsphinx', # include jupyter notebooks
-    'm2r', # include markdown
+    'recommonmark',
+    #'m2r', # include markdown
     'sphinx.ext.mathjax', # render math via JavaScript, another option is sphinx.ext.imgmath
 ]
 

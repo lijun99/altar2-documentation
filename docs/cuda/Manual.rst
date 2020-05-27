@@ -13,4 +13,5 @@ User Guide
     AlTarFramework
     Priors
     Static
-    StaticCp
+    cp.md
+    Kinematic

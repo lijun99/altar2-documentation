@@ -3,7 +3,7 @@
 ## About AlTar
 AlTar(Al-Tar) is a software package to solve inverse problems with Bayesian inference. It is named after the Spanish-French physicist [Albert Tarantola](https://en.wikipedia.org/wiki/Albert_Tarantola), for his pioneering work on the Bayesian perspective of inverse problems.
 
-AlTar uses primarily the [Cascading Adaptive Tempered Metropolis In Parallel (CATMIP) algorithm](https://thesis.library.caltech.edu/5918/), which can efficiently simulate problems with high-dimensional spaces on parallel computers, include Graphics Processing Units(GPUs).
+AlTar uses primarily the [Cascading Adaptive Tempered Metropolis In Parallel (CATMIP) algorithm](https://thesis.library.caltech.edu/5918/), which is designed to efficiently simulate problems with high-dimensional spaces on parallel computers, include Graphics Processing Units(GPUs).
 
 ## Guides
 (work in progress, currently for AlTar 2.0 CUDA version only)

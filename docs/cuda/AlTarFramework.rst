@@ -216,7 +216,7 @@ At the :math:`m`-stage, samples :math:`\theta_{m,k}` are generated with the targ
 .. math::
 
     \begin{eqnarray}
-    w(\theta_{m,k}) & = & \frac {P_{m+1}(\theta_{m,k})|{\bf d}}{P_m({\boldsymbol \theta}|{\bf d}} \nonumber \\
+    w(\theta_{m,k}) & = & \frac {P_{m+1}(\theta_{m,k}|{\bf d})}{P_m({\boldsymbol \theta}|{\bf d})} \nonumber \\
       &=& P({\bf d}|\theta_{m,k})^{\beta_{m+1} -\beta_{m}}
     \end{eqnarray}
 

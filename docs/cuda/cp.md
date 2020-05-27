@@ -1,4 +1,4 @@
-## Epistemic Uncertainties
+## Static Slip Inversion with Cp: Epistemic Uncertainties
 
 
 In addition to observational errors, one can calculate epistemic uncertainties (Minson et al., 2013), which affect the forward model and are related to our imperfect knowledge of the Earth interior. Epistemic uncertainties will stem from a various set of parameters, but the most prominent uncertainties will derive from elastic heterogeneity (Duputel et al., 2014) and fault geometry (Ragon et al., 2018, 2019). 

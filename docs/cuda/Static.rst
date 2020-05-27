@@ -1,16 +1,16 @@
 
 .. _Static Inversion:
 
-Static Slip Inversion of Earthquakes
-======================================
+Static Slip Inversion
+======================
 
-Static Inversion Model
-----------------------
+Static Source model
+-------------------
 
-The static inversion model determines the spatial distributions of static slips at faults during an earthquake from the observed surface displacements. The fault is generally modelled as a set of rectangular patches; each patch treated as a point source with two components, slips along the strike and dip directions. The slip on the fault plane can be translated into surface deformation, e.g., by the Okada model, which is derived from a Green’s function solution to the elastic half space problem. The observed surface deformation at a given location is the linear combination due to (strike/dip) slips of all patches.
+The finite fault earthquake source models infer the spatial distribution and temporal evolution of coseismic slips at fault plane(s) from the observed surface or subsurface displacements. In the static source model, the spatial distributions of coseismic slips are determined. We model the fault plane(s) as a set of patches; each patch treated as a point source with two orthogonal displacement components, slips along the strike and dip directions. Each slip on the fault plane can be translated into surface deformation, e.g., by the Okada model, which is derived from a Green’s function solution to the elastic half space problem. The observed surface deformation at a given location is the linear combination due to (strike/dip) slips of all patches.
 
 .. note::
-For static inversions, the patches can be of any shape, size as long as each patch can be treated a single point source. However, for joint static+kinematic inversions, AlTar can only treat a rectangle area divided into :math:`n_d \times n_s` square patches.
+For the static inversion, the patches can be of any shape or area as long as each patch can be treated a single point source. If you plan for a joint static-kinematic inversion, note that the currently implemented kinematic inversion only processes a rectangle fault divided into :math:`n_d \times n_s` square patches.
 
 Therefore, the forward model is a linear model
 
@@ -20,20 +20,18 @@ Therefore, the forward model is a linear model
    {\bf d}^{pred} = \mathcal{G}  {\boldsymbol \theta}.
    \end{equation}
 
-where :math:`{\boldsymbol \theta}` (also denoted as :math:`{\bf m}` in literature) is a vector with :math:`2N_{patch}` components, representing the slips along the strike and dip directions for :math:`N_{patch}`-patches; :math:`{\bf d}` is a vector of observed surface deformations (may include vertical and x,y-horizontal components) at different locations, with :math:`N_{observation}`-observations; and  :math:`\mathcal{G}` is :math:`2N_{patch} \times N_{observation}` matrix, pre-calculated Green's functions connecting a slip source to an observation location.
+where :math:`{\boldsymbol \theta}` (also denoted as :math:`{\bf m}` in literature) is a vector with :math:`N_{parameters}=2N_{patch}` components, representing the slips along the strike and dip directions for :math:`N_{patch}`-patches; :math:`{\bf d}` is a vector of observed surface deformations (may include vertical and east,north horizontal components) at different locations, with :math:`N_{observation}`-observations; and  :math:`\mathcal{G}` is :math:`2N_{patch} \times N_{observation}` matrix, pre-calculated Green's functions connecting a slip source to an observation location.
 
-A generalized forward model could also include other linear parameters, for example, the InSAR ramp parameters :math:`a+bx+cy`, used to fit the spurious ramp-like displacement fields from InSAR interferograms.
+A generalized forward model could also include other linear parameters, for example, the InSAR ramp parameters :math:`(a, b, c)`, used to fit the spurious ramp-like displacement fields :math:`a+bx+cy` from InSAR interferograms, where :math:`x` and :math:`y` are the locations of the data in local Cartesian coordinates.
 
 
 Input files
 -----------
 
-`CSI <http://www.geologie.ens.fr/~jolivet/csi/>`__ is a Python package who can prepare the input files for AlTar. Please refer to its manual and tutorials for more details.
-
-For the static inversion, users are required to prepare three input files
+For the static inversion, you are required to prepare three input files
 
 * ``data.txt``, the observed data with :math:`N_{observation}` observations, a vector in one row or one column.
-* ``cd.txt``, covariance of data, or data errors/uncertainties, prepared in a :math:`N_{observation} \times N_{observation}` matrix (could have off-diagonal terms for correlated errors).  A constant cd could be used if all data are uncorrelated and have the same variance.
+* ``cd.txt``, covariance of data representing data errors/uncertainties, prepared in a :math:`N_{observation} \times N_{observation}` matrix (could have off-diagonal terms for correlated errors).  A constant cd could be used if all data are uncorrelated and have the same variance.
 * ``green.txt``, the pre-calculated Green's functions, prepared in a :math:`N_{observation} \times N_{parameters}` matrix, with :math:`N_{parameters}` as the leading dimension, i.e., data arranged in row-major as
 
 .. code-block:: none
@@ -43,16 +41,19 @@ For the static inversion, users are required to prepare three input files
     ... ...
     ObsNoParam1, ObsNoParam2, ... ObsNoParamNp
 
-The file names could be different and can be configured in the job script file.
+You may use any names for these files but need to specify them in the configuration file.
 
 In addition to plain text inputs, ``.txt``, AlTar 2.0 also accepts binary data format ``.bin``, ``.dat`` or HDF5 files (with suffix ``.h5``). For the raw binary data, the precision should be consistent with the numerical precision desired ``job.gpuprecision``, or otherwise be specified. HDF5 files include the data shape and precision in metadata, which can be easily recognized and automatically converted by AlTar.
+
+There are some software packages which can pre-calculate the Green's functions and/or prepare the input files for AlTar, e.g., `CSI <http://www.geologie.ens.fr/~jolivet/csi/>`__. Please refer to its manual and tutorials for more details.
+
 
 .. _HDF5 Converter:
 
 HDF5 Converter tool
 -------------------
 
-A conversion tool ``H5Converter`` is provided if you need to convert any ``.txt`` or ``.bin`` files (e.g., from AlTar 1.1) to ``.h5``.
+We recommend HDF5 as the input format. A conversion tool ``H5Converter`` is provided if you need to convert any ``.txt`` or ``.bin`` files (e.g., from AlTar 1.1) to ``.h5``.
 
 :Examples:
 
@@ -62,26 +63,26 @@ A conversion tool ``H5Converter`` is provided if you need to convert any ``.txt`
 
         H5Converter --inputs=static.gf.txt
 
-* convert a binary file to hdf5, additional precision (default=float32) and shape (default = 1d vector and will be reshaped to 2d in program if needed) information can be added
+* convert a binary file to hdf5, additional information such as the precision (default=float32) and the shape (default = 1d vector and will be reshaped to 2d in program if needed) of the output can be added by
 
     .. code-block::
 
         H5Converter --inputs=kinematicG.gf.bin --precision='float32' --shape=[100,11000]
 
-* merge several files into one hdf5
+* merge several files into one hdf5, e.g., to prepare the sensitivity kernels for Cp,
 
     .. code-block::
 
         H5Converter --inputs=[static.kernel.pertL1.txt,static.kernel.pertL2.txt] --output=static.kernel.h5
 
-* for more options
+* for help on all available options
 
     .. code-block::
 
         H5Converter --help
 
 
-Configuration
+Configurations
 --------------
 
 The configuration file for the static inversion appears as
@@ -163,7 +164,7 @@ We use a shell command ``slipmodel`` for all seismic slip models, including stat
 
     $ slipmodel
 
-to invoke AlTar simulations.  If you want to name the configuration file as something else, e.g., ``static.pfg``, ``static_mpi.pfg``, or ``Nepal_static.pfg``, you may specify the configuration file from the command line by ``--config``,
+to invoke simulations for any slip models.  If you want to name the configuration file as something else, e.g., ``static.pfg``, ``static_mpi.pfg``, or ``Nepal_static.pfg``, you may specify the configuration file from the command line by the ``--config`` option,
 
 .. code-block:: bash
 
@@ -173,15 +174,15 @@ to invoke AlTar simulations.  If you want to name the configuration file as some
 Model
 ~~~~~~
 
-For static inversion, you need to specify ``model = altar.models.seismic.cuda.static``.
+For static inversion, you need to specify ``model = altar.models.seismic.cuda.static`` (or the CPU version, ``model=altar.models.seismic.static``).
 
 :Attributes:
 
-* ``case``, the directory where all input files are located
-* ``patches``, the number of patches
-* ``green``, the name of the file containing the Green's functions, as prepared from the instructions above
-* ``dataobs = altar.cuda.data.datal2``, a component to process the data observations and calculate the data likelihood with L2 norm; details are provided in :ref:`Data Observations`
-* ``psets_list``, and ``psets``, components to describe the parameter sets; details are provided in :ref:`Parameter Sets`.
+* ``case``, the directory where all input files are located;
+* ``patches``, the number of patches, or point sources;
+* ``green``, the file name for the Green's functions, as prepared from the instructions above;
+* ``dataobs = altar.cuda.data.datal2``, a component to process the data observations and calculate the data likelihood with L2 norm, with details provided in :ref:`Data Observations`;
+* ``psets_list``, and ``psets``, components to describe the parameter sets, with details provided in :ref:`Parameter Sets`.
 
 .. _Data Observations:
 
