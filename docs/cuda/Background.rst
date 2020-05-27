@@ -12,7 +12,7 @@ An inverse problem in science is to infer a set of model parameters, :math:`{\bo
 Bayesian Approach
 =================
 
-Bayesian inference offers a statistical solution to inverse problems by modelling unknown parameters :math:`{\boldsymbol \theta}` as random variables subject to a conditional probability :math:`$P({\boldsymbol \theta}|{\bf d})`. According to Bayes' theorem, the probability is given by
+Bayesian inference offers a statistical solution to inverse problems by modelling unknown parameters :math:`{\boldsymbol \theta}` as random variables subject to a conditional probability :math:`P({\boldsymbol \theta}|{\bf d})`. According to Bayes' theorem, the probability is given by
 
 .. math::
 
