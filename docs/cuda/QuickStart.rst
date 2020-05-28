@@ -47,19 +47,15 @@ For the  linear model, the data likelihood is computed as
 
 .. math::
 
-    \begin{eqnarray}
-    P({\bf d}|{\boldsymbol \theta}) &=& \frac {1} {\sqrt{(2\pi)^m \text{det}(C_d)}} \nonumber \\
-     &\times& \exp\left[- \frac {1}{2} \left({\bf d} - {\bf d}^{pred} \right)^T C_d^{-1}  \left({\bf d} - {\bf d}^{pred} \right)\right]
-    \end{eqnarray}
+    P({\bf d}|{\boldsymbol \theta}) &= \frac {1} {\sqrt{(2\pi)^m \text{det}(C_d)}}  \\
+     &\times \exp\left[- \frac {1}{2} \left({\bf d} - {\bf d}^{pred} \right)^T C_d^{-1}  \left({\bf d} - {\bf d}^{pred} \right)\right]
 
 
 where :math:`{\boldsymbol \theta}` is a vector with :math:`n` unknown model parameters, :math:`{\bf d}` a vector with :math:`m` observations, the covariance :math:`C_d` a :math:`m \times m` matrix representing the data uncertainties. The data prediction :math:`{\bf d}^{pred}` is given by the forward model
 
 .. math::
 
-   \begin{equation}
    {\bf d}^{pred} = \mathcal{G}  {\boldsymbol \theta}.
-   \end{equation}
 
 where the Green's function :math:`\mathcal{G}`,  is a :math:`n\times m` matrix.
 

@@ -45,10 +45,8 @@ The probability density function (PDF) for a uniform distribution is
 
 .. math::
 
-    \begin{eqnarray*}
-    f(x; a, b) &=& \frac {1}{b-a}, \text{for } x \in [a,b] \\
-        &=& 0, \text{otherwise}
-    \end{eqnarray*}
+    f(x; a, b) &= \frac {1}{b-a}, \text{for } x \in [a,b] \\
+        &= 0, \text{otherwise}
 
 where :math:`[a, b]` is the support or range.
 
@@ -67,9 +65,7 @@ The PDF for the Gaussian (normal) distribution is defined as
 
 .. math::
 
-    \begin{equation*}
     f(x; \mu, \sigma) = \frac {1}{\sqrt{2\pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},
-    \end{equation*}
 
 where :math:`\mu` and :math:`\sigma^2` are mean (center) and variance, respectively.
 

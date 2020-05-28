@@ -107,18 +107,14 @@ Metropolis
 
     .. math::
 
-        \begin{eqnarray}
-        {\boldsymbol \theta} ' &=&  {\boldsymbol \theta}  + \alpha {\boldsymbol \delta}  \\
-        {\boldsymbol \delta} &\sim& N(0, {\boldsymbol \Sigma}) \nonumber
-        \end{eqnarray}
+        {\boldsymbol \theta} ' &=  {\boldsymbol \theta}  + \alpha {\boldsymbol \delta}  \\
+        {\boldsymbol \delta} &\sim N(0, {\boldsymbol \Sigma}) \nonumber
 
     where :math:`{\boldsymbol \Sigma}` is the (weighted) covariance matrix of starting samples (from the previous :math:`\beta` step), and :math:`\alpha` is a scaling factor adjusting the jump distance. In CATMIP, :math:`\alpha` is adjusted by the acceptance rate (from the previous :math:`\beta`-step):
 
     .. math::
 
-        \begin{equation}
         \alpha = \frac {acceptanceWeight * acceptanceRate + rejectionWeight}{acceptanceWeight+rejectionWeight}
-        \end{equation}
 
 * to decide whether to accept the proposed samples with the Metropolis–Hastings algorithm.
 
@@ -156,9 +152,7 @@ AdaptiveMetropolis
 
     .. math::
 
-        \begin{equation}
         \alpha_{j+1} = \alpha_j \exp[-gain*(acceptanceRate_j-target\_acceptance\_rate)]
-        \end{equation}
 
     where :math:`j` labels the :math:`\beta`-step. The initial value is set as :math:`\alpha_0 = scaling/\sqrt{parameters}`.
 
@@ -207,29 +201,23 @@ distributions,
 
 .. math::
 
-    \begin{eqnarray}
-    P_m({\boldsymbol \theta}|{\bf d}) &=& P({\boldsymbol \theta}) P({\bf d}|{\boldsymbol \theta})^{\beta_m},
-    \end{eqnarray}
+    P_m({\boldsymbol \theta}|{\bf d}) = P({\boldsymbol \theta}) P({\bf d}|{\boldsymbol \theta})^{\beta_m},
 
 At the :math:`m`-stage, samples :math:`\theta_{m,k}` are generated with the target equilibrium distribution :math:`P_m({\boldsymbol \theta}|{\bf d})`, where :math:`k=1,2,\ldots, N_s` and :math:`N_s` is the total number of samples (chains). At the :math:`m+1`-stage, the sampling targets :math:`P_{m+1}({\boldsymbol \theta}|{\bf d})` as the new equilibrium distribution. To sample a distribution with samples generated from another distribution is called as importance sampling, with the importance weight
 
 .. math::
 
-    \begin{eqnarray}
-    w(\theta_{m,k}) & = & \frac {P_{m+1}(\theta_{m,k}|{\bf d})}{P_m({\boldsymbol \theta}|{\bf d})} \nonumber \\
-      &=& P({\bf d}|\theta_{m,k})^{\beta_{m+1} -\beta_{m}}
-    \end{eqnarray}
+    w(\theta_{m,k}) & = \frac {P_{m+1}(\theta_{m,k}|{\bf d})}{P_m({\boldsymbol \theta}|{\bf d})}  \\
+      &= P({\bf d}|\theta_{m,k})^{\beta_{m+1} -\beta_{m}}
 
 while the effective sample size (ESS) from the resampling is associated with the COV of :math:`w(\theta_{m,k})`,
 
 .. math::
 
-    \begin{eqnarray}
-    ESS  &=& \frac {N_s} {1 + COV(w)}, \\
-    COV(w) & = & \frac {\bar w} {\sigma}  \\
-    {\bar w} &=&  \frac {1}{N_s}  \sum_k w(\theta_{m,k}) \nonumber \\
-    \sigma &=& \frac {1}{N_s-1} \sum_k [w(\theta_{m,k}) -{\bar w}]^2. \nonumber
-    \end{eqnarray}
+    ESS  &= \frac {N_s} {1 + COV(w)}, \\
+    COV(w) & =  \frac {\bar w} {\sigma}  \\
+    {\bar w} &=  \frac {1}{N_s}  \sum_k w(\theta_{m,k}) \\
+    \sigma &= \frac {1}{N_s-1} \sum_k [w(\theta_{m,k}) -{\bar w}]^2.
 
 In COV Scheduler, we choose a :math:`\beta_{m+1}` so that COV is of order unity, e.g., :math:`COV=1`, or :math:`ESS=N_s/2`.
 

@@ -16,9 +16,7 @@ Therefore, the forward model is a linear model
 
 .. math::
 
-   \begin{equation}
    {\bf d}^{pred} = \mathcal{G}  {\boldsymbol \theta}.
-   \end{equation}
 
 where :math:`{\boldsymbol \theta}` (also denoted as :math:`{\bf m}` in literature) is a vector with :math:`N_{parameters}=2N_{patch}` components, representing the slips along the strike and dip directions for :math:`N_{patch}`-patches; :math:`{\bf d}` is a vector of observed surface deformations (may include vertical and east,north horizontal components) at different locations, with :math:`N_{observation}`-observations; and  :math:`\mathcal{G}` is :math:`2N_{patch} \times N_{observation}` matrix, pre-calculated Green's functions connecting a slip source to an observation location.
 

@@ -101,3 +101,8 @@ extlinks = {
     'tutorials': ('https://github.com/lijun99/altar2-documentation/tree/cuda/jupyter/%s', 'Tutorials:')
 }
 
+# --- latex pdf ---------
+latex_engine = 'xelatex'
+latex_elements = {
+}
+#latex_show_urls = 'footnote'

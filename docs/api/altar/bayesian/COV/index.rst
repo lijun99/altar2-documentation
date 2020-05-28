@@ -106,12 +106,6 @@ Module Contents
 
       Compute the parameter covariance Σ of the sample in {step}
 
-        Σ = c_m^2 \sum_{i \in samples}        ilde{w}_{i} θ_i θ_i^T} - ar{θ} ar{θ}^Τ
-
-      where
-
-        ar{θ} = \sum_{i \in samples}         ilde{w}_{i} θ_{i}
-
       The covariance Σ gets used to build a proposal pdf for the posterior
 
 

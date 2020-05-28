@@ -19,7 +19,7 @@
     :maxdepth: 2
     :caption: Contents
 
-    README.md
+    cuda/Preface
     cuda/Background
     cuda/Installation
     cuda/Manual

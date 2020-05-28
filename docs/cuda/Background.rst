@@ -16,21 +16,18 @@ Bayesian inference offers a statistical solution to inverse problems by modellin
 
 .. math::
 
-    \begin{eqnarray}
-    P({\boldsymbol \theta}|{\bf d}) &=&  \frac {P({\boldsymbol \theta}) P({\bf d}|{\boldsymbol \theta})} {P({\bf d})}, \\
-    P({\boldsymbol \theta}|{\bf d}) &:&  \text{posterior, the probability of observing ${\boldsymbol \theta}$ given that ${\bf d}$ is true},  \nonumber \\
-     P({\boldsymbol \theta}) &:& \text{prior, the probability of observing ${\boldsymbol \theta}$ without regard to ${\bf d}$}, \nonumber \\
-    P({\bf d}|{\boldsymbol \theta}) &:&  \text{likelihood, the probability of observing ${\bf d}$ given that  ${\boldsymbol \theta}$ is true},  \nonumber \\
-    P({\bf d}) &:& \text{the probability of observing ${\bf d}$ independent of ${\boldsymbol \theta}$,}. \nonumber
-    \end{eqnarray}
+    P({\boldsymbol \theta}|{\bf d}) &=  \frac {P({\boldsymbol \theta}) P({\bf d}|{\boldsymbol \theta})} {P({\bf d})}, \\
+    P({\boldsymbol \theta}|{\bf d}) &:  \text{posterior, the probability of observing ${\boldsymbol \theta}$ given that ${\bf d}$ is true},  \\
+     P({\boldsymbol \theta}) &: \text{prior, the probability of observing ${\boldsymbol \theta}$ without regard to ${\bf d}$}, \nonumber \\
+    P({\bf d}|{\boldsymbol \theta}) &:  \text{likelihood, the probability of observing ${\bf d}$ given that ${\boldsymbol \theta}$ is true},  \nonumber \\
+    P({\bf d}) &: \text{the probability of observing } {\bf d} \text{ independent of } {\boldsymbol \theta},
+
 
 where :math:`P({\bf d})` is the same for all possible :math:`{\boldsymbol \theta}` and treated as a constant. The likelihood :math:`P({\bf d}|{\boldsymbol \theta})` can be determined from the forward modeling. For example, assuming a Gaussian probability density form,
 
 .. math::
 
-    \begin{eqnarray}
-    P({\bf d}| {\boldsymbol \theta}) & \propto & e^{-\frac 12 \left[ {\bf d} - G({\boldsymbol \theta}) \right]^T C_\chi^{-1} \left[ {\bf d} - G({\boldsymbol \theta}) \right]},
-    \end{eqnarray}
+    P({\bf d}| {\boldsymbol \theta}) \propto  e^{-\frac {1}{2} [ {\bf d} - G({\boldsymbol \theta}) ]^T C_{\chi}^{-1} [ {\bf d} - G({\boldsymbol \theta}) ]},
 
 where the covariance matrix :math:`C_{\chi}` captures noises/errors in observations :math:`{\bf d}`, as well as uncertainties in the forward function :math:`G({\boldsymbol \theta})`.
 
@@ -49,9 +46,7 @@ The CATMIP (Cascading Adaptive Transitional Metropolis in Parallel) algorithm be
 
 .. math::
 
-    \begin{eqnarray}
-    P_m({\boldsymbol \theta}|{\bf d}) &=& P({\boldsymbol \theta}) P({\bf d}|{\boldsymbol \theta})^{\beta_m},
-    \end{eqnarray}
+    P_m({\boldsymbol \theta}|{\bf d}) &= P({\boldsymbol \theta}) P({\bf d}|{\boldsymbol \theta})^{\beta_m},
 
 where :math:`\beta_m` (in analogy to the inverse of temperature in statistical physics) is gradually increased from :math:`\beta_0=0` to :math:`\beta_M=1` in :math:`M` steps.
 
