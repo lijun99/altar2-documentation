@@ -1,4 +1,4 @@
-## AlTar 2.0
+## AlTar 2.0 Release
 
 ### About AlTar
 AlTar(Al-Tar) is a software package to solve inverse problems with Bayesian inference. It is named after the Spanish-French physicist [Albert Tarantola](https://en.wikipedia.org/wiki/Albert_Tarantola), for his pioneering work on the Bayesian perspective of inverse problems.

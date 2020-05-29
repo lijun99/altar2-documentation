@@ -196,7 +196,7 @@ and these methods are called by the AlTar framework at respective places. (``@al
 
 - ``dataLikelihood`` computes the data likelihood. It performs
 
-  - the forward modelling, calculating the data predictions from :math:`\theta`,
+  - the forward modeling, calculating the data predictions from :math:`\theta`,
   - computes the residual between data predictions and observations,
   - and return the data likelihood with a given Norm function (e.g., L2-Norm).
 
@@ -204,13 +204,13 @@ and these methods are called by the AlTar framework at respective places. (``@al
 
 - ``top`` and ``bottom`` methods are hooks for developers to insert model-specific procedures before or after each annealing step. For example, for models considering model uncertainties, these methods are the places to invoke computing Cp and updating the covariance matrix (Cd+Cp).
 
-Many models may share the same procedures to compute the prior, data likelihood, and posterior; they may differ in forward modelling. We offer some templates to simplify the model development.
+Many models may share the same procedures to compute the prior, data likelihood, and posterior; they may differ in forward modeling. We offer some templates to simplify the model development.
 
 
 Model with the BayesianL2 template
 ===================================
 
-A :altar_src:`BayesianL2 <altar/altar/models/BayesianL2.py>` template assumes a fixed structure of contiguous parameter sets and the data observations with L2-norm. With these assumptions, all required model methods are pre-defined while developers are only required to define a ``forwardModel`` method which performs the forward modelling. This template offers the easiest approach to write a new model.
+A :altar_src:`BayesianL2 <altar/altar/models/BayesianL2.py>` template assumes a fixed structure of contiguous parameter sets and the data observations with L2-norm. With these assumptions, all required model methods are pre-defined while developers are only required to define a ``forwardModel`` method which performs the forward modeling. This template offers the easiest approach to write a new model.
 
 We use the linear regression model to demonstrate how to construct a Bayesian model with the BayesianL2 template in the following. The linear regression model fits a group of data :math:`(x_n, y_n)` with a linear function
 
@@ -249,9 +249,9 @@ A description of ``psets`` in the configuration file ``linear.pfg`` appears as
                 prior = uniform
                 prior.support = (0, 5)
 
-where slope and intercept are each described as a ``contiguous`` parameter set and each set has its own ``prep`` (to initialize random samples`` and ``prior`` (for verify and prior probability) distributions.
+where slope and intercept are each described as a ``contiguous`` parameter set and each set has its own ``prep`` (to initialize random samples and ``prior`` (for verify and prior probability) distributions.
 
-We use the static earthquake inversion as another example, where the sampling parameters are dip-slip (:math:`D_d`), strike-slip (:math:`D_s`) displacements for :math:`N`-patches, and if necessary the inSAR ramping parameters (:math:`R`). Each is described by a ``contiguous`` parameter set and assembled as a ``psets``. (Each row of) :math:`\theta` is therefore :math:`(D_{d1}, D_{d2}, \ldots, D_{dN}, D_{s1}, D_{s2}, \ldots, D_{sN}, R_1, R_2, \ldots)`. The order of sets :math:`D_d`, :math:`D_s` and :math:`R` can be switched as long as it is consistent with the forward modelling, e.g., the Green's functions. If you want to use different priors for strike slips in different patches, you may separate :math:`D_s` into several parameter sets.
+We use the static earthquake inversion as another example, where the sampling parameters are dip-slip (:math:`D_d`), strike-slip (:math:`D_s`) displacements for :math:`N`-patches, and if necessary the inSAR ramping parameters (:math:`R`). Each is described by a ``contiguous`` parameter set and assembled as a ``psets``. (Each row of) :math:`\theta` is therefore :math:`(D_{d1}, D_{d2}, \ldots, D_{dN}, D_{s1}, D_{s2}, \ldots, D_{sN}, R_1, R_2, \ldots)`. The order of sets :math:`D_d`, :math:`D_s` and :math:`R` can be switched as long as it is consistent with the forward modeling, e.g., the Green's functions. If you want to use different priors for strike slips in different patches, you may separate :math:`D_s` into several parameter sets.
 
 With ``psets``, various methods related to parameters, including ``initializeSamples``, ``verify`` and ``priorLikelihood``, are pre-defined in  BayesianL2 template. Users only need to specify its included parameter sets in the configuration file.
 
@@ -262,21 +262,21 @@ L2-norm is recommended for models which need to incorporate various uncertaintie
 
 .. math::
 
-   \log (Data Likelihood) = -\frac 12 \left[ d_{pred} - d_{obs}\right] C_{\chi}^{-1} \left[ d_{pred} - d_{obs}\right]^T
+   \log (Data Likelihood) = -\frac 12 \left[ d_{pred} - d_{obs}\right] C_{\chi}^{-1} \left[ d_{pred} - d_{obs}\right]^T + C
 
-where :math:`d_{pred} = G(\theta)` are the data predictions from the forward model, :math:`d_{pred}` the data observations, and :math:`C_\chi` the covariance matrix capturing data (Cd) and/or model(Cp) uncertainties.
+where :math:`d_{pred} = G(\theta)` are the data predictions from the forward model, :math:`d_{pred}` the data observations, :math:`C_\chi` the covariance matrix capturing data (Cd) and/or model(Cp) uncertainties, and :math:`C` a normalization constant depending on the determinant of :math:`C_\chi`.
 
 In BayesianL2 template, the observed data are described by a ``dataobs`` object with L2-norm. It includes
 
-- observed data points in 1d vector with ``shape=observations``, ``observations`` is the number of observed data points;
-- data covariance matrix (Cd) in 2d array with ``shape=(observations, observations)``. (If only constant diagonal elements are available, use ``cd_std`` instead).
+- observed data points (``dataobs.dataobs``) in 1d vector with ``shape=observations``, ``observations`` is the number of observed data points;
+- data covariance matrix (``dataobs.cd``) in 2d array with ``shape=(observations, observations)``. (If only constant diagonal elements are available, use ``cd_std`` instead).
 
 ``dataobs`` is responsible for
 
 - loading the data observations (:math:`d_{obs}`) and the data covariance (:math:`C_d`),
 - calculating the Cholesky decomposition of the inverse :math:`C_d` and saving it in ``dataobs``,
 - when called by the ``model.dataLikelihood``, computing the L2-norm (likelihood) between data predictions and observations with L2-norm,
-- for Cp models, updating the covariance matrix :math:`C_\chi = C_d + C_p`,
+- for Cp models, updating the covariance matrix :math:`C_\chi = C_d + C_p` (though still denoted as :math:`C_d`),
 - when needed, merging the covariance matrix with data in ``initialize``, as controlled by a flag ``dataobs.merge_cd_with_data=True/False``. This procedure improves performance greatly for models when the covariance matrix can also be merged with model parameters, such as the Green's functions in the linear model, by avoiding repeating the matrix-vector (or matrix-matrix for batched) multiplication.
 
 For the linear regression model, the data points :math:`(x_n, y_n)` don't fit perfectly into the ``dataobs`` description. Instead, we treat :math:`y_n` as data observations and :math:`x_n` as model parameters. We need to initialize them with the ``initialize`` method,
@@ -300,7 +300,7 @@ For the linear regression model, the data points :math:`(x_n, y_n)` don't fit pe
 
         ... ...
 
-so that ``x`` and ``y`` are now accessible by the forward modelling.
+so that ``x`` and ``y`` are now accessible by the forward modeling.
 
 Their descriptions in the configuration file ``linear.pfg`` appear as, e.g.,
 
@@ -318,7 +318,7 @@ where :math:`(x_n, y_n)` are separated into two text files (raw binary and H5 in
 With L2-norm ``dataobs``, the ``dataLikelihood`` method can be defined straightforwardly: it calls a ``forwardModel`` defined
 for a specific model and with the data predictions or residuals it calls dataobs' norm method to compute the likelihood.
 
-Forward Modelling
+Forward modeling
 -----------------
 
 As shown above, with ``psets`` and ``dataobs``, the BayesianL2 template only requires developers to write a ``forwardModel`` or ``forwardModelBatched`` method to compute the data predictions from a given set of :math:`\theta`.
