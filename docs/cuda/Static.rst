@@ -57,25 +57,25 @@ We recommend HDF5 as the input format. A conversion tool ``H5Converter`` is prov
 
 * convert a text file to hdf5
 
-.. code-block::
+.. code-block:: bash
 
     H5Converter --inputs=static.gf.txt
 
 * convert a binary file to hdf5, additional information such as the precision (default=float32) and the shape (default = 1d vector and will be reshaped to 2d in program if needed) of the output can be added by
 
-.. code-block::
+.. code-block:: bash
 
     H5Converter --inputs=kinematicG.gf.bin --precision='float32' --shape=[100,11000]
 
 * merge several files into one hdf5, e.g., to prepare the sensitivity kernels for Cp,
 
-.. code-block::
+.. code-block:: bash
 
     H5Converter --inputs=[static.kernel.pertL1.txt,static.kernel.pertL2.txt] --output=static.kernel.h5
 
 * for help on all available options
 
-.. code-block::
+.. code-block:: bash
 
     H5Converter --help
 
