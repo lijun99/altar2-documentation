@@ -13,7 +13,7 @@ AlTar_ is developed upon the pyre_ framework. Both packages may be installed fro
 
 In brief, the installation steps consist of:
 
-#. check :ref:`Supported Platforms <Platforms>` and :ref:`Prerequisite <Prerequisites>`;
+#. check :ref:`Supported Platforms <Platforms>` and :ref:`Prerequisites <Prerequisites>`;
 #. :ref:`download <Downloads>` the source packages from github;
 #. follow the :ref:`Installation Guide <General>` to compile/install ``pyre`` and ``altar``.
 
@@ -32,7 +32,7 @@ Supported Platforms
 Hardware
 --------
 
-- CPU: ``x86_64`` (Intel/AMD), ``ppc64`` (IBM), ``arm64``(Apple Silicon)
+- CPU: ``x86_64`` (Intel/AMD), ``ppc64`` (IBM), ``arm64`` (Apple Silicon)
 - GPU: `NVIDIA graphics cards with CUDA-support <https://en.wikipedia.org/wiki/CUDA#GPUs_supported>`__, with compute capabilities >=3.0
 
     - Tesla K40, K80, P100, V100, A100 ...
@@ -48,7 +48,7 @@ Operation systems
 
 .. note::
 
-    AlTar is designed for large scale simulations. We recommend clusters or a workstation with multiple GPUs for real problems.
+    AlTar is designed for large scale simulations. We recommend clusters or a workstation with multiple GPUs for simulating compute-intensive models.
 
 
 .. _Prerequisites:
@@ -61,10 +61,10 @@ AlTar and pyre have several dependencies:
 Required:
 
 - ``Python3 >= 3.6`` with additional Python packages ``numpy`` and ``h5py``.
-- ``GCC >= gcc7``, or ``clang >= 7``, with C++17 support. ``gcc6`` might work with some modifications. Note also that CUDA Toolkit may limit the C/C++ compiler version, see `CUDA Documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html>`__ for more details.
+- C/C++ compiler: ``GCC >= gcc7``, or ``clang >= 7``, with C++17 support. Note also that CUDA Toolkit may require certain versions of C/C++ compiler, see `CUDA Documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html>`__ for more details.
 - ``GSL >= 1.15``, various numerical libraries including linear algebra and statistics.
 - ``HDF5 >= 1.10``, a data management system for large and complex data sets.
-- ``Postgresql``, a SQL database management system.
+- ``Postgresql``, a SQL database management system (only the library, the server itself is not required).
 - ``make >= 4``, build tool.
 - ``cmake >= 3.14``, build tool. Numpy component in FindPython is only supported after 3.14.
 
@@ -85,13 +85,13 @@ Please choose a directory where you plan to put all the source files, e.g., ``${
     mkdir -p ${HOME}/tools/src
     cd ${HOME}/tools/src
 
-and download the source packages of pyre_ and AlTar_ from their github repositories (master branch):
+and download the source packages of pyre_ and AlTar_ from their github repositories (main branch):
 ::
 
     git clone https://github.com/pyre/pyre.git
     git clone https://github.com/AlTarFramework/altar.git
 
-Currently, some CUDA extensions to pyre and AlTar are not fully merged to the master branch. To install and run the CUDA version of AlTar 2.0, you need to download pyre and altar packages from `pyre cuda branch`_ and `altar cuda branch`_ instead:
+Currently, some CUDA extensions to pyre and AlTar are not fully merged to the main branch. To install and run the CUDA version of AlTar 2.0, you need to download pyre and altar packages from `pyre cuda branch`_ and `altar cuda branch`_ instead:
 ::
 
     git clone https://github.com/lijun99/pyre.git
@@ -339,7 +339,7 @@ Please download the source packages of pyre/AlTar from github following the :ref
     git clone https://github.com/lijun99/pyre.git
     git clone https://github.com/lijun99/altar.git
 
-Follow the :ref:`Installation instructions <General>` to compile/install pyre and AlTar. With conda, we recommend installing both packages to ``$CONDA_PREFIX``, e. g., ``/opt/anaconda3/envs/altar``, so that next time when you activate conda, all the packages are loaded properly. We need an extra step to make a symbolic link to ``lib/python3.9/site-packages``.
+Follow the :ref:`Installation instructions <General>` to compile/install pyre and AlTar. With conda, we recommend installing both packages to ``$CONDA_PREFIX``, e. g., ``/opt/anaconda3/envs/altar``, so that next time when you activate conda, all the packages are loaded automatically. We need an extra step to make a symbolic link to ``lib/python3.x/site-packages``.
 
 .. code-block:: bash
 
@@ -455,9 +455,10 @@ Another option is to use ``FindEnvModules`` in `cmake`. This requires some chang
 
 Docker container
 ================
-*We will provide the pre-build Docker image for AlTar when we figure out where to
 
-::
+You may follow the steps below to build a docker image.
+
+.. code-block:: bash
 
     wget https://gitlab.com/nvidia/container-images/cuda/raw/master/dist/ubuntu18.04/10.2/runtime/Dockerfile
     docker build --build-arg IMAGE_NAME=nvidia/cuda . -t cuda/nvidia:10.2
