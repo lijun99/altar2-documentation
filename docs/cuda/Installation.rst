@@ -9,46 +9,47 @@ Installation Guide
 Overview
 ========
 
-AlTar_ is developed upon the pyre_ framework. Both packages include C/C++ libraries, CPython modules and Python scripts. Installations with `CMake <https://cmake.org>`__ or the mm_ build tools are currently supported, and the instructions are provided in this Guide.
+AlTar_ is developed upon the pyre_ framework. Both packages may be installed from the source code with the `CMake <https://cmake.org>`__  build tool. More installation methods, e.g., binaries, will be provided in the future.
 
 In brief, the installation steps consist of:
 
-#. check the :ref:`supported platforms <Platforms>` and the :ref:`prerequisite libraries/packages <Prerequisites>`, and install them if necessary;
-#. :ref:`download <Downloads>` the source packages of pyre_ and altar_ from their github repositories (for CUDA versions with extended GPU support, download from `pyre cuda branch`_ and `altar cuda branch`_ instead);
-#. compile and install ``pyre``;
-#. compile and install ``altar``.
+#. check :ref:`Supported Platforms <Platforms>` and :ref:`Prerequisite <Prerequisites>`;
+#. :ref:`download <Downloads>` the source packages from github;
+#. follow the :ref:`Installation Guide <General>` to compile/install ``pyre`` and ``altar``.
 
-Step-by-step instructions are provided for:
+Step-by-step instructions are also provided for some representative systems:
 
-- :ref:`Anaconda3 with CMake (Linux/MacOSX) <Anaconda3>` *recommended method*
-- :ref:`Ubuntu with CMake <Ubuntu>` *a standard platform*
+- :ref:`Conda method (Linux/MacOSX) <Anaconda3>` *recommended method*
+- :ref:`Ubuntu 18.04/20.04 <Ubuntu>` *a standard platform*
 - :ref:`Linux with environmental modules <lmod>` *for Linux clusters*
 - :ref:`Docker container <Docker>` *out-of-the-box delivery*
 
-
 .. _Platforms:
 
-Platforms Supported
+Supported Platforms
 ===================
 
 Hardware
 --------
 
-- CPU: ``x86_64`` (Intel/AMD) and ``ppc64`` (IBM) architectures;
+- CPU: ``x86_64`` (Intel/AMD), ``ppc64`` (IBM), ``arm64``(Apple Silicon)
 - GPU: `NVIDIA graphics cards with CUDA-support <https://en.wikipedia.org/wiki/CUDA#GPUs_supported>`__, with compute capabilities >=3.0
 
-    - Telsa K40, K80, P100, V100 ...
+    - Tesla K40, K80, P100, V100, A100 ...
     - gaming cards GTX1080 ... (for single-precision computations only);
-
-- Memory: no specific requirement, depends on the scale of AlTar simulations.
 
 Operation systems
 -----------------
 
 - Linux: any distribution should work though not all are tested;
 - Linux clusters: with MPI support and a job queue scheduler (PBS/Slurm);
-- MacOSX: with `MacPorts <https://www.macports.org/>`__ or `Anaconda <https://www.anaconda.com/distribution/#macos>`__;
-- Windows: not supported; `Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`__ or `Cygwin <https://www.cygwin.com/>`__ should work.
+- MacOSX: with `MacPorts <https://www.macports.org/>`__ or `conda <https://www.anaconda.com/distribution/#macos>`__;
+- Windows: not tested; `Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`__ or `Cygwin <https://www.cygwin.com/>`__ should work.
+
+.. note::
+
+    AlTar is designed for large scale simulations. We recommend clusters or a workstation with multiple GPUs for real problems.
+
 
 .. _Prerequisites:
 
@@ -60,11 +61,11 @@ AlTar and pyre have several dependencies:
 Required:
 
 - ``Python3 >= 3.6`` with additional Python packages ``numpy`` and ``h5py``.
-- ``GCC >= gcc7``, with C++17 support. ``gcc6`` might work with some modifications. Note also that CUDA Toolkit may limit the GCC version, see `CUDA Documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html>`__ for more details.
-- ``GSL >= 1.15``, various numerical libraries including BLAS, eigensystems and statistics.
+- ``GCC >= gcc7``, or ``clang >= 7``, with C++17 support. ``gcc6`` might work with some modifications. Note also that CUDA Toolkit may limit the C/C++ compiler version, see `CUDA Documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html>`__ for more details.
+- ``GSL >= 1.15``, various numerical libraries including linear algebra and statistics.
 - ``HDF5 >= 1.10``, a data management system for large and complex data sets.
 - ``Postgresql``, a SQL database management system.
-- ``make >= 4``, if you use the mm build tool, you need ``make >= 4.2.1``.
+- ``make >= 4``, build tool.
 - ``cmake >= 3.14``, build tool. Numpy component in FindPython is only supported after 3.14.
 
 Optional:
@@ -98,16 +99,169 @@ Currently, some CUDA extensions to pyre and AlTar are not fully merged to the ma
 
 .. note::
 
-    Pyre is under active development and sometimes the newest version doesn't work properly for AlTar. AlTar users are recommended to obtain pyre from the `pyre cuda branch`_ even they don't use CUDA extensions.
+    Pyre is under active development and sometimes the newest version doesn't work properly for AlTar. AlTar users are recommended to obtain pyre from the `pyre cuda branch`_ even if only CPU modules are used.
 
 Upon successful downloads, you shall observe two directories ``pyre``, ``altar`` under ``${HOME}/tools/src`` directory.
 
+.. _General:
+
+Installation
+============
+
+Compile and install PYRE at first, with the following commands,
+::
+
+    # enter the source directory
+    cd ${HOME}/tools/src/pyre
+    # create a build directory
+    mkdir build && cd build
+    # call cmake to generate make files
+    cmake ..
+    # compile
+    make  # or make -j 16 to use multi-threads
+    # install
+    make install # or sudo make install
+
+By default, CMake installs the package to ``/usr/local``. If you plan to install the packages to another directory, you may use the ``-DCMAKE_INSTALL_PREFIX`` option with ``CMake``. Please refer to :ref:`CMake Options <CMake Options>` for more details. The installed files will appear as
+::
+
+  <install_prefix>
+     |--- bin  # executable shell scripts
+     |   |- pyre, pyre-config ...
+     |- defaults # default configuration files
+     |   |- pyre.pfg, merlin.pfg
+     |- include # c/c++ header files
+     |   |- portinfo, <pyre>
+     |- lib # shared libraries
+     |   |- libjournal.so libpyre.so ... (or .dylib for Mac)
+     |- packages # python packages/scripts
+         |- <pyre>, <merlin>, <journal> ...
+
+You may also run a few tests to check whether PYRE is properly installed.
+
+First, set up the environmental variables (you may also consider to add them to your ``.bashrc`` or ``.cshrc``),
+::
+
+    # for bash
+    export PATH=/usr/local/bin:${PATH}
+    export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
+    export PYTHONPATH=/usr/local/packages:${PYTHONPATH}
+    # for csh/tcsh
+    setenv PATH "/usr/local/bin:$PATH"
+    setenv LD_LIBRARY_PATH "/usr/local/lib:$LD_LIBRARY_PATH"
+    setenv PYTHONPATH "/usr/local/packages:$PYTHONPATH"
+
+then run commands such as
+::
+
+    # check pyre module import
+    python3 -c 'import pyre'
+    # check cuda module if enabled
+    python3 -c 'import cuda'
+    # show the pyre installation directory
+    pyre-config --prefix
+
+There are more test scripts under ``~/tools/src/pyre/tests``.
+
+After installing PYRE and setting up properly the PATHs, you may proceed to compile/install AlTar, with the same procedure,
+::
+
+    # enter the source directory
+    cd ${HOME}/tools/src/altar
+    # create a build directory
+    mkdir build && cd build
+    # call cmake to generate make files
+    cmake ..
+    # compile
+    make  # or make -j 16 to use multi-threads
+    # install
+    make install # or sudo make install
+
+By default, AlTar is also installed to ``/usr/local``. If you choose to install to another directory, you may use the same ``-DCAMKE_INSTALL_PREFIX`` as for PYRE. By doing so, all the PATHs only need to be set once.
+
+To test whether AlTar is properly installed, you may run the commands
+::
+
+    # check altar module import
+    python3 -c 'import altar'
+    # show the altar installation directory
+    altar about prefix
+
+There are also tests available in ``examples`` directories under each model, for example, ``~/tools/src/altar/models/linear/examples``.
+
+
+.. _CMake Options:
+
+CMake Options
+=============
+
+Here are some options to control the compilation/installation,
+
+- to specify the installation directory,
+::
+
+    cmake -DCMAKE_INSTALL_PREFIX=${HOME}/tools ..
+
+By default,  ``cmake`` installs the compiled package to ``/usr/local``. If you plan to install it to another system directory, or your home directory (for users who don't have admin access), such as ${HOME}/tools as shown above. Remember to set properly the environmental variables ``PATH``, ``LD_LIBRARY_PATH`` and ``PYTHONPATH``.
+
+- to specify whether to enable CUDA extensions, which can be set by
+::
+
+    cmake -DWITH_CUDA=ON (or OFF) ..
+
+By default, `WITH_CUDA=ON` for the cuda branch version and `WITH_CUDA=OFF` for the main branch version. To enable CUDA extensions, you will also need the CUDA Toolkit. If not found, ``cmake`` will automatically turn `WITH_CUDA=OFF`.
+
+- to specify the target GPU architecture(s). By default, the CUDA compiler `nvcc` produces instruction sets compatible with compute capabilities 3.0 and above (for CUDA 9,10), 5.2 and above (for CUDA 11). If you want to have an optimized version targeting a specific architecture, e.g., for P100 with `sm_60`, or your CUDA device has a lower compute capabilities than 5.2 with CUDA11, you will need to set the ``CUDA_FLAGS``,
+::
+
+    # target one architecture
+    cmake -DCMAKE_CUDA_FLAGS="-arch=sm_60" ..
+    # target multiple architectures
+    cmake -DCMAKE_CUDA_FLAGS="-gencode arch=compute_35,code=sm_35 -gencode arch=compute_60,code=sm_60" ..
+
+Compute capabilities for some common NVIDIA GPUs are K40/80 (``-arch=sm_35``), V100 (``-arch=sm_70``), GTX1050/1070/1080 ((``-arch=sm_61``), RTX 2080 (``-arch=sm_75``). More can be found at `NVIDIA <https://developer.nvidia.com/cuda-GPUs>`__ website. If you have PYRE installed, you can also use its cuda utilities:
+
+.. code-block:: python
+
+    # import the module
+    import cuda
+    # iterate over all available devices
+    for device in cuda.devices:
+        print(f'Device {device.id} {device.name} has compute capability {device.capability}')
+
+- to choose a build type,
+::
+
+    cmake -DCMAKE_BUILD_TYPE=Release (or Debug) ..
+
+For the Debug build type, the `-g` compiler flag will be added to generate debugging information. For the Release type, the `-O3` optimization flag will be added. If none is specified, the default flags of `g++` are used.
+
+
+- to specify the gcc/g++ compiler, e.g., `/usr/bin/g++`, you may use
+::
+
+    cmake -DCMAKE_CXX_COMPILER=/usr/bin/g++ ..
+
+Note that pyre requires a GCC>=7 for c++17 support.
+
+- to specify the locations of desired libraries instead of the default ones, for example, for some Linux systems, `cmake` may find and use libraries from `/usr/` instead of the libraries provided by conda, you may use
+::
+
+    cmake -DCMAKE_PREFIX_PATH=${CONDA_PREFIX} ..
+
+For more than one paths, use `-DCMAKE_PREFIX_PATH="PATH1;PATH2;PATH3"`.
+
+For more options of ``cmake``, please check `CMake Documentation <https://cmake.org/documentation/>`__.
+
+
 .. _Anaconda3:
 
-Anaconda3 with CMake (Linux/MacOSX)
-===================================
+Conda method (Linux/MacOSX)
+================
 
 Conda(Anaconda/Miniconda) offers an easy way to install Python, packages and libraries on different platforms, especially for users without the admin privilege to their computers. We recommend a full version of `Anaconda3 <https://www.anaconda.com/distribution/>`__. If disk space is an issue, you may use `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ instead.
+
+For MacOSX with Apple Silicon, you may install the native ``arm64`` version from `Miniforge <https://github.com/conda-forge/miniforge>`__.
 
 If Anaconda3 is not installed, please `download <https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html>`__ and follow the `instructions <https://docs.conda.io/projects/conda/en/latest/user-guide/install/>`__ to install it. You may choose to install it under you home directory ``${HOME}/anaconda3`` (default) or a system directory, e.g., ``/opt/anaconda3``. The path to the Anaconda3 is set as an environmental variable ``CONDA_PREFIX``. To check whether Anaconda3 is properly installed and loaded, you may try the following commands
 ::
@@ -118,6 +272,17 @@ If Anaconda3 is not installed, please `download <https://docs.conda.io/projects/
     /opt/anaconda3/bin/python3
     $ echo ${CONDA_PREFIX}
     /opt/anaconda3
+
+You may create a virtual environment
+::
+
+    conda create -n altar
+    conda activate altar
+    $ which python3
+    /opt/anaconda3/envs/altar/bin/python3
+    $ echo ${CONDA_PREFIX}
+    /opt/anaconda3/envs/altar
+
 
 Install prerequisites
 ---------------------
@@ -130,207 +295,88 @@ Install the required libraries and packages by Conda:
 
 You will also need a c++ compiler.
 
-- Ubuntu 18.04:  GCC 7.4.0 is installed by default and is sufficient. If GCC/G++ are not installed, run
+- Ubuntu 18.04/20.04:  GCC 7.4.0/9.3.0 is installed by default and is sufficient. If GCC/G++ are not installed, run
   ::
 
-    $ sudo apt install gcc g++
+    sudo apt install gcc g++
 
 - Redhat/CentOS 7: GCC 4.x is installed by default. Higher versions of GCC are offered through ``devtoolset``. Please follow instructions for `Redhat <https://access.redhat.com/documentation/en-us/red_hat_developer_toolset/7/>`__ or `CentOS <https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/>`__ to install, e.g., ``devtoolset-7``.
 
 - MacOSX: you will need to install either the full version of Xcode or the (compact) Command Line Tools. Xcode can be installed from the App Store. To install the Command Line Tools, run
   ::
 
-    $ sudo xcode-select --install
+    sudo xcode-select --install
 
   To select or switch compilers,
   ::
 
-    $ sudo xcode-select --switch /Library/Developer/CommandLineTools/
+    sudo xcode-select --switch /Library/Developer/CommandLineTools/
 
 - Conda also offers compiler packages,
   ::
 
-    # for Linux
-    $ conda install gcc_linux-64 gxx_linux-64 gfortran_linux-64
-    # for Mac
-    $ conda install clang_osx-64 clangxx_osx-64 gfortran_osx-64
+    # for Linux x86_64
+    conda install gcc_linux-64 gxx_linux-64
+    # for Mac (Intel Only)
+    conda install clang_osx-64 clangxx_osx-64
+    # for Mac Big Sur with Xcode 12 (Intel only), you need
+    conda install clang_osx-64=11.0.0 clangxx_osx-64=11.0.0 -c conda-forge
 
-    It works well for most systems (Redhat, Mac, ...) but has some library issues on Ubuntu.
+    It works well for most systems (Redhat, Mac, ...).
 
 If you would like to use a c++ compiler other than the default version, or the version (auto) discovered by ``cmake``, you may use ``-DCMAKE_CXX_COMPILER=...`` to specify the compiler.
 
 
-Install pyre
-------------
-Go to the pyre source directory, create a `build` directory, and run the `cmake` command,
-::
+Install pyre/AlTar
+------------------
 
-    $ cd ${HOME}/tools/src/pyre
-    $ mkdir build && cd build
-    $ cmake ..
+Please download the source packages of pyre/AlTar from github following the :ref:`Download instructions <Downloads>`. For CUDA branches,
 
-An example output for a successful `cmake`, as on a Linux system, appears as
-::
+.. code-block:: bash
 
-    -- Found Git: /opt/anaconda3/bin/git (found version "2.23.0")
-    -- The CXX compiler identification is GNU 7.4.0
-    -- Check for working CXX compiler: /usr/bin/c++
-    -- Check for working CXX compiler: /usr/bin/c++ -- works
-    -- Detecting CXX compiler ABI info
-    -- Detecting CXX compiler ABI info - done
-    -- Detecting CXX compile features
-    -- Detecting CXX compile features - done
-    -- Found Python3: /opt/anaconda3/bin/python3.7 (found version "3.7.4") found components:  Interpreter Development NumPy
-    -- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.1")
-    -- Found GSL: /opt/anaconda3/include (found version "2.4")
-    -- Found MPI_CXX: /opt/anaconda3/lib/libmpi_cxx.so (found version "3.1")
-    -- Found MPI: TRUE (found version "3.1")
-    -- Found PostgreSQL: /opt/anaconda3/lib/libpq.so (found version "11.2")
-    -- Looking for a CUDA compiler
-    -- Looking for a CUDA compiler - /usr/local/cuda/bin/nvcc
-    -- The CUDA compiler identification is NVIDIA 10.2.89
-    -- Check for working CUDA compiler: /usr/local/cuda/bin/nvcc
-    -- Check for working CUDA compiler: /usr/local/cuda/bin/nvcc -- works
-    -- Detecting CUDA compiler ABI info
-    -- Detecting CUDA compiler ABI info - done
-    -- CUDA Toolkit found and CUDA support is enabled
-    -- Configuring done
-    -- Generating done
-    -- Build files have been written to: ${HOME}/tools/src/pyre/build
+    mkdir -p ${HOME}/tools/src
+    cd ${HOME}/tools/src
+    git clone https://github.com/lijun99/pyre.git
+    git clone https://github.com/lijun99/altar.git
 
-Please read :ref:`CMake Options` if you have some problems or need more customizations.
+Follow the :ref:`Installation instructions <General>` to compile/install pyre and AlTar. With conda, we recommend installing both packages to ``$CONDA_PREFIX``, e. g., ``/opt/anaconda3/envs/altar``, so that next time when you activate conda, all the packages are loaded properly. We need an extra step to make a symbolic link to ``lib/python3.9/site-packages``.
 
-After `cmake` generates correct Makefiles, you may continue to run `make` and install,
-::
+.. code-block:: bash
 
-    # compile
-    $ make
-    # install
-    $ make install
+    # go to the conda or venv directory
+    cd $CONDA_PREFIX
+    # find out the path for site-packages
+    python3 -c 'import site; print(site.getsitepackages()[0])'
+    # shows, e.g., /opt/anaconda3/envs/altar/lib/python3.9/site-packages
+    # create a link, note that the path depends on the python version 3.7, 3.8, 3.9
+    ln -s lib/python3.9/site-packages packages
 
-If successfully, pyre should be installed to `/usr/local` (by default) or the directory specified by `CMAKE_INSTALL_PREFIX`. The installed files include
-::
+Compile and install pyre
 
-    --- bin  # executable shell scripts
-     |- defaults # default configuration files
-     |- include # c/c++ header files
-     |- lib # shared libraries
-     |- packages # python packages/scripts
+.. code-block:: bash
 
-You may also run some commands to test
-::
+    cd ${HOME}/tools/src/pyre
+    mkdir build && cd build
+    cmake -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX ..
+    make -j 16 && make install
 
-    # check pyre module import
-    $ python3 -c 'import pyre'
-    # check cuda module if enabled
-    $ python3 -c 'import cuda'
-    # show the pyre installation directory
-    $ pyre-config --prefix
+Since pyre is installed to ``$CONDA_PREFIX``, there is no requirement to set the PATHs. We proceed to compile and install AlTar,
 
-More tests are available at `${HOME}/tools/src/pyre/tests`.
+.. code-block:: bash
 
-.. _CMake Options:
+    cd ${HOME}/tools/src/altar
+    mkdir build && cd build
+    cmake -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX ..
+    make -j 16 && make install
 
-CMake Options
--------------
+Please read :ref:`CMake Options <CMake Options>` if you have some problems or need more customizations, e.g., GPU configurations. Please also read :ref:`Installation instructions <General>` on how to make tests.
 
-Some useful ``cmake`` options are
-
-- to specify whether to enable CUDA extensions, which can be set by
-::
-
-    $ cmake -DWITH_CUDA=ON (or OFF) ..
-
-By default, `WITH_CUDA=ON` for the cuda branch version and `WITH_CUDA=OFF` for the master branch version. To enable CUDA extensions, you will also need the CUDA Toolkit. If not found, ``cmake`` will automatically turn `WITH_CUDA=OFF`.
-
-- to specify the target GPU architectures. By default, the CUDA compiler `nvcc` produces instruction sets compatible with compute capabilities 3.0 and above. If you want to have an optimized version targeting a specific architecture, e.g., for P100 with `sm_60`,
-::
-
-    $ cmake -DCMAKE_CUDA_FLAGS="-arch=sm_60" ..
-
-K40/80 (``-arch=sm_35``), V100 (``-arch=sm_70``), GTX1050/1070/1080 ((``-arch=sm_61``), RTX 2080 (``-arch=sm_75``).
-
-- to choose a build type,
-::
-
-    $ cmake -DCMAKE_BUILD_TYPE=Release (or Debug) ..
-
-For the Debug build type, the `-g` compiler flag will be added to generate debugging information. For the Release type, the `-O3` optimization flag will be added. If none is specified, the default flags of `g++` are used.
-
-- to specify the installation directory,
-::
-
-    $ cmake -DCMAKE_INSTALL_PREFIX=${HOME}/tools ..
-
-By default,  `cmake` installs the compiled package to `/usr/local`. If you plan to install it to another system directory, or your home directory (the option for users who don't have admin access), such as ${HOME}/tools as shown above (for Mac users, please use the default `/usr/local` option for now as there are some shared library rpath issues need to be fixed).
-
-- to specify the gcc/g++ compiler, e.g., `/usr/bin/g++`, you may use
-::
-
-    $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/g++ ..
-
-Note that pyre requires a GCC>=7 for c++17 support.
-
-- to specify the locations of desired libraries instead of the default ones, for example, for some Linux systems, `cmake` may find and use libraries from `/usr/` instead of the libraries provided by conda, you may use
-::
-
-    $ cmake -DCMAKE_PREFIX_PATH=${CONDA_PREFIX} ..
-
-For more than one paths, use `-DCMAKE_PREFIX_PATH="PATH1;PATH2;PATH3"`.
-
-For more options of ``cmake``, please check `CMake Documentation <https://cmake.org/documentation/>`__.
-
-Install AlTar
--------------
-As pyre is required to install AlTar, you need to add the pyre path information to environmental variables at first,
-::
-
-    # for bash
-    export PATH=/usr/local/bin:${PATH}
-    export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
-    export PYTHONPATH=/usr/local/packages:${PYTHONPATH}
-    # for csh/tcsh
-    setenv PATH "/usr/local/bin:$PATH"
-    setenv LD_LIBRARY_PATH "/usr/local/lib:$LD_LIBRARY_PATH"
-    setenv PYTHONPATH "/usr/local/packages:$PYTHONPATH"
-
-If pyre is installed to a directory other than ``/usr/local``, replace ``/usr/local`` with that directory name.
-
-Run ``cmake`` and ``make`` to compile and install AlTar
-::
-
-    $ cd ${HOME}/tools/src/altar
-    $ mkdir build && cd build
-    $ cmake ..
-    $ make
-    $ make install
-
-Please refer to the :ref:`CMake Options` for ``cmake`` customizations. In general, you use the same ``cmake`` options as being used for pyre.
-
-If successful, AlTar shall be installed to ``/usr/local`` (by default)
-or the directory specified by ``CMAKE_INSTALL_PREFIX``.
-
-If AlTar is installed in the same directory as pyre, all the path information has already been set. If it is a different directory, you may follow the same step above to include AlTar paths to environmental variables ``PATH``, ``LD_LIBRARY_PATH`` and ``PYTHONPATH``.
-
-You may try some commands to check whether AlTar is properly installed
-::
-
-    ### shell command
-    $ altar
-    ### import altar module
-    $ python3 -c 'import altar'
-
-More tests are available at the AlTar source package, e.g., to run a linear model test,
-::
-
-    $ cd ${HOME}/tools/src/altar/models/linear/examples
-    $ linear
-
+Next time, you may simply activate conda or the conda venv to load AlTar.
 
 .. _Ubuntu:
 
-Ubuntu with CMake
-=================
+Ubuntu 18.04/20.04
+==================
 
 
 Install prerequisites
@@ -358,7 +404,7 @@ Download and install pyre
     ### use git to pull source code from github
     $ git clone https://github.com/lijun99/pyre.git
     ### create a build directory for cmake
-    $ cd pyre
+    $ cd ${HOME}/tools/src/pyre
     $ mkdir build && cd build
     ### call cmake
     $ cmake ..
