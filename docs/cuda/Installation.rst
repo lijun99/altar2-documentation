@@ -21,6 +21,7 @@ Step-by-step instructions are also provided for some representative systems:
 
 - :ref:`Conda method (Linux/MacOSX) <Anaconda3>` *recommended method*
 - :ref:`Ubuntu 18.04/20.04 <Ubuntu>` *a standard platform*
+- :ref:`RHEL/CentOS 7 <Redhat>` *a standard platform*
 - :ref:`Linux with environmental modules <lmod>` *for Linux clusters*
 - :ref:`Docker container <Docker>` *out-of-the-box delivery*
 
@@ -257,7 +258,7 @@ For more options of ``cmake``, please check `CMake Documentation <https://cmake.
 .. _Anaconda3:
 
 Conda method (Linux/MacOSX)
-================
+===========================
 
 Conda(Anaconda/Miniconda) offers an easy way to install Python, packages and libraries on different platforms, especially for users without the admin privilege to their computers. We recommend a full version of `Anaconda3 <https://www.anaconda.com/distribution/>`__. If disk space is an issue, you may use `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`__ instead.
 
@@ -431,6 +432,48 @@ Download and install AlTar
 
 For more build options and customizations, please check :ref:`CMake Options`.
 
+.. _Redhat:
+
+RHEL/CentOS 7
+=============
+
+Enable EPEL repo
+
+.. code-block:: bash
+
+    yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+Install prerequisites
+
+.. code-block:: bash
+
+    yum install -y python3 python3-numpy python3-devel hdf5-devel gsl-devel postgresql-devel openmpi openmpi-devel git environment-modules
+    # install h5py via pip
+    pip3 install h5py
+    # load openmpi
+    module load mpi
+    # install cmake from Kitware
+    wget https://github.com/Kitware/CMake/releases/download/v3.19.3/cmake-3.19.3-Linux-x86_64.sh
+    sh cmake-3.19.3-Linux-x86_64.sh  --skip-license --prefix=/usr/local
+
+Install C/C++ compiler
+
+.. code-block:: bash
+
+    # 1. Install a package with repository for your system:
+    # On CentOS, install package centos-release-scl available in CentOS repository:
+    sudo yum install centos-release-scl
+
+    # On RHEL, enable RHSCL repository for you system:
+    sudo yum-config-manager --enable rhel-server-rhscl-7-rpms
+
+    # 2. Install the collection:
+    sudo yum install devtoolset-7
+
+    # 3. Start using software collections:
+    scl enable devtoolset-7 bash
+
+Then follow the :ref:`Installation guide <General>` to compile/install pyre and AlTar.
 
 .. _lmod:
 
