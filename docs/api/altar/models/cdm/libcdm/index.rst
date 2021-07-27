@@ -7,6 +7,22 @@
 Module Contents
 ---------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.cdm.libcdm.cosd
+   altar.models.cdm.libcdm.sind
+   altar.models.cdm.libcdm.norm
+   altar.models.cdm.libcdm.CDM
+   altar.models.cdm.libcdm.RDdispSurf
+   altar.models.cdm.libcdm.CoordTrans
+   altar.models.cdm.libcdm.AngSetupFSC
+   altar.models.cdm.libcdm.AngDisDispSurf
+
+
 .. function:: cosd(angd)
 
 

@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.simulations.Monitor.Monitor
+
+
+
 .. py:class:: Monitor
 
    Bases: :class:`altar.protocol`
@@ -17,13 +26,11 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me given an {application} context
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 

@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: Data
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.cdm.Data.Data
+
+
+
+.. py:class:: Data(name, **kwds)
 
    Bases: :class:`altar.tabular.sheet`
 
@@ -75,12 +84,10 @@ Module Contents
 
    .. method:: read(self, uri)
 
-
       Load a data set from a CSV file
 
 
    .. method:: write(self, uri)
-
 
       Save my data into a CSV file
 

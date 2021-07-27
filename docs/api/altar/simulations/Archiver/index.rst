@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.simulations.Archiver.Archiver
+
+
+
 .. py:class:: Archiver
 
    Bases: :class:`altar.protocol`
@@ -17,19 +26,16 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me given an {application} context
 
 
    .. method:: record(self, step)
-
 
       Record the final state of the simulation
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 

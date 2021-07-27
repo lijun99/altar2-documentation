@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: Job
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.simulations.Job.Job
+
+
+
+.. py:class:: Job(name, locator, **kwds)
 
    Bases: :class:`altar.component`
 
@@ -125,12 +134,10 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the job parameters with information from the application context
 
 
    .. method:: validateMachineLayout(self, application)
-
 
       Adjust the machine parameters based on the {application} context and the runtime
       environment

@@ -20,6 +20,27 @@ Submodules
 Package Contents
 ----------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.distributions.distribution
+   altar.cuda.distributions.cudaDistribution
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.distributions.uniform
+   altar.cuda.distributions.gaussian
+   altar.cuda.distributions.tgaussian
+   altar.cuda.distributions.preset
+
+
 .. py:class:: distribution
 
    Bases: :class:`altar.protocol`
@@ -48,24 +69,20 @@ Package Contents
 
    .. method:: initialize(self, **kwds)
 
-
       Initialize with the given random number generator
 
 
    .. method:: initializeSample(self, theta)
-
 
       Fill my portion of {theta} with initial random values from my distribution.
 
 
    .. method:: priorLikelihood(self, theta, prior)
 
-
       Fill my portion of {prior} with the likelihoods of the samples in {theta}
 
 
    .. method:: verify(self, theta, mask)
-
 
       Check whether my portion of the samples in {theta} are consistent with my constraints, and
       update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
@@ -73,24 +90,20 @@ Package Contents
 
    .. method:: sample(self)
 
-
       Sample the distribution using a random number generator
 
 
    .. method:: density(self, x)
-
 
       Compute the probability density of the distribution at {x}
 
 
    .. method:: vector(self, vector)
 
-
       Fill {vector} with random values
 
 
    .. method:: matrix(self, matrix)
-
 
       Fill {matrix} with random values
 
@@ -98,12 +111,11 @@ Package Contents
    .. method:: pyre_default(cls)
       :classmethod:
 
-
       Supply a default implementation
 
 
 
-.. py:class:: cudaDistribution
+.. py:class:: cudaDistribution(name, locator, **kwds)
 
    Bases: :class:`altar.distributions.Base.Base`
 
@@ -146,34 +158,31 @@ Package Contents
 
    .. method:: initialize(self, rng)
 
-
       Initialize with the given random number generator
 
 
    .. method:: verify(self, theta, mask)
 
+      Check whether my portion of the samples in {theta} are consistent with my constraints, and
+      update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
 
 
    .. method:: cuInitialize(self, application)
-
 
       cuda specific initialization
 
 
    .. method:: cuInitSample(self, theta)
 
-
       cuda process to initialize random samples
 
 
    .. method:: cuVerify(self, theta, mask)
 
-
       cuda process to verify the validity of samples
 
 
    .. method:: cuEvalPrior(self, theta, prior)
-
 
       cuda process to compute the prior
 

@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: AlTar
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.shells.AlTar.AlTar
+
+
+
+.. py:class:: AlTar(**kwds)
 
    Bases: :class:`altar.plexus`
 
@@ -65,24 +74,20 @@ Module Contents
 
    .. method:: main(self, *args, **kwds)
 
-
       The main entry point
 
 
    .. method:: initialize(self)
-
 
       Initialize without running, for debug purpose only
 
 
    .. method:: pyre_banner(self)
 
-
       Place the application banner in the {info} channel
 
 
    .. method:: pyre_interactiveSessionContext(self, context)
-
 
       Go interactive
 

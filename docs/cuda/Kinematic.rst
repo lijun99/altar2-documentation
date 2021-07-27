@@ -181,7 +181,7 @@ The parameter sets or ``psets`` for the kinematic models are ``psets_list = [str
 
 - The names the parameter sets can be changed per your preference, e.g., ``strike_slip``, ``StrikeSlip``.  But the order of the parameter sets must be preserved because the forward model uses the order to map appropriate parameters. ``strikeslip`` and ``dipslip`` may be switched as long as their order is consistent with the Green's functions.
 
-- ``strikeslip`` and ``dipslip`` are two components of the cumulative slip displacement. If you prefer to load their initial samples from the static inversion results, use the ``altar.cuda.distributions.preset`` distribution for ``prep``. Only ``HDF5`` format is accepted and therefore, its dataset name ``prep.dataset = ParameterSets/strikeslip`` is also required. If you choose to generate samples from a given distribution, e.g., gaussian/moment scale distributions, please follow the static inversion example to set their ``prep``s and ``prior``s.
+- ``strikeslip`` and ``dipslip`` are two components of the cumulative slip displacement. If you prefer to load their initial samples from the static inversion results, use the ``altar.cuda.distributions.preset`` distribution for ``prep``. Only ``HDF5`` format is accepted and therefore, its dataset name ``prep.dataset=ParameterSets/strikeslip`` is also required. If you choose to generate samples from a given distribution, e.g., gaussian/moment scale distributions, please follow the static inversion example to set their ``prep`` and ``prior`` distributions.
 
 - ``risetime`` and ``rupturevelocity`` are rupture duration and velocities for each patch. As they are positive, usually uniform or truncated gaussian distributions are used as their priors.
 

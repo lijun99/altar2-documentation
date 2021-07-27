@@ -19,6 +19,27 @@ Submodules
 Package Contents
 ----------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.bayesian.controller
+   altar.cuda.bayesian.sampler
+   altar.cuda.bayesian.scheduler
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.bayesian.metropolis
+   altar.cuda.bayesian.metropolisvaryingsteps
+   altar.cuda.bayesian.adaptivemetropolis
+
+
 .. py:class:: controller
 
    Bases: :class:`altar.protocol`
@@ -47,19 +68,16 @@ Package Contents
 
    .. method:: posterior(self, model)
 
-
       Sample the posterior distribution of the given {model}
 
 
    .. method:: initialize(self, application)
-
 
       Initialize me and my parts given an {application} context
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -73,25 +91,21 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me and my parts given an {application} context
 
 
    .. method:: samplePosterior(self, controller, step)
-
 
       Sample the posterior distribution
 
 
    .. method:: resample(self, controller, statistics)
 
-
       Update my statistics based on the results of walking my Markov chains
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -105,37 +119,31 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me and my parts given an {application} context
 
 
    .. method:: update(self, step)
-
 
       Push {step} forward along the annealing schedule
 
 
    .. method:: updateTemperature(self, step)
 
-
       Generate the next temperature increment
 
 
    .. method:: computeCovariance(self, step)
-
 
       Compute the parameter covariance of the sample in the {step}
 
 
    .. method:: rank(self, step)
 
-
       Rebuild the sample and its statistics sorted by the likelihood of the parameter values
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 

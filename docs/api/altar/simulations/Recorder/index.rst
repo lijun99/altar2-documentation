@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: Recorder
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.simulations.Recorder.Recorder
+
+
+
+.. py:class:: Recorder(name, locator, **kwds)
 
    Bases: :class:`altar.component`
 
@@ -45,12 +54,10 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me given an {application} context
 
 
    .. method:: record(self, step, **kwds)
-
 
       Record the final state of the calculation
 

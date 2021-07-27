@@ -32,6 +32,24 @@ Submodules
 Package Contents
 ----------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.cdm.source
+   altar.models.cdm.data
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.cdm.cdm
+
+
 .. py:class:: source(x=x, y=y, d=d, ax=ax, ay=ay, az=az, omegaX=omegaX, omegaY=omegaY, omegaZ=omegaZ, opening=opening, v=v, **kwds)
 
    The source response for a Compound Dislocation Model in an elastic half space.
@@ -93,13 +111,12 @@ Package Contents
 
    .. method:: displacements(self, locations, los)
 
-
       Compute the expected displacements at a set of observation locations from a compound
       (triaxial) dislocation source at depth.
 
 
 
-.. py:class:: data
+.. py:class:: data(name, **kwds)
 
    Bases: :class:`altar.tabular.sheet`
 
@@ -167,12 +184,10 @@ Package Contents
 
    .. method:: read(self, uri)
 
-
       Load a data set from a CSV file
 
 
    .. method:: write(self, uri)
-
 
       Save my data into a CSV file
 

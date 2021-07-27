@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.simulations.Dispatcher.Dispatcher
+
+
+
 .. py:class:: Dispatcher
 
    Bases: :class:`altar.protocol`
@@ -17,7 +26,6 @@ Module Contents
    them when appropriate
 
    .. method:: initialize(self, application)
-
 
       Initialize me given an {application} context
 

@@ -7,13 +7,22 @@
 Module Contents
 ---------------
 
-.. py:class:: Moment
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.seismic.Moment.Moment
+
+
+
+.. py:class:: Moment(name, locator, **kwds)
 
    Bases: :class:`altar.distributions.Uniform.Uniform`
 
-   The probability distribution for displacements (D) conforming to a given Moment magnitude scale 
-   Mw = (log M0 - 9.1)/1.5 (Hiroo Kanamori) 
-   M0 = Mu A D     
+   The probability distribution for displacements (D) conforming to a given Moment magnitude scale
+   Mw = (log M0 - 9.1)/1.5 (Hiroo Kanamori)
+   M0 = Mu A D
    It inherits uniform distribution for verification and density calculations,
    while generates samples for a combined gaussian and dirichlet distributions
 
@@ -79,12 +88,10 @@ Module Contents
 
    .. method:: initialize(self, rng)
 
-
       Initialize with the given random number generator
 
 
    .. method:: initializeSample(self, theta)
-
 
       Fill my portion of {theta} with initial random values from my distribution.
 

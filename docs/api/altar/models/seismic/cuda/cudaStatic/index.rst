@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: cudaStatic
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.seismic.cuda.cudaStatic.cudaStatic
+
+
+
+.. py:class:: cudaStatic(name, locator, **kwds)
 
    Bases: :class:`altar.cuda.models.cudaBayesian.cudaBayesian`
 
@@ -60,18 +69,15 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the state of the model given a {problem} specification
 
 
    .. method:: forwardModelBatched(self, theta, green, prediction, batch, observation=None)
 
-
       Linear Forward Model prediction= G theta
 
 
    .. method:: forwardModel(self, theta, green, prediction, observation=None)
-
 
       Static/Linear forward model prediction = green * theta
       :param theta: a parameter set, vector with size parameters
@@ -81,7 +87,6 @@ Module Contents
 
 
    .. method:: cuEvalLikelihood(self, theta, likelihood, batch)
-
 
       Compute data likelihood from the forward model,
       :param theta: parameters, matrix [samples, parameters]
@@ -93,8 +98,12 @@ Module Contents
 
    .. method:: mergeCovarianceToGF(self)
 
-
       merge data covariance (cd) with green function
+
+
+   .. method:: forwardProblem(self, application, theta=None)
+
+      Perform the forward modeling with given {theta}
 
 
 

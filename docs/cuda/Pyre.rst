@@ -1,18 +1,17 @@
 .. _Pyre Framework:
 
-############################
-Pyre: a short introduction
-############################
+###########
+Pyre Basics
+###########
 
 AlTar's architecture is based on the pyre_ framework. Before the official documentation for pyre is released, we offer here a brief introduction to pyre, its programming design and its configuration file format which are necessary for AlTar users.
 
-Programming Design
-==================
+
+
+Protocols and Components
+========================
 
 Python offers a modular programming design with modules and classes while pyre extends the functionalities of python classes to facilitate their integrations and configurations, through *components*.
-
-Protocol and Components
------------------------
 
 A prescribed functionality is defined as a *protocol* (similar to an abstract class). For example, various distributions are used in AlTar, mainly serving as prior distributions. We first define a protocol,
 
@@ -149,7 +148,6 @@ Components are building blocks of AlTar. For example, Distribution can be used a
 Here, prior is a configurable component, for which users can specify at runtime by ``model.prior=uniform`` or any other distributions implementing the Distribution-protocol. Since the protocol defines the uniform distribution as its default implementation, if none is specified at runtime, the uniform distribution is used by default.
 
 Note also that *components* are abstract methods and can be only be instantiated by an AlTar application instance. If you create a component instance in a Python shell, it will not behave as a regular Python class.
-
 
 .. _Pyre Config Format:
 

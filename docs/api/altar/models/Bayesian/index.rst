@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: Bayesian
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.Bayesian.Bayesian
+
+
+
+.. py:class:: Bayesian(name, locator, **kwds)
 
    Bases: :class:`altar.component`
 
@@ -90,24 +99,20 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the state of the model given an {application} context
 
 
    .. method:: posterior(self, application)
-
 
       Sample my posterior distribution
 
 
    .. method:: initializeSample(self, step)
 
-
       Fill {step.theta} with an initial random sample from my prior distribution.
 
 
    .. method:: priorLikelihood(self, step)
-
 
       Fill {step.prior} with the likelihoods of the samples in {step.theta} in the prior
       distribution
@@ -115,20 +120,17 @@ Module Contents
 
    .. method:: dataLikelihood(self, step)
 
-
       Fill {step.data} with the likelihoods of the samples in {step.theta} given the available
       data. This is what is usually referred to as the "forward model"
 
 
    .. method:: posteriorLikelihood(self, step)
 
-
       Given the {step.prior} and {step.data} likelihoods, compute a generalized posterior using
       {step.beta} and deposit the result in {step.post}
 
 
    .. method:: likelihoods(self, annealer, step)
-
 
       Convenience function that computes all three likelihoods at once given the current {step}
       of the problem
@@ -137,31 +139,31 @@ Module Contents
    .. method:: verify(self, step, mask)
       :abstractmethod:
 
-
       Check whether the samples in {step.theta} are consistent with the model requirements and
       update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
 
 
    .. method:: top(self, annealer)
 
-
       Notification that a β step is about to start
 
 
    .. method:: bottom(self, annealer)
 
-
       Notification that a β step just ended
 
 
-   .. method:: mountInputDataspace(self, pfs)
+   .. method:: forwardProblem(self, application, theta=None)
 
+      Perform the forward modeling with given {theta}
+
+
+   .. method:: mountInputDataspace(self, pfs)
 
       Mount the directory with my input files
 
 
    .. method:: restrict(self, theta)
-
 
       Return my portion of the sample matrix {theta}
 

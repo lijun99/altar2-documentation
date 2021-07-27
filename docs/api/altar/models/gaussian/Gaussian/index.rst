@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.gaussian.Gaussian.Gaussian
+
+
+
 .. py:class:: Gaussian(**kwds)
 
    Bases: :class:`altar.models.bayesian`
@@ -103,18 +112,15 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the state of the model given a {problem} specification
 
 
    .. method:: initializeSample(self, step)
 
-
       Fill {step.θ} with an initial random sample from my prior distribution.
 
 
    .. method:: priorLikelihood(self, step)
-
 
       Fill {step.prior} with the likelihoods of the samples in {step.theta} in the prior
       distribution
@@ -122,13 +128,11 @@ Module Contents
 
    .. method:: dataLikelihood(self, step)
 
-
       Fill {step.data} with the likelihoods of the samples in {step.theta} given the available
       data. This is what is usually referred to as the "forward model"
 
 
    .. method:: verify(self, step, mask)
-
 
       Check whether the samples in {step.theta} are consistent with the model requirements and
       update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones

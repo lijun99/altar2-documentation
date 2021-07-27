@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.mogi.Source.Source
+
+
+
 .. py:class:: Source(x=x, y=y, d=d, dV=dV, nu=nu, **kwds)
 
    An implementation of Mogi[1958]
@@ -39,7 +48,6 @@ Module Contents
       
 
    .. method:: displacements(self, locations, los)
-
 
       Compute the expected displacements from a point pressure source at a set of observation
       locations

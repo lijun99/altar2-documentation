@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: SequentialAnnealing
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.bayesian.SequentialAnnealing.SequentialAnnealing
+
+
+
+.. py:class:: SequentialAnnealing(annealer, **kwds)
 
    Bases: :class:`altar.bayesian.AnnealingMethod.AnnealingMethod`
 
@@ -25,7 +34,6 @@ Module Contents
       
 
    .. method:: start(self, annealer)
-
 
       Start the annealing process
 

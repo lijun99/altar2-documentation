@@ -10,7 +10,7 @@ As a quick start, we use the linear model as an example to demonstrate how to ru
 #. Run a dedicated AlTar application, e.g., ``linear`` for the linear model;
 #. Collect and analyze the simulation results.
 
-The linear model example demonstrated here comes with the AlTar source package, under the directory :altar_src:`models/linear/examples <models/linear/examples>`. It is also available as a jupyter notebook in :tutorials:`linear`. Examples for any other model in AlTar are also provided in the source package. Users may use these examples as templates to prepare their own projects.
+The linear model example demonstrated here comes with the AlTar source package, under the directory :altar_src:`models/linear/examples <models/linear/examples>`. It is also available as a jupyter notebook in :tutorials:`linear`.
 
 Prepare the configuration file
 ------------------------------
@@ -99,7 +99,7 @@ Collect and analyze results
 
 AlTar offers several options how to output the simulation results. The default is an HDF5 archiver, which outputs the simulation results from each :math:`\beta`-step to HDF5 files located at ``results`` directory. Data in these HDF5 files, named as ``step_nnn.h5``, can be viewed by a HDF Viewer, such as HDFView, HDFCompass.
 
-For each ``step_nnn.h5`, the following structures are used
+For each ``step_nnn.h5``, the following structures are used
 
 .. code-block:: none
 

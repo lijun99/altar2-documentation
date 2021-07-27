@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: Contiguous
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.Contiguous.Contiguous
+
+
+
+.. py:class:: Contiguous(name, locator, **kwds)
 
    Bases: :class:`altar.component`
 
@@ -50,31 +59,26 @@ Module Contents
 
    .. method:: initialize(self, model, offset)
 
-
       Initialize my state given the {model} that owns me
 
 
    .. method:: initializeSample(self, theta)
-
 
       Fill {theta} with an initial random sample from my prior distribution.
 
 
    .. method:: priorLikelihood(self, theta, priorLLK)
 
-
       Fill {priorLLK} with the log likelihoods of the samples in {theta} in my prior distribution
 
 
    .. method:: verify(self, theta, mask)
-
 
       Check whether the samples in {step.theta} are consistent with the model requirements and
       update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
 
 
    .. method:: restrict(self, theta)
-
 
       Return my portion of the sample matrix {theta}
 

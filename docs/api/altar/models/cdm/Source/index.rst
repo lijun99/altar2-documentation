@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.cdm.Source.Source
+
+
+
 .. py:class:: Source(x=x, y=y, d=d, ax=ax, ay=ay, az=az, omegaX=omegaX, omegaY=omegaY, omegaZ=omegaZ, opening=opening, v=v, **kwds)
 
    The source response for a Compound Dislocation Model in an elastic half space.
@@ -67,7 +76,6 @@ Module Contents
       
 
    .. method:: displacements(self, locations, los)
-
 
       Compute the expected displacements at a set of observation locations from a compound
       (triaxial) dislocation source at depth.

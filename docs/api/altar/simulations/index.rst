@@ -24,6 +24,30 @@ Submodules
 Package Contents
 ----------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.simulations.archiver
+   altar.simulations.dispatcher
+   altar.simulations.monitor
+   altar.simulations.run
+   altar.simulations.rng
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.simulations.gsl
+   altar.simulations.job
+   altar.simulations.recorder
+   altar.simulations.reporter
+
+
 .. py:class:: archiver
 
    Bases: :class:`altar.protocol`
@@ -34,19 +58,16 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me given an {application} context
 
 
    .. method:: record(self, step)
-
 
       Record the final state of the simulation
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -63,7 +84,6 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me given an {application} context
 
 
@@ -78,13 +98,11 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me given an {application} context
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -178,13 +196,11 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the run components with context from {application}
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -198,13 +214,11 @@ Package Contents
 
    .. method:: initialize(self, **kwds)
 
-
       Initialize the random number generator
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 

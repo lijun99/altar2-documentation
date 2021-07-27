@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.seismic.cuda.cudaKinematicGCp.cudaKinematicGCp
+
+
+
 .. py:class:: cudaKinematicGCp
 
    Bases: :class:`altar.models.seismic.cuda.cudaKinematicG.cudaKinematicG`
@@ -80,18 +89,15 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the state of the model given a {problem} specification
 
 
    .. method:: initializeCp(self)
 
-
       :return:
 
 
    .. method:: updateModel(self, annealer)
-
 
       Model method called by Sampler before Metropolis sampling for each beta step starts,
       employed to compute Cp and merge Cp with data covariance
@@ -100,7 +106,6 @@ Module Contents
 
 
    .. method:: computeCp(self, model, cp=None)
-
 
       Compute Cp with a mean model
       :param model:

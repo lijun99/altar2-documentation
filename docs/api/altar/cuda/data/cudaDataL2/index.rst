@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: cudaDataL2
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.data.cudaDataL2.cudaDataL2
+
+
+
+.. py:class:: cudaDataL2(name, locator, **kwds)
 
    Bases: :class:`altar.data.DataL2.DataL2`
 
@@ -53,13 +62,13 @@ Module Contents
 
       
 
-   .. attribute:: merge_cd_to_data
+   .. attribute:: dtype_cd
       
 
       
 
    .. attribute:: doc
-      :annotation: = whether to merge Cd with observed data
+      :annotation: = the data type (float32/64) for Cd computations if different from others
 
       
 
@@ -78,6 +87,11 @@ Module Contents
 
       
 
+   .. attribute:: merge_cd_to_data
+      :annotation: = True
+
+      
+
    .. attribute:: normalization
       :annotation: = 0
 
@@ -88,17 +102,7 @@ Module Contents
 
       
 
-   .. attribute:: gdataObs
-      
-
-      
-
    .. attribute:: gdataObsBatch
-      
-
-      
-
-   .. attribute:: gcd
       
 
       
@@ -110,32 +114,37 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize data obs from model
 
 
    .. method:: cuEvalLikelihood(self, prediction, likelihood, residual=True, batch=None)
 
-
-      compute the datalikelihood for prediction (samples x observations)
+      compute the datalikelihood for prediction
+      :param prediction: (samples x observations) input of predicted data
+      :param likelihood: (samples) pre-allocated likelihood/norm
+      :param residual: whether prediction is already subtracted by observed data
+      :param batch: number of (first few) samples to be computed
+      :return: likelihood
 
 
    .. method:: cd_inv(self)
       :property:
 
-
       Inverse of data covariance, in Cholesky decomposed form
+
+
+   .. method:: release_cd(self)
+
+      release gcd_inv
 
 
    .. method:: dataobsBatch(self)
       :property:
 
-
       A batch of duplicated observations
 
 
-   .. method:: loadFile(self, filename, shape, dataset=None)
-
+   .. method:: loadFile(self, filename, shape, dataset=None, dtype=None)
 
       Load an input file to a numpy array (for both float32/64 support)
       Supported format:
@@ -153,20 +162,17 @@ Module Contents
 
    .. method:: initializeCovariance(self)
 
-
       initialize gpu data and data covariance
 
 
    .. method:: updateCovariance(self, cp=None)
-
 
       Update the data covariance C_chi = Cd + Cp
       :param cp: cuda matrix with shape(obs, obs), data covariance due to model uncertainty
       :return:
 
 
-   .. method:: checkPostivieDefiniteness(self, matrix, name=None)
-
+   .. method:: checkPositiveDefiniteness(self, matrix, name=None)
 
       Check positive definiteness of a GPU matrix
       :param matrix: a real symmetric (GPU) matrix
@@ -174,7 +180,6 @@ Module Contents
 
 
    .. method:: mergeCdtoData(self, cd_inv, data)
-
 
       Merge the data covariance matrix to observed data
       :param cd_inv: the inverse of covariance matrix in Cholesky-decomposed form, with Lower matrix filled

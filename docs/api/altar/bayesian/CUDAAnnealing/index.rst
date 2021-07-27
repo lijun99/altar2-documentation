@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: CUDAAnnealing
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.bayesian.CUDAAnnealing.CUDAAnnealing
+
+
+
+.. py:class:: CUDAAnnealing(annealer, **kwds)
 
    Bases: :class:`altar.bayesian.AnnealingMethod.AnnealingMethod`
 
@@ -35,18 +44,15 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       initialize worker
 
 
    .. method:: cuInitialize(self, application)
 
-
       Initialize the cuda worker
 
 
    .. method:: start(self, annealer)
-
 
       Start the annealing process
 

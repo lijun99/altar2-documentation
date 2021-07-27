@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: cudaGaussian
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.distributions.cudaGaussian.cudaGaussian
+
+
+
+.. py:class:: cudaGaussian(name, locator, **kwds)
 
    Bases: :class:`altar.cuda.distributions.cudaDistribution.cudaDistribution`
 
@@ -35,21 +44,18 @@ Module Contents
 
    .. method:: cuInitSample(self, theta)
 
-
       Fill my portion of {theta} with initial random values from my distribution.
 
 
    .. method:: cuVerify(self, theta, mask)
 
-
       Check whether my portion of the samples in {theta} are consistent with my constraints, and
       update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
-      Arguments:
-          theta cuArray (samples x total_parameters)   
+      :param theta cuArray:
+      :type theta cuArray: samples x total_parameters
 
 
    .. method:: cuEvalPrior(self, theta, prior, batch)
-
 
       Fill my portion of {likelihood} with the likelihoods of the samples in {theta}
 

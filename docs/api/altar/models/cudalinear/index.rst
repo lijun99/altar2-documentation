@@ -17,6 +17,15 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.cudalinear.cudalinear
+
+
 .. function:: cudalinear()
 
 

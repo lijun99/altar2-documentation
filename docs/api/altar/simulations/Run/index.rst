@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.simulations.Run.Run
+
+
+
 .. py:class:: Run
 
    Bases: :class:`altar.protocol`
@@ -95,13 +104,11 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the run components with context from {application}
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 

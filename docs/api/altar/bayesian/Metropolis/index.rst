@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: Metropolis
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.bayesian.Metropolis.Metropolis
+
+
+
+.. py:class:: Metropolis(name, locator, **kwds)
 
    Bases: :class:`altar.component`
 
@@ -70,24 +79,20 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me and my parts given an {application} context
 
 
    .. method:: samplePosterior(self, annealer, step)
-
 
       Sample the posterior distribution
 
 
    .. method:: resample(self, annealer, statistics)
 
-
       Update my statistics based on the results of walking my Markov chains
 
 
    .. method:: prepareSamplingPDF(self, annealer, step)
-
 
       Re-scale and decompose the parameter covariance matrix, in preparation for the
       Metropolis update
@@ -95,19 +100,16 @@ Module Contents
 
    .. method:: walkChains(self, annealer, step)
 
-
       Run the Metropolis algorithm on the Markov chains
 
 
    .. method:: displace(self, sample)
-
 
       Construct a set of displacement vectors for the random walk from a distribution with zero
       mean and my covariance
 
 
    .. method:: adjustCovarianceScaling(self, accepted, rejected, unlikely)
-
 
       Compute a new value for the covariance sacling factor based on the acceptance/rejection
       ratio

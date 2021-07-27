@@ -19,6 +19,26 @@ Submodules
 Package Contents
 ----------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.models.model
+   altar.cuda.models.parameters
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.models.bayesian
+   altar.cuda.models.bayesianensemble
+   altar.cuda.models.parameterset
+
+
 .. py:class:: model
 
    Bases: :class:`altar.protocol`
@@ -27,24 +47,20 @@ Package Contents
 
    .. method:: posterior(self, application)
 
-
       Sample my posterior distribution
 
 
    .. method:: initialize(self, application)
-
 
       Initialize the state of the model given a {problem} specification
 
 
    .. method:: initializeSample(self, step)
 
-
       Fill {step.theta} with an initial random sample from my prior distribution.
 
 
    .. method:: priorLikelihood(self, step)
-
 
       Fill {step.prior} with the likelihoods of the samples in {step.theta} in the prior
       distribution
@@ -52,13 +68,11 @@ Package Contents
 
    .. method:: dataLikelihood(self, step)
 
-
       Fill {step.data} with the likelihoods of the samples in {step.theta} given the available
       data. This is what is usually referred to as the "forward model"
 
 
    .. method:: posteriorLikelihood(self, step)
-
 
       Given the {step.prior} and {step.data} likelihoods, compute a generalized posterior using
       {step.beta} and deposit the result in {step.post}
@@ -66,13 +80,11 @@ Package Contents
 
    .. method:: likelihoods(self, step)
 
-
       Convenience function that computes all three likelihoods at once given the current {step}
       of the problem
 
 
    .. method:: verify(self, step, mask)
-
 
       Check whether the samples in {step.theta} are consistent with the model requirements and
       update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
@@ -80,19 +92,21 @@ Package Contents
 
    .. method:: top(self, annealer)
 
-
       Notification that a β step is about to start
 
 
    .. method:: bottom(self, annealer)
 
-
       Notification that a β step just ended
+
+
+   .. method:: forwardProblem(self, application, theta=None)
+
+      Perform the forward modeling with given {theta}
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -136,24 +150,20 @@ Package Contents
 
    .. method:: initialize(self, model, offset)
 
-
       Initialize the parameter set given the {model} that owns it
 
 
    .. method:: initializeSample(self, theta)
-
 
       Fill {theta} with an initial random sample from my prior distribution.
 
 
    .. method:: priorLikelihood(self, theta, priorLLK)
 
-
       Fill {priorLLK} with the likelihoods of the samples in {theta} in my prior distribution
 
 
    .. method:: verify(self, theta, mask)
-
 
       Check whether the samples in {theta} are consistent with the model requirements and update
       the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
@@ -161,7 +171,6 @@ Package Contents
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 

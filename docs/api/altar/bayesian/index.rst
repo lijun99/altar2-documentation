@@ -18,6 +18,7 @@ Submodules
    Controller/index.rst
    CoolingStep/index.rst
    Grid/index.rst
+   H5Recorder/index.rst
    MPIAnnealing/index.rst
    Metropolis/index.rst
    Notifier/index.rst
@@ -32,6 +33,34 @@ Submodules
 
 Package Contents
 ----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.bayesian.controller
+   altar.bayesian.sampler
+   altar.bayesian.scheduler
+   altar.bayesian.monitor
+   altar.bayesian.archiver
+   altar.bayesian.solver
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.bayesian.annealer
+   altar.bayesian.cov
+   altar.bayesian.brent
+   altar.bayesian.grid
+   altar.bayesian.metropolis
+   altar.bayesian.profiler
+   altar.bayesian.recorder
+
 
 .. py:class:: controller
 
@@ -61,19 +90,16 @@ Package Contents
 
    .. method:: posterior(self, model)
 
-
       Sample the posterior distribution of the given {model}
 
 
    .. method:: initialize(self, application)
-
 
       Initialize me and my parts given an {application} context
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -87,25 +113,21 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me and my parts given an {application} context
 
 
    .. method:: samplePosterior(self, controller, step)
-
 
       Sample the posterior distribution
 
 
    .. method:: resample(self, controller, statistics)
 
-
       Update my statistics based on the results of walking my Markov chains
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -119,37 +141,31 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me and my parts given an {application} context
 
 
    .. method:: update(self, step)
-
 
       Push {step} forward along the annealing schedule
 
 
    .. method:: updateTemperature(self, step)
 
-
       Generate the next temperature increment
 
 
    .. method:: computeCovariance(self, step)
-
 
       Compute the parameter covariance of the sample in the {step}
 
 
    .. method:: rank(self, step)
 
-
       Rebuild the sample and its statistics sorted by the likelihood of the parameter values
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -165,13 +181,11 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me given an {application} context
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -187,19 +201,16 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me given an {application} context
 
 
    .. method:: record(self, step)
-
 
       Record the final state of the simulation
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
@@ -223,19 +234,16 @@ Package Contents
 
    .. method:: initialize(self, application, scheduler)
 
-
       Initialize me and my parts given an {application} context and a {scheduler}
 
 
    .. method:: solve(self, llk, weight)
-
 
       Compute the next temperature in the cooling schedule
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Provide a default implementation
 

@@ -34,7 +34,7 @@ extensions = [
 autoapi_type = 'python'
 autoapi_keep_files = True
 autoapi_root = 'api'
-autoapi_dirs = ['../../../altar/products/debug-shared-linux-x86_64/packages/']
+autoapi_dirs = ['../../../packages/']
 autoapi_generate_api_docs = True
 
 # needed for readthedocs

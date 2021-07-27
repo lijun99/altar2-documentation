@@ -11,6 +11,15 @@ Introduction
 
 This guide aims to help developers to write their own models for AlTar.
 
+- AlTar's framework is developed in Python while the compute-intensive routines are developed as C/C++ or CUDA(for GPUs) extension modules, to offer a user-friendly interface without scarifying the efficiency.
+
+- AlTar follows the ``components``-based programming model of pyre_. Components, as Python classes with extended functionalities, not only facilitate the modularized software development, but also offer user with great convenience to config settings and parameters *at runtime*:
+
+    * to choose between different implementations of a prescribed functionality (protocol), e.g., to choose different Metropolis sampling algorithms;
+    * to turn features on or off, e.g., the debugger, profiler;
+    * parameters and other attributes are also implemented as configurable properties (traits).
+
+- AlTar utilizes the job management system from pyre_ to self-deploy the simulations to different platforms, single thread or multiple threads, single machine or clusters, CPU or GPUs.
 
 
 Code Organization
@@ -108,6 +117,7 @@ For (new) MM build tool,
 
 Details for the above files will be illustrated by specific examples in the following sections.
 
+.. _Develop Bayesian Model:
 
 Bayesian Model
 ================
@@ -503,7 +513,7 @@ Basic matrix/vector operations
 Interfacing as numpy arrays
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As there are more utilities available for numpy ``ndarray``s, you may view or copy GSL vectors/matrices are numpy arrays.
+As there are more utilities available for numpy ``ndarray``, you may view or copy GSL vectors/matrices are numpy arrays.
 
 .. code-block:: python
 

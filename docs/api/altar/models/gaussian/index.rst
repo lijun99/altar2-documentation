@@ -26,6 +26,15 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.gaussian.gaussian
+
+
 .. function:: gaussian()
 
 

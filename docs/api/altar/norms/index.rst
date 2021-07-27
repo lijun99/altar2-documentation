@@ -17,6 +17,23 @@ Submodules
 Package Contents
 ----------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.norms.norm
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.norms.l2
+
+
 .. py:class:: norm
 
    Bases: :class:`altar.protocol`
@@ -25,13 +42,11 @@ Package Contents
 
    .. method:: eval(self, v, **kwds)
 
-
       Compute the L2 norm of the given vector
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Provide a default norm in case the user hasn't selected one
 

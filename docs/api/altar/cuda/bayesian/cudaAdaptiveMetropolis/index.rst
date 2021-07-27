@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: cudaAdaptiveMetropolis
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.bayesian.cudaAdaptiveMetropolis.cudaAdaptiveMetropolis
+
+
+
+.. py:class:: cudaAdaptiveMetropolis(name, locator, **kwds)
 
    Bases: :class:`altar.component`
 
@@ -25,6 +34,26 @@ Module Contents
 
    .. attribute:: doc
       :annotation: = scaling factor σ  for Gaussian proposal  ~ N(0, σ^2 Σ), initial value 2.38/sqrt(N_d)
+
+      
+
+   .. attribute:: scaling_min
+      
+
+      
+
+   .. attribute:: doc
+      :annotation: = the minimum value of the scaling factor
+
+      
+
+   .. attribute:: scaling_max
+      
+
+      
+
+   .. attribute:: doc
+      :annotation: = the maximum value of the scaling factor
 
       
 
@@ -65,6 +94,36 @@ Module Contents
 
    .. attribute:: doc
       :annotation: = the maximum Monte-Carlo steps for one beta step
+
+      
+
+   .. attribute:: min_mc_steps
+      
+
+      
+
+   .. attribute:: doc
+      :annotation: = the minimum Monte-Carlo steps for one beta step
+
+      
+
+   .. attribute:: max_mc_steps_stage2
+      
+
+      
+
+   .. attribute:: doc
+      :annotation: = the maximum Monte-Carlo steps at stage 2, or beta> beta_stage2
+
+      
+
+   .. attribute:: beta_stage2
+      
+
+      
+
+   .. attribute:: doc
+      :annotation: = beta value to start stage 2, i.e., to use a different max_mc_steps
 
       
 
@@ -160,33 +219,27 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me and my parts given an {application} context
 
 
    .. method:: cuInitialize(self, application)
 
 
-
    .. method:: samplePosterior(self, annealer, step)
 
-
       Sample the posterior distribution
-      Arguments:
-          annealer - the controller
-          step - cpu CoolingStep
-      Return:
-          statistics (accepted/rejected/invalid) or (accepted/unlikely/rejected)
+      :param annealer - the controller:
+      :param step - cpu CoolingStep:
+
+      :returns: statistics (accepted/rejected/invalid) or (accepted/unlikely/rejected)
 
 
    .. method:: resample(self, annealer, statistics)
-
 
       Update my statistics based on the results of walking my Markov chains
 
 
    .. method:: prepareSamplingPDF(self, annealer, step)
-
 
       Re-scale and decompose the parameter covariance matrix, in preparation for the
       Metropolis update
@@ -194,23 +247,19 @@ Module Contents
 
    .. method:: finishSamplingPDF(self, step)
 
-
       procedures after sampling, e.g, copy data back to cpu
 
 
    .. method:: walkChains(self, annealer, step)
 
-
       Run the Metropolis algorithm on the Markov chains
-      Arguments:
-          annealer: cudaAnnealer
-          step: cudaCoolingStep
-      Return:
-          statistics = (accepted, rejected, unlikely)
+      :param annealer: cudaAnnealer
+      :param step: cudaCoolingStep
+
+      :returns: statistics = (accepted, rejected, unlikely)
 
 
    .. method:: displace(self, displacement)
-
 
       Construct a set of displacement vectors for the random walk from a distribution with zero
       mean and my covariance
@@ -218,15 +267,19 @@ Module Contents
 
    .. method:: adjustCovarianceScaling(self, accepted, invalid, rejected)
 
-
       Compute a new value for the covariance sacling factor based on the acceptance/rejection
       ratio
 
 
    .. method:: allocateGPUData(self, samples, parameters)
 
-
       initialize gpu work data
+
+
+   .. method:: gainFunction(x)
+      :staticmethod:
+
+      Compute the optimal gain constant from a target acceptranceRate {x}
 
 
 

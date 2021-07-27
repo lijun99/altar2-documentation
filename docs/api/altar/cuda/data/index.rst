@@ -16,6 +16,23 @@ Submodules
 Package Contents
 ----------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.data.data
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.data.datal2
+
+
 .. py:class:: data
 
    Bases: :class:`altar.protocol`
@@ -24,13 +41,11 @@ Package Contents
 
    .. method:: initialize(self, application)
 
-
       initialize data
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Provide a default norm in case the user hasn't selected one
 

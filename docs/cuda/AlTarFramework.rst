@@ -1,20 +1,39 @@
 .. _AlTar Framework:
 
-######################
-The AlTar Framework
-######################
+###############
+AlTar Framework
+###############
 
 Application
 ============
+
 *See API Reference:* :mod:`altar.shells.application`
 
-An AlTar application is the *root* component which integrates all the components in AlTar. The main components of an AlTar application are
+An AlTar application is the *root* component which integrates all the components in AlTar.  The main components of an AlTar application are as follows.
 
-* ``controller = altar.bayesian.controller()``, also called as ``annealer``, which controls the simulation process, i.e.,  the MCMC simulations of the posterior distribution;
-* ``model = altar.models.model()``, which performs the forward modelling and computes the Bayesian probability densities: the prior, the data likelihood and the posterior;
-* ``job = altar.simulations.run()``, which manages the simulation size and job deployment;
-* ``rng = altar.simulations.rng()``, the random number generator shared by other processes.
-* ``monitors = altar.properties.dict(schema=altar.simulations.monitor())``, a collection of event handlers, such as reporter, profiler.
+.. py:class:: Application(altar.application, family="altar.shells.application")
+
+    .. py:attribute:: controller = altar.bayesian.controller()
+
+        :value: altar.bayesian.Annealer (default)
+        :description: the MCMC simulation processor, *Annealer* for CATMIP algorithm;
+
+    .. py:attribute:: model = altar.models.model()
+
+        :value: altar.models.linear(), altar.models.cuda.static(), ...
+        :description: performs the forward modelling and computes the Bayesian probability densities: the prior, the data likelihood and the posterior;
+
+    .. py:attribute:: job = altar.simulations.run()
+
+        :description: manages the simulation size and job deployment;
+
+    .. py:attribute:: rng = altar.simulations.rng()
+
+        :description: the random number generator shared by all processes;
+
+    .. py:attribute:: monitors = altar.properties.dict(schema=altar.simulations.monitor())
+
+        :description: a collection of event handlers, such as reporter, profiler.
 
 An AlTar application executes the simulation by defining a required ``main`` entry point:
 
@@ -38,10 +57,13 @@ which initializes different components and invokes the ``model.posterior`` to pe
 
 An AlTar application is also the engager of the pyre framework, as inherited from ``pyre.application`` or ``pyre.plexus``, which performs
 
-* registering all protocols and components in a database;
-* reading/loading configuration files;
-* instantiating all components into *regular* Python objects;
-* invoking the proper shell (MPI, SLURM) to deploy the job.
+    - registering all protocols and components in a database;
+
+    - reading/loading configuration files;
+
+    -  instantiating all components into *regular* Python objects;
+
+    - invoking the proper shell (MPI, SLURM) to deploy the job.
 
 .. _Controller:
 
@@ -51,19 +73,19 @@ Controller/Annealer
 
 A Bayesian controller uses an annealing schedule and MCMC to approximate the posterior distribution of a model. The current Annealer uses exclusively the CATMIP algorithm (more controllers implementing other algorithms will be added to a future release). It includes the following configurable components
 
-* ``sampler = altar.bayesian.sampler()``, the MCMC sampler. The default is a ``Metropolis`` sampler with fixed chain length based on Metropolis-Hastings algorithm. Another sampler implemented is ``AdaptiveMetropolis`` which targets a fixed acceptance ratio and varies the chain length targeting a fixed effective sample size.
-* ``scheduler = altar.bayesian.scheduler()``, the generator of the annealing schedule. The default and currently only implemented scheduler is based on the Coefficient of Variance (COV) of the data likelihood densities.
-* ``dispatcher = altar.simulations.dispatcher(default=Notifier)``, currently only serves the purpose of profiling.
-* ``archiver = altar.simulations.archiver(default=Recorder)``, the archiver of simulation state. The default recorder saves the simulation state to HDF5 files.
+    * ``sampler = altar.bayesian.sampler()``, the MCMC sampler. The default is a ``Metropolis`` sampler with fixed chain length based on Metropolis-Hastings algorithm. Another sampler implemented is ``AdaptiveMetropolis`` which targets a fixed acceptance ratio and varies the chain length targeting a fixed effective sample size.
+    * ``scheduler = altar.bayesian.scheduler()``, the generator of the annealing schedule. The default and currently only implemented scheduler is based on the Coefficient of Variance (COV) of the data likelihood densities.
+    * ``dispatcher = altar.simulations.dispatcher(default=Notifier)``, currently only serves the purpose of profiling.
+    * ``archiver = altar.simulations.archiver(default=Recorder)``, the archiver of simulation state. The default recorder saves the simulation state to HDF5 files.
 
 and another component determined at runtime from the job configurations,
 
-* ``worker`` (AnnealingMethod): as AlTar simulations can be performed with either single thread or multiple threads, on CPUs or GPUs, the Controller uses different workers where various deployment-dependence procedures are differentiated. For example, the multiple thread processor, ``MPIAnnealing`` needs to include additional procedures to collect/distribute samples for all threads.
+    * ``worker`` (AnnealingMethod): as AlTar simulations can be performed with either single thread or multiple threads, on CPUs or GPUs, the Controller uses different workers where various deployment-dependence procedures are differentiated. For example, the multiple thread processor, ``MPIAnnealing`` needs to include additional procedures to collect/distribute samples for all threads.
 
 The Annealer's behaviors include
 
-* ``deduceAnnealingMethod`` which uses the job configuration to determine the worker.
-* ``posterior`` which defines the MCMC procedures with an annealing schedule.
+    * ``deduceAnnealingMethod`` which uses the job configuration to determine the worker.
+    * ``posterior`` which defines the MCMC procedures with an annealing schedule.
 
 
 Worker/AnnealingMethod
@@ -72,13 +94,13 @@ Worker/AnnealingMethod
 
 A worker(AnnealingMethod) defines each procedure of annealing which may be platform dependent. There are three types of workers:
 
-    - SequentialAnnealing, a single thread CPU processor
-    - CUDAAnnealing, a single thread GPU processor
-    - MPIAnnealing, a multiple thread processor which uses SequentialAnnealing(CPU) or CUDAAnnealing(GPU) as slave workers.
+    - ``SequentialAnnealing``, a single thread CPU processor
+    - ``CUDAAnnealing``, a single thread GPU processor
+    - ``MPIAnnealing``, a multiple thread processor which uses SequentialAnnealing(CPU) or CUDAAnnealing(GPU) as slave workers.
 
     Each worker also keeps a set of simulation state data, such as ``beta`` (the inverse temperature), ``theta`` (the random samples), ``prior/data/posterior`` (the Bayesian densities), in an object ``CoolingStep``.
 
-Worker is not directly user configurable; it is determined by the job configuration.
+Worker is not directly user configurable; it is determined automatically by the job configuration.
 
 Sampler
 -------
@@ -86,15 +108,15 @@ Sampler
 
 Starting with :math:`N_s` number of chains/samples (processed in parallel), a sampler performs MC updates of the samples pursuant to a given distribution for several steps (length of the chain). For finite :math:`\beta`, the target distribution is the transient distribution :math:`P_m({\boldsymbol \theta}|{\bf d}) = P({\boldsymbol \theta}) P({\bf d}|{\boldsymbol \theta})^{\beta_m}`, while the sampling serves as a burn-in process. When :math:`\beta=1` is reached, the sampler samples the posterior distribution :math:`P({\boldsymbol \theta}|{\bf d})`.
 
-The default sampler is a CPU ``Metroplis`` sampler. To use other samplers, users need to specify it in the controller block of the configuration file
+The default sampler is a CPU ``Metroplis`` sampler. To use other samplers, e.g., for CUDA simulations, users need to specify it in the controller block of the configuration file
 
 .. code-block:: none
 
     ApplicationInstance:
         controller:
-            sampler = altar.cuda.bayesian.metropolis ; or sampler = altar.cuda.bayesian.adaptivemetropolis
+            sampler = altar.cuda.bayesian.metropolis
             sampler:
-                ; sampler configs
+                ; sampler attributes
                 ... ...
 
 Metropolis
@@ -103,7 +125,7 @@ Metropolis
 
 **Algorithm**
 
-* new samples are proposed with a Gaussian kernel,
+* New samples are proposed with a Gaussian kernel,
 
     .. math::
 
@@ -114,16 +136,18 @@ Metropolis
 
     .. math::
 
-        \alpha = \frac {acceptanceWeight * acceptanceRate + rejectionWeight}{acceptanceWeight+rejectionWeight}
+        \alpha = acceptanceWeight * acceptanceRate + rejectionWeight
 
-* to decide whether to accept the proposed samples with the Metropolis–Hastings algorithm.
+    Since the acceptance rate varies between 0 and 1, ``rejectionWeight`` and ``rejectionWeight+acceptanceWeight`` offer as the lower and upper limits of the scaling factor :math:`\alpha`.
 
-* repeat the MC updates for a fixed :math:`N_c`-number of times.
+* Decide whether to accept the proposed samples with the Metropolis–Hastings algorithm.
+
+* Repeat the MC updates for a fixed :math:`N_c`-number of times.
 
 **Configurable attributes**
 
-:scaling: float, the initial value of :math:`\alpha`, default=0.3
-:acceptanceWeight, rejectionWeight: float, ratios to adjust the value of :math:`\alpha` during the run, defaults=8.0, 1.0
+:scaling: float, the initial value of :math:`\alpha`, default=0.1
+:acceptanceWeight, rejectionWeight: float, ratios to adjust the value of :math:`\alpha` during the run, defaults=8/9, 1/9
 :steps: integer, the MC update steps in each :math:`\beta`-step (the length of each chain), configured by ``job.steps``.
 
 **Configuration examples**
@@ -132,29 +156,73 @@ Metropolis
 
     ApplicationInstanceName:
         controller:
-            sampler = altar.bayesian.metropolis; or altar.cuda.bayesian.metropolis
+            sampler = altar.bayesian.metropolis
             sampler:
                 scaling = 0.2
-                acceptanceWeight = 9.0
-                rejectionWeight = 2.0
+                acceptanceWeight = 0.1
+                rejectionWeight = 0.9
         ; the length of chains
         job.steps = 2**12
 
+
+Metropolis (CUDA Version)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+*See API Reference:*  :mod:`altar.cuda.bayesian.cudaMetropolis`
+
+The CUDA version follows the same procedure as above, but includes more control on the scaling factor.
+
+**Configurable attributes**
+
+:scaling: float; the initial value of :math:`\alpha`; default=0.1
+:acceptanceWeight, rejectionWeight: float; ratios to adjust the value of :math:`\alpha` during the run, defaults=8/9, 1/9
+:useFixedScaling: bool; if ``True``, the initial ``scaling`` will be used for all :math:`\beta`-steps; default= ``False``
+:scalingMin, scalingMax: float; the min/max values of the scaling factor; default=0.01, 1
+:steps: integer, the MC update steps in each :math:`\beta`-step (the length of each chain), configured by ``job.steps``.
+
+**Configuration examples**
+
+.. code-block:: none
+
+    ApplicationInstanceName:
+        controller:
+            sampler = altar.cuda.bayesian.metropolis
+            sampler:
+                scaling = 0.2
+                acceptanceWeight = 0.99
+                rejectionWeight = 0.01
+                useFixedScaling = False
+                scalingMin = 0.1
+                scalingMax = 0.5
+        ; the length of chains
+        job.steps = 2**12
+
+In this example, ``scaling`` is set to 0.2 in the beginning. During the run, ``scaling = acceptanceWeight*R + rejectionWeight``, where :math:`R` is the acceptance rate from the previous :math:`\beta`-step, or ``scaling`` :math:`\in[0.01, 1]`. ``scalingMin`` and ``scalingMax`` further adjust the range as [0.1, 0.5].
+
 AdaptiveMetropolis
 ~~~~~~~~~~~~~~~~~~
-*See API Reference:*  :mod:`altar.cuda.bayesian.AdaptiveMetropolis` (for CUDA only)
+*See API Reference:*  :mod:`altar.cuda.bayesian.cudaAdaptiveMetropolis` (for CUDA only)
 
-**Algorithm** In an AdaptiveMetropolis sampler, there are two variations from the Metropolis sampler,
+**Algorithm**
 
-* After a certain number of MC updates, ``corr_check_steps``, the correlation between the current samples and the initial samples are computed. If the correlation is smaller than a threshold value, ``target_correlation``, or the samples become sufficiently de-correlated (burned in), we can stop MC updates for the current :math:`\beta`-step. A ``max_mc_steps`` sets the maximum number of MC updates if the correlation threshold value cannot be achieved.
+In an AdaptiveMetropolis sampler, there are a few variations from the Metropolis sampler,
 
-* The scaling factor :math:`\alpha` targets an optimal acceptance rate, ``target_acceptance_rate``, with a
+#. After a certain number of MC updates, ``corr_check_steps``, the correlation between the current samples and the initial samples are computed. If the correlation is smaller than a threshold value, ``target_correlation``, or the samples become sufficiently de-correlated, we can stop MC updates for the current :math:`\beta`-step. A ``max_mc_steps`` sets the maximum number of MC updates if the correlation threshold value cannot be achieved.
+
+#. The scaling factor :math:`\alpha` targets an optimal acceptance rate, ``target_acceptance_rate``, with a feedback function
 
     .. math::
 
         \alpha_{j+1} = \alpha_j \exp[-gain*(acceptanceRate_j-target\_acceptance\_rate)]
 
-    where :math:`j` labels the :math:`\beta`-step. The initial value is set as :math:`\alpha_0 = scaling/\sqrt{parameters}`.
+    where :math:`j` labels the :math:`\beta`-step. The initial value is set as
+
+    .. math::
+
+        \alpha_0 = scaling/\sqrt{parameters}
+
+    It is shown that an optimal value for :math:`\alpha` is :math:`2.38/\sqrt{d}`, where :math:`d` is the dimension of parameter space, or ``parameters``.
+
+#. (*New in 2.0.2*) Sometimes, it is useful to use more MC steps when :math:`\beta` is small, or *vice versa*. We introduce a new ``max_mc_steps_stage2`` to be used for the maximum MC steps when :math:`\beta` > ``beta_step2``.
 
 
 **Configurable Attributes**
@@ -163,12 +231,20 @@ AdaptiveMetropolis
     initial scaling factor for Gaussian proposal, to be normalized by the square root of the number of parameters
 :parameters: integer, default=1,
     the total number of parameters in simulation: since the controller is initialized before the model, users need to manually provide this information to the sampler (we will try to eliminate this requirement in the next update).
+:scaling_min, scaling_max: float, default=(0.01, 1),
+    the minimum and maximum values allowed for the scaling factor
 :target_acceptance_rate:  float, default=0.234,
     the targeted acceptance rate
-:gain:  float, default=2.1,
+:gain:  float, default=None (determined by ``target_acceptance_rate``),
     the feedback gain constant
 :max_mc_steps: integer, default=100000,
     the maximum Monte-Carlo steps for one beta step
+:min_mc_steps: integer, default=1000,
+    the minimum Monte-Carlo steps for one beta step
+:beta_stage2: float, default=0.1,
+    the start beta value to use another maximum MC steps
+:max_mc_steps_stage2: integer, default=None (to be set the same as ``max_mc_steps``),
+    the maximum Monte-Carlo steps for one beta step when ``beta`` > ``beta_stage2``
 :corr_check_steps:  integer, default=1000,
     the Monte-Carlo steps to compute and check the correlation
 :target_correlation: float, default=0.6,
@@ -182,17 +258,25 @@ AdaptiveMetropolis
         controller:
             sampler = altar.cuda.bayesian.adaptivemetropolis  ; only for CUDA
             sampler:
-                corr_check_steps = 100
-                max_mc_steps = 1000
+                scaling = 2.38
+                parameters = 399 ; number of parameters in model
+                min_mc_steps = 3000
+                max_mc_steps = 10000
+                corr_check_steps = 1000
+                target_correlation = 0.6
+                beta_stage2 = 0.1
+                max_mc_steps_stage2 = 5000
 
+In this example, the initial scaling factor is set to ``scaling`` / sqrt(``parameters``) or :math:`2.38/\sqrt{399}=0.12` (you can also set ``scaling`` directly to 0.12, and use the default value 1 for ``parameters``). After ``min_mc_steps`` (3,000), the correlation between current samples and initial samples are computed every ``corr_check_steps`` (1,000). If the correlation is less than ``target_correlation`` (0.6), the MC update stops and the simulation proceeds to next :math:`\beta` step. If the ``target_correlation`` cannot be achieved by a certain number of steps, ``max_mc_steps`` (10,000) for :math:`\beta <=` ``beta_stage2`` (0.1) while ``max_mc_steps_stage2`` (5,000) for :math:`\beta >` ``beta_stage2`` (0.1), the MC update is forced to stop and the simulation proceeds to next :math:`\beta` step.
 
 Scheduler
 ---------
 
-A scheduler regulates how :math:`\beta` increases between different :math:`\beta`-steps. The default is `COV Scheduler`.
+A scheduler regulates how :math:`\beta` increases between different :math:`\beta`-steps. The default (and currently the only option) is `COV Scheduler`.
 
 COV Scheduler
 ~~~~~~~~~~~~~
+*See API Reference:*  :mod:`altar.bayesian.COV`
 
 **Algorithm**
 
@@ -248,6 +332,7 @@ In COV Scheduler, we choose a :math:`\beta_{m+1}` so that COV is of order unity,
 
 Archiver (Output)
 -----------------
+*See API Reference:*  :mod:`altar.simulations.Archiver`
 
 The Archiver saves progress information. The default is an H5Recorder which saves the Bayesian statistical data to HDF5 files.
 
@@ -255,6 +340,7 @@ The Archiver saves progress information. The default is an H5Recorder which save
 
 H5Recorder
 ~~~~~~~~~~
+*See API Reference:*  :mod:`altar.bayesian.H5Recorder`
 
 H5Recorder saves the random samples and their Bayesian probability densities from each :math:`\beta`-step to an HDF5 file,
 ``output_dir/step_nnn.h5``.
@@ -336,6 +422,7 @@ which shows how :math:`\beta` evolves from :math:`\beta`-step iterations, as wel
 
 Job
 =====
+*See API Reference:*  :mod:`altar.simulations.Job`
 
 The ``job`` component in an AlTar application controls the size of the simulation as well as its deployment to different platforms.
 
@@ -387,10 +474,6 @@ Large-scale simulations can be distributed to multiple threads. Distributing the
 The multi-threading in AlTar is achieved by MPI. An AlTar application is capable of deploying itself automatically to multiple MPI threads in one or more computers/nodes so that users don't need to run ``mpirun``, ``qsub``, or ``sbatch`` explicitly.
 
 The Metropolis sampler uses ``job.steps`` to control the number of MC updates in each :math:`\beta`-step. (*It might be better to move this setting directly to sampler*). This procedure serves as a burn-in to equilibrate samples from one distribution with :math:`\beta_m` to another with :math:`\beta_{m+1}`. Larger ``steps`` allow more equilibration but are not required in CATMIP: the :math:`\beta`-increment (or the total number of :math:`\beta`-steps) will be adjusted.
-
-:TODO:
-Add a Best Practice section on how to choose different sizes
-
 
 
 Single Thread Configuration
@@ -512,6 +595,8 @@ Or from the command line
 If your Slurm Manager requires additional configurations, you can use ``submit=False``, modify the generated Slurm script,
 and use ``sbatch`` to submit the job.
 
+.. _GPU Job Configuration:
+
 GPU Configurations
 ------------------
 
@@ -520,6 +605,7 @@ The GPU support in AlTar is implemented with `CUDA <https://developer.nvidia.com
 **To choose GPU or CPU** If you plan to run AlTar simulations on GPU, you may enable it by
 
 .. code-block::
+
     ApplicationInstanceName:
         job.gpus = 1 ; number of GPU per task,  0 = use gpu
 
@@ -529,6 +615,7 @@ AlTar also checks the availability of ``cuda`` modules (software) and compatible
 Currently, the ``cuda`` modules are not fully integrated with cpu modules. You may need to check whether the model has a cuda implementation, and also select explicitly some cuda components, for example, for the Static Inversion,
 
 .. code-block::
+
     slipmodel: ; the Application Instance Name
 
         model = altar.models.seismic.cuda.static
@@ -609,11 +696,12 @@ which makes only GPU2 and GPU3 visible for applications, appearing as ``gpuids=[
 Model
 ======
 
+The Model component in AlTar Framework defines the forward problem, and computes the data likelihood accordingly. Each model needs an implementation for a given inverse problem. See :ref:`Models` for details guides on implemented models.
+
+Users may also develop their own models, following the guide in :ref:`Develop Bayesian Model`.
 
 
-
-
-
+.. include:: Priors.rst
 
 
 

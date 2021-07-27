@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.ParameterSet.ParameterSet
+
+
+
 .. py:class:: ParameterSet
 
    Bases: :class:`altar.protocol`
@@ -45,24 +54,20 @@ Module Contents
 
    .. method:: initialize(self, model, offset)
 
-
       Initialize the parameter set given the {model} that owns it
 
 
    .. method:: initializeSample(self, theta)
-
 
       Fill {theta} with an initial random sample from my prior distribution.
 
 
    .. method:: priorLikelihood(self, theta, priorLLK)
 
-
       Fill {priorLLK} with the likelihoods of the samples in {theta} in my prior distribution
 
 
    .. method:: verify(self, theta, mask)
-
 
       Check whether the samples in {theta} are consistent with the model requirements and update
       the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
@@ -70,7 +75,6 @@ Module Contents
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 

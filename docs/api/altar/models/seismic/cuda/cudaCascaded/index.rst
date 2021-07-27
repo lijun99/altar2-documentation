@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: cudaCascaded
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.seismic.cuda.cudaCascaded.cudaCascaded
+
+
+
+.. py:class:: cudaCascaded(name, locator, **kwds)
 
    Bases: :class:`altar.cuda.models.cudaBayesianEnsemble.cudaBayesianEnsemble`
 

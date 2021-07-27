@@ -17,6 +17,15 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.linear.linear
+
+
 .. function:: linear()
 
 

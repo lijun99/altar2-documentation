@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.bayesian.Controller.Controller
+
+
+
 .. py:class:: Controller
 
    Bases: :class:`altar.protocol`
@@ -35,19 +44,16 @@ Module Contents
 
    .. method:: posterior(self, model)
 
-
       Sample the posterior distribution of the given {model}
 
 
    .. method:: initialize(self, application)
-
 
       Initialize me and my parts given an {application} context
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 

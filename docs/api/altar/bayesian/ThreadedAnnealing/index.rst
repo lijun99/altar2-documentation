@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: ThreadedAnnealing
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.bayesian.ThreadedAnnealing.ThreadedAnnealing
+
+
+
+.. py:class:: ThreadedAnnealing(annealer, **kwds)
 
    Bases: :class:`altar.bayesian.AnnealingMethod.AnnealingMethod`
 

@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: cudaApplication
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.shells.cudaApplication.cudaApplication
+
+
+
+.. py:class:: cudaApplication(name=None, **kwds)
 
    Bases: :class:`altar.application`
 
@@ -70,18 +79,15 @@ Module Contents
 
    .. method:: main(self, *args, **kwds)
 
-
       The main entry point
 
 
    .. method:: pyre_interactiveSessionContext(self, context)
 
-
       Go interactive
 
 
    .. method:: pyre_mpi(self)
-
 
       Transfer my {job} settings to the MPI shell
 

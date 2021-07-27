@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: Application
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.shells.Application.Application
+
+
+
+.. py:class:: Application(name=None, **kwds)
 
    Bases: :class:`altar.application`
 
@@ -65,18 +74,15 @@ Module Contents
 
    .. method:: main(self, *args, **kwds)
 
-
       The main entry point
 
 
    .. method:: pyre_interactiveSessionContext(self, context)
 
-
       Go interactive
 
 
    .. method:: pyre_mpi(self)
-
 
       Transfer my {job} settings to the MPI shell
 

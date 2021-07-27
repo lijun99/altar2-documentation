@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: StaticCp
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.seismic.StaticCp.StaticCp
+
+
+
+.. py:class:: StaticCp(name, locator, **kwds)
 
    Bases: :class:`altar.models.seismic.Static.Static`
 
@@ -95,30 +104,25 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the state of the model given a {problem} specification
 
 
    .. method:: loadInputsCp(self)
-
 
       Load the additional data (for Cp problem) in the input files into memory
 
 
    .. method:: initializeCovariance(self, samples)
 
-
       initialize data covariance related variables
 
 
    .. method:: computeCp(self, theta_mean)
 
-
       Calculate Cp
 
 
    .. method:: update(self, annealer)
-
 
       Model update interface
 

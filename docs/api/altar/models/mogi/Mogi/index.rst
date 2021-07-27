@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: Mogi
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.mogi.Mogi.Mogi
+
+
+
+.. py:class:: Mogi(name, locator, **kwds)
 
    Bases: :class:`altar.models.bayesian`
 
@@ -187,18 +196,15 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the state of the model given a {problem} specification
 
 
    .. method:: initializeSample(self, step)
 
-
       Fill {step.θ} with an initial random sample from my prior distribution.
 
 
    .. method:: priorLikelihood(self, step)
-
 
       Fill {step.prior} with the likelihoods of the samples in {step.theta} in the prior
       distribution
@@ -206,13 +212,11 @@ Module Contents
 
    .. method:: dataLikelihood(self, step)
 
-
       Fill {step.data} with the likelihoods of the samples in {step.theta} given the available
       data. This is what is usually referred to as the "forward model"
 
 
    .. method:: verify(self, step, mask)
-
 
       Check whether the samples in {step.theta} are consistent with the model requirements and
       update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
@@ -220,42 +224,35 @@ Module Contents
 
    .. method:: initializeParameterSets(self)
 
-
       Initialize my parameter sets
 
 
    .. method:: mountInputDataspace(self, pfs)
-
 
       Mount the directory with my input files
 
 
    .. method:: loadInputs(self)
 
-
       Load the data in the input files into memory
 
 
    .. method:: computeNormalization(self)
-
 
       Compute the normalization of the L2 norm
 
 
    .. method:: computeCovarianceInverse(self)
 
-
       Compute the inverse of my data covariance
 
 
    .. method:: meta(self)
 
-
       Persist the sample layout by recording the parameter set metadata
 
 
    .. method:: show(self, job, channel)
-
 
       Place model information in the supplied {channel}
 

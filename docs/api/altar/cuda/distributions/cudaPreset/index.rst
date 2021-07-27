@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.distributions.cudaPreset.cudaPreset
+
+
+
 .. py:class:: cudaPreset
 
    Bases: :class:`altar.cuda.distributions.cudaDistribution.cudaDistribution`
@@ -56,12 +65,10 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize with the given random number generator
 
 
    .. method:: cuInitialize(self, application)
-
 
       cuda initialize distribution
       :param application:
@@ -70,12 +77,10 @@ Module Contents
 
    .. method:: cuInitSample(self, theta)
 
-
       Fill my portion of {theta} with initial random values from my distribution.
 
 
    .. method:: _loadhdf5(self, theta)
-
 
       load from hdf5 file
 

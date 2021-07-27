@@ -8,12 +8,12 @@ Module Contents
 ---------------
 
 .. data:: date
-   :annotation: = Thu Jan 9 18:55:16 UTC 2020
+   :annotation: = 2021-07-16T04:55:48Z
 
    
 
 .. data:: major
-   :annotation: = 1
+   :annotation: = 2
 
    
 
@@ -23,12 +23,12 @@ Module Contents
    
 
 .. data:: micro
-   :annotation: = 0
+   :annotation: = 1
 
    
 
 .. data:: revision
-   :annotation: = 5b0ef46
+   :annotation: = c4eeb4c
 
    
 
@@ -39,8 +39,8 @@ Module Contents
 
 .. data:: copyright
    :annotation: = 
-    (c) 2013-2020 ParaSim Inc.
-    (c) 2010-2020 California Institute of Technology
+    (c) 2013- ParaSim Inc.
+    (c) 2010- California Institute of Technology
     ALL RIGHTS RESERVED
 
 

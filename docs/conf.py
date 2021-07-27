@@ -31,11 +31,11 @@ release = '2.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc', # import the modules
-    'sphinx.ext.autosectionlabel', # auto label sections
+    #'sphinx.ext.autosectionlabel', # auto label sections
     'sphinx.ext.extlinks', # for shared external links
     'nbsphinx', # include jupyter notebooks
-    'recommonmark',
-    #'m2r', # include markdown
+    #'recommonmark', # include markdown
+    'myst_parser', # markdown support
     'sphinx.ext.mathjax', # render math via JavaScript, another option is sphinx.ext.imgmath
 ]
 
@@ -74,7 +74,7 @@ source_suffix = {
     '.md': 'markdown',
 }
 
-mathjax_config = {
+mathjax3_config = {
     'TeX': {'equationNumbers': {'autoNumber': 'AMS', 'useLabelIds': True}},
 }
 

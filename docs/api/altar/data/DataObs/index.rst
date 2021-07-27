@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.data.DataObs.DataObs
+
+
+
 .. py:class:: DataObs
 
    Bases: :class:`altar.protocol`
@@ -15,13 +24,11 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       initialize data
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Provide a default norm in case the user hasn't selected one
 

@@ -10,7 +10,8 @@ Static Source model
 The finite fault earthquake source models infer the spatial distribution and temporal evolution of coseismic slips at fault plane(s) from the observed surface or subsurface displacements. In the static source model, the spatial distributions of coseismic slips are determined. We model the fault plane(s) as a set of patches; each patch treated as a point source with two orthogonal displacement components, slips along the strike and dip directions. Each slip on the fault plane can be translated into surface deformation, e.g., by the Okada model, which is derived from a Green’s function solution to the elastic half space problem. The observed surface deformation at a given location is the linear combination due to (strike/dip) slips of all patches.
 
 .. note::
-For the static inversion, the patches can be of any shape or area as long as each patch can be treated a single point source. If you plan for a joint static-kinematic inversion, note that the currently implemented kinematic inversion only processes a rectangle fault divided into :math:`n_d \times n_s` square patches.
+
+   For the static inversion, the patches can be of any shape or area as long as each patch can be treated a single point source. If you plan for a joint static-kinematic inversion, note that the currently implemented kinematic inversion only processes a rectangle fault divided into :math:`n_d \times n_s` square patches.
 
 Therefore, the forward model is a linear model
 
@@ -223,6 +224,7 @@ If the number of patches is 9 and there are 3 InSAR ramp parameters for one set 
 :math:`{\boldsymbol \theta}` are (0-8), strike slips of 9 patches; (9-17), dip slipd of 9 patches; and (18-20), ramp parameters. The order of the parameter sets can be varied, but has to be consistent with that in the Green's function matrix.
 
 :Attributes:
+
 * ``count`` the number of parameters in this set,
 * ``prior``, the prior distribution to initialize random samples in the beginning, and compute prior probabilities during the sampling process. See :ref:`Prior Distributions` for choices of priors.
 * ``prep`` (optional), a distribution to initialize samples only, while ``prior`` is still used for computing prior probabilities.

@@ -21,6 +21,22 @@ Subpackages
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.cuda.get_current_device
+   altar.cuda.use_device
+   altar.cuda.curand_generator
+   altar.cuda.cublas_handle
+   altar.cuda.copyright
+   altar.cuda.license
+   altar.cuda.version
+   altar.cuda.credits
+
+
 .. function:: get_current_device()
 
    Return current cuda device

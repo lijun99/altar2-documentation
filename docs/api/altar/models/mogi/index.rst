@@ -31,6 +31,24 @@ Submodules
 Package Contents
 ----------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.mogi.source
+   altar.models.mogi.data
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.mogi.mogi
+
+
 .. py:class:: source(x=x, y=y, d=d, dV=dV, nu=nu, **kwds)
 
    An implementation of Mogi[1958]
@@ -64,13 +82,12 @@ Package Contents
 
    .. method:: displacements(self, locations, los)
 
-
       Compute the expected displacements from a point pressure source at a set of observation
       locations
 
 
 
-.. py:class:: data
+.. py:class:: data(name, **kwds)
 
    Bases: :class:`altar.tabular.sheet`
 
@@ -138,12 +155,10 @@ Package Contents
 
    .. method:: read(self, uri)
 
-
       Load a data set from a CSV file
 
 
    .. method:: write(self, uri)
-
 
       Save my data into a CSV file
 

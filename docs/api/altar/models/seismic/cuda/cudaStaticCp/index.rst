@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.seismic.cuda.cudaStaticCp.cudaStaticCp
+
+
+
 .. py:class:: cudaStaticCp
 
    Bases: :class:`altar.models.seismic.cuda.cudaStatic.cudaStatic`
@@ -78,11 +87,6 @@ Module Contents
 
       
 
-   .. attribute:: validators
-      
-
-      
-
    .. attribute:: doc
       :annotation: = single/double precision to compute Cp
 
@@ -105,19 +109,16 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the state of the model given a {problem} specification
 
 
    .. method:: initializeCp(self)
-
 
       Initialize Cp related
       :return:
 
 
    .. method:: updateModel(self, annealer)
-
 
       Model method called by Sampler before Metropolis sampling for each beta step starts,
       employed to compute Cp and merge Cp with data covariance
@@ -126,7 +127,6 @@ Module Contents
 
 
    .. method:: computeCp(self, model, cp=None)
-
 
       Compute Cp with a mean model
       :param model:

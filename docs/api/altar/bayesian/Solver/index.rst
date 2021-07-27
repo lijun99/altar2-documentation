@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.bayesian.Solver.Solver
+
+
+
 .. py:class:: Solver
 
    Bases: :class:`altar.protocol`
@@ -25,19 +34,16 @@ Module Contents
 
    .. method:: initialize(self, application, scheduler)
 
-
       Initialize me and my parts given an {application} context and a {scheduler}
 
 
    .. method:: solve(self, llk, weight)
-
 
       Compute the next temperature in the cooling schedule
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Provide a default implementation
 

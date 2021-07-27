@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: L2
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.norms.L2.L2
+
+
+
+.. py:class:: L2(name, locator, **kwds)
 
    Bases: :class:`altar.component`
 
@@ -15,12 +24,10 @@ Module Contents
 
    .. method:: eval(self, v, sigma_inv=None)
 
-
       Compute the L2 norm of the given vector, with or without a covariance matrix
 
 
    .. method:: withCovariance(self, v, sigma_inv)
-
 
       Compute the L2 norm of the given vector using the given Cholesky decomposed inverse
       covariance matrix

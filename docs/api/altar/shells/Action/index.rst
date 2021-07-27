@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.shells.Action.Action
+
+
+
 .. py:class:: Action
 
    Bases: :class:`altar.action`

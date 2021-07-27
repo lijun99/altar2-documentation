@@ -8,7 +8,7 @@ AlTar uses primarily the [Cascading Adaptive Tempered Metropolis In Parallel (CA
 ### Guides
 (work in progress, currently for AlTar 2.0 CUDA version only)
 
-Readthedocs ([html](https://altar.readthedocs.io)/[pdf](https://altar.readthedocs.io/_/downloads/en/cuda/pdf/)/[epub](https://altar.readthedocs.io/_/downloads/en/cuda/epub/)):
+Readthedocs ([html](https://altar.readthedocs.io) | [pdf](https://altar.readthedocs.io/_/downloads/en/cuda/pdf/) | [epub](https://altar.readthedocs.io/_/downloads/en/cuda/epub)):
 
 - [Installation Guide](https://altar.readthedocs.io/en/cuda/cuda/Installation.html) 
 - [User Guide](https://altar.readthedocs.io/en/cuda/cuda/Manual.html) 
@@ -27,21 +27,18 @@ Tutorials presented with jupyter notebooks:
 
   - [Step 1: prepare the input files](https://github.com/lijun99/altar2-documentation/blob/thearagon-patch-1/jupyter/intro_cp/toymodel_step1.ipynb)
   - [Step 2: run AlTar2](https://github.com/lijun99/altar2-documentation/blob/thearagon-patch-1/jupyter/intro_cp/toymodel_step2.ipynb)
-
-### Discussion groups
-
-- [AlTar mailing list](http://lists.gps.caltech.edu/mailman/listinfo/altar)
-- [slack](https://altar-group.slack.com)
-
-### Bug reporting
+  
+### Support 
 
 - [Issues @ github](https://github.com/AlTarFramework/altar/issues)
+- [Common Issues](https://altar.readthedocs.io/en/cuda/cuda/Issues.html)  
+- [Slack Discussion Group](https://altar-group.slack.com) (currently only for developers)
 
 ### Copyright
 
 ```text
-    Copyright (c) 2013-2020 ParaSim Inc.
-    Copyright (c) 2010-2020 California Institute of Technology
+    Copyright (c) 2013-2021 ParaSim Inc.
+    Copyright (c) 2010-2021 California Institute of Technology
     All Rights Reserved
     
     This software is subject to the provisions of its LICENSE, a copy of

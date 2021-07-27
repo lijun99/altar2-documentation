@@ -5,13 +5,10 @@ User Guide
 ##########
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 3
 
     Overview
     QuickStart
     Pyre
     AlTarFramework
-    Priors
-    Static
-    cp.md
-    Kinematic
+    Models

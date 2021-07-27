@@ -7,12 +7,21 @@
 Module Contents
 ---------------
 
-.. py:class:: Static
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.seismic.Static.Static
+
+
+
+.. py:class:: Static(name, locator, **kwds)
 
    Bases: :class:`altar.models.bayesian`
 
    Static inversion with cuda  (d = G theta)
-   Modeled as N patches with dip and slip displacements  
+   Modeled as N patches with dip and slip displacements
 
    .. attribute:: parametersets
       
@@ -151,18 +160,15 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the state of the model given a {problem} specification
 
 
    .. method:: initializeSample(self, step)
 
-
       Fill {step.θ} with an initial random sample from my prior distribution.
 
 
    .. method:: computePrior(self, step)
-
 
       Fill {step.prior} with the densities of the samples in {step.theta} in the prior
       distribution
@@ -170,13 +176,11 @@ Module Contents
 
    .. method:: computeDataLikelihood(self, step)
 
-
       Fill {step.data} with the densities of the samples in {step.theta} given the available
       data. This is what is usually referred to as the "forward model"
 
 
    .. method:: verify(self, step, mask)
-
 
       Check whether the samples in {step.theta} are consistent with the model requirements and
       update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones
@@ -184,24 +188,20 @@ Module Contents
 
    .. method:: initializeParameterSets(self)
 
-
       Initialize the parameter set
 
 
    .. method:: mountInputDataspace(self, pfs)
-
 
       Mount the directory with my input files
 
 
    .. method:: loadInputs(self)
 
-
       Load the data in the input files into memory
 
 
    .. method:: initializeCovariance(self, samples)
-
 
       Compute the Cholesky decomposition of the inverse of the data covariance
       and merge it to data
@@ -209,18 +209,15 @@ Module Contents
 
    .. method:: computeCovarianceInverse(self, cd)
 
-
       Compute the inverse of the data covariance matrix
 
 
    .. method:: computeNormalization(self, observations, cd)
 
-
       Compute the normalization of the L2 norm
 
 
    .. method:: initializeResiduals(self, samples, data)
-
 
       Prime the matrix that will hold the residuals (G θ - d) for each sample by duplicating the
       observation vector as many times as there are samples
@@ -228,23 +225,35 @@ Module Contents
 
    .. method:: update(self, annealer)
 
-
       Model updating at the bottom of each annealing step
       Output step data
 
 
    .. method:: forwardModel(theta, green, data_residuals=None, data_observations=None, batches=None)
 
+      Forward model: compute data prediction or data residuals from a set of theta
+      :param theta [in:
+      :type theta [in: samples, parameters
+      :param cuarray] parameters with shape=:
+      :type cuarray] parameters with shape=: samples, parameters
+      :param green [in:
+      :type green [in: observations, parameters
+      :param cuarray] Green's function with shape =:
+      :type cuarray] Green's function with shape =: observations, parameters
+      :param batches [in:
+      :param integer:
+      :param optional] number of samples needto be computed <=samples:
+      :param data_observations [in:
+      :param cuarray:
+      :param optional] data observations:
+      :param data_residuals[inout:
+      :type data_residuals[inout: observations, samples
+      :param cuarray:
+      :type cuarray: observations, samples
+      :param optional] data predictions or residuals shape=:
+      :type optional] data predictions or residuals shape=: observations, samples
 
-      Forward model: compute data prediction or data residuals from a set of theta 
-      Args: 
-          theta [in, cuarray] parameters with shape=(samples, parameters)
-          green [in, cuarray] Green's function with shape = (observations, parameters)
-          batches [in, integer, optional] number of samples needto be computed <=samples
-          data_observations [in, cuarray, optional] data observations
-          data_residuals[inout, cuarray, optional] data predictions or residuals shape=(observations, samples)
-      Returns:
-          data predictions or residuals if data_observations is provides 
+      :returns: data predictions or residuals if data_observations is provides
 
 
 

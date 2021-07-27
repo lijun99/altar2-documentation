@@ -1,9 +1,9 @@
 
 .. _Prior Distributions:
 
-######################
+
 (Prior) Distributions
-######################
+=====================
 
 There are several probability distributions defined in AlTar, serving as prior distributions.
 
@@ -39,7 +39,7 @@ For a parameter to be sampled, the distributions for generating the initial samp
 Please note that AlTar processes samples in batch, where :math:`\theta` is a 2d array ``shape=(samples, parameters)``. Also, in a specific Model, there may be different parameter sets which observe different prior distributions. Therefore, the methods in a prior distribution are responsible for its own portion of parameters (selected columns of :math:`\theta`) and for a batched samples (rows of :math:`\theta`).
 
 Uniform
-========
+-------
 
 The probability density function (PDF) for a uniform distribution is
 
@@ -59,7 +59,7 @@ where :math:`[a, b]` is the support or range.
         support = (0, 1)
 
 Gaussian
-=========
+--------
 
 The PDF for the Gaussian (normal) distribution is defined as
 
@@ -79,7 +79,7 @@ where :math:`\mu` and :math:`\sigma^2` are mean (center) and variance, respectiv
         sigma = 2
 
 Truncated Gaussian
-==================
+------------------
 
 The `truncated Gaussian distribution <https://en.wikipedia.org/wiki/Truncated_normal_distribution>`_ is derived from the Gaussian distribution but is only finite within the support range.
 
@@ -96,7 +96,7 @@ The `truncated Gaussian distribution <https://en.wikipedia.org/wiki/Truncated_no
         sigma = 2
 
 Preset
-======
+------
 
 The ``Preset`` distribution is used to load initial samples from pre-calculated ones. Therefore, it only serves as a preparation (``prep``) distribution. The currently support input format is HDF5, as the default output for AlTar simulation results.
 

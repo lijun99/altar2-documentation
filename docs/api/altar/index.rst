@@ -34,6 +34,18 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.copyright
+   altar.license
+   altar.version
+   altar.credits
+
+
 .. data:: package
    
 

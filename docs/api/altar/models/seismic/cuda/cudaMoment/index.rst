@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: cudaMoment
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.seismic.cuda.cudaMoment.cudaMoment
+
+
+
+.. py:class:: cudaMoment(name, locator, **kwds)
 
    Bases: :class:`altar.cuda.distributions.cudaUniform.cudaUniform`
 
@@ -63,7 +72,17 @@ Module Contents
       
 
    .. attribute:: doc
-      :annotation: = the shear modulus for each patch in unit of GPa, provide one value if the same for all patches
+      :annotation: = the shear modulus for each patch in GPa, provide one value if the same for all patches
+
+      
+
+   .. attribute:: Mu_patch_file
+      
+
+      
+
+   .. attribute:: Mu_patch_file
+      :annotation: = input file for the shear modulus of each patch, in Km^2
 
       
 
@@ -104,18 +123,15 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize with the given random number generator
 
 
    .. method:: cuInitialize(self, application)
 
-
       cuda interface of initialization
 
 
    .. method:: cuInitSample(self, theta)
-
 
       Fill my portion of {theta} with initial random values from my distribution.
 

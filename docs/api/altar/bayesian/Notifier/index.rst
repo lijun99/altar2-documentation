@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.bayesian.Notifier.Notifier
+
+
+
 .. py:class:: Notifier(**kwds)
 
    Bases: :class:`altar.component`
@@ -135,18 +144,15 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize me given an {application} context
 
 
    .. method:: register(self, monitor)
 
-
       Enable {monitor} as an observer of simulation events
 
 
    .. method:: notify(self, event, controller)
-
 
       Notify all handlers that are waiting for {event}
 

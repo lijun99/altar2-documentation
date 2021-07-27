@@ -7,7 +7,16 @@
 Module Contents
 ---------------
 
-.. py:class:: Uniform
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.distributions.Uniform.Uniform
+
+
+
+.. py:class:: Uniform(name, locator, **kwds)
 
    Bases: :class:`altar.distributions.Base.Base`
 
@@ -25,12 +34,10 @@ Module Contents
 
    .. method:: initialize(self, rng)
 
-
       Initialize with the given random number generator
 
 
    .. method:: verify(self, theta, mask)
-
 
       Check whether my portion of the samples in {theta} are consistent with my constraints, and
       update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones

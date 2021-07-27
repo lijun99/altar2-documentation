@@ -10,8 +10,10 @@ Subpackages
    :titlesonly:
    :maxdepth: 3
 
+   actions/index.rst
    cuda/index.rst
    ext/index.rst
+   shells/index.rst
 
 
 Submodules
@@ -28,6 +30,17 @@ Submodules
 
 Package Contents
 ----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.seismic.moment
+   altar.models.seismic.static
+   altar.models.seismic.staticCp
+
 
 .. function:: moment()
 

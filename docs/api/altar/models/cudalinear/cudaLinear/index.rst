@@ -7,11 +7,20 @@
 Module Contents
 ---------------
 
-.. py:class:: cudaLinear
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.models.cudalinear.cudaLinear.cudaLinear
+
+
+
+.. py:class:: cudaLinear(name, locator, **kwds)
 
    Bases: :class:`altar.cuda.models.cudaBayesian.cudaBayesian`
 
-   Cuda implementation of a linear model 
+   Cuda implementation of a linear model
    A linear model is defined as data = G theta
 
    .. attribute:: dataobs
@@ -61,30 +70,25 @@ Module Contents
 
    .. method:: initialize(self, application)
 
-
       Initialize the state of the model given a {problem} specification
 
 
    .. method:: _forwardModel(self, theta, prediction, batch, observation=None)
-
 
       Linear Forward Model prediction= G theta
 
 
    .. method:: cuEvalLikelihood(self, theta, likelihood, batch)
 
-
       to be loaded by super class cuEvalLikelihood which already decides where the local likelihood is added to
 
 
    .. method:: loadGF(self)
 
-
       Load the data in the input files into memory
 
 
    .. method:: prepareGF(self)
-
 
       copy green function to gpu and merge cd with green function
 

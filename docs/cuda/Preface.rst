@@ -1,10 +1,11 @@
 .. _Preface:
 
-#################
-AlTar 2.0 Release
-#################
+#######
+Preface
+#######
 
 .. toctree::
     :maxdepth: 2
 
     ../README.md
+    Background

@@ -7,6 +7,15 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   altar.simulations.RNG.RNG
+
+
+
 .. py:class:: RNG
 
    Bases: :class:`altar.protocol`
@@ -15,13 +24,11 @@ Module Contents
 
    .. method:: initialize(self, **kwds)
 
-
       Initialize the random number generator
 
 
    .. method:: pyre_default(cls, **kwds)
       :classmethod:
-
 
       Supply a default implementation
 
