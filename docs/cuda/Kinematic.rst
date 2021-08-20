@@ -34,10 +34,10 @@ which is a linear model (note that the Eikonal equation is non-linear). Here, :m
 
 In summary, the kinematic inversion uses the following source parameters
 
-- the two components of coseismic slip :math:`{\bf D}({\vec \xi})` (:math:`2\times N_{dd} \times N_{as}` elements),
-- the rupture velocity  :math:`V_r({\vec \xi})` (:math:`N_{dd} \times N_{as}` elements),
-- the rise time :math:`T_r({\vec \xi})` (:math:`N_{dd} \times N_{as}` elements),
-- the location of the hypocenter :math:`{\bf H}_0` (2 elements),
+    - the two components of coseismic slip :math:`{\bf D}({\vec \xi})` (:math:`2\times N_{dd} \times N_{as}` elements),
+    - the rupture velocity  :math:`V_r({\vec \xi})` (:math:`N_{dd} \times N_{as}` elements),
+    - the rise time :math:`T_r({\vec \xi})` (:math:`N_{dd} \times N_{as}` elements),
+    - the location of the hypocenter :math:`{\bf H}_0` (2 elements),
 
 and the forward model
 
@@ -47,8 +47,8 @@ and the forward model
 
 is preformed in two steps,
 
-- to obtain :math:`{\bf M}_b({\vec \xi}, t')` from the Eikonal equation sovler,
-- to calculate :math:`d_{pred} = {\cal G}_b {\bf M}_b`.
+    - to obtain :math:`{\bf M}_b({\vec \xi}, t')` from the Eikonal equation sovler,
+    - to calculate :math:`d_{pred} = {\cal G}_b {\bf M}_b`.
 
 
 Joint Kinematic-Static Inversion
@@ -181,7 +181,7 @@ The parameter sets or ``psets`` for the kinematic models are ``psets_list = [str
 
 - The names the parameter sets can be changed per your preference, e.g., ``strike_slip``, ``StrikeSlip``.  But the order of the parameter sets must be preserved because the forward model uses the order to map appropriate parameters. ``strikeslip`` and ``dipslip`` may be switched as long as their order is consistent with the Green's functions.
 
-- ``strikeslip`` and ``dipslip`` are two components of the cumulative slip displacement. If you prefer to load their initial samples from the static inversion results, use the ``altar.cuda.distributions.preset`` distribution for ``prep``. Only ``HDF5`` format is accepted and therefore, its dataset name ``prep.dataset=ParameterSets/strikeslip`` is also required. If you choose to generate samples from a given distribution, e.g., gaussian/moment scale distributions, please follow the static inversion example to set their ``prep`` and ``prior`` distributions.
+- ``strikeslip`` and ``dipslip`` are two components of the cumulative slip displacement. If you prefer to load their initial samples from the static inversion results, use the ``altar.cuda.distributions.preset`` distribution for ``prep``, see :ref:`Preset` distribution for more details. Only ``HDF5`` format is accepted for Preset prior and therefore, its dataset name ``prep.dataset=ParameterSets/strikeslip`` is also required. If you choose to generate samples from a given distribution, e.g., gaussian/moment scale distributions, please follow the :ref:`Static Parameter Sets` example in static inversion to set their ``prep`` and ``prior`` distributions.
 
 - ``risetime`` and ``rupturevelocity`` are rupture duration and velocities for each patch. As they are positive, usually uniform or truncated gaussian distributions are used as their priors.
 
@@ -194,9 +194,9 @@ Input files
 
 The kinematic model requires the following input files
 
-- ``green`` as the kinematic Green's functions, with the ``shape=(2*Ndd*Nas*Nt, observations)``. The ``observations`` is the number of observed data points, and is the leading dimension. ``[Nt][2(strike/dip)][Nas][Ndd]`` labels the spatial-temporal source displacements with leading dimensions on the right (or which comes first):
+:green: the kinematic Green's functions, with the ``shape=(2*Ndd*Nas*Nt, observations)``. The ``observations`` is the number of observed data points, and is the leading dimension. ``[Nt][2(strike/dip)][Nas][Ndd]`` labels the spatial-temporal source displacements with leading dimensions on the right (or which comes first):
 
-::
+.. code-block:: none
 
   (t=0, strike, as_0, dd_0, obs_0), (t=0, strike, as_0, dd_0, obs_1), ..., (t=0, strike, as_0, dd_0, obs_{Nobs-1})
   (t=0, strike, as_0, dd_1, obs_0), (t=0, strike, as_0, dd_1, obs_1), ..., (t=0, strike, as_0, dd_1, obs_{Nobs-1})
@@ -214,9 +214,9 @@ The kinematic model requires the following input files
 
   You need to follow the above order when preparing the Green's functions as it's the order how big-M is arranged in the forward model.
 
-- ``dataobs.data_file``, with 1d vector of observed data.
+:dataobs.data_file: 1d vector of observed data.
 
-- ``dataobs.cd_file`` for the data covariance matrix with ``shape=(observations, observations)``. If not available, a constant ``dataobs.cd_std`` may be used instead.
+:dataobs.cd_file: the data covariance matrix with ``shape=(observations, observations)``. If not available, a constant ``dataobs.cd_std`` may be used instead.
 
 The input files can be a text file (.txt), a raw binary (.bin or .dat) or an HDF5 (.h5) file, with its format recognized by the file suffix.
 
@@ -263,9 +263,9 @@ Here, the main model is a model ensemble ``altar.models.seismic.cuda.cascaded``,
 
 The parametersets are properties of the main model and are processed by the main model for sample initializations and prior probability computations. Each embedded-model only requires a ``psets_list`` attribute to extract a sub set of parameters from ``model.psets`` for its own forward modelling, with the data likelihood computed with respect to its own data observations. The main model collects the data likelihood from all embedded models and assembles them into the Bayesian posterior.
 
-The configuration for each embedded model will be the same as when running it independently, except for an extra flag ``cascaded`` (default=False) to control the cascading scheme.
+The configuration for each embedded model will be the same as when running it independently, except for an extra flag ``cascaded`` (default=``False``) to control the cascading scheme.
 
-For the non-cascading scheme with :math:`\beta_s = \beta_k = \beta` varying from 0 to 1, set
+For the non-cascading scheme with :math:`\beta_s = \beta_k = \beta` varying from 0 to 1 simultaneously, set
 
 .. code-block:: none
 
@@ -322,9 +322,9 @@ For the non-cascading scheme, you don't need the step to run static inversion.
 
 You may edit the ``kinematicg.pfg`` file (or make a copy at first),
 
-- change the ``static.cascaded`` to ``False``;
-- change the ``prep`` distributions for ``strikeslip``, ``dipslip``, and ``ramp`` from ``preset`` to appropriate distributions, e.g., copying them from ``static.pfg`` file.
-- change the output directory ``controller.archiver.output_dir`` to, e.g., ``results/non-cascaded``.
+    - change the ``static.cascaded`` to ``False``;
+    - change the ``prep`` distributions for ``strikeslip``, ``dipslip``, and ``ramp`` from ``preset`` to appropriate distributions, e.g., copying them from ``static.pfg`` file.
+    - change the output directory ``controller.archiver.output_dir`` to, e.g., ``results/non-cascaded``.
 
 Then run the joint inversion:
 
@@ -340,11 +340,58 @@ Please refer to the :ref:`AlTar Framework` for the Bayesian MCMC framework optio
 Forward Model Application (new version)
 ---------------------------------------
 
-It is essentially the same as the :ref:`Static Forward Model`. The predicted data from both static and kinematic models, as well as the bigM, will be saved to one ``forward_prediction.h5`` file. An example is available at :altar_src:`examples/kinematicg_forward.pfg <models/seismic/examples/kinematicg_forward.pfg>`.
+It is essentially the same as the static :ref:`Static Forward Model`. The steps are,
+
+1) prepare a file with a set of parameters in ``case`` input directory;
+
+2) add the forward problem settings to the configuration file ``kinematicg.pfg`` and change the ``job`` configuration to run with one GPU,
+
+.. code-block:: none
+
+        ; the model
+        model = altar.models.seismic.cuda.cascaded
+        model:
+
+            ; settings for running forward problem only
+            ; forward theta input
+            theta_input = kinematicG_mean_model.txt
+            ; forward output file
+            forward_output = forward_prediction.h5
+
+        ... ...
+
+        job:
+        tasks = 1 ; number of tasks per host
+        gpus = 1  ; number of gpus per task
+        gpuprecision = float32 ; double(float64) or single(float32) precision for gpu computations
+        ;gpuids = [0] ; a list gpu device ids for tasks on each host, default range(job.gpus)
+
+
+3) run the plexus command,
+
+.. code-block:: bash
+
+    $ slipmodel.plexus forward --config=kinematicg.pfg
+
+4) the predicted data from both static and kinematic models, as well as the bigM, will be saved to one ``forward_prediction.h5`` file.
+
+An example is available at :altar_src:`examples/kinematicg.pfg <models/seismic/examples/kinematicg.pfg>`.
+
+Note also that the same script can be used for Bayesian simulation, with the commands,
+
+.. code-block:: bash
+
+    $ slipmodel --config=kinematicg.pfg
+    # or
+    $ slipmodel.plexus sample --config=kinematicg.pfg
+
+See :ref:`Static Forward Model` for more details.
 
 
 Forward Model Application (old version)
 ---------------------------------------
+
+.. note:: This section describes an old implementation, which will be depreciated in the next release.
 
 When analyzing the results, you may need to run the forward model once for the obtained mean-model or any set of parameters, to produce data predictions in comparison with data observations. Since the kinematic forward model is not straightforward, we provide an additional application for running the forward model only, named ``kinematicForwardModel``.
 

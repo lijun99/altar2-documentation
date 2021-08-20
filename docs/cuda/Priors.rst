@@ -95,6 +95,8 @@ The `truncated Gaussian distribution <https://en.wikipedia.org/wiki/Truncated_no
         mean = 0
         sigma = 2
 
+.. _Preset :
+
 Preset
 ------
 
@@ -111,6 +113,7 @@ For example, in the earthquake (seismic) inversion, we have samples of ``strikes
     prep = altar.cuda.distributions.preset ; load preset samples
     prep.input_file = theta_cascaded.h5 ; file name
     prep.dataset = ParameterSets/strikeslip ; dataset name in h5
+
 
 Other Distributions
 ===================

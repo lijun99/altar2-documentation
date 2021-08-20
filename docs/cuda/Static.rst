@@ -163,7 +163,7 @@ For static inversion, you need to specify ``model = altar.models.seismic.cuda.st
 :green: the file name for the Green's functions, as prepared from the instructions above;
 :dataobs: a component to process the data observations and calculate the data likelihood with L2 norm, with details provided in :ref:`Data Observations`;
 :psets_lists: a list of parameter sets, the order will be used for many purposes, e.g., enforcing the order of parameters in :math:`\theta`;
-:psets: components to describe the parameter sets, with details provided in :ref:`Parameter Sets`.
+:psets: components to describe the parameter sets, with details provided in :ref:`Static Parameter Sets`.
 
 .. _Data Observations:
 
@@ -189,7 +189,7 @@ For the data observations with the data covariance matrix ``datal2``, the follow
 :cd_std: if the data covariance has only constant diagonal elements, you may use this option instead of ``cd_file``.
 
 
-.. _Parameter Sets:
+.. _Static Parameter Sets:
 
 Parameter Sets
 ~~~~~~~~~~~~~~~
@@ -328,13 +328,13 @@ Note also since ``Mu`` and ``area`` appear as products for each patch, you may a
 Forward Model Application
 -------------------------
 
-When analyzing the results, you may need to run the forward model once for the obtained mean, medium, or MAP model, or a synthetic model, to produce data predictions and compare with data observations. For the static model, it is straightforward: obtain the mean model (vector), read the Green's function (matrix), and perform a matrix-vector multiplication with numpy.
+When analyzing the results, you may need to run the forward problem once for an obtained mean, medium, or MAP model, or a synthetic model, to produce data predictions and compare with data observations. For the static model, it is straightforward: obtain the mean model (vector), read the Green's function (matrix), and perform a matrix-vector multiplication.
 
-AlTar2 also provides an option to run the forward modeling only instead of the full-scale simulation, with a slightly modified configuration file. Please follow the steps below.
+AlTar2 also provides an option to run the forward problem only instead of the full-scale Bayesian simulation, with a slightly modified configuration file. Please follow the steps below.
 
 The first step is to prepare a model file, e.g., ``static_mean_model.txt``, including a set of parameters (a vector of :math:`N_{param}` elements), and copy the file to the input directory - the ``case`` directory. To obtain the mean model from the simulations, see :ref:`Static Model Utilities` below.
 
-The second step is to modify the configuration file, e.g, ``static.pfg``, by adding the following settings under ``model`` configuration, (for convenience, we rename it to ``static_forward.pfg``.)
+The second step is to modify the configuration file, e.g, ``static.pfg``, by adding the following settings under ``model`` configuration,
 
 .. code-block:: none
 
@@ -344,25 +344,21 @@ The second step is to modify the configuration file, e.g, ``static.pfg``, by add
         model = altar.models.seismic.cuda.static
         model:
 
-            ; forward only (True), simulation(set to False)
-            forwardonly = True
+            ; settings for running forward problem only
             ; forward theta input
             theta_input = static_mean_model.txt
             ; forward output file
             forward_output = static_forward_prediction.h5
 
-            ; the name of the test case, also as directory for input files
-            case = 9patch
-
             ... ...
             ; the rest is the same
 
 
-:forwardonly:  ``True`` for forward modeling only, ``False`` (default) for regular simulations.
-:theta_input: the input model file.
+:theta_input: the input model file, a text, binary or HDF5 file.
+:theta_dataset: to specify the dataset name in an HDF5 file.
 :forward_output: the output file including the predicted data in HDF5 format.
 
-You may also need to change the ``job`` configuration since the forward modeling option uses only one GPU (and one thread),
+Note that the forward problem option runs with one GPU (and one thread), please make adjustment to the ``job`` configuration if necessary,
 
 .. code-block:: none
 
@@ -373,32 +369,34 @@ You may also need to change the ``job`` configuration since the forward modeling
         ;gpuids = [0] ; a list gpu device ids for tasks on each host, default range(job.gpus)
         ... ...
 
-The third step is to run a different command
+The third step is to run a command
 
 .. code-block:: bash
 
-    $ slipmodel.plexus forward --config=static_forward.pfg
+    $ slipmodel.plexus forward --config=static.pfg
 
 Check the generated ``static_forward_prediction.h5`` file for the predicted data from the input model.
 
 Please check the :altar_src:`examples <models/seismic/examples>` directory from the source code for a complete sample.
 
-Actually, you can run the regular simulation with the same configuration file ``static_forward.pfg`` by simply changing ``forwardonly`` to ``False`` (and ``job`` section if needed), by
+``slipmodel.plexus`` is a new AlTar application which supports multiple options/workflows how to run the program, a functionality provided by the pyre plexus application class. It currently offers three options,
 
 .. code-block:: bash
 
-    $ slipmodel --config=static_forward.pfg
-    # or
-    $ slipmodel.plexus sample --config=static_forward.pfg
-
-``slipmodel.plexus`` is a pyre plexus application which supports extra options (panels) compared to the ``slipmodel`` application,
-
-.. code-block:: bash
-
-    $ slipmodel.plexus  #  call about to show application info
     $ slipmodel.plexus about # show application info
     $ slipmodel.plexus sample --config=...  # full simulation, equivalent to slipmodel command
     $ slipmodel.plexus forward --config=... # forward modeling only
+    $ slipmodel.plexus  #  call about (as default) to show application info
+
+The same configuration file can be used for either options. To run the Bayesian simulations, you may use the same file and run
+
+.. code-block:: bash
+
+    $ slipmodel --config=static.pfg
+    # or
+    $ slipmodel.plexus sample --config=static.pfg
+
+the settings for the forward problem option have no effect on the simulation workflow and vice versa.
 
 
 .. _Static Model Utilities:
