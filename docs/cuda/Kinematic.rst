@@ -337,12 +337,18 @@ In general, the non-cascading takes long iterations to converge and therefore is
 Please refer to the :ref:`AlTar Framework` for the Bayesian MCMC framework options and job/output controls. For example, the Adaptive Metropolis Sampler in general has better performance than the fixed-length Metropolis Sampler, which can be selected by setting ``sampler=altar.cuda.bayesian.adapativemetropolis`` in the configuration file.
 
 
-Forward Model Application
---------------------------
+Forward Model Application (new version)
+---------------------------------------
+
+It is essentially the same as the :ref:`Static Forward Model`. The predicted data from both static and kinematic models, as well as the bigM, will be saved to one ``forward_prediction.h5`` file. An example is available at :altar_src:`examples/kinematicg_forward.pfg <models/seismic/examples/kinematicg_forward.pfg>`.
+
+
+Forward Model Application (old version)
+---------------------------------------
 
 When analyzing the results, you may need to run the forward model once for the obtained mean-model or any set of parameters, to produce data predictions in comparison with data observations. Since the kinematic forward model is not straightforward, we provide an additional application for running the forward model only, named ``kinematicForwardModel``.
 
-An example configuration file is available as ``examples/kinematicg_forward.pfg``. You may use the ``model`` configuration copied from ``kinematicg.pfg``, with extra settings
+An example configuration file is available as ``examples/kinematicg_forward_oldversion.pfg``. You may use the ``model`` configuration copied from ``kinematicg.pfg``, with extra settings
 
 .. code-block:: none
 
@@ -363,6 +369,3 @@ The forward model application may be run as
 .. code-block:: bash
 
     $ kinematicForwardModel --config=kinematicg_forward.pfg
-
-
-TBD: we will try to make forward model applications/panels available for all models.
