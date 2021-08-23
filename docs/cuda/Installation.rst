@@ -77,7 +77,7 @@ Required:
 Optional:
 
 - ``MPI`` for multi-thread computations on single machine or cluster system.  The recommended option is ``openmpi > 1.10`` with CXX support (note that on many cluster systems, openmpi is compiled without the ``--enable-mpi-cxx`` option and therefore doesn't have the `libmpi_cxx.so` library). Other MPI implementations such as MPICH, Intel MPI are also supported.
-- ``CUDA toolkit >= 10.0`` for GPU-accelerated computations. Additional libraries including ``cublas``, ``curand``, and ``cusolver`` are also required. CUDA9 also works, but may require tweaking the ``cuda/include/crt/host_config.h`` if it complains about incompatibility with ``gcc7``.
+- ``CUDA toolkit >= 10.0`` for GPU-accelerated computations. Additional libraries including ``cublas``, ``curand``, and ``cusolver`` are also required.
 - An accelerated ``BLAS`` library, such as ``atlas``, ``openblas``, or ``mkl``. Otherwise, the ``gslcblas`` library, as included in ``GSL``, will be used by default.
 
 .. _Downloads:

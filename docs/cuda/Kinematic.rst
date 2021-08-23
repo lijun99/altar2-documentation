@@ -181,13 +181,13 @@ The parameter sets or ``psets`` for the kinematic models are ``psets_list = [str
 
 - The names the parameter sets can be changed per your preference, e.g., ``strike_slip``, ``StrikeSlip``.  But the order of the parameter sets must be preserved because the forward model uses the order to map appropriate parameters. ``strikeslip`` and ``dipslip`` may be switched as long as their order is consistent with the Green's functions.
 
-- ``strikeslip`` and ``dipslip`` are two components of the cumulative slip displacement. If you prefer to load their initial samples from the static inversion results, use the ``altar.cuda.distributions.preset`` distribution for ``prep``, see :ref:`Preset` distribution for more details. Only ``HDF5`` format is accepted for Preset prior and therefore, its dataset name ``prep.dataset=ParameterSets/strikeslip`` is also required. If you choose to generate samples from a given distribution, e.g., gaussian/moment scale distributions, please follow the :ref:`Static Parameter Sets` example in static inversion to set their ``prep`` and ``prior`` distributions.
+- ``strikeslip`` and ``dipslip`` are two components of the cumulative slip displacement. If you prefer to load their initial samples from the static inversion results, use the ``altar.cuda.distributions.preset`` distribution for ``prep``, see :ref:`Preset` distribution for more details. Only ``HDF5`` format is accepted for Preset prior and therefore, its dataset name ``prep.dataset=ParameterSets/strikeslip`` is also required. If you choose to generate samples from a given distribution, e.g., gaussian/moment scale distributions, please follow the :ref:`Static Parameter Sets` example in static inversion to set their ``prep`` and ``prior`` distributions. The slips are usually in unit of meters.
 
-- ``risetime`` and ``rupturevelocity`` are rupture duration and velocities for each patch. As they are positive, usually uniform or truncated gaussian distributions are used as their priors.
+- ``risetime`` (in unit of seconds) and ``rupturevelocity`` (in unit of km/s) are rupture duration and velocities for each patch. As they are positive, usually uniform or truncated gaussian distributions are used as their priors.
 
 -  ``strikeslip``, ``dipslip``, ``risetime`` and ``rupturevelocity`` are defined for each patch and their counts are the same as the number of patches. The sequence of patches is arranged as, for :math:`N_{dd} \times N_{as}` patches,  :math:`(as_0, dd_0), (as_0, dd_1), ... (as_0, dd_{Ndd-1}), (as_1, dd_0), ..., (as_{Nas-1}, dd_{Ndd-1})`. Or ``dd`` is the leading dimension.
 
-- ``hypocenter`` is the location of the hypocenter measured from the **CENTER** of the :math:`(as_0, dd_0)` patch (note that it's not the origin or the corner), in unit of kilometers. If the distances along dip and strike directions are different, you may separate them as ``hypo_dd`` and ``hypo_as``, with ``dd`` being first.
+- ``hypocenter`` (in unit of km) is the location of the hypocenter measured from the **CENTER** of the :math:`(as_0, dd_0)` patch (note that it's not the origin or the corner), in unit of kilometers. If the distances along dip and strike directions are different, you may separate them as ``hypo_dd`` and ``hypo_as``, with ``dd`` being first.
 
 Input files
 ~~~~~~~~~~~
@@ -219,6 +219,18 @@ The kinematic model requires the following input files
 :dataobs.cd_file: the data covariance matrix with ``shape=(observations, observations)``. If not available, a constant ``dataobs.cd_std`` may be used instead.
 
 The input files can be a text file (.txt), a raw binary (.bin or .dat) or an HDF5 (.h5) file, with its format recognized by the file suffix.
+
+Other attributes
+~~~~~~~~~~~~~~~~
+
+:Ndd: integer, number of patches down the dip direction
+:Nas: integer, number of patches along the strike direction
+:Nmesh: integer, number of mesh points for each patch, i.e., each patch is divided into :math:`N_{mesh} \times N_{mesh}` grids for solving the Eikonal equation
+:dsp: float, the length for each patch, in km
+:Nt: integer, number of time intervals, should be long enough to cover the rupture process
+:Npt: integer, number of mesh points for each time interval
+:dt: float, time unit for each time interval, in second
+:t0s: a list of floats with :math:`N_{patch}` elements, initial starting time for each patch, in addition to the fast sweeping calculated arrival time. If configured properly, they can reduce the total number of time intervals needed for the computation.
 
 
 Configurations (Joint inversion)
@@ -395,7 +407,7 @@ Forward Model Application (old version)
 
 When analyzing the results, you may need to run the forward model once for the obtained mean-model or any set of parameters, to produce data predictions in comparison with data observations. Since the kinematic forward model is not straightforward, we provide an additional application for running the forward model only, named ``kinematicForwardModel``.
 
-An example configuration file is available as ``examples/kinematicg_forward_oldversion.pfg``. You may use the ``model`` configuration copied from ``kinematicg.pfg``, with extra settings
+An example configuration file is available as :altar_src:`examples/kinematicg_forward.pfg <models/seismic/examples/kinematicg_forward.pfg>`. You may use the ``model`` configuration copied from ``kinematicg.pfg``, with extra settings
 
 .. code-block:: none
 
@@ -406,7 +418,7 @@ An example configuration file is available as ``examples/kinematicg_forward_oldv
     ; data prediction is 1d vector with dimension observations
     data_output = kinematicG_synthetic_data.h5
     ; Mb is 1d vector arranged as [Nt][2(strike/dip)][Nas][Ndd] with leading dimensions on the right
-    mb_output = kinematicG_sythetic_mb.h5
+    mb_output = kinematicG_synthetic_mb.h5
 
 
 where ``theta_input`` is the input of a mean model or any synthetic model, and ``data_out`` and ``mb_output`` are output file names for the data predictions and the big M (you can create an animation from it to observe the rupture process).
