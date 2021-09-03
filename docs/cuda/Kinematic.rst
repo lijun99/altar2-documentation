@@ -187,7 +187,7 @@ The parameter sets or ``psets`` for the kinematic models are ``psets_list = [str
 
 -  ``strikeslip``, ``dipslip``, ``risetime`` and ``rupturevelocity`` are defined for each patch and their counts are the same as the number of patches. The sequence of patches is arranged as, for :math:`N_{dd} \times N_{as}` patches,  :math:`(as_0, dd_0), (as_0, dd_1), ... (as_0, dd_{Ndd-1}), (as_1, dd_0), ..., (as_{Nas-1}, dd_{Ndd-1})`. Or ``dd`` is the leading dimension.
 
-- ``hypocenter`` (in unit of km) is the location of the hypocenter measured from the **CENTER** of the :math:`(as_0, dd_0)` patch (note that it's not the origin or the corner), in unit of kilometers. If the distances along dip and strike directions are different, you may separate them as ``hypo_dd`` and ``hypo_as``, with ``dd`` being first.
+- ``hypocenter`` (in unit of km) is the location of the hypocenter measured from the **CENTER** of the :math:`(as_0, dd_0)` patch (note that it's not the origin or the corner), in unit of kilometers. If the distances down dip (dd) and along strike (as) directions are different, you may separate them as two parameter sets ``hypo_as`` and ``hypo_dd``, with ``as`` component being first.
 
 Input files
 ~~~~~~~~~~~
