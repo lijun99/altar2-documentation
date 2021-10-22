@@ -329,7 +329,7 @@ Pyre requires a BLAS library for its ``gsl`` module. CMake searches automaticall
 
 .. code-block:: bash
 
-    cmake .. -DBLA_VENOR=vendor
+    cmake .. -DBLA_VENDOR=vendor
 
 where ``vendor`` can be ``Generic``(``libblas.so``), ``ATLAS``, ``Intel10_64lp``, ``OpenBLAS`` .... You may also add ``-DCMAKE_PREFIX_PATH=/path/to/blas`` to enforce a search path.
 
@@ -519,7 +519,7 @@ Compile and install pyre
 
     cd ${HOME}/tools/src/pyre
     mkdir build && cd build
-    cmake .. -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_CUDA_ARCHITECTURES="60"
+    cmake .. -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_CUDA_ARCHITECTURES="60" -DBLA_VENDOR=OpenBLAS
     make -j && make install
 
 where ``INSTALL_PREFIX`` is the installation path and ``PREFIX_PATH`` is the path to search the prerequisite packages. Replace ``60`` with appropriate compute capability number(s) for your GPU(s). See :ref:`GPU architecture(s) <GPU architecture>` for more details.
