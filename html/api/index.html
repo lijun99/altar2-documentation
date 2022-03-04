@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="altar" href="altar/index.html" />
+    <link rel="prev" title="Common Issues" href="../cuda/Issues.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="altar/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline"></a></h1>
+<p>This page contains auto-generated API reference documentation <a class="footnote-reference brackets" href="#f1" id="id1">1</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="altar/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="altar/actions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="altar/actions/About/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions.About</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/actions/Forward/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions.Forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/actions/Sample/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions.Sample</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="altar/bayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Annealer/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Annealer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/AnnealingMethod/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.AnnealingMethod</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Brent/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Brent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/COV/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.COV</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/CUDAAnnealing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.CUDAAnnealing</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Controller/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Controller</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/CoolingStep/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.CoolingStep</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Grid/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Grid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/H5Recorder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.H5Recorder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/MPIAnnealing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.MPIAnnealing</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Metropolis/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Metropolis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Notifier/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Notifier</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Profiler/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Profiler</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Recorder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Recorder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Sampler/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Sampler</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Scheduler/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Scheduler</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/SequentialAnnealing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.SequentialAnnealing</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/Solver/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Solver</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/bayesian/ThreadedAnnealing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.ThreadedAnnealing</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="altar/cuda/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="altar/cuda/bayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/bayesian/cudaAdaptiveMetropolis/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaAdaptiveMetropolis</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/bayesian/cudaCoolingStep/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaCoolingStep</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/bayesian/cudaMetropolis/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaMetropolis</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/bayesian/cudaMetropolisVaryingSteps/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaMetropolisVaryingSteps</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/cuda/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.data</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/data/cudaDataL2/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.data.cudaDataL2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/cuda/distributions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.distributions</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/distributions/cudaDistribution/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaDistribution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/distributions/cudaGaussian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaGaussian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/distributions/cudaPreset/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaPreset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/distributions/cudaTGaussian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaTGaussian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/distributions/cudaUniform/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaUniform</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/cuda/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.ext</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/cuda/models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.models</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/models/cudaBayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.models.cudaBayesian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/models/cudaBayesianEnsemble/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.models.cudaBayesianEnsemble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/models/cudaParameterEnsemble/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.models.cudaParameterEnsemble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/models/cudaParameterSet/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.models.cudaParameterSet</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/cuda/norms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.norms</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/cuda/norms/cudaL2/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.norms.cudaL2</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="altar/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="altar/data/DataL2/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data.DataL2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/data/DataObs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data.DataObs</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="altar/distributions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="altar/distributions/Base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.Base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/distributions/Distribution/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.Distribution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/distributions/Gaussian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.Gaussian</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/distributions/Uniform/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.Uniform</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/distributions/UnitGaussian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.UnitGaussian</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="altar/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.ext</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="altar/models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/cdm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cdm/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.ext</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cdm/CDM/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.CDM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cdm/CUDA/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.CUDA</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cdm/Data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cdm/Fast/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Fast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cdm/Native/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Native</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cdm/Source/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.Source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cdm/libcdm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.libcdm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cdm/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/cudalinear/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cudalinear</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cudalinear/cudaLinear/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cudalinear.cudaLinear</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/cudalinear/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cudalinear.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/emhp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.emhp</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/emhp/EMHP/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.emhp.EMHP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/emhp/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.emhp.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/gaussian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.gaussian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/gaussian/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.gaussian.ext</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/gaussian/Gaussian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.gaussian.Gaussian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/gaussian/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.gaussian.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/linear/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.linear</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/linear/Linear/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.linear.Linear</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/linear/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.linear.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/mogi/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/mogi/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.ext</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/mogi/CUDA/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.CUDA</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/mogi/Data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/mogi/Fast/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Fast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/mogi/Mogi/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Mogi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/mogi/Native/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Native</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/mogi/Source/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.Source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/mogi/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.mogi.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/regression/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.regression</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/regression/Linear/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.regression.Linear</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/regression/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.regression.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/seismic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/seismic/actions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.actions</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/actions/About/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.actions.About</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/actions/Forward/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.actions.Forward</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/actions/Sample/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.actions.Sample</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/seismic/cuda/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/cuda/cudaCascaded/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaCascaded</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/cuda/cudaKinematicG/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicG</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/cuda/cudaKinematicGCp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaKinematicGCp</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/cuda/cudaMoment/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaMoment</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/cuda/cudaStatic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaStatic</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/cuda/cudaStaticCp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaStaticCp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/seismic/ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.ext</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/seismic/shells/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.shells</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/shells/Action/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.shells.Action</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/shells/Seismic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.shells.Seismic</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="altar/models/seismic/shells/cudaApplication/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.shells.cudaApplication</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/seismic/Moment/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.Moment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/seismic/Static/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.Static</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/seismic/StaticCp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.StaticCp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/seismic/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/sir/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.sir</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/sir/SIR/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.sir.SIR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="altar/models/sir/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.sir.meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/Bayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Bayesian</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/BayesianL2/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.BayesianL2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/Contiguous/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Contiguous</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/Ensemble/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Ensemble</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/Model/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/Null/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.Null</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/models/ParameterSet/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.ParameterSet</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="altar/norms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="altar/norms/L2/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms.L2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/norms/Norm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms.Norm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="altar/shells/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="altar/shells/Action/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells.Action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/shells/AlTar/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells.AlTar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/shells/Application/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells.Application</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/shells/cudaAlTar/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells.cudaAlTar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/shells/cudaApplication/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells.cudaApplication</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="altar/simulations/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="altar/simulations/Archiver/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Archiver</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/simulations/Dispatcher/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Dispatcher</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/simulations/GSLRNG/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.GSLRNG</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/simulations/Job/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Job</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/simulations/Monitor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Monitor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/simulations/RNG/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.RNG</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/simulations/Recorder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Recorder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/simulations/Reporter/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Reporter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="altar/simulations/Run/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Run</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="altar/meta/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.meta</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Created with <a class="reference external" href="https://github.com/readthedocs/sphinx-autoapi">sphinx-autoapi</a></p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../cuda/Issues.html" class="btn btn-neutral float-left" title="Common Issues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="altar/index.html" class="btn btn-neutral float-right" title="altar" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

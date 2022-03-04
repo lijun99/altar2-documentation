@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>altar.bayesian.Notifier &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="altar.bayesian.Profiler" href="../Profiler/index.html" />
+    <link rel="prev" title="altar.bayesian.Metropolis" href="../Metropolis/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../actions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions</span></code></a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cuda/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../distributions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.ext</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../norms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../shells/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulations/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">API Reference</a> &raquo;</li>
+          <li><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Notifier</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/api/altar/bayesian/Notifier/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-altar.bayesian.Notifier">
+<span id="altar-bayesian-notifier"></span><h1><a class="reference internal" href="#module-altar.bayesian.Notifier" title="altar.bayesian.Notifier"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Notifier</span></code></a><a class="headerlink" href="#module-altar.bayesian.Notifier" title="Permalink to this headline"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.bayesian.Notifier.</span></span><span class="sig-name descname"><span class="pre">Notifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Notifier.Notifier" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>A dispatcher of events generated during the annealing process</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.start">
+<span class="sig-name descname"><span class="pre">start</span></span><em class="property"> <span class="pre">=</span> <span class="pre">simulationStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.start" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.samplePosteriorStart">
+<span class="sig-name descname"><span class="pre">samplePosteriorStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">samplePosteriorStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.samplePosteriorStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.prepareSamplingPDFStart">
+<span class="sig-name descname"><span class="pre">prepareSamplingPDFStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">prepareSamplingPDFStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.prepareSamplingPDFStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.prepareSamplingPDFFinish">
+<span class="sig-name descname"><span class="pre">prepareSamplingPDFFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">prepareSamplingPDFFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.prepareSamplingPDFFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.betaStart">
+<span class="sig-name descname"><span class="pre">betaStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">betaStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.betaStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.walkChainsStart">
+<span class="sig-name descname"><span class="pre">walkChainsStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">walkChainsStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.walkChainsStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.chainAdvanceStart">
+<span class="sig-name descname"><span class="pre">chainAdvanceStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">chainAdvanceStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.chainAdvanceStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.verifyStart">
+<span class="sig-name descname"><span class="pre">verifyStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">verifyStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.verifyStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.verifyFinish">
+<span class="sig-name descname"><span class="pre">verifyFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">verifyFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.verifyFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.priorStart">
+<span class="sig-name descname"><span class="pre">priorStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">priorStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.priorStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.priorFinish">
+<span class="sig-name descname"><span class="pre">priorFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">priorFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.priorFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.dataStart">
+<span class="sig-name descname"><span class="pre">dataStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">dataStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.dataStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.dataFinish">
+<span class="sig-name descname"><span class="pre">dataFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">dataFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.dataFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.posteriorStart">
+<span class="sig-name descname"><span class="pre">posteriorStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">posteriorStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.posteriorStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.posteriorFinish">
+<span class="sig-name descname"><span class="pre">posteriorFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">posteriorFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.posteriorFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.acceptStart">
+<span class="sig-name descname"><span class="pre">acceptStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">acceptStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.acceptStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.acceptFinish">
+<span class="sig-name descname"><span class="pre">acceptFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">acceptFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.acceptFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.chainAdvanceFinish">
+<span class="sig-name descname"><span class="pre">chainAdvanceFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">chainAdvanceFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.chainAdvanceFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.walkChainsFinish">
+<span class="sig-name descname"><span class="pre">walkChainsFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">walkChainsFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.walkChainsFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.resampleStart">
+<span class="sig-name descname"><span class="pre">resampleStart</span></span><em class="property"> <span class="pre">=</span> <span class="pre">resampleStart</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.resampleStart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.resampleFinish">
+<span class="sig-name descname"><span class="pre">resampleFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">resampleFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.resampleFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.betaFinish">
+<span class="sig-name descname"><span class="pre">betaFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">betaFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.betaFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.samplePosteriorFinish">
+<span class="sig-name descname"><span class="pre">samplePosteriorFinish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">samplePosteriorFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.samplePosteriorFinish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><em class="property"> <span class="pre">=</span> <span class="pre">simulationFinish</span></em><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.finish" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.register">
+<span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">monitor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.register" title="Permalink to this definition"></a></dt>
+<dd><p>Enable {monitor} as an observer of simulation events</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.Notifier.Notifier.notify">
+<span class="sig-name descname"><span class="pre">notify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.Notifier.Notifier.notify" title="Permalink to this definition"></a></dt>
+<dd><p>Notify all handlers that are waiting for {event}</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Metropolis/index.html" class="btn btn-neutral float-left" title="altar.bayesian.Metropolis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Profiler/index.html" class="btn btn-neutral float-right" title="altar.bayesian.Profiler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

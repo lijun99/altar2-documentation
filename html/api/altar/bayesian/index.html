@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>altar.bayesian &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="altar.bayesian.Annealer" href="Annealer/index.html" />
+    <link rel="prev" title="altar.actions.Sample" href="../actions/Sample/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../actions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cuda/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../distributions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.ext</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../norms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shells/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulations/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">API Reference</a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/api/altar/bayesian/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-altar.bayesian">
+<span id="altar-bayesian"></span><h1><a class="reference internal" href="#module-altar.bayesian" title="altar.bayesian"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a><a class="headerlink" href="#module-altar.bayesian" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Annealer/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Annealer</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnnealingMethod/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.AnnealingMethod</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brent/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Brent</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="COV/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.COV</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="CUDAAnnealing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.CUDAAnnealing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Controller/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Controller</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="CoolingStep/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.CoolingStep</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Grid/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Grid</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="H5Recorder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.H5Recorder</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="MPIAnnealing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.MPIAnnealing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metropolis/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Metropolis</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Notifier/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Notifier</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Profiler/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Profiler</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Recorder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Recorder</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sampler/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Sampler</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Scheduler/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Scheduler</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="SequentialAnnealing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.SequentialAnnealing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solver/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Solver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ThreadedAnnealing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.ThreadedAnnealing</span></code></a></li>
+</ul>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.bayesian.controller">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">controller</span></span><a class="headerlink" href="#altar.bayesian.controller" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar controllers must implement</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.controller.dispatcher">
+<span class="sig-name descname"><span class="pre">dispatcher</span></span><a class="headerlink" href="#altar.bayesian.controller.dispatcher" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.controller.doc">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">event</span> <span class="pre">dispatcher</span> <span class="pre">that</span> <span class="pre">activates</span> <span class="pre">the</span> <span class="pre">registered</span> <span class="pre">handlers</span></em><a class="headerlink" href="#altar.bayesian.controller.doc" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.controller.archiver">
+<span class="sig-name descname"><span class="pre">archiver</span></span><a class="headerlink" href="#altar.bayesian.controller.archiver" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">archiver</span> <span class="pre">of</span> <span class="pre">simulation</span> <span class="pre">state</span></em><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.controller.posterior">
+<span class="sig-name descname"><span class="pre">posterior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.controller.posterior" title="Permalink to this definition"></a></dt>
+<dd><p>Sample the posterior distribution of the given {model}</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.controller.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.controller.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me and my parts given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.controller.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.controller.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.bayesian.sampler">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">sampler</span></span><a class="headerlink" href="#altar.bayesian.sampler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar samplers must implement</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.sampler.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.sampler.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me and my parts given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.sampler.samplePosterior">
+<span class="sig-name descname"><span class="pre">samplePosterior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.sampler.samplePosterior" title="Permalink to this definition"></a></dt>
+<dd><p>Sample the posterior distribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.sampler.resample">
+<span class="sig-name descname"><span class="pre">resample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.sampler.resample" title="Permalink to this definition"></a></dt>
+<dd><p>Update my statistics based on the results of walking my Markov chains</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.sampler.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.sampler.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.bayesian.scheduler">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">scheduler</span></span><a class="headerlink" href="#altar.bayesian.scheduler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar schedulers must implement</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.scheduler.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.scheduler.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me and my parts given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.scheduler.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.scheduler.update" title="Permalink to this definition"></a></dt>
+<dd><p>Push {step} forward along the annealing schedule</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.scheduler.updateTemperature">
+<span class="sig-name descname"><span class="pre">updateTemperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.scheduler.updateTemperature" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the next temperature increment</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.scheduler.computeCovariance">
+<span class="sig-name descname"><span class="pre">computeCovariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.scheduler.computeCovariance" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the parameter covariance of the sample in the {step}</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.scheduler.rank">
+<span class="sig-name descname"><span class="pre">rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.scheduler.rank" title="Permalink to this definition"></a></dt>
+<dd><p>Rebuild the sample and its statistics sorted by the likelihood of the parameter values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.scheduler.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.scheduler.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.bayesian.monitor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">monitor</span></span><a class="headerlink" href="#altar.bayesian.monitor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar simulation monitors must implement</p>
+<p>Monitors respond to simulation events by generating user diagnostics to report progress</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.monitor.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.monitor.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.monitor.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.monitor.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.bayesian.archiver">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">archiver</span></span><a class="headerlink" href="#altar.bayesian.archiver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar simulation archivers must implement</p>
+<p>Archivers persist intermediate simulation state and can be used to restart a simulation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.archiver.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.archiver.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.archiver.record">
+<span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.archiver.record" title="Permalink to this definition"></a></dt>
+<dd><p>Record the final state of the simulation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.archiver.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.archiver.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.bayesian.solver">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">solver</span></span><a class="headerlink" href="#altar.bayesian.solver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all δβ solvers must implement</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.solver.tolerance">
+<span class="sig-name descname"><span class="pre">tolerance</span></span><a class="headerlink" href="#altar.bayesian.solver.tolerance" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.bayesian.solver.doc">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">fractional</span> <span class="pre">tolerance</span> <span class="pre">for</span> <span class="pre">achieving</span> <span class="pre">convergence</span></em><a class="headerlink" href="#altar.bayesian.solver.doc" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.solver.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheduler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.solver.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me and my parts given an {application} context and a {scheduler}</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.solver.solve">
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.solver.solve" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the next temperature in the cooling schedule</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.bayesian.solver.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.solver.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Provide a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.bayesian.annealer">
+<span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">annealer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.annealer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.bayesian.cov">
+<span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">cov</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.cov" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.bayesian.brent">
+<span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">brent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.brent" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.bayesian.grid">
+<span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">grid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.grid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.bayesian.metropolis">
+<span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">metropolis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.metropolis" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.bayesian.profiler">
+<span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">profiler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.profiler" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.bayesian.recorder">
+<span class="sig-prename descclassname"><span class="pre">altar.bayesian.</span></span><span class="sig-name descname"><span class="pre">recorder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.bayesian.recorder" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../actions/Sample/index.html" class="btn btn-neutral float-left" title="altar.actions.Sample" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Annealer/index.html" class="btn btn-neutral float-right" title="altar.bayesian.Annealer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

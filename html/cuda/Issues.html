@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Common Issues &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Reference" href="../api/index.html" />
+    <link rel="prev" title="Programming Guide" href="Programming.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming.html">Programming Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Common Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cannot-find-gmake">Cannot find <code class="docutils literal notranslate"><span class="pre">gmake</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cannot-find-cublas-v2-h">Cannot find <code class="docutils literal notranslate"><span class="pre">cublas_v2.h</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#run-time-issues">Run-time Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#locales">Locales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#base-case-name">Base case name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-parser-error">Configuration Parser Error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mpi-launcher-error">MPI launcher error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intel-mkl-library">Intel MKL Library</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Common Issues</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/Issues.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="common-issues">
+<span id="id1"></span><h1>Common Issues<a class="headerlink" href="#common-issues" title="Permalink to this headline"></a></h1>
+<section id="installation-issues">
+<span id="installation-errors"></span><h2>Installation Issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline"></a></h2>
+<section id="cannot-find-gmake">
+<h3>Cannot find <code class="docutils literal notranslate"><span class="pre">gmake</span></code><a class="headerlink" href="#cannot-find-gmake" title="Permalink to this headline"></a></h3>
+<p>When the command of GNU make is <code class="docutils literal notranslate"><span class="pre">make</span></code> instead of <code class="docutils literal notranslate"><span class="pre">gmake</span></code>, please set the environmental variable</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">GNU_MAKE</span><span class="o">=</span>make <span class="c1"># for bash</span>
+$ setenv GNU_MAKE make <span class="c1"># for csh/tcsh</span>
+</pre></div>
+</div>
+<p>or set the variable when calling mm,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">GNU_MAKE</span><span class="o">=</span>make mm
+</pre></div>
+</div>
+</section>
+<section id="cannot-find-cublas-v2-h">
+<h3>Cannot find <code class="docutils literal notranslate"><span class="pre">cublas_v2.h</span></code><a class="headerlink" href="#cannot-find-cublas-v2-h" title="Permalink to this headline"></a></h3>
+<p>For certain Linux systems, NVIDIA installer installs <code class="docutils literal notranslate"><span class="pre">cublas</span></code> to the system directory <code class="docutils literal notranslate"><span class="pre">/usr/include</span></code> and <code class="docutils literal notranslate"><span class="pre">/usr/lib/x86_64-linux-gnu</span></code> instead of <code class="docutils literal notranslate"><span class="pre">/usr/local/cuda</span></code>. In this case, please add the include and library paths to <code class="docutils literal notranslate"><span class="pre">cuda.incpath</span></code> and <code class="docutils literal notranslate"><span class="pre">cuda.libpath</span></code> in <code class="docutils literal notranslate"><span class="pre">config.mm</span></code> file.</p>
+</section>
+</section>
+<section id="run-time-issues">
+<span id="runtime-errors"></span><h2>Run-time Issues<a class="headerlink" href="#run-time-issues" title="Permalink to this headline"></a></h2>
+<section id="locales">
+<span id="id2"></span><h3>Locales<a class="headerlink" href="#locales" title="Permalink to this headline"></a></h3>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>UnicodeDecodeError: ‘ascii’ codec can’t decode byte 0xc3 in position 18: ordinal not in range(128)</p>
+</div>
+<p>You might need to set the <code class="docutils literal notranslate"><span class="pre">LANG</span></code> variable,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+</pre></div>
+</div>
+<p>if <code class="docutils literal notranslate"><span class="pre">en_US.UTF-8</span></code> locale is not installed, update your locale by</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt install locales
+$ sudo locale-gen --no-purge --lang en_US.UTF-8
+$ sudo update-locale <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8 LANGUAGE
+</pre></div>
+</div>
+</section>
+<section id="base-case-name">
+<h3>Base case name<a class="headerlink" href="#base-case-name" title="Permalink to this headline"></a></h3>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>altar: bad case name: ‘patch-9’</p>
+</div>
+<p>The AlTar App cannot find the configuration file (usually) or the input file directory. Please go to the job directory with the configuration and input files, and run the App again. If the configuration is not named as <code class="docutils literal notranslate"><span class="pre">theAlTarApp.pfg</span></code>, you need <code class="docutils literal notranslate"><span class="pre">--config=YourConfigFile.pfg</span></code> option, e.g.,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>linear --config<span class="o">=</span>my_linear_model.pfg
+</pre></div>
+</div>
+</section>
+<section id="configuration-parser-error">
+<h3>Configuration Parser Error<a class="headerlink" href="#configuration-parser-error" title="Permalink to this headline"></a></h3>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>File “/opt/anaconda3/envs/altar/lib/python3.9/site-packages/pyre/parsing/Scanner.py”, line 71, in pyre_tokenize</p>
+<p>match = stream.match(scanner=self, tokenizer=tokenizer)</p>
+</div>
+<p>This is usually due to a bad format in configuration file.  For example, <code class="docutils literal notranslate"><span class="pre">.pfg</span></code> files do not recognize TABs; please check your file for possible TABs and replace them with SPACEs. See <a class="reference internal" href="Pyre.html#pyre-config-format"><span class="std std-ref">Pyre Config Format (.pfg)</span></a> for more details.</p>
+</section>
+<section id="mpi-launcher-error">
+<h3>MPI launcher error<a class="headerlink" href="#mpi-launcher-error" title="Permalink to this headline"></a></h3>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>launcher = self.mpi.launcher</p>
+<p>AttributeError: ‘NoneType’ object has no attribute ‘launcher’</p>
+</div>
+<p>This happens when AlTar cannot locate the <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> command. It can be solved by manually setting up an <code class="docutils literal notranslate"><span class="pre">mpi.pfg</span></code> file. See <a class="reference internal" href="Installation.html#mpi-setup"><span class="std std-ref">MPI setup</span></a> for more details.</p>
+</section>
+<section id="intel-mkl-library">
+<h3>Intel MKL Library<a class="headerlink" href="#intel-mkl-library" title="Permalink to this headline"></a></h3>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>Intel MKL FATAL ERROR: Cannot load libmkl_avx2.so.1 or libmkl_def.so.1.</p>
+</div>
+<p>This is due to a Conda issue with MKL libraries. The solution is to preload certain MKL libraries before running AlTar applications,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>LD_PRELOAD=$CONDA_PREFIX/lib/libmkl_core.so:$CONDA_PREFIX/lib/libmkl_sequential.so altarApp --config=configFile
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Programming.html" class="btn btn-neutral float-left" title="Programming Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Static Slip Inversion with Cp: Epistemic Uncertainties &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kinematic Slip Inversion" href="Kinematic.html" />
+    <link rel="prev" title="Static Slip Inversion" href="Static.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="Manual.html">User Guide</a> &raquo;</li>
+          <li><a href="Models.html">Models</a> &raquo;</li>
+      <li>Static Slip Inversion with Cp: Epistemic Uncertainties</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/cp.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="static-slip-inversion-with-cp-epistemic-uncertainties">
+<h1>Static Slip Inversion with Cp: Epistemic Uncertainties<a class="headerlink" href="#static-slip-inversion-with-cp-epistemic-uncertainties" title="Permalink to this headline"></a></h1>
+<p>In addition to observational errors, one can calculate epistemic uncertainties (Minson et al., 2013), which affect the forward model and are related to our imperfect knowledge of the Earth interior. Epistemic uncertainties will stem from a various set of parameters, but the most prominent uncertainties will derive from elastic heterogeneity (Duputel et al., 2014) and fault geometry (Ragon et al., 2018, 2019).</p>
+<p>To estimate epistemic uncertainties, we assume that the real surface displacement follows a Gaussian distribution centred on the predictions with a prediction covariance matrix Cp that depends on the resulting source model. The misfit covariance matrix characterizing the misfit function becomes <code class="docutils literal notranslate"><span class="pre">Cx</span> <span class="pre">=</span> <span class="pre">Cd</span> <span class="pre">+</span> <span class="pre">Cp</span></code>.</p>
+<p><strong>First approach: static Cp</strong></p>
+<p>The prediction covariance matrix <code class="docutils literal notranslate"><span class="pre">Cp</span></code> can be included in the inversion following two different approaches. In the first, <code class="docutils literal notranslate"><span class="pre">Cp</span></code> is calculated a priori and included in the inversion process within <code class="docutils literal notranslate"><span class="pre">Cx</span></code>. In this case, the full <code class="docutils literal notranslate"><span class="pre">Cx</span></code> matrix replaces the <code class="docutils literal notranslate"><span class="pre">Cd</span> </code> matrix:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    dataobs = altar.cuda.data.datal2
+    dataobs:
+        observations = 1000
+        data_file = d.txt
+        cd_file = cx.txt ; Cx contains both Cd and Cp
+</pre></div>
+</div>
+<p><strong>Second approach: Updated Cp</strong></p>
+<p>The alternative approach, implemented in AlTar, is to update Cp with interim models at each step of the tempered inversion. The covariance matrix <code class="docutils literal notranslate"><span class="pre">Cp</span></code> is calculated from 3 variables: a sensitivity kernel for every investigated parameter, the standard deviation of the a priori distribution of investigated parameters, and an initial model chosen a priori. In this approach, <code class="docutils literal notranslate"><span class="pre">Cp</span></code> is re-calculated at each tempering step by choosing the mean of tested samples as the assumed initial model.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    ; sensitivity kernels
+    nCmu = 8 ; number of investigated parameters
+    cmu_file = Cmu.h5 ; standard deviation matrix
+    kmu_file = Kelastic.h5 ; tensor of sensitivity kernels (matrix if only one investigated parameter)
+    initial_model_file = inimodel.txt ; initial model vector
+</pre></div>
+</div>
+<p>Additionnally, <code class="docutils literal notranslate"><span class="pre">Cp</span></code> can be incorporated in the inversion at any tempering step. The tempering step will be selected with its corresponding beta value, parameterized by <code class="docutils literal notranslate"><span class="pre">beta_cp_start</span></code>.
+If  <code class="docutils literal notranslate"><span class="pre">beta_cp_start</span> <span class="pre">=</span> <span class="pre">0.01</span></code>, then <code class="docutils literal notranslate"><span class="pre">Cp</span></code> will be incorporated from the beginning of the inversion process. If  <code class="docutils literal notranslate"><span class="pre">beta_cp_start</span> <span class="pre">=</span> <span class="pre">0.1</span></code> or <code class="docutils literal notranslate"><span class="pre">0.5</span></code>, then <code class="docutils literal notranslate"><span class="pre">Cp</span></code> will be incorporated after a few tempering steps, or once beta reaches 0.5, respectively.
+<code class="docutils literal notranslate"><span class="pre">beta_use_initial_model</span></code> will indicate if the initial model should be used (<code class="docutils literal notranslate"><span class="pre">1</span></code>) or not (<code class="docutils literal notranslate"><span class="pre">0</span></code>). If not, then a unit uniform initial model is used.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    beta_cp_start = 0.01 ; beta value to start incorporating Cp
+    beta_use_initial_model = 1 ; use provided initial model
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Static.html" class="btn btn-neutral float-left" title="Static Slip Inversion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Kinematic.html" class="btn btn-neutral float-right" title="Kinematic Slip Inversion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

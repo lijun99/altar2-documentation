@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickStart &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pyre Basics" href="Pyre.html" />
+    <link rel="prev" title="Overview" href="Overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Manual.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QuickStart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-the-configuration-file">Prepare the configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-input-files">Prepare input files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-an-altar-application">Run an AlTar application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collect-and-analyze-results">Collect and analyze results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Pyre.html">Pyre Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AlTarFramework.html">AlTar Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Models.html">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="Manual.html">User Guide</a> &raquo;</li>
+      <li>QuickStart</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/QuickStart.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="quickstart">
+<span id="id1"></span><h1>QuickStart<a class="headerlink" href="#quickstart" title="Permalink to this headline"></a></h1>
+<p>As a quick start, we use the linear model as an example to demonstrate how to run Bayesian MCMC simulations with AlTar. :</p>
+<ol class="arabic simple">
+<li><p>Prepare a configuration file, e.g., <code class="docutils literal notranslate"><span class="pre">linear.pfg</span></code>, to specify various parameters and settings;</p></li>
+<li><p>Prepare input data files required for the model, e.g., for the linear model, the observed data, the data covariance and the Green’s function;</p></li>
+<li><p>Run a dedicated AlTar application, e.g., <code class="docutils literal notranslate"><span class="pre">linear</span></code> for the linear model;</p></li>
+<li><p>Collect and analyze the simulation results.</p></li>
+</ol>
+<p>The linear model example demonstrated here comes with the AlTar source package, under the directory <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/models/linear/examples">models/linear/examples</a>. It is also available as a jupyter notebook in <a class="reference external" href="https://github.com/lijun99/altar2-documentation/tree/cuda/jupyter/linear">Tutorials:linear</a>.</p>
+<section id="prepare-the-configuration-file">
+<h2>Prepare the configuration file<a class="headerlink" href="#prepare-the-configuration-file" title="Permalink to this headline"></a></h2>
+<p>A configuration file is used to pass various settings to an AlTar application. Here is an example for the linear model,</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">linear.pfg</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>;
+<span class="linenos"> 2</span>; michael a.g. aïvázis
+<span class="linenos"> 3</span>; orthologue
+<span class="linenos"> 4</span>; (c) 1998-2020 all rights reserved
+<span class="linenos"> 5</span>;
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>; the application
+<span class="linenos"> 8</span>linear:
+<span class="linenos"> 9</span>    ; the model
+<span class="linenos">10</span>    model = linear
+<span class="linenos">11</span>    ; the linear model configurations
+<span class="linenos">12</span>    model:
+<span class="linenos">13</span>        ; the directory for input files
+<span class="linenos">14</span>        case = patch-9
+<span class="linenos">15</span>        ; the number of parameters
+<span class="linenos">16</span>        parameters = 18
+<span class="linenos">17</span>
+<span class="linenos">18</span>        ; the number of observations
+<span class="linenos">19</span>        observations = 108
+<span class="linenos">20</span>        ; the data observations file
+<span class="linenos">21</span>        data = data.txt
+<span class="linenos">22</span>        ; the data covariance file
+<span class="linenos">23</span>        cd = cd.txt
+<span class="linenos">24</span>
+<span class="linenos">25</span>        ; prior distribution for parameters
+<span class="linenos">26</span>        ; prior is used to calculate the prior probability
+<span class="linenos">27</span>        ;    and check ranges during the simulation
+<span class="linenos">28</span>        prior = gaussian
+<span class="linenos">29</span>        ; prior configurations
+<span class="linenos">30</span>        prior:
+<span class="linenos">31</span>            parameters = {linear.model.parameters}
+<span class="linenos">32</span>            center = 0.0
+<span class="linenos">33</span>            sigma = 0.5
+<span class="linenos">34</span>        ; prep is used to initialize the samples in the beginning of the simulation
+<span class="linenos">35</span>        ; it can be different from prior
+<span class="linenos">36</span>        prep = uniform
+<span class="linenos">37</span>        prep:
+<span class="linenos">38</span>            parameters = {linear.model.parameters}
+<span class="linenos">39</span>            support = (-0.5, 0.5)
+<span class="linenos">40</span>
+<span class="linenos">41</span>    ; controller/annealer, use the default CATMIP annealer
+<span class="linenos">42</span>    controller:
+<span class="linenos">43</span>        ; archiver, use the default HDF5 achiver
+<span class="linenos">44</span>        archiver:
+<span class="linenos">45</span>            output_dir = results ; results output directory
+<span class="linenos">46</span>            output_freq = 1 ; output frequency in annealing beta steps
+<span class="linenos">47</span>
+<span class="linenos">48</span>    ; run configuration
+<span class="linenos">49</span>    job.tasks = 1 ; number of tasks per host
+<span class="linenos">50</span>    job.gpus = 0  ; number of gpus per task
+<span class="linenos">51</span>    job.chains = 2**10 ; number of chains per task
+<span class="linenos">52</span>
+<span class="linenos">53</span>; end of file
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.pfg</span></code> (pyre config) files follow a human-readable data-serialization format similar to YAML, where the data-structure hierarchy is maintained by whitespace indentation (or by full/partial paths, such as <cite>job.tasks</cite>, see <a class="reference internal" href="Pyre.html#pyre-config-format"><span class="std std-ref">Pyre Config Format (.pfg)</span></a> for more detailed instructions).</p>
+<p>The name of the AlTar application (instance), <code class="docutils literal notranslate"><span class="pre">linear</span></code>, is set as the root. Configurable components of an AlTar application include</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>, for model specific configurations, such as the prior distributions of the model parameters, parameters in the forward model, and the data observations;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">job</span></code>, which configures the size of the simulation, and how the job will be deployed, e.g., single or multiple threads, single machine or multi-node cluster, CPU or GPU;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">controller</span></code>, for configurations to control the Bayesian MCMC procedure.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a component is not specified in the configuration, its <cite>default</cite> value/implementation will be used instead.</p>
+</div>
+<p>Model configurations vary depending on its own forward problem: model-specific instructions are provided in the respective sections of this Guide. Instructions for the main framework, such as <code class="docutils literal notranslate"><span class="pre">job</span></code> and <code class="docutils literal notranslate"><span class="pre">controller</span></code>, can be found in the <a class="reference internal" href="AlTarFramework.html#altar-framework"><span class="std std-ref">AlTar Framework</span></a> section.</p>
+</section>
+<section id="prepare-input-files">
+<h2>Prepare input files<a class="headerlink" href="#prepare-input-files" title="Permalink to this headline"></a></h2>
+<p>While simple configurations can be specified in the configuration file,
+large sets of data are passed to the AlTar application by data files. Different model may require different categories of data, in different input format.</p>
+<p>For the  linear model, the data likelihood is computed as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P({\bf d}|{\boldsymbol \theta}) &amp;= \frac {1} {\sqrt{(2\pi)^m \text{det}(C_d)}}  \\
+ &amp;\times \exp\left[- \frac {1}{2} \left({\bf d} - {\bf d}^{pred} \right)^T C_d^{-1}  \left({\bf d} - {\bf d}^{pred} \right)\right]\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\boldsymbol \theta}\)</span> is a vector with <span class="math notranslate nohighlight">\(n\)</span> unknown model parameters, <span class="math notranslate nohighlight">\({\bf d}\)</span> a vector with <span class="math notranslate nohighlight">\(m\)</span> observations, the covariance <span class="math notranslate nohighlight">\(C_d\)</span> a <span class="math notranslate nohighlight">\(m \times m\)</span> matrix representing the data uncertainties. The data prediction <span class="math notranslate nohighlight">\({\bf d}^{pred}\)</span> is given by the forward model</p>
+<div class="math notranslate nohighlight">
+\[{\bf d}^{pred} = \mathcal{G}  {\boldsymbol \theta}.\]</div>
+<p>where the Green’s function <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>,  is a <span class="math notranslate nohighlight">\(n\times m\)</span> matrix.</p>
+<p>The computation requires three users’ input, <span class="math notranslate nohighlight">\({\bf d}\)</span>, <span class="math notranslate nohighlight">\(C_d\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>, as plain text files <code class="docutils literal notranslate"><span class="pre">data.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">cd.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">green.txt</span></code>. The location of the files can be specified by the <code class="docutils literal notranslate"><span class="pre">linear.model.case</span></code> parameter in the configuration file, while the file names can be specified by <code class="docutils literal notranslate"><span class="pre">linear.model.data</span></code>, <code class="docutils literal notranslate"><span class="pre">linear.model.cd</span></code> and <code class="docutils literal notranslate"><span class="pre">linear.model.green</span></code>.</p>
+</section>
+<section id="run-an-altar-application">
+<h2>Run an AlTar application<a class="headerlink" href="#run-an-altar-application" title="Permalink to this headline"></a></h2>
+<p>For each model, we have provided a dedicated command for running AlTar simulations (in fact, you can run <code class="docutils literal notranslate"><span class="pre">altar</span></code> for all models, but it may require some changes to the configuration file). The dedicated command for the linear model is <code class="docutils literal notranslate"><span class="pre">linear</span></code>, which is a Python script as shown below</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/usr/bin/env python3</span>
+<span class="linenos"> 2</span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="linenos"> 3</span><span class="c1">#</span>
+<span class="linenos"> 4</span><span class="c1"># michael a.g. aïvázis (michael.aivazis@para-sim.com)</span>
+<span class="linenos"> 5</span><span class="c1">#</span>
+<span class="linenos"> 6</span><span class="c1"># (c) 2010-2020 california institute of technology</span>
+<span class="linenos"> 7</span><span class="c1"># (c) 2013-2020 parasim inc</span>
+<span class="linenos"> 8</span><span class="c1"># all rights reserved</span>
+<span class="linenos"> 9</span><span class="c1">#</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1"># get the package</span>
+<span class="linenos">12</span><span class="kn">import</span> <span class="nn">altar</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="c1"># make a specialized app that uses this model by default</span>
+<span class="linenos">15</span><span class="k">class</span> <span class="nc">Linear</span><span class="p">(</span><span class="n">altar</span><span class="o">.</span><span class="n">shells</span><span class="o">.</span><span class="n">application</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;altar.applications.linear&#39;</span><span class="p">):</span>
+<span class="linenos">16</span>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">17</span><span class="sd">    A specialized AlTar application that exercises the Linear model</span>
+<span class="linenos">18</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="c1"># user configurable state</span>
+<span class="linenos">21</span>    <span class="n">model</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="linenos">22</span>    <span class="n">model</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the AlTar model to sample&quot;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="c1"># bootstrap</span>
+<span class="linenos">26</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="linenos">27</span>    <span class="c1"># build an instance of the default app</span>
+<span class="linenos">28</span>    <span class="n">app</span> <span class="o">=</span> <span class="n">Linear</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+<span class="linenos">29</span>    <span class="c1"># invoke the main entry point</span>
+<span class="linenos">30</span>    <span class="n">status</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="linenos">31</span>    <span class="c1"># share</span>
+<span class="linenos">32</span>    <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="c1"># end of file</span>
+</pre></div>
+</div>
+<p>It defines a <code class="docutils literal notranslate"><span class="pre">Linear</span></code> application class and provides a <code class="docutils literal notranslate"><span class="pre">main</span></code> entry point for execution. The <code class="docutils literal notranslate"><span class="pre">linear</span></code> can be run as any other shell commands, but you do need to run it at the directory where the <code class="docutils literal notranslate"><span class="pre">linear.pfg</span></code> and the <code class="docutils literal notranslate"><span class="pre">case</span> <span class="pre">(patch-9)</span></code> directory are located,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>linear
+</pre></div>
+</div>
+<p>and the simulation begins.</p>
+<p>If you would like to use a different script file other than <code class="docutils literal notranslate"><span class="pre">linear.pfg</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>linear --config<span class="o">=</span>linear2.pfg
+</pre></div>
+</div>
+<p>or if you would like to pass/change a parameter from command lines, e.g., to increase the number of Markov chains</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>linear --job.chains<span class="o">=</span><span class="m">2</span>**10
+</pre></div>
+</div>
+<p>More run options will be explained in the <a class="reference internal" href="AlTarFramework.html#altar-framework"><span class="std std-ref">AlTar Framework</span></a> section.</p>
+</section>
+<section id="collect-and-analyze-results">
+<h2>Collect and analyze results<a class="headerlink" href="#collect-and-analyze-results" title="Permalink to this headline"></a></h2>
+<p>AlTar offers several options how to output the simulation results. The default is an HDF5 archiver, which outputs the simulation results from each <span class="math notranslate nohighlight">\(\beta\)</span>-step to HDF5 files located at <code class="docutils literal notranslate"><span class="pre">results</span></code> directory. Data in these HDF5 files, named as <code class="docutils literal notranslate"><span class="pre">step_nnn.h5</span></code>, can be viewed by a HDF Viewer, such as HDFView, HDFCompass.</p>
+<p>For each <code class="docutils literal notranslate"><span class="pre">step_nnn.h5</span></code>, the following structures are used</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+---------- step_nnn.h5 ------
+├── Annealer ; annealing data
+|   ├── beta ; the beta value
+|   └── covariance ; the covariance matrix for Gaussian proposal
+├── Bayesian ; the Bayesian probabilities
+|   ├── prior ; prior probability for all samples, vector (samples)
+|   ├── likelihood ; data likelihood for all samples
+|   └── posterior ; posterior probability for all samples
+└── ParameterSets ;  samples
+    └── theta ; samples of model parameters, 2d array (samples, parameters)
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+</pre></div>
+</div>
+<p>You may draw a histogram of the posterior to check its distribution. Since the log values of the probabilities are used and saved, the distribution will normally show a lognormal form. You may also do some statistics on the samples, for example, mean and standard deviations. If the posterior assumes a Gaussian distribution, the mean model provides an estimated solution to the linear inverse problem. Some of the data analysis programs are also included with AlTar.</p>
+<p>AlTar is a software package developed to perform Bayesian inference to inverse problems with the Markov Chain Monte-Carlo methods. It consists of</p>
+<ul class="simple">
+<li><p>a main framework which performs the Bayesian MCMC, and controls the job deployment;</p></li>
+<li><p>a model which performs the forward modeling and feeds the data likelihood results to the Bayesian framework. Model implementations for various inverse problems are included. Users may add new models by</p></li>
+</ul>
+<p>An AlTar application integrates a model with the main framework and serves as the main program to run simulations.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Pyre.html" class="btn btn-neutral float-right" title="Pyre Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

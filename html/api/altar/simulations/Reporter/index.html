@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>altar.simulations.Reporter &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="altar.simulations.Run" href="../Run/index.html" />
+    <link rel="prev" title="altar.simulations.Recorder" href="../Recorder/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cuda/Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../actions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../bayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cuda/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../distributions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.ext</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../norms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../shells/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells</span></code></a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">API Reference</a> &raquo;</li>
+          <li><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Reporter</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/api/altar/simulations/Reporter/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-altar.simulations.Reporter">
+<span id="altar-simulations-reporter"></span><h1><a class="reference internal" href="#module-altar.simulations.Reporter" title="altar.simulations.Reporter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Reporter</span></code></a><a class="headerlink" href="#module-altar.simulations.Reporter" title="Permalink to this headline"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.simulations.Reporter.</span></span><span class="sig-name descname"><span class="pre">Reporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locator</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>Reporter reports simulation progress by using application journal channels</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.simulationStart">
+<span class="sig-name descname"><span class="pre">simulationStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.simulationStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked when the simulation is about to start</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.samplePosteriorStart">
+<span class="sig-name descname"><span class="pre">samplePosteriorStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.samplePosteriorStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the beginning of sampling the posterior</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.prepareSamplingPDFStart">
+<span class="sig-name descname"><span class="pre">prepareSamplingPDFStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.prepareSamplingPDFStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the beginning of the preparation of the sampling PDF</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.prepareSamplingPDFFinish">
+<span class="sig-name descname"><span class="pre">prepareSamplingPDFFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.prepareSamplingPDFFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the end of the preparation of the sampling PDF</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.betaStart">
+<span class="sig-name descname"><span class="pre">betaStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.betaStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the beginning of the beta step</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.walkChainsStart">
+<span class="sig-name descname"><span class="pre">walkChainsStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.walkChainsStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the beginning of the chain walk</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.chainAdvanceStart">
+<span class="sig-name descname"><span class="pre">chainAdvanceStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.chainAdvanceStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the beginning of a single step of chain walking</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.chainAdvanceFinish">
+<span class="sig-name descname"><span class="pre">chainAdvanceFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.chainAdvanceFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the end of a single step of chain walking</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.verifyStart">
+<span class="sig-name descname"><span class="pre">verifyStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.verifyStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked before we start verifying the generated sample</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.verifyFinish">
+<span class="sig-name descname"><span class="pre">verifyFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.verifyFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked after we are done verifying the generated sample</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.priorStart">
+<span class="sig-name descname"><span class="pre">priorStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.priorStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked before we compute the prior</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.priorFinish">
+<span class="sig-name descname"><span class="pre">priorFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.priorFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked after we compute the prior</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.dataStart">
+<span class="sig-name descname"><span class="pre">dataStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.dataStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked before we compute the data likelihood</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.dataFinish">
+<span class="sig-name descname"><span class="pre">dataFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.dataFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked after we compute the data likelihood</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.posteriorStart">
+<span class="sig-name descname"><span class="pre">posteriorStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.posteriorStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked before we assemble the posterior</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.posteriorFinish">
+<span class="sig-name descname"><span class="pre">posteriorFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.posteriorFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked after we assemble the posterior</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.acceptStart">
+<span class="sig-name descname"><span class="pre">acceptStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.acceptStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the beginning of sample accept/reject</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.acceptFinish">
+<span class="sig-name descname"><span class="pre">acceptFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.acceptFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the end of sample accept/reject</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.walkChainsFinish">
+<span class="sig-name descname"><span class="pre">walkChainsFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.walkChainsFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the end of the chain walk</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.resampleStart">
+<span class="sig-name descname"><span class="pre">resampleStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.resampleStart" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked before we start resampling</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.resampleFinish">
+<span class="sig-name descname"><span class="pre">resampleFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.resampleFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked after we are done resampling</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.betaFinish">
+<span class="sig-name descname"><span class="pre">betaFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.betaFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the end of the beta step</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.samplePosteriorFinish">
+<span class="sig-name descname"><span class="pre">samplePosteriorFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.samplePosteriorFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked at the end of sampling the posterior</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.Reporter.Reporter.simulationFinish">
+<span class="sig-name descname"><span class="pre">simulationFinish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.Reporter.Reporter.simulationFinish" title="Permalink to this definition"></a></dt>
+<dd><p>Handler invoked when the simulation is about to finish</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Recorder/index.html" class="btn btn-neutral float-left" title="altar.simulations.Recorder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Run/index.html" class="btn btn-neutral float-right" title="altar.simulations.Run" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

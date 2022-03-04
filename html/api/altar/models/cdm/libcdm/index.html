@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>altar.models.cdm.libcdm &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="altar.models.cdm.meta" href="../meta/index.html" />
+    <link rel="prev" title="altar.models.cdm.Source" href="../Source/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../../actions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../bayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cuda/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../distributions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.ext</span></code></a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../norms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../shells/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulations/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../index.html">API Reference</a> &raquo;</li>
+          <li><a href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a> &raquo;</li>
+          <li><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.libcdm</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/api/altar/models/cdm/libcdm/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-altar.models.cdm.libcdm">
+<span id="altar-models-cdm-libcdm"></span><h1><a class="reference internal" href="#module-altar.models.cdm.libcdm" title="altar.models.cdm.libcdm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.cdm.libcdm</span></code></a><a class="headerlink" href="#module-altar.models.cdm.libcdm" title="Permalink to this headline"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.models.cdm.libcdm.cosd">
+<span class="sig-prename descclassname"><span class="pre">altar.models.cdm.libcdm.</span></span><span class="sig-name descname"><span class="pre">cosd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.libcdm.cosd" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.models.cdm.libcdm.sind">
+<span class="sig-prename descclassname"><span class="pre">altar.models.cdm.libcdm.</span></span><span class="sig-name descname"><span class="pre">sind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.libcdm.sind" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.models.cdm.libcdm.norm">
+<span class="sig-prename descclassname"><span class="pre">altar.models.cdm.libcdm.</span></span><span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.libcdm.norm" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.models.cdm.libcdm.CDM">
+<span class="sig-prename descclassname"><span class="pre">altar.models.cdm.libcdm.</span></span><span class="sig-name descname"><span class="pre">CDM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">az</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omegaX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omegaY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omegaZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opening</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.libcdm.CDM" title="Permalink to this definition"></a></dt>
+<dd><p>CDM
+calculates the surface displacements and potency associated with a CDM
+that is composed of three mutually orthogonal rectangular dislocations in
+a half-space.</p>
+<p>CDM: Compound Dislocation Model
+RD: Rectangular Dislocation
+EFCS: Earth-Fixed Coordinate System
+RDCS: Rectangular Dislocation Coordinate System
+ADCS: Angular Dislocation Coordinate System
+(The origin of the RDCS is the RD centroid. The axes of the RDCS are
+aligned with the strike, dip and normal vectors of the RD, respectively.)</p>
+<p>INPUTS
+X and Y:
+Horizontal coordinates of calculation points in EFCS (East, North, Up).
+X and Y must have the same size.</p>
+<p>X0, Y0 and depth:
+Horizontal coordinates (in EFCS) and depth of the CDM centroid. The depth
+must be a positive value. X0, Y0 and depth have the same unit as X and Y.</p>
+<p>omegaX, omegaY and omegaZ:
+Clockwise rotation angles about X, Y and Z axes, respectively, that
+specify the orientation of the CDM in space. The input values must be in
+degrees.</p>
+<p>ax, ay and az:
+Semi-axes of the CDM along the X, Y and Z axes, respectively, before
+applying the rotations. ax, ay and az have the same unit as X and Y.</p>
+<p>opening:
+The opening (tensile component of the Burgers vector) of the RDs that
+form the CDM. The unit of opening must be the same as the unit of ax, ay
+and az.</p>
+<p>nu:
+Poisson’s ratio.</p>
+<p>OUTPUTS
+ue, un and uv:
+Calculated displacement vector components in EFCS. ue, un and uv have the
+same unit as opening and the CDM semi-axes in inputs.</p>
+<p>DV:
+Potency of the CDM. DV has the unit of volume (the unit of displacements,
+opening and CDM semi-axes to the power of 3).</p>
+<p>Example: Calculate and plot the vertical displacements on a regular grid.</p>
+<p>[X,Y] = numpy.meshgrid(-7:.02:7,-5:.02:5);
+X0 = 0.5; Y0 = -0.25; depth = 2.75; omegaX = 5; omegaY = -8; omegaZ = 30;
+ax = 0.4; ay = 0.45; az = 0.8; opening = 1e-3; nu = 0.25;
+import te[ [ue,un,uv,DV] = CDM(X,Y,X0,Y0,depth,omegaX,omegaY,omegaZ,ax,ay,az,…
+opening,nu);
+figure
+surf(X,Y,reshape(uv,size(X)),’edgecolor’,’none’)
+view(2)
+axis equal
+axis tight
+set(gcf,’renderer’,’painters’)</p>
+<p>Reference journal article:
+Nikkhoo, M., Walter, T. R., Lundgren, P. R., Prats-Iraola, P. (2016):
+Compound dislocation models (CDMs) for volcano deformation analyses.
+Submitted to Geophysical Journal International
+Copyright (c) 2016 Mehdi Nikkhoo</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files
+(the “Software”), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the
+following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<p>I appreciate any comments or bug reports.</p>
+<p>Mehdi Nikkhoo
+Created: 2015.5.22
+Last modified: 2016.10.18</p>
+<p>Section 2.1, Physics of Earthquakes and Volcanoes
+Department 2, Geophysics
+Helmholtz Centre Potsdam
+German Research Centre for Geosciences (GFZ)</p>
+<p>email:
+<a class="reference external" href="mailto:mehdi&#46;nikkhoo&#37;&#52;&#48;gfz-potsdam&#46;de">mehdi<span>&#46;</span>nikkhoo<span>&#64;</span>gfz-potsdam<span>&#46;</span>de</a>
+<a class="reference external" href="mailto:mehdi&#46;nikkhoo&#37;&#52;&#48;gmail&#46;com">mehdi<span>&#46;</span>nikkhoo<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>website:
+<a class="reference external" href="http://www.volcanodeformation.com">http://www.volcanodeformation.com</a></p>
+<p>Converted from Matlab to Python
+April 2018 by Eric Gurrola
+Jet Propulsion Lab/Caltech</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.models.cdm.libcdm.RDdispSurf">
+<span class="sig-prename descclassname"><span class="pre">altar.models.cdm.libcdm.</span></span><span class="sig-name descname"><span class="pre">RDdispSurf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opening</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.libcdm.RDdispSurf" title="Permalink to this definition"></a></dt>
+<dd><p>RDdispSurf calculates surface displacements associated with a rectangular
+dislocation in an elastic half-space.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.models.cdm.libcdm.CoordTrans">
+<span class="sig-prename descclassname"><span class="pre">altar.models.cdm.libcdm.</span></span><span class="sig-name descname"><span class="pre">CoordTrans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.libcdm.CoordTrans" title="Permalink to this definition"></a></dt>
+<dd><p>CoordTrans transforms the coordinates of the vectors, from
+x1x2x3 coordinate system to X1X2X3 coordinate system. “A” is the
+transformation matrix, whose columns e1,e2 and e3 are the unit base
+vectors of the x1x2x3. The coordinates of e1,e2 and e3 in A must be given
+in X1X2X3. The transpose of A (i.e., A’) will transform the coordinates
+from X1X2X3 into x1x2x3.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.models.cdm.libcdm.AngSetupFSC">
+<span class="sig-prename descclassname"><span class="pre">altar.models.cdm.libcdm.</span></span><span class="sig-name descname"><span class="pre">AngSetupFSC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PB</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.libcdm.AngSetupFSC" title="Permalink to this definition"></a></dt>
+<dd><p>AngSetupSurf calculates the displacements associated with an angular
+dislocation pair on each side of an RD in a half-space.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.models.cdm.libcdm.AngDisDispSurf">
+<span class="sig-prename descclassname"><span class="pre">altar.models.cdm.libcdm.</span></span><span class="sig-name descname"><span class="pre">AngDisDispSurf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.cdm.libcdm.AngDisDispSurf" title="Permalink to this definition"></a></dt>
+<dd><p>AngDisDispSurf calculates the displacements associated with an angular dislocation
+in a half-space.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Source/index.html" class="btn btn-neutral float-left" title="altar.models.cdm.Source" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../meta/index.html" class="btn btn-neutral float-right" title="altar.models.cdm.meta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

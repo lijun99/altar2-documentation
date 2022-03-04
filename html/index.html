@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlTar 2.0: A Bayesian framework for inverse problems &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Preface" href="cuda/Preface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>AlTar 2.0: A Bayesian framework for inverse problems</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="banner">
+    <h1>AlTar 2.0</h1>
+    <h2>
+        A Bayesian framework for inverse problems
+    </h2>
+</div><div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Preface.html">Preface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html">AlTar 2.0 Release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#about-altar">About AlTar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#guides">Guides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#tutorials">Tutorials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#support">Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#copyright">Copyright</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Background.html">Bayesian Inference for Inverse Problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Background.html#inverse-problem">Inverse problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Background.html#bayesian-approach">Bayesian approach</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Background.html#catpmip-algorithm">CATPMIP algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Background.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Installation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Installation.html#supported-platforms">Supported Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#hardware">Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#operation-systems">Operation systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#prerequisites">Prerequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Installation.html#downloads">Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Installation.html#install-with-cmake">Install with CMake</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#general-steps">General steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#cmake-options">CMake Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#installation-path">Installation path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#enable-disable-cuda">Enable/disable CUDA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#target-gpu-architecture-s">Target GPU architecture(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#c-compiler">C++ Compiler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#cuda-compiler">CUDA Compiler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#blas-library">BLAS Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#library-search-path">Library search path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#build-type">Build type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#show-compiling-details">Show compiling details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#more-options">More options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Installation.html#conda-method-linux-macosx">Conda method (Linux/MacOSX)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#install-anaconda-miniconda">Install Anaconda/Miniconda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#install-conda-packages">Install Conda packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#id7">C++ Compiler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#cuda-compiler-nvcc">CUDA compiler (nvcc)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#download-pyre-and-altar">Download pyre and AlTar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#install-pyre">Install pyre</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#install-altar">Install AlTar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#mpi-setup">MPI setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Installation.html#linux-systems">Linux Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#ubuntu-18-04-20-04">Ubuntu 18.04/20.04</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#install-prerequisites">Install prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#install-pyre-altar">Install pyre/AlTar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#rhel-centos-7">RHEL/CentOS 7</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#id9">Install prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Installation.html#id10">Install pyre/AlTar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#linux-with-software-modules">Linux with software modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Installation.html#docker-container">Docker container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Installation.html#install-with-the-mm-build-tool">Install with the mm build tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#download-mm-build-tool">Download <code class="docutils literal notranslate"><span class="pre">mm</span></code> build tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#prepare-a-config-mm-file">Prepare a <code class="docutils literal notranslate"><span class="pre">config.mm</span></code> file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#id11">Install pyre</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Installation.html#id12">Install AlTar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Installation.html#tests-and-examples">Tests and Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Manual.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/QuickStart.html">QuickStart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/QuickStart.html#prepare-the-configuration-file">Prepare the configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/QuickStart.html#prepare-input-files">Prepare input files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/QuickStart.html#run-an-altar-application">Run an AlTar application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/QuickStart.html#collect-and-analyze-results">Collect and analyze results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Pyre.html">Pyre Basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Pyre.html#protocols-and-components">Protocols and Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Pyre.html#pyre-config-format-pfg">Pyre Config Format (<code class="docutils literal notranslate"><span class="pre">.pfg</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/AlTarFramework.html">AlTar Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/AlTarFramework.html#application">Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/AlTarFramework.html#controller-annealer">Controller/Annealer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#worker-annealingmethod">Worker/AnnealingMethod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#sampler">Sampler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#scheduler">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#archiver-output">Archiver (Output)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/AlTarFramework.html#job">Job</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#configurable-attributes">Configurable Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#simulation-size">Simulation Size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#single-thread-configuration">Single Thread Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#multiple-threads-on-one-computer">Multiple Threads on One Computer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#multiple-threads-across-several-computers">Multiple Threads Across Several Computers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#gpu-configurations">GPU Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/AlTarFramework.html#model">Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/AlTarFramework.html#prior-distributions">(Prior) Distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#uniform">Uniform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#gaussian">Gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#truncated-gaussian">Truncated Gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/AlTarFramework.html#preset">Preset</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/AlTarFramework.html#other-distributions">Other Distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Models.html">Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Static.html">Static Slip Inversion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Static.html#static-source-model">Static Source model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Static.html#input">Input</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Static.html#configurations">Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Static.html#output">Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Static.html#moment-distribution">Moment Distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Static.html#forward-model-application">Forward Model Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Static.html#utilities">Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cp.html">Static Slip Inversion with Cp: Epistemic Uncertainties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Kinematic.html">Kinematic Slip Inversion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Kinematic.html#kinematic-source-model">Kinematic Source Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Kinematic.html#joint-kinematic-static-inversion">Joint Kinematic-Static Inversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Kinematic.html#configurations-kinematic-model-only">Configurations (Kinematic Model only)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Kinematic.html#configurations-joint-inversion">Configurations (Joint inversion)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Kinematic.html#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Kinematic.html#forward-model-application-new-version">Forward Model Application (new version)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Kinematic.html#forward-model-application-old-version">Forward Model Application (old version)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Programming.html">Programming Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Programming.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Programming.html#code-organization">Code Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Programming.html#bayesian-model">Bayesian Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Programming.html#model-with-the-bayesianl2-template">Model with the BayesianL2 template</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Programming.html#parametersets-psets">Parametersets(psets)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Programming.html#data-observations-dataobs-with-l2-norm">Data observations(dataobs) with L2-norm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Programming.html#forward-modeling">Forward modeling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Programming.html#c-c-cuda-extension-modules">C/C++/CUDA extension modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Programming.html#cuda-models">CUDA Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Programming.html#data-types-and-structures">Data Types and Structures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Programming.html#configurable-properties">Configurable properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Programming.html#matrix-vector-gsl">Matrix/Vector (GSL)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Programming.html#convert-altar-array-to-gsl-vector">Convert altar array to gsl_vector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Programming.html#basic-matrix-vector-operations">Basic matrix/vector operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda/Programming.html#interfacing-as-numpy-arrays">Interfacing as numpy arrays</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/Issues.html">Common Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Issues.html#installation-issues">Installation Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Issues.html#cannot-find-gmake">Cannot find <code class="docutils literal notranslate"><span class="pre">gmake</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Issues.html#cannot-find-cublas-v2-h">Cannot find <code class="docutils literal notranslate"><span class="pre">cublas_v2.h</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/Issues.html#run-time-issues">Run-time Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Issues.html#locales">Locales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Issues.html#base-case-name">Base case name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Issues.html#configuration-parser-error">Configuration Parser Error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Issues.html#mpi-launcher-error">MPI launcher error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/Issues.html#intel-mkl-library">Intel MKL Library</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
+</ul>
+</div>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cuda/Preface.html" class="btn btn-neutral float-right" title="Preface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

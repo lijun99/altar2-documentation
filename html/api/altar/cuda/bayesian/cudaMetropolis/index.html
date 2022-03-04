@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>altar.cuda.bayesian.cudaMetropolis &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="altar.cuda.bayesian.cudaMetropolisVaryingSteps" href="../cudaMetropolisVaryingSteps/index.html" />
+    <link rel="prev" title="altar.cuda.bayesian.cudaCoolingStep" href="../cudaCoolingStep/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cuda/Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../../actions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../bayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../distributions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.ext</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../norms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../shells/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulations/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../index.html">API Reference</a> &raquo;</li>
+          <li><a href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a> &raquo;</li>
+          <li><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda</span></code></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaMetropolis</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/api/altar/cuda/bayesian/cudaMetropolis/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-altar.cuda.bayesian.cudaMetropolis">
+<span id="altar-cuda-bayesian-cudametropolis"></span><h1><a class="reference internal" href="#module-altar.cuda.bayesian.cudaMetropolis" title="altar.cuda.bayesian.cudaMetropolis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaMetropolis</span></code></a><a class="headerlink" href="#module-altar.cuda.bayesian.cudaMetropolis" title="Permalink to this headline"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.cuda.bayesian.cudaMetropolis.</span></span><span class="sig-name descname"><span class="pre">cudaMetropolis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locator</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.component</span></code></p>
+<p>The Metropolis algorithm as a sampler of the posterior distribution</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.scaling">
+<span class="sig-name descname"><span class="pre">scaling</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.scaling" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.doc">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">parameter</span> <span class="pre">covariance</span> <span class="pre">Σ</span> <span class="pre">is</span> <span class="pre">scaled</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">square</span> <span class="pre">of</span> <span class="pre">this</span></em><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.doc" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.acceptanceWeight">
+<span class="sig-name descname"><span class="pre">acceptanceWeight</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.acceptanceWeight" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">weight</span> <span class="pre">of</span> <span class="pre">accepted</span> <span class="pre">samples</span> <span class="pre">during</span> <span class="pre">covariance</span> <span class="pre">rescaling</span></em><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.rejectionWeight">
+<span class="sig-name descname"><span class="pre">rejectionWeight</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.rejectionWeight" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">weight</span> <span class="pre">of</span> <span class="pre">rejected</span> <span class="pre">samples</span> <span class="pre">during</span> <span class="pre">covariance</span> <span class="pre">rescaling</span></em><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.useFixedScaling">
+<span class="sig-name descname"><span class="pre">useFixedScaling</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.useFixedScaling" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">whether</span> <span class="pre">to</span> <span class="pre">use</span> <span class="pre">a</span> <span class="pre">fixed</span> <span class="pre">scaling</span></em><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.scalingMin">
+<span class="sig-name descname"><span class="pre">scalingMin</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.scalingMin" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">minimum</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">scaling</span> <span class="pre">factor</span></em><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.scalingMax">
+<span class="sig-name descname"><span class="pre">scalingMax</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.scalingMax" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">maximum</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">scaling</span> <span class="pre">factor</span></em><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.mcsteps">
+<span class="sig-name descname"><span class="pre">mcsteps</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.mcsteps" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.dispatcher">
+<span class="sig-name descname"><span class="pre">dispatcher</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.dispatcher" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.ginit">
+<span class="sig-name descname"><span class="pre">ginit</span></span><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.ginit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gstep">
+<span class="sig-name descname"><span class="pre">gstep</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gstep" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gcandidate">
+<span class="sig-name descname"><span class="pre">gcandidate</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gcandidate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gproposal">
+<span class="sig-name descname"><span class="pre">gproposal</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gproposal" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gsigma_chol">
+<span class="sig-name descname"><span class="pre">gsigma_chol</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gsigma_chol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gvalid_indices">
+<span class="sig-name descname"><span class="pre">gvalid_indices</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gvalid_indices" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gvalid_samples">
+<span class="sig-name descname"><span class="pre">gvalid_samples</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gvalid_samples" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.ginvalid_flags">
+<span class="sig-name descname"><span class="pre">ginvalid_flags</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.ginvalid_flags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gacceptance_flags">
+<span class="sig-name descname"><span class="pre">gacceptance_flags</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gacceptance_flags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.precision">
+<span class="sig-name descname"><span class="pre">precision</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.precision" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gdice">
+<span class="sig-name descname"><span class="pre">gdice</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.gdice" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.curng">
+<span class="sig-name descname"><span class="pre">curng</span></span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.curng" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me and my parts given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.cuInitialize">
+<span class="sig-name descname"><span class="pre">cuInitialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.cuInitialize" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.samplePosterior">
+<span class="sig-name descname"><span class="pre">samplePosterior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annealer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.samplePosterior" title="Permalink to this definition"></a></dt>
+<dd><p>Sample the posterior distribution
+:param annealer - the controller:
+:param step - cpu CoolingStep:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>statistics (accepted/rejected/invalid) or (accepted/unlikely/rejected)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.resample">
+<span class="sig-name descname"><span class="pre">resample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annealer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.resample" title="Permalink to this definition"></a></dt>
+<dd><p>Update my statistics based on the results of walking my Markov chains</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.prepareSamplingPDF">
+<span class="sig-name descname"><span class="pre">prepareSamplingPDF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annealer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.prepareSamplingPDF" title="Permalink to this definition"></a></dt>
+<dd><p>Re-scale and decompose the parameter covariance matrix, in preparation for the
+Metropolis update</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.finishSamplingPDF">
+<span class="sig-name descname"><span class="pre">finishSamplingPDF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.finishSamplingPDF" title="Permalink to this definition"></a></dt>
+<dd><p>procedures after sampling, e.g, copy data back to cpu</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.walkChains">
+<span class="sig-name descname"><span class="pre">walkChains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annealer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.walkChains" title="Permalink to this definition"></a></dt>
+<dd><p>Run the Metropolis algorithm on the Markov chains
+:param annealer: cudaAnnealer
+:param step: cudaCoolingStep</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>statistics = (accepted, rejected, unlikely)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.displace">
+<span class="sig-name descname"><span class="pre">displace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">displacement</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.displace" title="Permalink to this definition"></a></dt>
+<dd><p>Construct a set of displacement vectors for the random walk from a distribution with zero
+mean and my covariance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.adjustCovarianceScaling">
+<span class="sig-name descname"><span class="pre">adjustCovarianceScaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invalid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rejected</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.adjustCovarianceScaling" title="Permalink to this definition"></a></dt>
+<dd><p>Compute a new value for the covariance sacling factor based on the acceptance/rejection
+ratio</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.allocateGPUData">
+<span class="sig-name descname"><span class="pre">allocateGPUData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.cuda.bayesian.cudaMetropolis.cudaMetropolis.allocateGPUData" title="Permalink to this definition"></a></dt>
+<dd><p>initialize gpu work data</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../cudaCoolingStep/index.html" class="btn btn-neutral float-left" title="altar.cuda.bayesian.cudaCoolingStep" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cudaMetropolisVaryingSteps/index.html" class="btn btn-neutral float-right" title="altar.cuda.bayesian.cudaMetropolisVaryingSteps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

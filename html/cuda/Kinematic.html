@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinematic Slip Inversion &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Programming Guide" href="Programming.html" />
+    <link rel="prev" title="Static Slip Inversion with Cp: Epistemic Uncertainties" href="cp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Manual.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuickStart.html">QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pyre.html">Pyre Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AlTarFramework.html">AlTar Framework</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Models.html">Models</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Static.html">Static Slip Inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cp.html">Static Slip Inversion with Cp: Epistemic Uncertainties</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Kinematic Slip Inversion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#kinematic-source-model">Kinematic Source Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#joint-kinematic-static-inversion">Joint Kinematic-Static Inversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configurations-kinematic-model-only">Configurations (Kinematic Model only)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configurations-joint-inversion">Configurations (Joint inversion)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#forward-model-application-new-version">Forward Model Application (new version)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#forward-model-application-old-version">Forward Model Application (old version)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="Manual.html">User Guide</a> &raquo;</li>
+          <li><a href="Models.html">Models</a> &raquo;</li>
+      <li>Kinematic Slip Inversion</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/Kinematic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="kinematic-slip-inversion">
+<span id="kinematic-inversion"></span><h1>Kinematic Slip Inversion<a class="headerlink" href="#kinematic-slip-inversion" title="Permalink to this headline"></a></h1>
+<section id="kinematic-source-model">
+<h2>Kinematic Source Model<a class="headerlink" href="#kinematic-source-model" title="Permalink to this headline"></a></h2>
+<p>The kinematic source model studies also the temporal evolution of coseismic slips. The kinematic source model currently implemented in AlTar is formulated as follows.</p>
+<p>The fault plane, as a rectangular area, is divided into <span class="math notranslate nohighlight">\(N_{dd} \times N_{as}\)</span> square patches (dd=down dip, as=along strike), and time is divided into <span class="math notranslate nohighlight">\(N_t\)</span> intervals. The kinematic slip function <span class="math notranslate nohighlight">\({\bf M}_b({\vec \xi}, t)\)</span> (big M) can be in general written as</p>
+<div class="math notranslate nohighlight">
+\[{\bf M}_b({\vec \xi}, t) = {\bf D}({\vec \xi}) S(t-T_R({\vec \xi}); T_r({\vec \xi})),\]</div>
+<p>where <span class="math notranslate nohighlight">\({\vec \xi}, t\)</span> label the patch and time, respectively, and</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\({\bf D}({\vec \xi})\)</span> is the coseismic slip vector, also subject to the static source model inversion;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_R({\vec \xi})\)</span> is the initial rupture time of each patch, determined by solving the Eikonal equation with a Fast Sweeping algorithm, given the location of the hypocenter <span class="math notranslate nohighlight">\(H_0\)</span> and the rupture velocity <span class="math notranslate nohighlight">\(V_r({\vec \xi})\)</span> (assumed to be isotropic and the same within each patch);</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_r({\vec \xi})\)</span> is the slip duration (rise time) for each patch;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S(t, T_r)\)</span> is the source time function which is finite only for <span class="math notranslate nohighlight">\(t \in [0, T_r]\)</span> and integrated to 1: we choose a triangular source time function.</p></li>
+</ul>
+<p>To produce smooth synthetics, we refine each patch into <span class="math notranslate nohighlight">\(N_{mesh} \times N_{mesh}\)</span> grids when solving the eikonal equation, while dividing each time interval into <span class="math notranslate nohighlight">\(N_{pt}\)</span> points. <span class="math notranslate nohighlight">\({\bf M}_b({\vec \xi}, t)\)</span> are then interpolated and integrated from these finer spatial and temporal meshes.</p>
+<p>The predicted observations can be calculated by,</p>
+<div class="math notranslate nohighlight">
+\[d_{prediction} ({\vec x}, t) = {\cal G}_b({\vec x}, {\vec \xi}; t-t') {\bf M}_b({\vec \xi}, t')\]</div>
+<p>which is a linear model (note that the Eikonal equation is non-linear). Here, <span class="math notranslate nohighlight">\({\cal G}_b({\vec x}, {\vec \xi}; t-t')\)</span> (big G) are the kinematic Green’s functions relating the source <span class="math notranslate nohighlight">\({\bf M}_b({\vec \xi}, t')\)</span> to an observation location at a given time <span class="math notranslate nohighlight">\(({\vec x}, t)\)</span>. The kinematic Green’s functions are pre-calculated as inputs to AlTar. There are some existing software packages for the calculation, e.g., the frequency-wavenumber integration code of <a class="reference external" href="https://doi.org/10.1046/j.1365-246X.2002.01610.x">Zhu and Rivera</a>, or <a class="reference external" href="https://github.com/coutanto/axitra">AXITRA</a>.</p>
+<p>In summary, the kinematic inversion uses the following source parameters</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the two components of coseismic slip <span class="math notranslate nohighlight">\({\bf D}({\vec \xi})\)</span> (<span class="math notranslate nohighlight">\(2\times N_{dd} \times N_{as}\)</span> elements),</p></li>
+<li><p>the rupture velocity  <span class="math notranslate nohighlight">\(V_r({\vec \xi})\)</span> (<span class="math notranslate nohighlight">\(N_{dd} \times N_{as}\)</span> elements),</p></li>
+<li><p>the rise time <span class="math notranslate nohighlight">\(T_r({\vec \xi})\)</span> (<span class="math notranslate nohighlight">\(N_{dd} \times N_{as}\)</span> elements),</p></li>
+<li><p>the location of the hypocenter <span class="math notranslate nohighlight">\({\bf H}_0\)</span> (2 elements),</p></li>
+</ul>
+</div></blockquote>
+<p>and the forward model</p>
+<div class="math notranslate nohighlight">
+\[d_{pred} = G( {\bf D}({\vec \xi}), V_r({\vec \xi}),  T_r({\vec \xi}), {\bf H}_0)\]</div>
+<p>is preformed in two steps,</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>to obtain <span class="math notranslate nohighlight">\({\bf M}_b({\vec \xi}, t')\)</span> from the Eikonal equation sovler,</p></li>
+<li><p>to calculate <span class="math notranslate nohighlight">\(d_{pred} = {\cal G}_b {\bf M}_b\)</span>.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="joint-kinematic-static-inversion">
+<h2>Joint Kinematic-Static Inversion<a class="headerlink" href="#joint-kinematic-static-inversion" title="Permalink to this headline"></a></h2>
+<p>Because the slips <span class="math notranslate nohighlight">\({\bf D}({\vec \xi})\)</span> are subject to both static and kinematic observations, we in general run static and kinematic models together, by a model ensemble with or without cascading.</p>
+<p>The joint Bayesian probability for static and kinematic models can be written as</p>
+<div class="math notranslate nohighlight">
+\[P({\boldsymbol \theta}_c, {\boldsymbol \theta}_s, {\boldsymbol \theta}_k | {\bf d}_s, {\bf d}_k) = P({\boldsymbol \theta}_c)P({\boldsymbol \theta}_s)P({\boldsymbol \theta}_k) P({\bf d}_s| {\boldsymbol \theta}_c, {\boldsymbol \theta}_s) P({\bf d}_k| {\boldsymbol \theta}_c, {\boldsymbol \theta}_k).\]</div>
+<p>where <span class="math notranslate nohighlight">\({\boldsymbol \theta}_c = [strikeslip, dipslip]\)</span> as shared (common) parameters, <span class="math notranslate nohighlight">\({\boldsymbol \theta}_s = [ramp]\)</span>, and <span class="math notranslate nohighlight">\({\boldsymbol \theta}_k = [risetime, rupturevelocity, hypocenter]\)</span>. The data likelihoods are computed from</p>
+<ul class="simple">
+<li><p>the static model with observations <span class="math notranslate nohighlight">\({\bf d}_s\)</span> and the forward model <span class="math notranslate nohighlight">\({\bf d}_s^{pred} = G_s({\boldsymbol \theta}_c, {\boldsymbol \theta}_s)\)</span>,</p></li>
+<li><p>the kinematic model with <span class="math notranslate nohighlight">\({\bf d}_k\)</span> and <span class="math notranslate nohighlight">\({\bf d}_k^{pred} = G_k({\boldsymbol \theta}_c, {\boldsymbol \theta}_k)\)</span>.</p></li>
+</ul>
+<p>In the annealing schemes such as CATMIP, we can introduce transitioning distributions</p>
+<div class="math notranslate nohighlight">
+\[P_{\beta_s, \beta_k} ({\boldsymbol \theta}_c, {\boldsymbol \theta}_s, {\boldsymbol \theta}_k | {\bf d}_s, {\bf d}_k) = P({\boldsymbol \theta}_c)P({\boldsymbol \theta}_s)P({\boldsymbol \theta}_k) [P({\bf d}_s| {\boldsymbol \theta}_c, {\boldsymbol \theta}_s)]^{\beta_s} [P({\bf d}_k| {\boldsymbol \theta}_c, {\boldsymbol \theta}_k)]^{\beta_k}.\]</div>
+<p>where both <span class="math notranslate nohighlight">\(\beta_s\)</span> and <span class="math notranslate nohighlight">\(\beta_k\)</span> vary from 0 to 1, either jointly or independently. Depending on how <span class="math notranslate nohighlight">\(\beta_s, \beta_k\)</span> vary, AlTar supports two schemes:</p>
+<ul class="simple">
+<li><p>In the non-cascading scheme, we set <span class="math notranslate nohighlight">\(\beta=\beta_s=\beta_k\)</span>, i.e., both increasing at the same pace, while their increment in the COV scheduler is determined by the coefficient of variation of the weights <span class="math notranslate nohighlight">\(w = [P({\bf d}_s| {\boldsymbol \theta}_c, {\boldsymbol \theta}_s) P({\bf d}_k| {\boldsymbol \theta}_c, {\boldsymbol \theta}_k)]^{\beta_{m+1}-\beta_m}\)</span>.</p></li>
+<li><p>In the cascading scheme, we run AlTar twice:</p>
+<ol class="arabic simple">
+<li><p>In the first run, we perform inversion on the static model only, or producing samples of <span class="math notranslate nohighlight">\({\boldsymbol \theta}_c\)</span> and <span class="math notranslate nohighlight">\({\boldsymbol \theta}_s\)</span> pursuant to the posterior distribution of the static model <span class="math notranslate nohighlight">\(P({\boldsymbol \theta}_c, {\boldsymbol \theta}_s | {\bf d}_s) = P({\boldsymbol \theta}_c)P({\boldsymbol \theta}_s) [P({\bf d}_s| {\boldsymbol \theta}_c, {\boldsymbol \theta}_s)]\)</span>.</p></li>
+<li><p>In the second run, we run static and kinematic models together, by setting <span class="math notranslate nohighlight">\(\beta_s=1\)</span> (<code class="docutils literal notranslate"><span class="pre">cascaded</span> <span class="pre">=</span> <span class="pre">True</span></code>) and varying <span class="math notranslate nohighlight">\(\beta_k\)</span> from 0 to 1 (<code class="docutils literal notranslate"><span class="pre">cascaded</span> <span class="pre">=</span> <span class="pre">False</span></code>). Here, the samples of <span class="math notranslate nohighlight">\({\boldsymbol \theta}_c\)</span> and <span class="math notranslate nohighlight">\({\boldsymbol \theta}_s\)</span> from the static inversion are used as the initial samples for the joint inversion. The increment of <span class="math notranslate nohighlight">\(\beta_k\)</span> in the COV scheduler is determined by the coefficient of variation of the weights <span class="math notranslate nohighlight">\(w = [P({\bf d}_k| {\boldsymbol \theta}_c, {\boldsymbol \theta}_k)]^{\beta_{k,m+1}-\beta_{k,m}}\)</span>.</p></li>
+</ol>
+</li>
+</ul>
+<p>With the optimized and (usually greatly) reduced search range of <span class="math notranslate nohighlight">\({\boldsymbol \theta}_c\)</span> and <span class="math notranslate nohighlight">\({\boldsymbol \theta}_s\)</span> in parameter space from the static inversion, the cascaded joint-static-kinematic inversion runs more efficiently than the non-cascading scheme. In general, the cascading scheme is recommended for all model ensembles if there is a computation-intensive model (such as the kinematic model) present.</p>
+</section>
+<section id="configurations-kinematic-model-only">
+<h2>Configurations (Kinematic Model only)<a class="headerlink" href="#configurations-kinematic-model-only" title="Permalink to this headline"></a></h2>
+<p>We illustrate the settings of the kinematic model by assuming to run it alone (in practice this is rarely adopted).</p>
+<section id="an-example-configuration-file">
+<h3>An example configuration file<a class="headerlink" href="#an-example-configuration-file" title="Permalink to this headline"></a></h3>
+<p>The configuration file (<code class="docutils literal notranslate"><span class="pre">kinematicg_only.pfg</span></code>) for the kinematic model appears as</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>; application instance name
+slipmodel:
+
+    ; model to be sampled
+    model = altar.models.seismic.cuda.kinematicg
+    model:
+
+        dataobs:
+            observations = 14148 ; number of observed data points
+            data_file = kinematicG.data.h5
+            cd_std = 5.0e-3
+            ; or cd_file = kinematicG.cd.h5 if using a file input
+
+        ; fixed model parameters
+        ; green&#39;s function (2*Ndd*Nas*Nt, observations)
+        ; [Nt][2(strike/dip)][Nas][Ndd] with leading dimensions on the right
+        green = kinematicG.gf.h5
+
+        Ndd = 3 ; patches along dip
+        Nas = 3 ; patches along strike
+        Nmesh = 30 ; mesh points for each patch
+        dsp = 20.0 ; length for each patch, km
+        Nt = 90 ; number of time intervals
+        Npt = 2 ; mesh points for each time interval
+        dt = 1.0 ; time unit for each interval, second
+        ; initial starting time for each patch, in addition to the fast sweeping calculated arrival time
+        t0s = [0.0] * {slipmodel.model.patches}
+
+        ; parameters to be simulated
+        ; provide a list at first, serving as their orders in theta
+        psets_list = [strikeslip, dipslip, risetime, rupturevelocity, hypocenter]
+
+        ; define each parameterset
+        psets:
+            strikeslip = altar.cuda.models.parameterset
+            dipslip = altar.cuda.models.parameterset
+            risetime = altar.cuda.models.parameterset
+            rupturevelocity = altar.cuda.models.parameterset
+            hypocenter = altar.cuda.models.parameterset
+
+            ; variables for patches are arranged along dip direction at first [Nas][Ndd]
+            strikeslip:
+                count = {slipmodel.model.patches}
+                prep = altar.cuda.distributions.preset ; load preset samples
+                prep.input_file = theta_cascaded.h5 ; file name
+                prep.dataset = ParameterSets/strikeslip ; dataset name in h5
+                prior = altar.cuda.distributions.gaussian
+                prior.mean = 0
+                prior.sigma = 0.5
+
+            dipslip:
+                count = {slipmodel.model.patches}
+                prep = altar.cuda.distributions.preset
+                prep.input_file = theta_cascaded.h5 ; file name
+                prep.dataset = ParameterSets/dipslip ; dataset name in h5
+                prior = altar.cuda.distributions.uniform
+                prior.support = (-0.5, 20.0)
+
+            risetime:
+                count = {slipmodel.model.patches}
+                prior = altar.cuda.distributions.uniform
+                prior.support = (10.0, 30.0)
+
+            rupturevelocity:
+                count = {slipmodel.model.patches}
+                prior = altar.cuda.distributions.uniform
+                prior.support= (1.0, 6.0)
+
+            ; along strike(first), dip directions
+            ; could be separated into 2 for dip and strike direction
+            hypocenter:
+                count = 2
+                prior = altar.cuda.distributions.gaussian
+                prior.mean = 20.0
+                prior.sigma = 5.0
+</pre></div>
+</div>
+</section>
+<section id="parameter-sets">
+<h3>Parameter Sets<a class="headerlink" href="#parameter-sets" title="Permalink to this headline"></a></h3>
+<p>The parameter sets or <code class="docutils literal notranslate"><span class="pre">psets</span></code> for the kinematic models are <code class="docutils literal notranslate"><span class="pre">psets_list</span> <span class="pre">=</span> <span class="pre">[strikeslip,</span> <span class="pre">dipslip,</span> <span class="pre">risetime,</span> <span class="pre">rupturevelocity,</span> <span class="pre">hypocenter]</span></code>.</p>
+<ul class="simple">
+<li><p>The names the parameter sets can be changed per your preference, e.g., <code class="docutils literal notranslate"><span class="pre">strike_slip</span></code>, <code class="docutils literal notranslate"><span class="pre">StrikeSlip</span></code>.  But the order of the parameter sets must be preserved because the forward model uses the order to map appropriate parameters. <code class="docutils literal notranslate"><span class="pre">strikeslip</span></code> and <code class="docutils literal notranslate"><span class="pre">dipslip</span></code> may be switched as long as their order is consistent with the Green’s functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">strikeslip</span></code> and <code class="docutils literal notranslate"><span class="pre">dipslip</span></code> are two components of the cumulative slip displacement. If you prefer to load their initial samples from the static inversion results, use the <code class="docutils literal notranslate"><span class="pre">altar.cuda.distributions.preset</span></code> distribution for <code class="docutils literal notranslate"><span class="pre">prep</span></code>, see <a class="reference internal" href="Priors.html#preset"><span class="std std-ref">Preset</span></a> distribution for more details. Only <code class="docutils literal notranslate"><span class="pre">HDF5</span></code> format is accepted for Preset prior and therefore, its dataset name <code class="docutils literal notranslate"><span class="pre">prep.dataset=ParameterSets/strikeslip</span></code> is also required. If you choose to generate samples from a given distribution, e.g., gaussian/moment scale distributions, please follow the <a class="reference internal" href="Static.html#static-parameter-sets"><span class="std std-ref">Parameter Sets</span></a> example in static inversion to set their <code class="docutils literal notranslate"><span class="pre">prep</span></code> and <code class="docutils literal notranslate"><span class="pre">prior</span></code> distributions. The slips are usually in unit of meters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">risetime</span></code> (in unit of seconds) and <code class="docutils literal notranslate"><span class="pre">rupturevelocity</span></code> (in unit of km/s) are rupture duration and velocities for each patch. As they are positive, usually uniform or truncated gaussian distributions are used as their priors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">strikeslip</span></code>, <code class="docutils literal notranslate"><span class="pre">dipslip</span></code>, <code class="docutils literal notranslate"><span class="pre">risetime</span></code> and <code class="docutils literal notranslate"><span class="pre">rupturevelocity</span></code> are defined for each patch and their counts are the same as the number of patches. The sequence of patches is arranged as, for <span class="math notranslate nohighlight">\(N_{dd} \times N_{as}\)</span> patches,  <span class="math notranslate nohighlight">\((as_0, dd_0), (as_0, dd_1), ... (as_0, dd_{Ndd-1}), (as_1, dd_0), ..., (as_{Nas-1}, dd_{Ndd-1})\)</span>. Or <code class="docutils literal notranslate"><span class="pre">dd</span></code> is the leading dimension.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hypocenter</span></code> (in unit of km) is the location of the hypocenter measured from the <strong>CENTER</strong> of the <span class="math notranslate nohighlight">\((as_0, dd_0)\)</span> patch (note that it’s not the origin or the corner), in unit of kilometers. If the distances down dip (dd) and along strike (as) directions are different, you may separate them as two parameter sets <code class="docutils literal notranslate"><span class="pre">hypo_as</span></code> and <code class="docutils literal notranslate"><span class="pre">hypo_dd</span></code>, with <code class="docutils literal notranslate"><span class="pre">as</span></code> component being first.</p></li>
+</ul>
+</section>
+<section id="input-files">
+<h3>Input files<a class="headerlink" href="#input-files" title="Permalink to this headline"></a></h3>
+<p>The kinematic model requires the following input files</p>
+<dl class="field-list simple">
+<dt class="field-odd">green</dt>
+<dd class="field-odd"><p>the kinematic Green’s functions, with the <code class="docutils literal notranslate"><span class="pre">shape=(2*Ndd*Nas*Nt,</span> <span class="pre">observations)</span></code>. The <code class="docutils literal notranslate"><span class="pre">observations</span></code> is the number of observed data points, and is the leading dimension. <code class="docutils literal notranslate"><span class="pre">[Nt][2(strike/dip)][Nas][Ndd]</span></code> labels the spatial-temporal source displacements with leading dimensions on the right (or which comes first):</p>
+</dd>
+</dl>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(t=0, strike, as_0, dd_0, obs_0), (t=0, strike, as_0, dd_0, obs_1), ..., (t=0, strike, as_0, dd_0, obs_{Nobs-1})
+(t=0, strike, as_0, dd_1, obs_0), (t=0, strike, as_0, dd_1, obs_1), ..., (t=0, strike, as_0, dd_1, obs_{Nobs-1})
+... ...
+(t=0, strike, as_0, dd_{Ndd-1}, obs_0), (t=0, strike, as_0, dd_{Ndd-1}, obs_1), ...,  (t=0, strike, as_0, dd_{Ndd-1}, obs_{Nobs-1})
+(t=0, strike, as_1, dd_0, obs_0), (t=0, strike, as_1, dd_0, obs_1), ..., (t=0, strike, as_1, dd_0, obs_{Nobs-1})
+... ...
+(t=0, strike, as_{Nas-1}, dd_{Ndd-1}, obs_0), (t=0, strike, as_{Nas-1}, dd_{Ndd-1}, obs_1), ..., (t=0, strike, as_{Nas-1}, dd_{Ndd-1}, obs_{Nobs-1})
+(t=0, dip, as_0, dd_0, obs_0), (t=0, dip, as_0, dd_0, obs_1), ..., (t=0, dip, as_0, dd_0, obs_{Nobs-1})
+... ...
+(t=0, dip, as_{Nas-1}, dd_{Ndd-1}, obs_0), (t=0, dip, as_{Nas-1}, dd_{Ndd-1}, obs_1), ..., (t=0, dip, as_{Nas-1}, dd_{Ndd-1}, obs_{Nobs-1})
+(t=1, strike, as_0, dd_0, obs_0), (t=1, strike, as_0, dd_0, obs_1), ..., (t=1, strike, as_0, dd_0, obs_{Nobs-1})
+... ...
+(t={Nt-1}, dip, as_{Nas-1}, dd_{Ndd-1}, obs_0), (t={Nt-1}, dip, as_{Nas-1}, dd_{Ndd-1}, obs_1), ..., (t={Nt-1}, dip, as_{Nas-1}, dd_{Ndd-1}, obs_{Nobs-1})
+
+You need to follow the above order when preparing the Green&#39;s functions as it&#39;s the order how big-M is arranged in the forward model.
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">dataobs.data_file</dt>
+<dd class="field-odd"><p>1d vector of observed data.</p>
+</dd>
+<dt class="field-even">dataobs.cd_file</dt>
+<dd class="field-even"><p>the data covariance matrix with <code class="docutils literal notranslate"><span class="pre">shape=(observations,</span> <span class="pre">observations)</span></code>. If not available, a constant <code class="docutils literal notranslate"><span class="pre">dataobs.cd_std</span></code> may be used instead.</p>
+</dd>
+</dl>
+<p>The input files can be a text file (.txt), a raw binary (.bin or .dat) or an HDF5 (.h5) file, with its format recognized by the file suffix.</p>
+</section>
+<section id="other-attributes">
+<h3>Other attributes<a class="headerlink" href="#other-attributes" title="Permalink to this headline"></a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">Ndd</dt>
+<dd class="field-odd"><p>integer, number of patches down the dip direction</p>
+</dd>
+<dt class="field-even">Nas</dt>
+<dd class="field-even"><p>integer, number of patches along the strike direction</p>
+</dd>
+<dt class="field-odd">Nmesh</dt>
+<dd class="field-odd"><p>integer, number of mesh points for each patch, i.e., each patch is divided into <span class="math notranslate nohighlight">\(N_{mesh} \times N_{mesh}\)</span> grids for solving the Eikonal equation</p>
+</dd>
+<dt class="field-even">dsp</dt>
+<dd class="field-even"><p>float, the length for each patch, in km</p>
+</dd>
+<dt class="field-odd">Nt</dt>
+<dd class="field-odd"><p>integer, number of time intervals, should be long enough to cover the rupture process</p>
+</dd>
+<dt class="field-even">Npt</dt>
+<dd class="field-even"><p>integer, number of mesh points for each time interval</p>
+</dd>
+<dt class="field-odd">dt</dt>
+<dd class="field-odd"><p>float, time unit for each time interval, in second</p>
+</dd>
+<dt class="field-even">t0s</dt>
+<dd class="field-even"><p>a list of floats with <span class="math notranslate nohighlight">\(N_{patch}\)</span> elements, initial starting time for each patch, in addition to the fast sweeping calculated arrival time. If configured properly, they can reduce the total number of time intervals needed for the computation.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="configurations-joint-inversion">
+<h2>Configurations (Joint inversion)<a class="headerlink" href="#configurations-joint-inversion" title="Permalink to this headline"></a></h2>
+<p>The configuration for the joint kinematic-static inversion (<code class="docutils literal notranslate"><span class="pre">kinematicg.pfg</span></code>) appears as</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>model = altar.models.seismic.cuda.cascaded
+model:
+    ; parameters to be simulated (priors)
+    ; provide a list at first, serving as their orders in theta
+    psets_list = [strikeslip, dipslip, ramp, risetime, rupturevelocity, hypocenter]
+    ; define parametersets
+    psets:
+        ; define the prior for each parameter set
+        ; use preset prior to load samples from static inversion for cascading scheme
+        ; or use regular priors for non-cascading scheme
+        strikeslip = ... ...
+        dipslip = ... ...
+        ... ...
+
+    ; the model ensemble
+    models:
+        static = altar.models.seismic.cuda.static
+        kinematic = altar.models.seismic.cuda.kinematicg
+
+        static:
+            cascaded = True ; or False for non-cascading scheme
+            psets_list = [strikeslip, dipslip, ramp]
+            ; other static model configurations
+            ... ...
+
+        kinematic:
+            cascaded = False ; default setting for model
+            psets_list = [strikeslip, dipslip, risetime, rupturevelocity, hypocenter]
+            ; other kinematic model configurations
+            ... ...
+</pre></div>
+</div>
+<p>Here, the main model is a model ensemble <code class="docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cascaded</span></code>, while its embedded-models <code class="docutils literal notranslate"><span class="pre">[static,</span> <span class="pre">kinematic]</span></code> listed as elements of the attribute <code class="docutils literal notranslate"><span class="pre">models</span></code> (a dict).</p>
+<p>The parametersets are properties of the main model and are processed by the main model for sample initializations and prior probability computations. Each embedded-model only requires a <code class="docutils literal notranslate"><span class="pre">psets_list</span></code> attribute to extract a sub set of parameters from <code class="docutils literal notranslate"><span class="pre">model.psets</span></code> for its own forward modelling, with the data likelihood computed with respect to its own data observations. The main model collects the data likelihood from all embedded models and assembles them into the Bayesian posterior.</p>
+<p>The configuration for each embedded model will be the same as when running it independently, except for an extra flag <code class="docutils literal notranslate"><span class="pre">cascaded</span></code> (default=``False``) to control the cascading scheme.</p>
+<p>For the non-cascading scheme with <span class="math notranslate nohighlight">\(\beta_s = \beta_k = \beta\)</span> varying from 0 to 1 simultaneously, set</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>static:
+    cascaded=False
+kinematic:
+    cascaded=False
+</pre></div>
+</div>
+<p>while for the cascading scheme with <span class="math notranslate nohighlight">\(\beta_s =1\)</span>, and  <span class="math notranslate nohighlight">\(\beta_k = \beta\)</span> varying from 0 to 1, after running the static inversion,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>static:
+    cascaded=True
+kinematic:
+    cascaded=False
+</pre></div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<p>The examples for the joint static and kinematic inversion are available at <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/models/seismic/examples">models/seismic/examples</a>. Input files for both static and kinematic models are stored under the <code class="docutils literal notranslate"><span class="pre">9patch</span></code> directory.</p>
+<section id="cascading-scheme">
+<h3>Cascading Scheme<a class="headerlink" href="#cascading-scheme" title="Permalink to this headline"></a></h3>
+<p>The first step is to run the static inversion only:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel --config<span class="o">=</span>static.pfg
+</pre></div>
+</div>
+<p>Please refer to <a class="reference internal" href="Static.html#static-inversion"><span class="std std-ref">Static Slip Inversion</span></a> for more details.</p>
+<p>The results are saved in the directory <code class="docutils literal notranslate"><span class="pre">results/static</span></code> specified by the config <code class="docutils literal notranslate"><span class="pre">controller.archiver.output_dir</span></code>, which include HDF5 files for all or selected annealing steps. The final step (<span class="math notranslate nohighlight">\(\beta=1\)</span>) results are saved in <code class="docutils literal notranslate"><span class="pre">step_final.h5</span></code>. Copy that file to <code class="docutils literal notranslate"><span class="pre">9patch</span></code> directory so that the final samples of strike/dip slips serve as initial samples for the joint inversion:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp results/static/step_final.h5 9patch/theta_cascaded.h5
+</pre></div>
+</div>
+<p>Please also note that the number of chains <code class="docutils literal notranslate"><span class="pre">job.chains</span></code> in the static inversion should be the same or larger than that of the joint inversion so that there are enough samples available.</p>
+<p>We now can run the joint static-kinematic inversion,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel --config<span class="o">=</span>kinematicg.pfg
+</pre></div>
+</div>
+<p>The results for the jointly inversion will be saved to <code class="docutils literal notranslate"><span class="pre">results/cascaded</span></code>, or any other directory by changing <code class="docutils literal notranslate"><span class="pre">controller.archiver.output_dir</span></code> in <code class="docutils literal notranslate"><span class="pre">kinematicg.pfg</span></code>.</p>
+</section>
+<section id="non-cascading-scheme">
+<h3>Non-cascading Scheme<a class="headerlink" href="#non-cascading-scheme" title="Permalink to this headline"></a></h3>
+<p>For the non-cascading scheme, you don’t need the step to run static inversion.</p>
+<p>You may edit the <code class="docutils literal notranslate"><span class="pre">kinematicg.pfg</span></code> file (or make a copy at first),</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>change the <code class="docutils literal notranslate"><span class="pre">static.cascaded</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>;</p></li>
+<li><p>change the <code class="docutils literal notranslate"><span class="pre">prep</span></code> distributions for <code class="docutils literal notranslate"><span class="pre">strikeslip</span></code>, <code class="docutils literal notranslate"><span class="pre">dipslip</span></code>, and <code class="docutils literal notranslate"><span class="pre">ramp</span></code> from <code class="docutils literal notranslate"><span class="pre">preset</span></code> to appropriate distributions, e.g., copying them from <code class="docutils literal notranslate"><span class="pre">static.pfg</span></code> file.</p></li>
+<li><p>change the output directory <code class="docutils literal notranslate"><span class="pre">controller.archiver.output_dir</span></code> to, e.g., <code class="docutils literal notranslate"><span class="pre">results/non-cascaded</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>Then run the joint inversion:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel --config<span class="o">=</span>kinematicg.pfg
+</pre></div>
+</div>
+<p>In general, the non-cascading takes long iterations to converge and therefore is slower than the cascading scheme.</p>
+<p>Please refer to the <a class="reference internal" href="AlTarFramework.html#altar-framework"><span class="std std-ref">AlTar Framework</span></a> for the Bayesian MCMC framework options and job/output controls. For example, the Adaptive Metropolis Sampler in general has better performance than the fixed-length Metropolis Sampler, which can be selected by setting <code class="docutils literal notranslate"><span class="pre">sampler=altar.cuda.bayesian.adapativemetropolis</span></code> in the configuration file.</p>
+</section>
+</section>
+<section id="forward-model-application-new-version">
+<h2>Forward Model Application (new version)<a class="headerlink" href="#forward-model-application-new-version" title="Permalink to this headline"></a></h2>
+<p>It is essentially the same as the static <a class="reference internal" href="Static.html#static-forward-model"><span class="std std-ref">Forward Model Application</span></a>. The steps are,</p>
+<ol class="arabic simple">
+<li><p>prepare a file with a set of parameters in <code class="docutils literal notranslate"><span class="pre">case</span></code> input directory;</p></li>
+<li><p>add the forward problem settings to the configuration file <code class="docutils literal notranslate"><span class="pre">kinematicg.pfg</span></code> and change the <code class="docutils literal notranslate"><span class="pre">job</span></code> configuration to run with one GPU,</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>; the model
+model = altar.models.seismic.cuda.cascaded
+model:
+
+    ; settings for running forward problem only
+    ; forward theta input
+    theta_input = kinematicG_mean_model.txt
+    ; forward output file
+    forward_output = forward_prediction.h5
+
+... ...
+
+job:
+tasks = 1 ; number of tasks per host
+gpus = 1  ; number of gpus per task
+gpuprecision = float32 ; double(float64) or single(float32) precision for gpu computations
+;gpuids = [0] ; a list gpu device ids for tasks on each host, default range(job.gpus)
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>run the plexus command,</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel.plexus forward --config<span class="o">=</span>kinematicg.pfg
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>the predicted data from both static and kinematic models, as well as the bigM, will be saved to one <code class="docutils literal notranslate"><span class="pre">forward_prediction.h5</span></code> file.</p></li>
+</ol>
+<p>An example is available at <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/models/seismic/examples/kinematicg.pfg">examples/kinematicg.pfg</a>.</p>
+<p>Note also that the same script can be used for Bayesian simulation, with the commands,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel --config<span class="o">=</span>kinematicg.pfg
+<span class="c1"># or</span>
+$ slipmodel.plexus sample --config<span class="o">=</span>kinematicg.pfg
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="Static.html#static-forward-model"><span class="std std-ref">Forward Model Application</span></a> for more details.</p>
+</section>
+<section id="forward-model-application-old-version">
+<h2>Forward Model Application (old version)<a class="headerlink" href="#forward-model-application-old-version" title="Permalink to this headline"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section describes an old implementation, which will be depreciated in the next release.</p>
+</div>
+<p>When analyzing the results, you may need to run the forward model once for the obtained mean-model or any set of parameters, to produce data predictions in comparison with data observations. Since the kinematic forward model is not straightforward, we provide an additional application for running the forward model only, named <code class="docutils literal notranslate"><span class="pre">kinematicForwardModel</span></code>.</p>
+<p>An example configuration file is available as <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/models/seismic/examples/kinematicg_forward.pfg">examples/kinematicg_forward.pfg</a>. You may use the <code class="docutils literal notranslate"><span class="pre">model</span></code> configuration copied from <code class="docutils literal notranslate"><span class="pre">kinematicg.pfg</span></code>, with extra settings</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>; theta input
+theta_input = kinematicG_synthetic_theta.txt
+
+; output h5 file name
+; data prediction is 1d vector with dimension observations
+data_output = kinematicG_synthetic_data.h5
+; Mb is 1d vector arranged as [Nt][2(strike/dip)][Nas][Ndd] with leading dimensions on the right
+mb_output = kinematicG_synthetic_mb.h5
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">theta_input</span></code> is the input of a mean model or any synthetic model, and <code class="docutils literal notranslate"><span class="pre">data_out</span></code> and <code class="docutils literal notranslate"><span class="pre">mb_output</span></code> are output file names for the data predictions and the big M (you can create an animation from it to observe the rupture process).</p>
+<p>The forward model application may be run as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kinematicForwardModel --config<span class="o">=</span>kinematicg_forward.pfg
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cp.html" class="btn btn-neutral float-left" title="Static Slip Inversion with Cp: Epistemic Uncertainties" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Programming.html" class="btn btn-neutral float-right" title="Programming Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

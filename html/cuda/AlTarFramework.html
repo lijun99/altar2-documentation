@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlTar Framework &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Models" href="Models.html" />
+    <link rel="prev" title="Pyre Basics" href="Pyre.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Manual.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuickStart.html">QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pyre.html">Pyre Basics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AlTar Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#application">Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#controller-annealer">Controller/Annealer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#worker-annealingmethod">Worker/AnnealingMethod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sampler">Sampler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scheduler">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#archiver-output">Archiver (Output)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#job">Job</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configurable-attributes">Configurable Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simulation-size">Simulation Size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#single-thread-configuration">Single Thread Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-threads-on-one-computer">Multiple Threads on One Computer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-threads-across-several-computers">Multiple Threads Across Several Computers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gpu-configurations">GPU Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#model">Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prior-distributions">(Prior) Distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uniform">Uniform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gaussian">Gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#truncated-gaussian">Truncated Gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#preset">Preset</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#other-distributions">Other Distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Models.html">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="Manual.html">User Guide</a> &raquo;</li>
+      <li>AlTar Framework</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/AlTarFramework.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="altar-framework">
+<span id="id1"></span><h1>AlTar Framework<a class="headerlink" href="#altar-framework" title="Permalink to this headline"></a></h1>
+<section id="application">
+<h2>Application<a class="headerlink" href="#application" title="Permalink to this headline"></a></h2>
+<p><em>See API Reference:</em> <a class="reference internal" href="../api/altar/shells/index.html#altar.shells.application" title="altar.shells.application"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells.application</span></code></a></p>
+<p>An AlTar application is the <em>root</em> component which integrates all the components in AlTar.  The main components of an AlTar application are as follows.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Application">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Application</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">altar.application</span></em>, <em class="sig-param"><span class="pre">family=&quot;altar.shells.application&quot;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">controller</span> <span class="pre">=</span> <span class="pre">altar.bayesian.controller()</span></span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Value</dt>
+<dd class="field-odd"><p>altar.bayesian.Annealer (default)</p>
+</dd>
+<dt class="field-even">Description</dt>
+<dd class="field-even"><p>the MCMC simulation processor, <em>Annealer</em> for CATMIP algorithm;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">model</span> <span class="pre">=</span> <span class="pre">altar.models.model()</span></span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Value</dt>
+<dd class="field-odd"><p>altar.models.linear(), altar.models.cuda.static(), …</p>
+</dd>
+<dt class="field-even">Description</dt>
+<dd class="field-even"><p>performs the forward modelling and computes the Bayesian probability densities: the prior, the data likelihood and the posterior;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">job</span> <span class="pre">=</span> <span class="pre">altar.simulations.run()</span></span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Description</dt>
+<dd class="field-odd"><p>manages the simulation size and job deployment;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">rng</span> <span class="pre">=</span> <span class="pre">altar.simulations.rng()</span></span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Description</dt>
+<dd class="field-odd"><p>the random number generator shared by all processes;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">monitors</span> <span class="pre">=</span> <span class="pre">altar.properties.dict(schema=altar.simulations.monitor())</span></span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Description</dt>
+<dd class="field-odd"><p>a collection of event handlers, such as reporter, profiler.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>An AlTar application executes the simulation by defining a required <code class="docutils literal notranslate"><span class="pre">main</span></code> entry point:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@altar</span><span class="o">.</span><span class="n">export</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The main entry point</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># initialize various components</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">application</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">application</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">application</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+    <span class="c1"># sample the posterior distribution</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">posterior</span><span class="p">(</span><span class="n">application</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which initializes different components and invokes the <code class="docutils literal notranslate"><span class="pre">model.posterior</span></code> to perform the MCMC sampling.</p>
+<p>An AlTar application is also the engager of the pyre framework, as inherited from <code class="docutils literal notranslate"><span class="pre">pyre.application</span></code> or <code class="docutils literal notranslate"><span class="pre">pyre.plexus</span></code>, which performs</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>registering all protocols and components in a database;</p></li>
+<li><p>reading/loading configuration files;</p></li>
+<li><p>instantiating all components into <em>regular</em> Python objects;</p></li>
+<li><p>invoking the proper shell (MPI, SLURM) to deploy the job.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="controller-annealer">
+<span id="controller"></span><h2>Controller/Annealer<a class="headerlink" href="#controller-annealer" title="Permalink to this headline"></a></h2>
+<p><em>See API Reference:</em> <a class="reference internal" href="../api/altar/bayesian/Annealer/index.html#module-altar.bayesian.Annealer" title="altar.bayesian.Annealer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Annealer</span></code></a></p>
+<p>A Bayesian controller uses an annealing schedule and MCMC to approximate the posterior distribution of a model. The current Annealer uses exclusively the CATMIP algorithm (more controllers implementing other algorithms will be added to a future release). It includes the following configurable components</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sampler</span> <span class="pre">=</span> <span class="pre">altar.bayesian.sampler()</span></code>, the MCMC sampler. The default is a <code class="docutils literal notranslate"><span class="pre">Metropolis</span></code> sampler with fixed chain length based on Metropolis-Hastings algorithm. Another sampler implemented is <code class="docutils literal notranslate"><span class="pre">AdaptiveMetropolis</span></code> which targets a fixed acceptance ratio and varies the chain length targeting a fixed effective sample size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scheduler</span> <span class="pre">=</span> <span class="pre">altar.bayesian.scheduler()</span></code>, the generator of the annealing schedule. The default and currently only implemented scheduler is based on the Coefficient of Variance (COV) of the data likelihood densities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dispatcher</span> <span class="pre">=</span> <span class="pre">altar.simulations.dispatcher(default=Notifier)</span></code>, currently only serves the purpose of profiling.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">archiver</span> <span class="pre">=</span> <span class="pre">altar.simulations.archiver(default=Recorder)</span></code>, the archiver of simulation state. The default recorder saves the simulation state to HDF5 files.</p></li>
+</ul>
+</div></blockquote>
+<p>and another component determined at runtime from the job configurations,</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">worker</span></code> (AnnealingMethod): as AlTar simulations can be performed with either single thread or multiple threads, on CPUs or GPUs, the Controller uses different workers where various deployment-dependence procedures are differentiated. For example, the multiple thread processor, <code class="docutils literal notranslate"><span class="pre">MPIAnnealing</span></code> needs to include additional procedures to collect/distribute samples for all threads.</p></li>
+</ul>
+</div></blockquote>
+<p>The Annealer’s behaviors include</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">deduceAnnealingMethod</span></code> which uses the job configuration to determine the worker.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">posterior</span></code> which defines the MCMC procedures with an annealing schedule.</p></li>
+</ul>
+</div></blockquote>
+<section id="worker-annealingmethod">
+<h3>Worker/AnnealingMethod<a class="headerlink" href="#worker-annealingmethod" title="Permalink to this headline"></a></h3>
+<p><em>See API Reference:</em>  <a class="reference internal" href="../api/altar/bayesian/AnnealingMethod/index.html#module-altar.bayesian.AnnealingMethod" title="altar.bayesian.AnnealingMethod"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.AnnealingMethod</span></code></a></p>
+<p>A worker(AnnealingMethod) defines each procedure of annealing which may be platform dependent. There are three types of workers:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SequentialAnnealing</span></code>, a single thread CPU processor</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUDAAnnealing</span></code>, a single thread GPU processor</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MPIAnnealing</span></code>, a multiple thread processor which uses SequentialAnnealing(CPU) or CUDAAnnealing(GPU) as slave workers.</p></li>
+</ul>
+<p>Each worker also keeps a set of simulation state data, such as <code class="docutils literal notranslate"><span class="pre">beta</span></code> (the inverse temperature), <code class="docutils literal notranslate"><span class="pre">theta</span></code> (the random samples), <code class="docutils literal notranslate"><span class="pre">prior/data/posterior</span></code> (the Bayesian densities), in an object <code class="docutils literal notranslate"><span class="pre">CoolingStep</span></code>.</p>
+</div></blockquote>
+<p>Worker is not directly user configurable; it is determined automatically by the job configuration.</p>
+</section>
+<section id="sampler">
+<h3>Sampler<a class="headerlink" href="#sampler" title="Permalink to this headline"></a></h3>
+<p><em>See API Reference:</em>  <a class="reference internal" href="../api/altar/bayesian/Sampler/index.html#module-altar.bayesian.Sampler" title="altar.bayesian.Sampler"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Sampler</span></code></a></p>
+<p>Starting with <span class="math notranslate nohighlight">\(N_s\)</span> number of chains/samples (processed in parallel), a sampler performs MC updates of the samples pursuant to a given distribution for several steps (length of the chain). For finite <span class="math notranslate nohighlight">\(\beta\)</span>, the target distribution is the transient distribution <span class="math notranslate nohighlight">\(P_m({\boldsymbol \theta}|{\bf d}) = P({\boldsymbol \theta}) P({\bf d}|{\boldsymbol \theta})^{\beta_m}\)</span>, while the sampling serves as a burn-in process. When <span class="math notranslate nohighlight">\(\beta=1\)</span> is reached, the sampler samples the posterior distribution <span class="math notranslate nohighlight">\(P({\boldsymbol \theta}|{\bf d})\)</span>.</p>
+<p>The default sampler is a CPU <code class="docutils literal notranslate"><span class="pre">Metroplis</span></code> sampler. To use other samplers, e.g., for CUDA simulations, users need to specify it in the controller block of the configuration file</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstance:
+    controller:
+        sampler = altar.cuda.bayesian.metropolis
+        sampler:
+            ; sampler attributes
+            ... ...
+</pre></div>
+</div>
+<section id="metropolis">
+<h4>Metropolis<a class="headerlink" href="#metropolis" title="Permalink to this headline"></a></h4>
+<p><em>See API Reference:</em>  <a class="reference internal" href="../api/altar/bayesian/Metropolis/index.html#module-altar.bayesian.Metropolis" title="altar.bayesian.Metropolis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.Metropolis</span></code></a></p>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li><p>New samples are proposed with a Gaussian kernel,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}{\boldsymbol \theta} ' &amp;=  {\boldsymbol \theta}  + \alpha {\boldsymbol \delta}  \\
+{\boldsymbol \delta} &amp;\sim N(0, {\boldsymbol \Sigma}) \nonumber\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\boldsymbol \Sigma}\)</span> is the (weighted) covariance matrix of starting samples (from the previous <span class="math notranslate nohighlight">\(\beta\)</span> step), and <span class="math notranslate nohighlight">\(\alpha\)</span> is a scaling factor adjusting the jump distance. In CATMIP, <span class="math notranslate nohighlight">\(\alpha\)</span> is adjusted by the acceptance rate (from the previous <span class="math notranslate nohighlight">\(\beta\)</span>-step):</p>
+<div class="math notranslate nohighlight">
+\[\alpha = acceptanceWeight * acceptanceRate + rejectionWeight\]</div>
+<p>Since the acceptance rate varies between 0 and 1, <code class="docutils literal notranslate"><span class="pre">rejectionWeight</span></code> and <code class="docutils literal notranslate"><span class="pre">rejectionWeight+acceptanceWeight</span></code> offer as the lower and upper limits of the scaling factor <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+</div></blockquote>
+</li>
+<li><p>Decide whether to accept the proposed samples with the Metropolis–Hastings algorithm.</p></li>
+<li><p>Repeat the MC updates for a fixed <span class="math notranslate nohighlight">\(N_c\)</span>-number of times.</p></li>
+</ul>
+<p><strong>Configurable attributes</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">scaling</dt>
+<dd class="field-odd"><p>float, the initial value of <span class="math notranslate nohighlight">\(\alpha\)</span>, default=0.1</p>
+</dd>
+<dt class="field-even">acceptanceWeight, rejectionWeight</dt>
+<dd class="field-even"><p>float, ratios to adjust the value of <span class="math notranslate nohighlight">\(\alpha\)</span> during the run, defaults=8/9, 1/9</p>
+</dd>
+<dt class="field-odd">steps</dt>
+<dd class="field-odd"><p>integer, the MC update steps in each <span class="math notranslate nohighlight">\(\beta\)</span>-step (the length of each chain), configured by <code class="docutils literal notranslate"><span class="pre">job.steps</span></code>.</p>
+</dd>
+</dl>
+<p><strong>Configuration examples</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    controller:
+        sampler = altar.bayesian.metropolis
+        sampler:
+            scaling = 0.2
+            acceptanceWeight = 0.1
+            rejectionWeight = 0.9
+    ; the length of chains
+    job.steps = 2**12
+</pre></div>
+</div>
+</section>
+<section id="metropolis-cuda-version">
+<h4>Metropolis (CUDA Version)<a class="headerlink" href="#metropolis-cuda-version" title="Permalink to this headline"></a></h4>
+<p><em>See API Reference:</em>  <a class="reference internal" href="../api/altar/cuda/bayesian/cudaMetropolis/index.html#module-altar.cuda.bayesian.cudaMetropolis" title="altar.cuda.bayesian.cudaMetropolis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaMetropolis</span></code></a></p>
+<p>The CUDA version follows the same procedure as above, but includes more control on the scaling factor.</p>
+<p><strong>Configurable attributes</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">scaling</dt>
+<dd class="field-odd"><p>float; the initial value of <span class="math notranslate nohighlight">\(\alpha\)</span>; default=0.1</p>
+</dd>
+<dt class="field-even">acceptanceWeight, rejectionWeight</dt>
+<dd class="field-even"><p>float; ratios to adjust the value of <span class="math notranslate nohighlight">\(\alpha\)</span> during the run, defaults=8/9, 1/9</p>
+</dd>
+<dt class="field-odd">useFixedScaling</dt>
+<dd class="field-odd"><p>bool; if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the initial <code class="docutils literal notranslate"><span class="pre">scaling</span></code> will be used for all <span class="math notranslate nohighlight">\(\beta\)</span>-steps; default= <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+<dt class="field-even">scalingMin, scalingMax</dt>
+<dd class="field-even"><p>float; the min/max values of the scaling factor; default=0.01, 1</p>
+</dd>
+<dt class="field-odd">steps</dt>
+<dd class="field-odd"><p>integer, the MC update steps in each <span class="math notranslate nohighlight">\(\beta\)</span>-step (the length of each chain), configured by <code class="docutils literal notranslate"><span class="pre">job.steps</span></code>.</p>
+</dd>
+</dl>
+<p><strong>Configuration examples</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    controller:
+        sampler = altar.cuda.bayesian.metropolis
+        sampler:
+            scaling = 0.2
+            acceptanceWeight = 0.99
+            rejectionWeight = 0.01
+            useFixedScaling = False
+            scalingMin = 0.1
+            scalingMax = 0.5
+    ; the length of chains
+    job.steps = 2**12
+</pre></div>
+</div>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">scaling</span></code> is set to 0.2 in the beginning. During the run, <code class="docutils literal notranslate"><span class="pre">scaling</span> <span class="pre">=</span> <span class="pre">acceptanceWeight*R</span> <span class="pre">+</span> <span class="pre">rejectionWeight</span></code>, where <span class="math notranslate nohighlight">\(R\)</span> is the acceptance rate from the previous <span class="math notranslate nohighlight">\(\beta\)</span>-step, or <code class="docutils literal notranslate"><span class="pre">scaling</span></code> <span class="math notranslate nohighlight">\(\in[0.01, 1]\)</span>. <code class="docutils literal notranslate"><span class="pre">scalingMin</span></code> and <code class="docutils literal notranslate"><span class="pre">scalingMax</span></code> further adjust the range as [0.1, 0.5].</p>
+</section>
+<section id="adaptivemetropolis">
+<h4>AdaptiveMetropolis<a class="headerlink" href="#adaptivemetropolis" title="Permalink to this headline"></a></h4>
+<p><em>See API Reference:</em>  <a class="reference internal" href="../api/altar/cuda/bayesian/cudaAdaptiveMetropolis/index.html#module-altar.cuda.bayesian.cudaAdaptiveMetropolis" title="altar.cuda.bayesian.cudaAdaptiveMetropolis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda.bayesian.cudaAdaptiveMetropolis</span></code></a> (for CUDA only)</p>
+<p><strong>Algorithm</strong></p>
+<p>In an AdaptiveMetropolis sampler, there are a few variations from the Metropolis sampler,</p>
+<ol class="arabic">
+<li><p>After a certain number of MC updates, <code class="docutils literal notranslate"><span class="pre">corr_check_steps</span></code>, the correlation between the current samples and the initial samples are computed. If the correlation is smaller than a threshold value, <code class="docutils literal notranslate"><span class="pre">target_correlation</span></code>, or the samples become sufficiently de-correlated, we can stop MC updates for the current <span class="math notranslate nohighlight">\(\beta\)</span>-step. A <code class="docutils literal notranslate"><span class="pre">max_mc_steps</span></code> sets the maximum number of MC updates if the correlation threshold value cannot be achieved.</p></li>
+<li><p>The scaling factor <span class="math notranslate nohighlight">\(\alpha\)</span> targets an optimal acceptance rate, <code class="docutils literal notranslate"><span class="pre">target_acceptance_rate</span></code>, with a feedback function</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\alpha_{j+1} = \alpha_j \exp[-gain*(acceptanceRate_j-target\_acceptance\_rate)]\]</div>
+<p>where <span class="math notranslate nohighlight">\(j\)</span> labels the <span class="math notranslate nohighlight">\(\beta\)</span>-step. The initial value is set as</p>
+<div class="math notranslate nohighlight">
+\[\alpha_0 = scaling/\sqrt{parameters}\]</div>
+<p>It is shown that an optimal value for <span class="math notranslate nohighlight">\(\alpha\)</span> is <span class="math notranslate nohighlight">\(2.38/\sqrt{d}\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> is the dimension of parameter space, or <code class="docutils literal notranslate"><span class="pre">parameters</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p>(<em>New in 2.0.2</em>) Sometimes, it is useful to use more MC steps when <span class="math notranslate nohighlight">\(\beta\)</span> is small, or <em>vice versa</em>. We introduce a new <code class="docutils literal notranslate"><span class="pre">max_mc_steps_stage2</span></code> to be used for the maximum MC steps when <span class="math notranslate nohighlight">\(\beta\)</span> &gt; <code class="docutils literal notranslate"><span class="pre">beta_step2</span></code>.</p></li>
+</ol>
+<p><strong>Configurable Attributes</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">scaling</dt>
+<dd class="field-odd"><p>float, default=2.38,
+initial scaling factor for Gaussian proposal, to be normalized by the square root of the number of parameters</p>
+</dd>
+<dt class="field-even">parameters</dt>
+<dd class="field-even"><p>integer, default=1,
+the total number of parameters in simulation: since the controller is initialized before the model, users need to manually provide this information to the sampler (we will try to eliminate this requirement in the next update).</p>
+</dd>
+<dt class="field-odd">scaling_min, scaling_max</dt>
+<dd class="field-odd"><p>float, default=(0.01, 1),
+the minimum and maximum values allowed for the scaling factor</p>
+</dd>
+<dt class="field-even">target_acceptance_rate</dt>
+<dd class="field-even"><p>float, default=0.234,
+the targeted acceptance rate</p>
+</dd>
+<dt class="field-odd">gain</dt>
+<dd class="field-odd"><p>float, default=None (determined by <code class="docutils literal notranslate"><span class="pre">target_acceptance_rate</span></code>),
+the feedback gain constant</p>
+</dd>
+<dt class="field-even">max_mc_steps</dt>
+<dd class="field-even"><p>integer, default=100000,
+the maximum Monte-Carlo steps for one beta step</p>
+</dd>
+<dt class="field-odd">min_mc_steps</dt>
+<dd class="field-odd"><p>integer, default=1000,
+the minimum Monte-Carlo steps for one beta step</p>
+</dd>
+<dt class="field-even">beta_stage2</dt>
+<dd class="field-even"><p>float, default=0.1,
+the start beta value to use another maximum MC steps</p>
+</dd>
+<dt class="field-odd">max_mc_steps_stage2</dt>
+<dd class="field-odd"><p>integer, default=None (to be set the same as <code class="docutils literal notranslate"><span class="pre">max_mc_steps</span></code>),
+the maximum Monte-Carlo steps for one beta step when <code class="docutils literal notranslate"><span class="pre">beta</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">beta_stage2</span></code></p>
+</dd>
+<dt class="field-even">corr_check_steps</dt>
+<dd class="field-even"><p>integer, default=1000,
+the Monte-Carlo steps to compute and check the correlation</p>
+</dd>
+<dt class="field-odd">target_correlation</dt>
+<dd class="field-odd"><p>float, default=0.6,
+the threshold of correlation to stop the chain updates</p>
+</dd>
+</dl>
+<p><strong>Configuration examples</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    controller:
+        sampler = altar.cuda.bayesian.adaptivemetropolis  ; only for CUDA
+        sampler:
+            scaling = 2.38
+            parameters = 399 ; number of parameters in model
+            min_mc_steps = 3000
+            max_mc_steps = 10000
+            corr_check_steps = 1000
+            target_correlation = 0.6
+            beta_stage2 = 0.1
+            max_mc_steps_stage2 = 5000
+</pre></div>
+</div>
+<p>In this example, the initial scaling factor is set to <code class="docutils literal notranslate"><span class="pre">scaling</span></code> / sqrt(<code class="docutils literal notranslate"><span class="pre">parameters</span></code>) or <span class="math notranslate nohighlight">\(2.38/\sqrt{399}=0.12\)</span> (you can also set <code class="docutils literal notranslate"><span class="pre">scaling</span></code> directly to 0.12, and use the default value 1 for <code class="docutils literal notranslate"><span class="pre">parameters</span></code>). After <code class="docutils literal notranslate"><span class="pre">min_mc_steps</span></code> (3,000), the correlation between current samples and initial samples are computed every <code class="docutils literal notranslate"><span class="pre">corr_check_steps</span></code> (1,000). If the correlation is less than <code class="docutils literal notranslate"><span class="pre">target_correlation</span></code> (0.6), the MC update stops and the simulation proceeds to next <span class="math notranslate nohighlight">\(\beta\)</span> step. If the <code class="docutils literal notranslate"><span class="pre">target_correlation</span></code> cannot be achieved by a certain number of steps, <code class="docutils literal notranslate"><span class="pre">max_mc_steps</span></code> (10,000) for <span class="math notranslate nohighlight">\(\beta &lt;=\)</span> <code class="docutils literal notranslate"><span class="pre">beta_stage2</span></code> (0.1) while <code class="docutils literal notranslate"><span class="pre">max_mc_steps_stage2</span></code> (5,000) for <span class="math notranslate nohighlight">\(\beta &gt;\)</span> <code class="docutils literal notranslate"><span class="pre">beta_stage2</span></code> (0.1), the MC update is forced to stop and the simulation proceeds to next <span class="math notranslate nohighlight">\(\beta\)</span> step.</p>
+</section>
+</section>
+<section id="scheduler">
+<h3>Scheduler<a class="headerlink" href="#scheduler" title="Permalink to this headline"></a></h3>
+<p>A scheduler regulates how <span class="math notranslate nohighlight">\(\beta\)</span> increases between different <span class="math notranslate nohighlight">\(\beta\)</span>-steps. The default (and currently the only option) is <cite>COV Scheduler</cite>.</p>
+<section id="cov-scheduler">
+<h4>COV Scheduler<a class="headerlink" href="#cov-scheduler" title="Permalink to this headline"></a></h4>
+<p><em>See API Reference:</em>  <a class="reference internal" href="../api/altar/bayesian/COV/index.html#module-altar.bayesian.COV" title="altar.bayesian.COV"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.COV</span></code></a></p>
+<p><strong>Algorithm</strong></p>
+<p>The COV (Coefficient of Variation) scheduler targets the effective sample size from resampling between different transient
+distributions,</p>
+<div class="math notranslate nohighlight">
+\[P_m({\boldsymbol \theta}|{\bf d}) = P({\boldsymbol \theta}) P({\bf d}|{\boldsymbol \theta})^{\beta_m},\]</div>
+<p>At the <span class="math notranslate nohighlight">\(m\)</span>-stage, samples <span class="math notranslate nohighlight">\(\theta_{m,k}\)</span> are generated with the target equilibrium distribution <span class="math notranslate nohighlight">\(P_m({\boldsymbol \theta}|{\bf d})\)</span>, where <span class="math notranslate nohighlight">\(k=1,2,\ldots, N_s\)</span> and <span class="math notranslate nohighlight">\(N_s\)</span> is the total number of samples (chains). At the <span class="math notranslate nohighlight">\(m+1\)</span>-stage, the sampling targets <span class="math notranslate nohighlight">\(P_{m+1}({\boldsymbol \theta}|{\bf d})\)</span> as the new equilibrium distribution. To sample a distribution with samples generated from another distribution is called as importance sampling, with the importance weight</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}w(\theta_{m,k}) &amp; = \frac {P_{m+1}(\theta_{m,k}|{\bf d})}{P_m({\boldsymbol \theta}|{\bf d})}  \\
+  &amp;= P({\bf d}|\theta_{m,k})^{\beta_{m+1} -\beta_{m}}\end{split}\]</div>
+<p>while the effective sample size (ESS) from the resampling is associated with the COV of <span class="math notranslate nohighlight">\(w(\theta_{m,k})\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}ESS  &amp;= \frac {N_s} {1 + COV(w)}, \\
+COV(w) &amp; =  \frac {\bar w} {\sigma}  \\
+{\bar w} &amp;=  \frac {1}{N_s}  \sum_k w(\theta_{m,k}) \\
+\sigma &amp;= \frac {1}{N_s-1} \sum_k [w(\theta_{m,k}) -{\bar w}]^2.\end{split}\]</div>
+<p>In COV Scheduler, we choose a <span class="math notranslate nohighlight">\(\beta_{m+1}\)</span> so that COV is of order unity, e.g., <span class="math notranslate nohighlight">\(COV=1\)</span>, or <span class="math notranslate nohighlight">\(ESS=N_s/2\)</span>.</p>
+<p><strong>Configurable Attributes</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">target</dt>
+<dd class="field-odd"><p>float, default=1.0,
+the target value for COV</p>
+</dd>
+<dt class="field-even">solver</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">altar.bayesian.solver()</span></code>, values= <code class="docutils literal notranslate"><span class="pre">grid</span></code> (default), <code class="docutils literal notranslate"><span class="pre">brent</span></code>;
+the δβ solver based on the grid search algorithm (grid) or the Brent minimizer (brent)</p>
+</dd>
+<dt class="field-odd">check_positive_definiteness</dt>
+<dd class="field-odd"><p>bool, values = <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), <code class="docutils literal notranslate"><span class="pre">False</span></code>;
+whether to check the positive definiteness of Σ matrix and condition it accordingly</p>
+</dd>
+<dt class="field-even">min_eigenvalue_ratio</dt>
+<dd class="field-even"><p>float, default=0.001;
+if checking the positive definiteness, the minimal eigenvalue to be set as a ratio of the maximum eigenvalue</p>
+</dd>
+</dl>
+<p><strong>Configuration examples</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    controller:
+        scheduler: ; default is COV
+            target = 2.0
+            solver = brent
+            check_positive_definiteness = False
+</pre></div>
+</div>
+</section>
+</section>
+<section id="archiver-output">
+<h3>Archiver (Output)<a class="headerlink" href="#archiver-output" title="Permalink to this headline"></a></h3>
+<p><em>See API Reference:</em>  <a class="reference internal" href="../api/altar/simulations/Archiver/index.html#module-altar.simulations.Archiver" title="altar.simulations.Archiver"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Archiver</span></code></a></p>
+<p>The Archiver saves progress information. The default is an H5Recorder which saves the Bayesian statistical data to HDF5 files.</p>
+<section id="h5recorder">
+<span id="id2"></span><h4>H5Recorder<a class="headerlink" href="#h5recorder" title="Permalink to this headline"></a></h4>
+<p><em>See API Reference:</em>  <a class="reference internal" href="../api/altar/bayesian/H5Recorder/index.html#module-altar.bayesian.H5Recorder" title="altar.bayesian.H5Recorder"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian.H5Recorder</span></code></a></p>
+<p>H5Recorder saves the random samples and their Bayesian probability densities from each <span class="math notranslate nohighlight">\(\beta\)</span>-step to an HDF5 file,
+<code class="docutils literal notranslate"><span class="pre">output_dir/step_nnn.h5</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+---------- step_nnn.h5 ------
+├── Annealer ; annealing data
+|   ├── beta ; the beta value
+|   └── covariance ; the covariance matrix for Gaussian proposal
+├── Bayesian ; the Bayesian probabilities
+|   ├── prior ; (log) prior probability for all samples, vector (samples)
+|   ├── likelihood ; (log) data likelihood for all samples
+|   └── posterior ; (log) posterior probability for all samples
+└── ParameterSets ;  samples
+    └── theta ; samples of model parameters, 2d array (samples, parameters)
+</pre></div>
+</div>
+<p>If you use a list of parameter sets, e.g., in Static Inversion, {<code class="docutils literal notranslate"><span class="pre">strike_slip</span></code>, <code class="docutils literal notranslate"><span class="pre">dip_slip</span></code>, <code class="docutils literal notranslate"><span class="pre">insar_ramp</span></code>}, their names will be used for their data sets,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>└── ParameterSets ;
+    └── strike_slip ; samples of strike slips, 2d array (samples, number of patches)
+    └── dip_slip ; samples of dip slips, 2d array (samples, number of patches)
+    └── insar_ramp ; samples of insar ramp parameters to be fitted, 2d array (samples, number of ramp parameters)
+</pre></div>
+</div>
+<p>H5Recorder also records the MCMC statistics from each <span class="math notranslate nohighlight">\(\beta\)</span>-step to a file <code class="docutils literal notranslate"><span class="pre">output_dir/BetaStatistics.txt</span></code>. An example for the linear model is as follows</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>iteration, beta, scaling, (accepted, invalid, rejected)
+0, 0, 0.3, (0, 0, 0)
+1, 0.00015000000000000001, 0.5925347222222223, (2773, 0, 2347)
+2, 0.00037996549999999997, 0.31666666666666665, (1184, 0, 3936)
+3, 0.00069984391104, 0.5828125, (2717, 0, 2403)
+4, 0.0011195499765973632, 0.3454861111111111, (1350, 0, 3770)
+5, 0.0016789230286104687, 0.5607638888888888, (2590, 0, 2530)
+6, 0.0025175127332664362, 0.3590277777777778, (1428, 0, 3692)
+7, 0.0037843154920951883, 0.5447916666666667, (2498, 0, 2622)
+8, 0.005577503724209416, 0.3751736111111111, (1521, 0, 3599)
+9, 0.008163002214526472, 0.5303819444444444, (2415, 0, 2705)
+10, 0.012229533905446913, 0.37986111111111115, (1548, 0, 3572)
+11, 0.017958602608795324, 0.5154513888888889, (2329, 0, 2791)
+12, 0.026207750346881442, 0.38125, (1556, 0, 3564)
+13, 0.03808801579264949, 0.5, (2240, 0, 2880)
+14, 0.05444051952417445, 0.40243055555555557, (1678, 0, 3442)
+15, 0.07760672679583216, 0.4793402777777778, (2121, 0, 2999)
+16, 0.11173527790438637, 0.42065972222222225, (1783, 0, 3337)
+17, 0.16503116123012318, 0.4588541666666667, (2003, 0, 3117)
+18, 0.24518816975203137, 0.41944444444444445, (1776, 0, 3344)
+19, 0.3470877668355071, 0.46753472222222225, (2053, 0, 3067)
+20, 0.5037867027949854, 0.40625, (1700, 0, 3420)
+21, 0.7176546338903467, 0.47465277777777776, (2094, 0, 3026)
+22, 1.0, 0.41770833333333335, (1766, 0, 3354)
+</pre></div>
+</div>
+<p>which shows how <span class="math notranslate nohighlight">\(\beta\)</span> evolves from <span class="math notranslate nohighlight">\(\beta\)</span>-step iterations, as well the scaling parameter :math:`alpha`, and the MC acceptance (accepted/rejected = proposals accepted/rejected by Metropolis-Hastings algorithm, invalid = proposals rejected due to being out of range for ranged priors).</p>
+<p><strong>Configurable Attributes</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">output_dir</dt>
+<dd class="field-odd"><p>path(string), default=”results”;
+the directory to save results</p>
+</dd>
+<dt class="field-even">output_freq</dt>
+<dd class="field-even"><p>integer, default=1;
+the frequency to write step data to files, e.g., if you only want to save data for every 3 <span class="math notranslate nohighlight">\(\beta\)</span>-steps, you may choose <code class="docutils literal notranslate"><span class="pre">output_freq=3</span></code>. The final <span class="math notranslate nohighlight">\(\beta\)</span>-step, i.e., <span class="math notranslate nohighlight">\(\beta=1\)</span> will be always saved as <code class="docutils literal notranslate"><span class="pre">step_final.h5</span></code>.</p>
+</dd>
+</dl>
+<p><strong>Configuration examples</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    controller:
+        archiver: ; default is H5Recorder
+            output_dir = results/static_chain_1024
+            output_freq = 3
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="job">
+<span id="job-management"></span><h2>Job<a class="headerlink" href="#job" title="Permalink to this headline"></a></h2>
+<p><em>See API Reference:</em>  <a class="reference internal" href="../api/altar/simulations/Job/index.html#module-altar.simulations.Job" title="altar.simulations.Job"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Job</span></code></a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">job</span></code> component in an AlTar application controls the size of the simulation as well as its deployment to different platforms.</p>
+<section id="configurable-attributes">
+<h3>Configurable Attributes<a class="headerlink" href="#configurable-attributes" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;sample&quot;</span><span class="p">)</span>
+<span class="n">name</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the name of the job; used as a stem for making filenames, etc.&quot;</span>
+
+<span class="n">mode</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">str</span><span class="p">()</span>
+<span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;the programming model&quot;</span>
+
+<span class="n">hosts</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">hosts</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the number of hosts to run on&quot;</span>
+
+<span class="n">tasks</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tasks</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the number of tasks per host&quot;</span>
+
+<span class="n">gpus</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gpus</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the number of gpus per task&quot;</span>
+
+<span class="n">gpuprecision</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">gpuprecision</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the precision of gpu computations&quot;</span>
+<span class="n">gpuprecision</span><span class="o">.</span><span class="n">validators</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">isMember</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">,</span> <span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+
+<span class="n">gpuids</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">int</span><span class="p">())</span>
+<span class="n">gpuids</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">gpuids</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the list of gpu ids for parallel jobs&quot;</span>
+
+<span class="n">chains</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">chains</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the number of chains per worker&quot;</span>
+
+<span class="n">steps</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">steps</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s1">&#39;the length of each Markov chain&#39;</span>
+
+<span class="n">tolerance</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">)</span>
+<span class="n">tolerance</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;convergence tolerance for β-&gt;1.0&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="simulation-size">
+<h3>Simulation Size<a class="headerlink" href="#simulation-size" title="Permalink to this headline"></a></h3>
+<p>For a single thread simulation, the job size is determined by the number of <code class="docutils literal notranslate"><span class="pre">chains</span></code> (per thread), which are processed as a batch. More chains offer better phase space exploration. But the number of chains may be limited by the computer memory size (CPU or GPU). Since the memory usage also depends on the number of parameters and the type of model, users are encouraged to try some chain sizes at first (stop the simulation after one or two beta steps) to determine an optimal setting of <code class="docutils literal notranslate"><span class="pre">chains</span></code> for their computer system.</p>
+<p>Large-scale simulations can be distributed to multiple threads. Distributing the total number of chains from one thread (sequentially) to multiple threads (in parallel) may also reduce the computation time (wall time). The number of threads are controlled by two parameters <code class="docutils literal notranslate"><span class="pre">hosts</span></code> - the number of hosts (nodes), and <code class="docutils literal notranslate"><span class="pre">tasks</span></code> - the number of threads per host. The total number of chains is therefore <code class="docutils literal notranslate"><span class="pre">hosts*tasks*chains</span></code>.</p>
+<p>The multi-threading in AlTar is achieved by MPI. An AlTar application is capable of deploying itself automatically to multiple MPI threads in one or more computers/nodes so that users don’t need to run <code class="docutils literal notranslate"><span class="pre">mpirun</span></code>, <code class="docutils literal notranslate"><span class="pre">qsub</span></code>, or <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> explicitly.</p>
+<p>The Metropolis sampler uses <code class="docutils literal notranslate"><span class="pre">job.steps</span></code> to control the number of MC updates in each <span class="math notranslate nohighlight">\(\beta\)</span>-step. (<em>It might be better to move this setting directly to sampler</em>). This procedure serves as a burn-in to equilibrate samples from one distribution with <span class="math notranslate nohighlight">\(\beta_m\)</span> to another with <span class="math notranslate nohighlight">\(\beta_{m+1}\)</span>. Larger <code class="docutils literal notranslate"><span class="pre">steps</span></code> allow more equilibration but are not required in CATMIP: the <span class="math notranslate nohighlight">\(\beta\)</span>-increment (or the total number of <span class="math notranslate nohighlight">\(\beta\)</span>-steps) will be adjusted.</p>
+</section>
+<section id="single-thread-configuration">
+<h3>Single Thread Configuration<a class="headerlink" href="#single-thread-configuration" title="Permalink to this headline"></a></h3>
+<p>The default job setting is to run AlTar with one CPU thread; you don’t need to provide any settings in the configuration file. However, if you prefer to keep <code class="docutils literal notranslate"><span class="pre">hosts</span></code> and <code class="docutils literal notranslate"><span class="pre">tasks</span></code> entries to be modified later, set them to be 1 explicitly.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    job:
+        hosts = 1 ; number of hosts/nodes
+        tasks = 1 ; number of threads per host
+        chains = 2**12 ; number of Markov chains per thread.
+        steps = 2**10 ; length of the Markov chain
+</pre></div>
+</div>
+</section>
+<section id="multiple-threads-on-one-computer">
+<h3>Multiple Threads on One Computer<a class="headerlink" href="#multiple-threads-on-one-computer" title="Permalink to this headline"></a></h3>
+<p>To run a multi-threaded simulation on a single computer, you need to adjust the <code class="docutils literal notranslate"><span class="pre">tasks</span></code> setting, as well as to specify
+a <code class="docutils literal notranslate"><span class="pre">mpi.shells.mpirun</span></code> shell instead,</p>
+<p>From the configuration file</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    job:
+        tasks = 8
+
+    shell = mpi.shells.mpirun
+
+; additional configurations for mpi shell, if needed
+mpi.shells.mpirun # altar.plexus.shell:
+    extra = -mca btl self,tcp
+</pre></div>
+</div>
+<p>or from the command line</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ AlTarApp --job.tasks<span class="o">=</span><span class="m">8</span> --shell<span class="o">=</span>mpi.shells.mpirun
+</pre></div>
+</div>
+<p>If you use an MPI package not installed under the system directory, you may need to provide its configuration to AlTar/pyre framework. For example, for OpenMPI installed with Anaconda, the following additional configurations are required</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>mpi.shells.mpirun:
+  ; mpi implementation
+  mpi = openmpi#mpi_conda
+
+; mpi configuration
+pyre.externals.mpi.openmpi # mpi_conda:
+  version = 3.0
+  launcher = mpirun
+  prefix = /opt/anaconda3
+  bindir = {mpi_conda.prefix}/bin
+  incdir = {mpi_conda.prefix}/include
+  libdir = {mpi_conda.prefix}/lib
+</pre></div>
+</div>
+<p>Since the MPI package information is common for running all jobs on a computer, you may choose to save the above configuration to an <code class="docutils literal notranslate"><span class="pre">mpi.pfg</span></code> file, either under <code class="docutils literal notranslate"><span class="pre">${HOME}/.pyre</span></code> directory (searchable by all AlTar/pyre applications), or under the work directory with the AlTar application configurable file, e.g., <code class="docutils literal notranslate"><span class="pre">linear.pfg</span></code>.</p>
+<p>Decide the max number of tasks/threads on a computer from the number of physical cores, not from the total (virtual) threads. Hyperthreading may increase the number of available threads, but it might not increase performance for compute-intensive models, e.g., with matrix multiplications.</p>
+</section>
+<section id="multiple-threads-across-several-computers">
+<h3>Multiple Threads Across Several Computers<a class="headerlink" href="#multiple-threads-across-several-computers" title="Permalink to this headline"></a></h3>
+<p>If a batch scheduler is not required, you may still use the <code class="docutils literal notranslate"><span class="pre">mpi.shells.mpirun</span></code> shell with the additional <code class="docutils literal notranslate"><span class="pre">hostfile</span></code> configuration. A hostfile is a simple text file with hosts/nodes specified, e.g., <code class="docutils literal notranslate"><span class="pre">my_hostfile</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># This is an example hostfile.  Comments begin with #
+192.168.1.101 slots=16
+192.168.1.102 slots=16
+192.168.1.103 slots=16
+</pre></div>
+</div>
+<p>To use the hostfile with <code class="docutils literal notranslate"><span class="pre">mpi.shells.mpirun</span></code> shell, e.g., with 4 hosts and 8 threads per host,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    job:
+        hosts = 4
+        tasks = 8
+    shell = mpi.shells.mpirun
+    shell:
+        hostfile = my_hostfile
+</pre></div>
+</div>
+<p>Or from the commmand line,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ AlTarApp --job.hosts<span class="o">=</span><span class="m">4</span> --job.tasks<span class="o">=</span><span class="m">8</span> --shell<span class="o">=</span>mpi.shells.mpirun --shell.hostfile<span class="o">=</span>my_hostfile
+</pre></div>
+</div>
+<p>If a batch scheduler is available, e.g., <a class="reference external" href="https://slurm.schedmd.com/documentation.html">Slurm Workload Manager</a>, use an <code class="docutils literal notranslate"><span class="pre">mpi.shells.slurm</span></code> shell instead. An example configuration is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ApplicationInstanceName</span><span class="p">:</span>
+    <span class="n">job</span><span class="p">:</span>
+        <span class="n">hosts</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">shell</span> <span class="o">=</span> <span class="n">mpi</span><span class="o">.</span><span class="n">shells</span><span class="o">.</span><span class="n">slurm</span>
+
+<span class="p">;</span> <span class="k">for</span> <span class="n">parallel</span> <span class="n">runs</span>
+<span class="n">mpi</span><span class="o">.</span><span class="n">shells</span><span class="o">.</span><span class="n">slurm</span> <span class="p">:</span>
+    <span class="n">submit</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">;</span> <span class="k">if</span> <span class="kc">True</span><span class="p">,</span> <span class="n">submit</span> <span class="n">the</span> <span class="n">job</span> <span class="k">for</span> <span class="n">execution</span><span class="p">,</span> <span class="k">if</span> <span class="ow">not</span><span class="p">,</span> <span class="n">a</span> <span class="n">slurm</span> <span class="n">script</span> <span class="ow">is</span> <span class="n">generated</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">gpu</span> <span class="p">;</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">queue</span>
+</pre></div>
+</div>
+<p>Or from the command line</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ AlTarApp --job.hosts<span class="o">=</span><span class="m">4</span> --job.tasks<span class="o">=</span><span class="m">8</span> --shell<span class="o">=</span>mpi.shells.slurm --shell.queue<span class="o">=</span>gpu
+</pre></div>
+</div>
+<p>If your Slurm Manager requires additional configurations, you can use <code class="docutils literal notranslate"><span class="pre">submit=False</span></code>, modify the generated Slurm script,
+and use <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> to submit the job.</p>
+</section>
+<section id="gpu-configurations">
+<span id="gpu-job-configuration"></span><h3>GPU Configurations<a class="headerlink" href="#gpu-configurations" title="Permalink to this headline"></a></h3>
+<p>The GPU support in AlTar is implemented with <a class="reference external" href="https://developer.nvidia.com/about-cuda">CUDA</a>, and therefore is limited to NVIDIA graphical cards.</p>
+<p><strong>To choose GPU or CPU</strong> If you plan to run AlTar simulations on GPU, you may enable it by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ApplicationInstanceName</span><span class="p">:</span>
+    <span class="n">job</span><span class="o">.</span><span class="n">gpus</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">GPU</span> <span class="n">per</span> <span class="n">task</span><span class="p">,</span>  <span class="mi">0</span> <span class="o">=</span> <span class="n">use</span> <span class="n">gpu</span>
+</pre></div>
+</div>
+<p>AlTar also checks the availability of <code class="docutils literal notranslate"><span class="pre">cuda</span></code> modules (software) and compatible CUDA devices (hardware). If either is unavailable, AlTar enforces <code class="docutils literal notranslate"><span class="pre">job.gpus</span> <span class="pre">=</span> <span class="pre">0</span></code>, or using CPU instead.</p>
+<p>Currently, the <code class="docutils literal notranslate"><span class="pre">cuda</span></code> modules are not fully integrated with cpu modules. You may need to check whether the model has a cuda implementation, and also select explicitly some cuda components, for example, for the Static Inversion,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slipmodel</span><span class="p">:</span> <span class="p">;</span> <span class="n">the</span> <span class="n">Application</span> <span class="n">Instance</span> <span class="n">Name</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">seismic</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">static</span>
+    <span class="p">;</span> <span class="n">define</span> <span class="n">parametersets</span>
+    <span class="n">psets</span><span class="p">:</span>
+        <span class="n">strikeslip</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">parameterset</span>
+        <span class="n">dipslip</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">parameterset</span>
+
+        <span class="n">strikeslip</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="p">{</span><span class="n">slipmodel</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">patches</span><span class="p">}</span>
+            <span class="n">prior</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">gaussian</span>
+            <span class="n">prior</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">prior</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="o">...</span> <span class="o">...</span>
+
+    <span class="n">controller</span><span class="p">:</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">bayesian</span><span class="o">.</span><span class="n">metropolis</span>
+
+    <span class="o">...</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p><em>In the next release, we will try to merge cuda modules with cpu modules so that a single ``jobs.gpus`` flag can switch between CPU and GPU computations.</em></p>
+<p><strong>To use multiple GPUs</strong> GPUs (device) rely on CPU (host) for job dispatching and data copies from/to GPU memories. AlTar runs on one GPU per (CPU) thread, therefore, the number of GPUs used for simulation is tuned by the number of threads per host, <code class="docutils literal notranslate"><span class="pre">job.tasks</span></code>, and/or the number of hosts, <code class="docutils literal notranslate"><span class="pre">job.hosts</span></code>. <code class="docutils literal notranslate"><span class="pre">job.gpus</span></code> is always 1 for GPU simulations.</p>
+<p>To deploy the simulation to 8 GPUs in one computer/node, the configuration is</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    job.hosts = 1 ; number of hosts
+    job.tasks = 8 ; number of threads per host
+    job.gpus = 1 ; number of gpus per thread
+</pre></div>
+</div>
+<p>To deploy the simulation to 4 nodes with 8 GPUs per node, the configuration is</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    job.hosts = 4 ; number of hosts
+    job.tasks = 8 ; number of threads per host
+    job.gpus = 1 ; number of gpus per thread
+</pre></div>
+</div>
+<p>For a computer/node with multiple GPUs, the job is distributed sequentially to the first available GPUs (<code class="docutils literal notranslate"><span class="pre">gpuids</span></code> = 0, 1,2, 3 …). If you plan to assign the job to specific GPUs, you can use <code class="docutils literal notranslate"><span class="pre">job.gpuids</span></code> to specify them,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    job.hosts = 4 ; number of hosts
+    job.tasks = 2 ; number of threads per host
+    job.gpus = 1 ; number of gpus per thread
+    job.gpuids = [2, 3]
+</pre></div>
+</div>
+<p>Another method is to use the environmental variable <code class="docutils literal notranslate"><span class="pre">CUDA_VISIBLE_DEVICES</span></code>. For example,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># bash</span>
+$ <span class="nb">export</span> <span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">2</span>,3
+<span class="c1"># csh/tcsh</span>
+$ setenv CUDA_VISIBLE_DEVICES <span class="m">2</span>,3
+</pre></div>
+</div>
+<p>which makes only GPU2 and GPU3 visible for applications, appearing as <code class="docutils literal notranslate"><span class="pre">gpuids=[0,</span> <span class="pre">1]</span></code>. With this method, you don’t need to set <code class="docutils literal notranslate"><span class="pre">gpuids</span></code>.</p>
+<p><strong>To select the precision</strong> AlTar supports both single and double precision GPU computations (the CPU computation is always double precision). However, most NVIDIA gaming cards only have single precision processors. In our tests on Tesla cards, single precision computations run twice faster than double precisions. If you want to choose between single and double precisons, you may use the <code class="docutils literal notranslate"><span class="pre">job.gpuprecison</span></code> flag, such as</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ApplicationInstanceName:
+    job:
+        hosts = 1 ; number of hosts
+        tasks = 2 ; number of threads per host
+        gpus = 1 ; number of gpus per thread
+        gpuprecision = float32 ; double(float64) or single(float32) precision for gpu computations
+</pre></div>
+</div>
+</section>
+</section>
+<section id="model">
+<h2>Model<a class="headerlink" href="#model" title="Permalink to this headline"></a></h2>
+<p>The Model component in AlTar Framework defines the forward problem, and computes the data likelihood accordingly. Each model needs an implementation for a given inverse problem. See <a class="reference internal" href="Models.html#models"><span class="std std-ref">Models</span></a> for details guides on implemented models.</p>
+<p>Users may also develop their own models, following the guide in <a class="reference internal" href="Programming.html#develop-bayesian-model"><span class="std std-ref">Bayesian Model</span></a>.</p>
+</section>
+<section id="prior-distributions">
+<span id="id3"></span><h2>(Prior) Distributions<a class="headerlink" href="#prior-distributions" title="Permalink to this headline"></a></h2>
+<p>There are several probability distributions defined in AlTar, serving as prior distributions.</p>
+<p>For a prior distribution <a class="reference internal" href="../api/altar/distributions/index.html#altar.distributions.distribution" title="altar.distributions.distribution"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.distribution</span></code></a>, the following methods are required</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># model support</span>
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">initializeSample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fill my portion of {theta} with initial random values from my distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">priorLikelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">prior</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fill my portion of {prior} with the likelihoods of the samples in {theta}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check whether my portion of the samples in {theta} are consistent with my constraints, and</span>
+<span class="sd">    update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>In AlTar, the logarithmic values of the Bayesian probability densities are processed. Therefore, in addition to <code class="docutils literal notranslate"><span class="pre">priorLikelihood</span></code>, a <code class="docutils literal notranslate"><span class="pre">verify</span></code> method is needed for certain ranged distributions to check whether the proposed samples fall outside the range.</p>
+<p>For a parameter to be sampled, the distributions for generating the initial samples and computing the prior probability densities during the simulation may be different. For example, in static inversion of earthquakes, you may want to use a Moment Scale distribution to generate (strike or dip) slips whose sum is consistent with a given moment magnitude scale, while during the simulation, while a simple uniform distribution for <code class="docutils literal notranslate"><span class="pre">priorLikelihood</span></code> and <code class="docutils literal notranslate"><span class="pre">verify</span></code>.</p>
+<p>Please note that AlTar processes samples in batch, where <span class="math notranslate nohighlight">\(\theta\)</span> is a 2d array <code class="docutils literal notranslate"><span class="pre">shape=(samples,</span> <span class="pre">parameters)</span></code>. Also, in a specific Model, there may be different parameter sets which observe different prior distributions. Therefore, the methods in a prior distribution are responsible for its own portion of parameters (selected columns of <span class="math notranslate nohighlight">\(\theta\)</span>) and for a batched samples (rows of <span class="math notranslate nohighlight">\(\theta\)</span>).</p>
+<section id="uniform">
+<h3>Uniform<a class="headerlink" href="#uniform" title="Permalink to this headline"></a></h3>
+<p>The probability density function (PDF) for a uniform distribution is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x; a, b) &amp;= \frac {1}{b-a}, \text{for } x \in [a,b] \\
+    &amp;= 0, \text{otherwise}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\([a, b]\)</span> is the support or range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prior = uniform
+prior:
+    support = (0, 1)
+</pre></div>
+</div>
+</section>
+<section id="gaussian">
+<h3>Gaussian<a class="headerlink" href="#gaussian" title="Permalink to this headline"></a></h3>
+<p>The PDF for the Gaussian (normal) distribution is defined as</p>
+<div class="math notranslate nohighlight">
+\[f(x; \mu, \sigma) = \frac {1}{\sqrt{2\pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span> are mean (center) and variance, respectively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prior = gaussian
+prior:
+    mean = 0
+    sigma = 2
+</pre></div>
+</div>
+</section>
+<section id="truncated-gaussian">
+<h3>Truncated Gaussian<a class="headerlink" href="#truncated-gaussian" title="Permalink to this headline"></a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Truncated_normal_distribution">truncated Gaussian distribution</a> is derived from the Gaussian distribution but is only finite within the support range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>(Currently only implemented in CUDA).</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prior = altar.cuda.distributions.tgaussian
+prior:
+    support = (-1, 1)
+    mean = 0
+    sigma = 2
+</pre></div>
+</div>
+</section>
+<section id="preset">
+<span id="id4"></span><h3>Preset<a class="headerlink" href="#preset" title="Permalink to this headline"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Preset</span></code> distribution is used to load initial samples from pre-calculated ones. Therefore, it only serves as a preparation (<code class="docutils literal notranslate"><span class="pre">prep</span></code>) distribution. The currently support input format is HDF5, as the default output for AlTar simulation results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>(Currently only implemented in CUDA).</p>
+<p>For example, in the earthquake (seismic) inversion, we have samples of <code class="docutils literal notranslate"><span class="pre">strikeslip</span></code> generated from the static inversion and would like to load them for the kinematic inversion,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prep = altar.cuda.distributions.preset ; load preset samples
+prep.input_file = theta_cascaded.h5 ; file name
+prep.dataset = ParameterSets/strikeslip ; dataset name in h5
+</pre></div>
+</div>
+</section>
+</section>
+<section id="other-distributions">
+<h2>Other Distributions<a class="headerlink" href="#other-distributions" title="Permalink to this headline"></a></h2>
+<p>More prior distributions can be easily added. You may follow the existing distributions as examples. Or please write to us so that we add them to the package.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Pyre.html" class="btn btn-neutral float-left" title="Pyre Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Models.html" class="btn btn-neutral float-right" title="Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

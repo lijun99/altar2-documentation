@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>altar.simulations &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="altar.simulations.Archiver" href="Archiver/index.html" />
+    <link rel="prev" title="altar.shells.cudaApplication" href="../shells/cudaApplication/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cuda/Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../actions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../bayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cuda/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../distributions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.ext</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../norms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shells/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">API Reference</a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/api/altar/simulations/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-altar.simulations">
+<span id="altar-simulations"></span><h1><a class="reference internal" href="#module-altar.simulations" title="altar.simulations"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a><a class="headerlink" href="#module-altar.simulations" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Archiver/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Archiver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dispatcher/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Dispatcher</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="GSLRNG/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.GSLRNG</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Job/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Job</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Monitor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Monitor</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNG/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.RNG</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Recorder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Recorder</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Reporter/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Reporter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Run/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations.Run</span></code></a></li>
+</ul>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.simulations.archiver">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.simulations.</span></span><span class="sig-name descname"><span class="pre">archiver</span></span><a class="headerlink" href="#altar.simulations.archiver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar simulation archivers must implement</p>
+<p>Archivers persist intermediate simulation state and can be used to restart a simulation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.archiver.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.archiver.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.archiver.record">
+<span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.archiver.record" title="Permalink to this definition"></a></dt>
+<dd><p>Record the final state of the simulation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.archiver.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.archiver.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.simulations.dispatcher">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.simulations.</span></span><span class="sig-name descname"><span class="pre">dispatcher</span></span><a class="headerlink" href="#altar.simulations.dispatcher" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar simulation dispatchers must implement</p>
+<p>Dispatchers associate event handlers with specific aspects of the calculation and invoke
+them when appropriate</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.dispatcher.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.dispatcher.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me given an {application} context</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.simulations.monitor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.simulations.</span></span><span class="sig-name descname"><span class="pre">monitor</span></span><a class="headerlink" href="#altar.simulations.monitor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol that all AlTar simulation monitors must implement</p>
+<p>Monitors respond to simulation events by generating user diagnostics to report progress</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.monitor.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.monitor.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize me given an {application} context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.monitor.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.monitor.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.simulations.run">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.simulations.</span></span><span class="sig-name descname"><span class="pre">run</span></span><a class="headerlink" href="#altar.simulations.run" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>Protocol that specifies the job parameter set</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.simulations.run.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#altar.simulations.run.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.simulations.run.doc">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">job;</span> <span class="pre">used</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">stem</span> <span class="pre">for</span> <span class="pre">making</span> <span class="pre">filenames,</span> <span class="pre">etc.</span></em><a class="headerlink" href="#altar.simulations.run.doc" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.simulations.run.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#altar.simulations.run.mode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">mode</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">programming</span> <span class="pre">model</span></em><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.simulations.run.hosts">
+<span class="sig-name descname"><span class="pre">hosts</span></span><a class="headerlink" href="#altar.simulations.run.hosts" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">hosts</span> <span class="pre">to</span> <span class="pre">run</span> <span class="pre">on</span></em><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.simulations.run.tasks">
+<span class="sig-name descname"><span class="pre">tasks</span></span><a class="headerlink" href="#altar.simulations.run.tasks" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">tasks</span> <span class="pre">per</span> <span class="pre">host</span></em><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.simulations.run.gpus">
+<span class="sig-name descname"><span class="pre">gpus</span></span><a class="headerlink" href="#altar.simulations.run.gpus" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">gpus</span> <span class="pre">per</span> <span class="pre">task</span></em><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.simulations.run.chains">
+<span class="sig-name descname"><span class="pre">chains</span></span><a class="headerlink" href="#altar.simulations.run.chains" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">chains</span> <span class="pre">per</span> <span class="pre">worker</span></em><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.simulations.run.steps">
+<span class="sig-name descname"><span class="pre">steps</span></span><a class="headerlink" href="#altar.simulations.run.steps" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">length</span> <span class="pre">of</span> <span class="pre">each</span> <span class="pre">Markov</span> <span class="pre">chain</span></em><a class="headerlink" href="#id5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.simulations.run.tolerance">
+<span class="sig-name descname"><span class="pre">tolerance</span></span><a class="headerlink" href="#altar.simulations.run.tolerance" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">convergence</span> <span class="pre">tolerance</span> <span class="pre">for</span> <span class="pre">β-&gt;1.0</span></em><a class="headerlink" href="#id6" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.run.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.run.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the run components with context from {application}</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.run.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.run.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.simulations.rng">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.simulations.</span></span><span class="sig-name descname"><span class="pre">rng</span></span><a class="headerlink" href="#altar.simulations.rng" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">altar.protocol</span></code></p>
+<p>The protocol for random number generators</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.rng.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.rng.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the random number generator</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.simulations.rng.pyre_default">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">pyre_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.rng.pyre_default" title="Permalink to this definition"></a></dt>
+<dd><p>Supply a default implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.simulations.gsl">
+<span class="sig-prename descclassname"><span class="pre">altar.simulations.</span></span><span class="sig-name descname"><span class="pre">gsl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.gsl" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.simulations.job">
+<span class="sig-prename descclassname"><span class="pre">altar.simulations.</span></span><span class="sig-name descname"><span class="pre">job</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.job" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.simulations.recorder">
+<span class="sig-prename descclassname"><span class="pre">altar.simulations.</span></span><span class="sig-name descname"><span class="pre">recorder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.recorder" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="altar.simulations.reporter">
+<span class="sig-prename descclassname"><span class="pre">altar.simulations.</span></span><span class="sig-name descname"><span class="pre">reporter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altar.simulations.reporter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../shells/cudaApplication/index.html" class="btn btn-neutral float-left" title="altar.shells.cudaApplication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Archiver/index.html" class="btn btn-neutral float-right" title="altar.simulations.Archiver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

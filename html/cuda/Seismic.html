@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Static slip inversion of earthquakes &mdash; AlTar 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> AlTar
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Static slip inversion of earthquakes</a><ul>
+<li><a class="reference internal" href="#static-inversion-model">Static Inversion Model</a></li>
+<li><a class="reference internal" href="#static-inversion-script">Static Inversion script</a></li>
+<li><a class="reference internal" href="#parametersets-psets">ParameterSets(psets)</a></li>
+<li><a class="reference internal" href="#inputs">Inputs</a></li>
+<li><a class="reference internal" href="#job-configurations">job configurations</a></li>
+<li><a class="reference internal" href="#outputs">Outputs</a></li>
+<li><a class="reference internal" href="#epistemic-uncertainties">Epistemic Uncertainties</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Static slip inversion of earthquakes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cuda/Seismic.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="static-slip-inversion-of-earthquakes">
+<span id="static-inversion"></span><h1>Static slip inversion of earthquakes<a class="headerlink" href="#static-slip-inversion-of-earthquakes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="static-inversion-model">
+<h2>Static Inversion Model<a class="headerlink" href="#static-inversion-model" title="Permalink to this headline">¶</a></h2>
+<p>The static inversion model determines the spatial distributions of static slips at faults during an earthquake from the observed surface displacements. The fault is generally modelled as a set of patches; each patch treated as a point source with two components, slips along the strike and dip directions. The slip on the fault plane can be translated into surface deformation, e.g., the Okada model, which is derived from a Green’s function solution to the elastic half space problem. The observed surface deformation at a given location is the linear combination due to (strike/dip) slips of all patches.</p>
+<p>For static inversions, the patches can be of any shape, size as long as each patch can be treated a single point source. However, for joint static+kinematic inversions, AlTar can only treat a rectangle area divided into <span class="math notranslate nohighlight">\(n_d \times n_s\)</span> square patches.</p>
+<p>Therefore, the forward model is a linear model</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+{\bf d}^{pred} = \mathcal{G}  {\boldsymbol \theta}.
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\boldsymbol \theta}\)</span> (also denoted as <span class="math notranslate nohighlight">\({\bold m}\)</span> in literature) is a vector with <span class="math notranslate nohighlight">\(2N_p\)</span> components,</p>
+</div>
+<div class="section" id="static-inversion-script">
+<h2>Static Inversion script<a class="headerlink" href="#static-inversion-script" title="Permalink to this headline">¶</a></h2>
+<p>The static inversion is a linear model, d = G M, where G (Green’s function) is a matrix with the dimension(observations, parameters), M (strike/dip slips for each patch) is a vector of the size equal to the total number of parameters, and d (data) is a vector of the size equal to the number of observed data points.</p>
+<p>A sample script for static inversion <code class="docutils literal notranslate"><span class="pre">static.pfg</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span> <span class="n">the</span> <span class="n">static</span> <span class="n">uoᴉsɹǝʌuᴉ</span> <span class="n">example</span>
+<span class="p">;</span> <span class="n">application</span> <span class="n">name</span> <span class="p">(</span><span class="n">has</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="n">same</span> <span class="k">with</span> <span class="n">the</span> <span class="n">application</span> <span class="n">name</span><span class="p">)</span>
+<span class="n">slipmodel</span><span class="p">:</span>
+
+    <span class="p">;</span> <span class="n">model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">seismic</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">static</span>
+    <span class="n">model</span><span class="p">:</span>
+
+        <span class="p">;</span> <span class="n">the</span> <span class="n">name</span> <span class="p">(</span><span class="n">also</span> <span class="n">the</span> <span class="n">directory</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">files</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span> <span class="n">specific</span> <span class="n">case</span>
+        <span class="n">case</span> <span class="o">=</span> <span class="n">static_9patch</span>
+
+        <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">patches</span> <span class="n">Ndd</span><span class="o">*</span><span class="n">Nas</span>
+        <span class="n">patches</span> <span class="o">=</span> <span class="mi">9</span>
+
+        <span class="p">;</span> <span class="n">green</span><span class="s1">&#39;s function</span>
+        <span class="p">;</span> <span class="n">shape</span> <span class="p">(</span><span class="n">observations</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+        <span class="p">;</span> <span class="n">text</span> <span class="p">(</span><span class="o">.</span><span class="n">txt</span><span class="p">)</span> <span class="ow">or</span> <span class="n">binary</span> <span class="p">(</span><span class="o">.</span><span class="n">bin</span> <span class="ow">or</span> <span class="o">.</span><span class="n">dat</span><span class="p">)</span> <span class="n">also</span> <span class="n">accepted</span>
+        <span class="n">green</span> <span class="o">=</span> <span class="n">static</span><span class="o">.</span><span class="n">gf</span><span class="o">.</span><span class="n">h5</span>
+
+        <span class="p">;</span> <span class="n">observed</span> <span class="n">data</span>
+        <span class="n">dataobs</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">datal2</span>
+        <span class="n">dataobs</span><span class="p">:</span>
+            <span class="n">observations</span> <span class="o">=</span> <span class="mi">108</span>
+            <span class="n">data_file</span> <span class="o">=</span> <span class="n">static</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">h5</span>
+            <span class="n">cd_file</span> <span class="o">=</span> <span class="n">static</span><span class="o">.</span><span class="n">Cd</span><span class="o">.</span><span class="n">h5</span>
+            <span class="p">;</span> <span class="n">use</span> <span class="n">cd_std</span> <span class="o">=</span> <span class="mf">1e-4</span> <span class="n">instead</span> <span class="k">for</span> <span class="n">a</span> <span class="n">constant</span> <span class="n">standard</span> <span class="n">deviation</span>
+
+        <span class="p">;</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">parametersets</span> <span class="p">(</span><span class="n">the</span> <span class="n">order</span> <span class="n">must</span> <span class="n">be</span> <span class="n">the</span> <span class="n">same</span> <span class="k">as</span> <span class="n">their</span> <span class="n">orders</span> <span class="ow">in</span> <span class="n">Green</span><span class="s1">&#39;s function)</span>
+        <span class="n">psets_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">strikeslip</span><span class="p">,</span> <span class="n">dipslip</span><span class="p">]</span>
+
+        <span class="p">;</span> <span class="n">define</span> <span class="n">parametersets</span>
+        <span class="n">psets</span><span class="p">:</span>
+            <span class="n">strikeslip</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">parameterset</span>
+            <span class="n">dipslip</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">parameterset</span>
+            <span class="p">;</span> <span class="n">add</span> <span class="n">insarramp</span> <span class="k">if</span> <span class="n">needed</span>
+
+            <span class="n">strikeslip</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="p">{</span><span class="n">cudastatic</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">patches</span><span class="p">}</span>
+                <span class="n">prior</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">gaussian</span>
+                <span class="n">prior</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">prior</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+            <span class="n">dipslip</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="p">{</span><span class="n">cudastatic</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">patches</span><span class="p">}</span>
+                <span class="n">prep</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">seismic</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">moment</span>
+                <span class="n">prep</span><span class="p">:</span>
+                    <span class="n">support</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="p">;</span> <span class="n">slip</span> <span class="nb">range</span>
+                    <span class="n">Mw_mean</span> <span class="o">=</span> <span class="mf">7.3</span> <span class="p">;</span> <span class="n">mean</span> <span class="n">moment</span> <span class="n">magnitude</span> <span class="n">scale</span>
+                    <span class="n">Mw_sigma</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="p">;</span> <span class="n">sd</span> <span class="k">for</span> <span class="n">moment</span> <span class="n">magnitude</span> <span class="n">scale</span>
+                    <span class="n">Mu</span> <span class="o">=</span> <span class="mi">30</span> <span class="p">;</span> <span class="ow">in</span> <span class="n">GPa</span>
+                    <span class="n">area</span> <span class="o">=</span> <span class="mi">400</span> <span class="p">;</span> <span class="n">patch</span> <span class="n">area</span> <span class="ow">in</span> <span class="n">km</span><span class="o">^</span><span class="mi">2</span>
+                <span class="n">prior</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">uniform</span>
+                <span class="n">prior</span><span class="p">:</span>
+                    <span class="n">support</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+    <span class="n">controller</span><span class="p">:</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">bayesian</span><span class="o">.</span><span class="n">metropolis</span>
+        <span class="n">archiver</span><span class="p">:</span>
+            <span class="n">output_dir</span> <span class="o">=</span> <span class="n">results</span><span class="o">/</span><span class="n">static</span> <span class="p">;</span> <span class="n">output</span> <span class="n">directory</span>
+            <span class="n">output_freq</span> <span class="o">=</span> <span class="mi">3</span> <span class="p">;</span> <span class="n">output</span> <span class="n">frequency</span> <span class="ow">in</span> <span class="n">beta</span> <span class="n">steps</span>
+
+    <span class="n">monitors</span><span class="p">:</span>
+        <span class="p">;</span> <span class="n">profiling</span>
+        <span class="n">prof</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">bayesian</span><span class="o">.</span><span class="n">profiler</span>
+
+   <span class="p">;</span> <span class="n">run</span> <span class="n">configuration</span>
+   <span class="n">job</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">tasks</span> <span class="n">per</span> <span class="n">host</span>
+   <span class="n">job</span><span class="o">.</span><span class="n">gpus</span> <span class="o">=</span> <span class="mi">1</span>  <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">gpus</span> <span class="n">per</span> <span class="n">task</span>
+   <span class="n">job</span><span class="o">.</span><span class="n">gpuprecision</span> <span class="o">=</span> <span class="n">float32</span> <span class="p">;</span> <span class="n">double</span><span class="p">(</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="n">single</span><span class="p">(</span><span class="n">float32</span><span class="p">)</span> <span class="n">precision</span> <span class="k">for</span> <span class="n">gpu</span> <span class="n">computations</span>
+   <span class="p">;</span><span class="n">job</span><span class="o">.</span><span class="n">gpuids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">;</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">gpu</span> <span class="n">device</span> <span class="n">ids</span> <span class="k">for</span> <span class="n">tasks</span> <span class="n">on</span> <span class="n">each</span> <span class="n">host</span><span class="p">,</span> <span class="n">default</span> <span class="nb">range</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">gpus</span><span class="p">)</span>
+   <span class="n">job</span><span class="o">.</span><span class="n">chains</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span> <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">chains</span> <span class="n">per</span> <span class="n">task</span>
+   <span class="n">job</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="mi">1000</span> <span class="p">;</span> <span class="n">MC</span> <span class="n">burn</span><span class="o">-</span><span class="ow">in</span> <span class="n">steps</span> <span class="k">for</span> <span class="n">each</span> <span class="n">beta</span> <span class="n">step</span>
+
+   <span class="p">;</span> <span class="n">shell</span>
+   <span class="p">;</span> <span class="n">shell</span> <span class="o">=</span> <span class="n">mpi</span><span class="o">.</span><span class="n">shells</span><span class="o">.</span><span class="n">mpirun</span> <span class="p">;</span> <span class="k">for</span> <span class="n">running</span> <span class="k">with</span> <span class="n">mpi</span>
+
+
+<span class="p">;</span> <span class="k">for</span> <span class="n">parallel</span> <span class="n">runs</span>
+<span class="p">;</span> <span class="n">mpi</span><span class="o">.</span><span class="n">shells</span><span class="o">.</span><span class="n">mpirun</span> <span class="c1"># altar.plexus.shell:</span>
+    <span class="p">;</span> <span class="n">extra</span> <span class="o">=</span> <span class="o">-</span><span class="n">mca</span> <span class="n">btl</span> <span class="bp">self</span><span class="p">,</span><span class="n">tcp</span>
+
+<span class="p">;</span> <span class="n">end</span> <span class="n">of</span> <span class="n">file</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="parametersets-psets">
+<h2>ParameterSets(psets)<a class="headerlink" href="#parametersets-psets" title="Permalink to this headline">¶</a></h2>
+<p>A model usually consists of several parameter sets. For example, strike slips, dip slips, and insar ramps in the static model (you could use any name of your preference for each parameter set). The parameters will be arranged in orders in a theta matrix (samples, parameters) in simulation, which should be consistent with the provided Green’s function. To enforce the order, users need to specify it in a <code class="docutils literal notranslate"><span class="pre">psets_list</span></code> trait at first</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">psets_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">strikeslip</span><span class="p">,</span> <span class="n">dipslip</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Each parameter set has a <code class="docutils literal notranslate"><span class="pre">count</span></code> trait (e.g. the count of the strikeslip parameterset is the same as the number of patches), and a <code class="docutils literal notranslate"><span class="pre">prior</span></code> trait for its prior distribution, uniform/gaussian/truncated gaussian … If the distribution to prepare/initialize samples is different, an additional <code class="docutils literal notranslate"><span class="pre">prep</span></code> trait can be used. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">psets</span><span class="p">:</span>
+    <span class="n">strikeslip</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">parameterset</span> <span class="p">;</span><span class="n">we</span> <span class="n">won</span><span class="s1">&#39;t need this after gpu/cpu code are merged</span>
+    <span class="n">strikeslip</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="p">{</span><span class="n">cudastatic</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">patches</span><span class="p">}</span>
+        <span class="n">prior</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">gaussian</span> <span class="p">;</span> <span class="n">we</span> <span class="n">only</span> <span class="n">need</span> <span class="n">to</span> <span class="n">say</span> <span class="n">gaussian</span> <span class="n">after</span> <span class="n">gpu</span><span class="o">/</span><span class="n">cpu</span> <span class="n">code</span> <span class="n">are</span> <span class="n">merged</span>
+        <span class="n">prior</span><span class="p">:</span>
+            <span class="n">mean</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+<p>For dip slips, we start with samples with their sum conforming to certain moment magnitude scale, and a moment distribution (combining Dirichlet and Gaussian distributions) is used as a <code class="docutils literal notranslate"><span class="pre">prep</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dipslip</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="p">{</span><span class="n">cudastatic</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">patches</span><span class="p">}</span>
+    <span class="n">prep</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">seismic</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">moment</span>
+    <span class="n">prep</span><span class="p">:</span>
+        <span class="n">support</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="p">;</span> <span class="n">slip</span> <span class="nb">range</span>
+        <span class="n">Mw_mean</span> <span class="o">=</span> <span class="mf">7.3</span> <span class="p">;</span> <span class="n">mean</span> <span class="n">moment</span> <span class="n">magnitude</span> <span class="n">scale</span>
+        <span class="n">Mw_sigma</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="p">;</span> <span class="n">sd</span> <span class="k">for</span> <span class="n">moment</span> <span class="n">magnitude</span> <span class="n">scale</span>
+        <span class="n">Mu</span> <span class="o">=</span> <span class="mi">30</span> <span class="p">;</span> <span class="ow">in</span> <span class="n">GPa</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="mi">400</span> <span class="p">;</span> <span class="n">patch</span> <span class="n">area</span> <span class="ow">in</span> <span class="n">km</span><span class="o">^</span><span class="mi">2</span>
+    <span class="n">prior</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">uniform</span>
+    <span class="n">prior</span><span class="p">:</span>
+        <span class="n">support</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
+<p>HDF5 files (with suffix <code class="docutils literal notranslate"><span class="pre">.h5</span></code>) are recommended since the metadata for each data set is included with h5 file, such as dimensions, precision. For static model, the support for <code class="docutils literal notranslate"><span class="pre">.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">.bin</span></code> inputs from AlTar-1.1 is currently preserved.</p>
+<p>A conversion tool <code class="docutils literal notranslate"><span class="pre">H5Converter</span></code> is provided if you need to convert any <code class="docutils literal notranslate"><span class="pre">.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">.bin</span></code> files to <code class="docutils literal notranslate"><span class="pre">.h5</span></code>.</p>
+<dl>
+<dt>Examples:</dt><dd><ul>
+<li><p>convert a text file to hdf5</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">H5Converter</span> <span class="o">--</span><span class="n">inputs</span><span class="o">=</span><span class="n">static</span><span class="o">.</span><span class="n">gf</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p>convert a binary file to hdf5, additional precision (default=float32) and shape (default = 1d vector and will be reshaped to 2d in program if needed) information can be added</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">H5Converter</span> <span class="o">--</span><span class="n">inputs</span><span class="o">=</span><span class="n">kinematicG</span><span class="o">.</span><span class="n">gf</span><span class="o">.</span><span class="n">bin</span> <span class="o">--</span><span class="n">precision</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span> <span class="o">--</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">11000</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>merge several files into one hdf5</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">H5Converter</span> <span class="o">--</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">static</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">pertL1</span><span class="o">.</span><span class="n">txt</span><span class="p">,</span><span class="n">static</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">pertL2</span><span class="o">.</span><span class="n">txt</span><span class="p">]</span> <span class="o">--</span><span class="n">output</span><span class="o">=</span><span class="n">static</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">h5</span>
+</pre></div>
+</div>
+</li>
+<li><p>for more options</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">H5Converter</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="job-configurations">
+<h2>job configurations<a class="headerlink" href="#job-configurations" title="Permalink to this headline">¶</a></h2>
+<p>You only need to call <code class="docutils literal notranslate"><span class="pre">cudaStatic</span></code> to run the program, which handles multi-threads, multi-hosts by the job configuration in the script file.</p>
+<dl>
+<dt>Examples:</dt><dd><ul>
+<li><p>For single thread gpu job on GPU n</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span> <span class="n">run</span> <span class="n">configuration</span>
+<span class="n">job</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">tasks</span> <span class="n">per</span> <span class="n">host</span>
+<span class="n">job</span><span class="o">.</span><span class="n">gpus</span> <span class="o">=</span> <span class="mi">1</span>  <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">gpus</span> <span class="n">per</span> <span class="n">task</span>
+<span class="n">job</span><span class="o">.</span><span class="n">gpuprecision</span> <span class="o">=</span> <span class="n">float32</span> <span class="p">;</span> <span class="n">double</span><span class="p">(</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="n">single</span><span class="p">(</span><span class="n">float32</span><span class="p">)</span> <span class="n">precision</span> <span class="k">for</span> <span class="n">gpu</span> <span class="n">computations</span>
+<span class="n">job</span><span class="o">.</span><span class="n">gpuids</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="p">;</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">gpu</span> <span class="n">device</span> <span class="n">ids</span> <span class="k">for</span> <span class="n">tasks</span> <span class="n">on</span> <span class="n">each</span> <span class="n">host</span><span class="p">,</span> <span class="n">default</span> <span class="nb">range</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">gpus</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>For multiple threads/gpus, the MPI shell should be enabled. If <code class="docutils literal notranslate"><span class="pre">job.gpuids</span></code> is not specified, the program will use the first n-GPUs. Otherwise, you could specify which GPUs are used (they could the same if you would like to share some tasks on the same GPU). For a 4-thread gpu job on GPUs 4,5,6,7</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span> <span class="n">run</span> <span class="n">configuration</span>
+<span class="n">job</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">tasks</span> <span class="n">per</span> <span class="n">host</span>
+<span class="n">job</span><span class="o">.</span><span class="n">gpus</span> <span class="o">=</span> <span class="mi">1</span>  <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">gpus</span> <span class="n">per</span> <span class="n">task</span>
+<span class="n">job</span><span class="o">.</span><span class="n">gpuprecision</span> <span class="o">=</span> <span class="n">float32</span> <span class="p">;</span> <span class="n">double</span><span class="p">(</span><span class="n">float64</span><span class="p">)</span> <span class="ow">or</span> <span class="n">single</span><span class="p">(</span><span class="n">float32</span><span class="p">)</span> <span class="n">precision</span> <span class="k">for</span> <span class="n">gpu</span> <span class="n">computations</span>
+<span class="n">job</span><span class="o">.</span><span class="n">gpuids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span> <span class="p">;</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">gpu</span> <span class="n">device</span> <span class="n">ids</span> <span class="k">for</span> <span class="n">tasks</span> <span class="n">on</span> <span class="n">each</span> <span class="n">host</span><span class="p">,</span> <span class="n">default</span> <span class="nb">range</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">gpus</span><span class="p">)</span>
+
+
+<span class="p">;</span> <span class="n">shell</span>
+<span class="n">shell</span> <span class="o">=</span> <span class="n">mpi</span><span class="o">.</span><span class="n">shells</span><span class="o">.</span><span class="n">mpirun</span> <span class="p">;</span> <span class="k">for</span> <span class="n">running</span> <span class="k">with</span> <span class="n">mpi</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+<p>You may also provide more options to the MPI shell,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span> <span class="k">for</span> <span class="n">parallel</span> <span class="n">runs</span>
+<span class="n">mpi</span><span class="o">.</span><span class="n">shells</span><span class="o">.</span><span class="n">mpirun</span> <span class="c1"># altar.plexus.shell:</span>
+    <span class="n">extra</span> <span class="o">=</span> <span class="o">-</span><span class="n">mca</span> <span class="n">btl</span> <span class="bp">self</span><span class="p">,</span><span class="n">tcp</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
+<p>The Bayesian sampling results are written to a directory specified under archiver</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span><span class="p">:</span>
+    <span class="n">archiver</span><span class="p">:</span>
+        <span class="n">output_dir</span> <span class="o">=</span> <span class="n">results</span><span class="o">/</span><span class="n">static</span> <span class="p">;</span> <span class="n">output</span> <span class="n">directory</span>
+        <span class="n">output_freq</span> <span class="o">=</span> <span class="mi">3</span> <span class="p">;</span> <span class="n">output</span> <span class="n">frequency</span> <span class="ow">in</span> <span class="n">beta</span> <span class="n">steps</span>
+</pre></div>
+</div>
+<p>while <code class="docutils literal notranslate"><span class="pre">output_freq</span></code> specifies how frequent (in beta steps) you prefer the sampling results are written to files. The final results will always be outputted.</p>
+<p>Each output is in HDF5 format, with names <code class="docutils literal notranslate"><span class="pre">step_nnn.h5</span></code>. <code class="docutils literal notranslate"><span class="pre">nnn</span></code> is the number of the beta step. The HDF5 includes three data groups, Annealer, ParameterSets, and Bayesian. Annealer group includes datasets which provide annealing information, such as beta, the covariance matrix for gaussian proposal. Parametersets group includes all parametersets. Instead of one big theta, we now sort them into different datasets according to their names, each data set has the dimension (samples, count). Bayesian group includes prior, datalikelihood, and posterior datasets (each has the dimension samples), which are Bayesian statistics for each sample.</p>
+</div>
+<div class="section" id="epistemic-uncertainties">
+<h2>Epistemic Uncertainties<a class="headerlink" href="#epistemic-uncertainties" title="Permalink to this headline">¶</a></h2>
+<p>In addition to observational errors, one can calculate epistemic uncertainties (Minson et al., 2013), which affect the forward model and are related to our imperfect knowledge of the Earth interior. Epistemic uncertainties will stem from a various set of parameters, but the most prominent uncertainties will derive from elastic heterogeneity (Duputel et al., 2014) and fault geometry (Ragon et al., 2018, 2019).</p>
+<p>To estimate epistemic uncertainties, we assume that the real surface displacement follows a Gaussian distribution centred on the predictions with a prediction covariance matrix Cp that depends on the resulting source model. The misfit covariance matrix characterizing the misfit function becomes <code class="docutils literal notranslate"><span class="pre">Cx</span> <span class="pre">=</span> <span class="pre">Cd</span> <span class="pre">+</span> <span class="pre">Cp</span></code>.</p>
+<p><strong>First approach: static Cp</strong></p>
+<p>The prediction covariance matrix <code class="docutils literal notranslate"><span class="pre">Cp</span></code> can be included in the inversion following two different approaches. In the first, <code class="docutils literal notranslate"><span class="pre">Cp</span></code> is calculated a priori and included in the inversion process within <code class="docutils literal notranslate"><span class="pre">Cx</span></code>. In this case, the full <code class="docutils literal notranslate"><span class="pre">Cx</span></code> matrix replaces the <code class="docutils literal notranslate"><span class="pre">Cd</span></code> matrix:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">dataobs</span> <span class="o">=</span> <span class="n">altar</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="k">data</span><span class="p">.</span><span class="n">datal2</span>
+<span class="n">dataobs</span><span class="p">:</span>
+    <span class="n">observations</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">data_file</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">txt</span>
+    <span class="n">cd_file</span> <span class="o">=</span> <span class="n">cx</span><span class="p">.</span><span class="n">txt</span> <span class="p">;</span> <span class="n">Cx</span> <span class="k">contains</span> <span class="k">both</span> <span class="n">Cd</span> <span class="k">and</span> <span class="n">Cp</span>
+</pre></div>
+</div>
+<p><strong>Second approach: Updated Cp</strong></p>
+<p>The alternative approach, implemented in AlTar, is to update Cp with interim models at each step of the tempered inversion. The covariance matrix <code class="docutils literal notranslate"><span class="pre">Cp</span></code> is calculated from 3 variables: a sensitivity kernel for every investigated parameter, the standard deviation of the a priori distribution of investigated parameters, and an initial model chosen a priori. In this approach, <code class="docutils literal notranslate"><span class="pre">Cp</span></code> is re-calculated at each tempering step by choosing the mean of tested samples as the assumed initial model.</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="p">;</span> <span class="n">sensitivity</span> <span class="n">kernels</span>
+<span class="n">nCmu</span> <span class="o">=</span> <span class="mi">8</span> <span class="p">;</span> <span class="nb">number</span> <span class="k">of</span> <span class="n">investigated</span> <span class="k">parameters</span>
+<span class="n">cmu_file</span> <span class="o">=</span> <span class="n">Cmu</span><span class="p">.</span><span class="n">h5</span> <span class="p">;</span> <span class="n">standard</span> <span class="n">deviation</span> <span class="n">matrix</span>
+<span class="n">kmu_file</span> <span class="o">=</span> <span class="n">Kelastic</span><span class="p">.</span><span class="n">h5</span> <span class="p">;</span> <span class="n">tensor</span> <span class="k">of</span> <span class="n">sensitivity</span> <span class="n">kernels</span> <span class="p">(</span><span class="n">matrix</span> <span class="k">if</span> <span class="k">only</span> <span class="n">one</span> <span class="n">investigated</span> <span class="k">parameter</span><span class="p">)</span>
+<span class="n">initial_model_file</span> <span class="o">=</span> <span class="n">inimodel</span><span class="p">.</span><span class="n">txt</span> <span class="p">;</span> <span class="n">initial</span> <span class="n">model</span> <span class="n">vector</span>
+</pre></div>
+</div>
+<p>Additionnally, <code class="docutils literal notranslate"><span class="pre">Cp</span></code> can be incorporated in the inversion at any tempering step. The tempering step will be selected with its corresponding beta value, parameterized by <code class="docutils literal notranslate"><span class="pre">beta_cp_start</span></code>.
+If  <code class="docutils literal notranslate"><span class="pre">beta_cp_start</span> <span class="pre">=</span> <span class="pre">0.01</span></code>, then <code class="docutils literal notranslate"><span class="pre">Cp</span></code> will be incorporated from the beginning of the inversion process. If  <code class="docutils literal notranslate"><span class="pre">beta_cp_start</span> <span class="pre">=</span> <span class="pre">0.1</span></code> or <code class="docutils literal notranslate"><span class="pre">0.5</span></code>, then <code class="docutils literal notranslate"><span class="pre">Cp</span></code> will be incorporated after a few tempering steps, or once beta reaches 0.5, respectively.
+<code class="docutils literal notranslate"><span class="pre">beta_use_initial_model</span></code> will indicate if the initial model should be used (<code class="docutils literal notranslate"><span class="pre">1</span></code>) or not (<code class="docutils literal notranslate"><span class="pre">0</span></code>). If not, then a unit uniform initial model is used.</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">beta_cp_start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">01</span> <span class="p">;</span> <span class="n">beta</span> <span class="n">value</span> <span class="k">to</span> <span class="k">start</span> <span class="n">incorporating</span> <span class="n">Cp</span>
+<span class="n">beta_use_initial_model</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">use</span> <span class="n">provided</span> <span class="n">initial</span> <span class="n">model</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

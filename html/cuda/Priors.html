@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Prior) Distributions &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>(Prior) Distributions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/Priors.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="prior-distributions">
+<span id="id1"></span><h1>(Prior) Distributions<a class="headerlink" href="#prior-distributions" title="Permalink to this headline"></a></h1>
+<p>There are several probability distributions defined in AlTar, serving as prior distributions.</p>
+<p>For a prior distribution <a class="reference internal" href="../api/altar/distributions/index.html#altar.distributions.distribution" title="altar.distributions.distribution"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions.distribution</span></code></a>, the following methods are required</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># model support</span>
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">initializeSample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fill my portion of {theta} with initial random values from my distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">priorLikelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">prior</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fill my portion of {prior} with the likelihoods of the samples in {theta}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check whether my portion of the samples in {theta} are consistent with my constraints, and</span>
+<span class="sd">    update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>In AlTar, the logarithmic values of the Bayesian probability densities are processed. Therefore, in addition to <code class="docutils literal notranslate"><span class="pre">priorLikelihood</span></code>, a <code class="docutils literal notranslate"><span class="pre">verify</span></code> method is needed for certain ranged distributions to check whether the proposed samples fall outside the range.</p>
+<p>For a parameter to be sampled, the distributions for generating the initial samples and computing the prior probability densities during the simulation may be different. For example, in static inversion of earthquakes, you may want to use a Moment Scale distribution to generate (strike or dip) slips whose sum is consistent with a given moment magnitude scale, while during the simulation, while a simple uniform distribution for <code class="docutils literal notranslate"><span class="pre">priorLikelihood</span></code> and <code class="docutils literal notranslate"><span class="pre">verify</span></code>.</p>
+<p>Please note that AlTar processes samples in batch, where <span class="math notranslate nohighlight">\(\theta\)</span> is a 2d array <code class="docutils literal notranslate"><span class="pre">shape=(samples,</span> <span class="pre">parameters)</span></code>. Also, in a specific Model, there may be different parameter sets which observe different prior distributions. Therefore, the methods in a prior distribution are responsible for its own portion of parameters (selected columns of <span class="math notranslate nohighlight">\(\theta\)</span>) and for a batched samples (rows of <span class="math notranslate nohighlight">\(\theta\)</span>).</p>
+<section id="uniform">
+<h2>Uniform<a class="headerlink" href="#uniform" title="Permalink to this headline"></a></h2>
+<p>The probability density function (PDF) for a uniform distribution is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x; a, b) &amp;= \frac {1}{b-a}, \text{for } x \in [a,b] \\
+    &amp;= 0, \text{otherwise}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\([a, b]\)</span> is the support or range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prior = uniform
+prior:
+    support = (0, 1)
+</pre></div>
+</div>
+</section>
+<section id="gaussian">
+<h2>Gaussian<a class="headerlink" href="#gaussian" title="Permalink to this headline"></a></h2>
+<p>The PDF for the Gaussian (normal) distribution is defined as</p>
+<div class="math notranslate nohighlight">
+\[f(x; \mu, \sigma) = \frac {1}{\sqrt{2\pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span> are mean (center) and variance, respectively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prior = gaussian
+prior:
+    mean = 0
+    sigma = 2
+</pre></div>
+</div>
+</section>
+<section id="truncated-gaussian">
+<h2>Truncated Gaussian<a class="headerlink" href="#truncated-gaussian" title="Permalink to this headline"></a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Truncated_normal_distribution">truncated Gaussian distribution</a> is derived from the Gaussian distribution but is only finite within the support range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>(Currently only implemented in CUDA).</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prior = altar.cuda.distributions.tgaussian
+prior:
+    support = (-1, 1)
+    mean = 0
+    sigma = 2
+</pre></div>
+</div>
+</section>
+<section id="preset">
+<span id="id2"></span><h2>Preset<a class="headerlink" href="#preset" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Preset</span></code> distribution is used to load initial samples from pre-calculated ones. Therefore, it only serves as a preparation (<code class="docutils literal notranslate"><span class="pre">prep</span></code>) distribution. The currently support input format is HDF5, as the default output for AlTar simulation results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>(Currently only implemented in CUDA).</p>
+<p>For example, in the earthquake (seismic) inversion, we have samples of <code class="docutils literal notranslate"><span class="pre">strikeslip</span></code> generated from the static inversion and would like to load them for the kinematic inversion,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prep = altar.cuda.distributions.preset ; load preset samples
+prep.input_file = theta_cascaded.h5 ; file name
+prep.dataset = ParameterSets/strikeslip ; dataset name in h5
+</pre></div>
+</div>
+</section>
+</section>
+<section id="other-distributions">
+<h1>Other Distributions<a class="headerlink" href="#other-distributions" title="Permalink to this headline"></a></h1>
+<p>More prior distributions can be easily added. You may follow the existing distributions as examples. Or please write to us so that we add them to the package.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

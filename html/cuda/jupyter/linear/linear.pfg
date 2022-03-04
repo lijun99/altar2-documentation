@@ -1,0 +1,53 @@
+;
+; michael a.g. aïvázis
+; orthologue
+; (c) 1998-2020 all rights reserved
+;
+
+; the application
+linear:
+    ; the model
+    model = linear
+    ; the linear model configurations
+    model:
+        ; the directory for input files
+        case = patch-9
+        ; the number of parameters
+        parameters = 18
+
+        ; the number of observations
+        observations = 108
+        ; the data observations file
+        data = data.txt
+        ; the data covariance file
+        cd = cd.txt
+
+        ; prior distribution for parameters
+        ; prior is used to calculate the prior probability
+        ;    and check ranges during the simulation
+        prior = gaussian
+        ; prior configurations
+        prior:
+            parameters = {linear.model.parameters}
+            center = 0.0
+            sigma = 0.5
+        ; prep is used to initialize the samples in the beginning of the simulation
+        ; it can be different from prior
+        prep = uniform
+        prep:
+            parameters = {linear.model.parameters}
+            support = (-0.5, 0.5)
+
+    ; controller/annealer, use the default CATMIP annealer
+    controller:
+        ; archiver, use the default HDF5 achiver
+        archiver:
+            output_dir = results ; results output directory
+            output_freq = 1 ; output frequency in annealing beta steps
+
+    ; run configuration
+    job.tasks = 1 ; number of tasks per host
+    job.gpus = 0  ; number of gpus per task
+    job.chains = 2**10 ; number of chains per task
+
+; end of file

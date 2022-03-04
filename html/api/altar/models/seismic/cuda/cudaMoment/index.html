@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>altar.models.seismic.cuda.cudaMoment &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="altar.models.seismic.cuda.cudaStatic" href="../cudaStatic/index.html" />
+    <link rel="prev" title="altar.models.seismic.cuda.cudaKinematicGCp" href="../cudaKinematicGCp/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../cuda/Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../cuda/Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../cuda/Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../cuda/Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../cuda/Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../../../actions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../bayesian/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.bayesian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../cuda/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.cuda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../distributions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.distributions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../ext/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.ext</span></code></a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../norms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.norms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../shells/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.shells</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../simulations/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.simulations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../index.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../../index.html">API Reference</a> &raquo;</li>
+          <li><a href="../../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar</span></code></a> &raquo;</li>
+          <li><a href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models</span></code></a> &raquo;</li>
+          <li><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic</span></code></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaMoment</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../../_sources/api/altar/models/seismic/cuda/cudaMoment/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-altar.models.seismic.cuda.cudaMoment">
+<span id="altar-models-seismic-cuda-cudamoment"></span><h1><a class="reference internal" href="#module-altar.models.seismic.cuda.cudaMoment" title="altar.models.seismic.cuda.cudaMoment"><code class="xref py py-mod docutils literal notranslate"><span class="pre">altar.models.seismic.cuda.cudaMoment</span></code></a><a class="headerlink" href="#module-altar.models.seismic.cuda.cudaMoment" title="Permalink to this headline"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">altar.models.seismic.cuda.cudaMoment.</span></span><span class="sig-name descname"><span class="pre">cudaMoment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locator</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../../cuda/distributions/cudaUniform/index.html#altar.cuda.distributions.cudaUniform.cudaUniform" title="altar.cuda.distributions.cudaUniform.cudaUniform"><code class="xref py py-class docutils literal notranslate"><span class="pre">altar.cuda.distributions.cudaUniform.cudaUniform</span></code></a></p>
+<p>The probability distribution for displacements (D) conforming to a given Moment magnitude scale
+Mw = (log M0 - 9.1)/1.5 (Hiroo Kanamori)
+M0 = Mu A D
+It serves to initialize samples only, with combined gaussian and dirichlet distributions.
+It inherits uniform distribution for verification and density calculations.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patch_file">
+<span class="sig-name descname"><span class="pre">area_patch_file</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patch_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.doc">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">area</span> <span class="pre">of</span> <span class="pre">each</span> <span class="pre">patch,</span> <span class="pre">in</span> <span class="pre">unit</span> <span class="pre">of</span> <span class="pre">km^2</span></em><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.doc" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.area">
+<span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.area" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">area</span> <span class="pre">of</span> <span class="pre">each</span> <span class="pre">patch</span> <span class="pre">in</span> <span class="pre">unit</span> <span class="pre">of</span> <span class="pre">km^2,</span> <span class="pre">provide</span> <span class="pre">one</span> <span class="pre">value</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">for</span> <span class="pre">all</span> <span class="pre">patches</span></em><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_mean">
+<span class="sig-name descname"><span class="pre">Mw_mean</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_mean" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span>&#160; <span class="pre">the</span> <span class="pre">mean</span> <span class="pre">moment</span> <span class="pre">magnitude</span> <span class="pre">scale</span></em><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_sigma">
+<span class="sig-name descname"><span class="pre">Mw_sigma</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mw_sigma" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span>&#160; <span class="pre">the</span> <span class="pre">variance</span> <span class="pre">of</span> <span class="pre">moment</span> <span class="pre">magnitude</span> <span class="pre">scale</span></em><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.Mu">
+<span class="sig-name descname"><span class="pre">Mu</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mu" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">shear</span> <span class="pre">modulus</span> <span class="pre">for</span> <span class="pre">each</span> <span class="pre">patch</span> <span class="pre">in</span> <span class="pre">GPa,</span> <span class="pre">provide</span> <span class="pre">one</span> <span class="pre">value</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">for</span> <span class="pre">all</span> <span class="pre">patches</span></em><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.Mu_patch_file">
+<span class="sig-name descname"><span class="pre">Mu_patch_file</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.Mu_patch_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">Mu_patch_file</span></span><em class="property"> <span class="pre">=</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">shear</span> <span class="pre">modulus</span> <span class="pre">of</span> <span class="pre">each</span> <span class="pre">patch,</span> <span class="pre">in</span> <span class="pre">Km^2</span></em><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.slip_sign">
+<span class="sig-name descname"><span class="pre">slip_sign</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.slip_sign" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.validators">
+<span class="sig-name descname"><span class="pre">validators</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.validators" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">the</span> <span class="pre">sign</span> <span class="pre">of</span> <span class="pre">slips,</span> <span class="pre">all</span> <span class="pre">positive</span> <span class="pre">or</span> <span class="pre">all</span> <span class="pre">negative</span></em><a class="headerlink" href="#id5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patches">
+<span class="sig-name descname"><span class="pre">area_patches</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.area_patches" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.mu_patches">
+<span class="sig-name descname"><span class="pre">mu_patches</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.mu_patches" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.patches">
+<span class="sig-name descname"><span class="pre">patches</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.patches" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.rng">
+<span class="sig-name descname"><span class="pre">rng</span></span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.rng" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize with the given random number generator</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitialize">
+<span class="sig-name descname"><span class="pre">cuInitialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitialize" title="Permalink to this definition"></a></dt>
+<dd><p>cuda interface of initialization</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitSample">
+<span class="sig-name descname"><span class="pre">cuInitSample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#altar.models.seismic.cuda.cudaMoment.cudaMoment.cuInitSample" title="Permalink to this definition"></a></dt>
+<dd><p>Fill my portion of {theta} with initial random values from my distribution.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../cudaKinematicGCp/index.html" class="btn btn-neutral float-left" title="altar.models.seismic.cuda.cudaKinematicGCp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cudaStatic/index.html" class="btn btn-neutral float-right" title="altar.models.seismic.cuda.cudaStatic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1310 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>An introduction to Altar2 framework - from a Linear Model example &mdash; AlTar 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> AlTar
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">AlTar 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Background.html">Bayesian Inference for Inverse Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manual.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Programming.html">Programming Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hello/hello.html">Introduction to AlTar/Pyre applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AlTar</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>An introduction to Altar2 framework - from a Linear Model example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/cuda/jupyter/linear/linear.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="An-introduction-to-Altar2-framework---from-a-Linear-Model-example">
+<h1>An introduction to Altar2 framework - from a Linear Model example<a class="headerlink" href="#An-introduction-to-Altar2-framework---from-a-Linear-Model-example" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, we use a linear model to demonstrate the AlTar framework.</p>
+<div class="section" id="1.-Introduction">
+<h2>1. Introduction<a class="headerlink" href="#1.-Introduction" title="Permalink to this headline">¶</a></h2>
+<p>AlTar solves inverse problem by Bayesian inference with <a class="reference external" href="https://thesis.library.caltech.edu/5918/">CATMIP</a> algorithm.</p>
+<p>A forward model can be defined as <span class="math notranslate nohighlight">\(d=G(\theta)\)</span>, where <span class="math notranslate nohighlight">\(\theta\)</span> is a set of parameters, <span class="math notranslate nohighlight">\(d\)</span> is a set of predicted observations, and <span class="math notranslate nohighlight">\(G\)</span> is the forward function(s) to calculate <span class="math notranslate nohighlight">\(d\)</span> from a given <span class="math notranslate nohighlight">\(\theta\)</span>. For example, in a linear model, <span class="math notranslate nohighlight">\({\vec d} = {\bf G} {\vec \theta}\)</span>, the Green’s function <span class="math notranslate nohighlight">\({\bf G}\)</span> is a two-dimension matrix of the size (observations, parameters). In an inverse problem, one knows a set of observations <span class="math notranslate nohighlight">\(d\)</span> and wants to
+calculate the parameters <span class="math notranslate nohighlight">\(\theta\)</span> that produced them, or <span class="math notranslate nohighlight">\(\theta = G^{-1} (d)\)</span>. In most cases, <span class="math notranslate nohighlight">\(G\)</span> is not directly inversible.</p>
+<p>We resort to the Bayesian inference method, which follows the Bayes’ theorem: <span class="math notranslate nohighlight">\(P(\theta|d) = P(d|\theta) P(\theta)/P(d)\)</span>, i.e., the (posterior) probability of observing <span class="math notranslate nohighlight">\(\theta\)</span> for a given <span class="math notranslate nohighlight">\(d\)</span> is proportional to the (data likelihood) probability of observing <span class="math notranslate nohighlight">\(d\)</span> for a given <span class="math notranslate nohighlight">\(\theta\)</span> and the (prior) probablity of <span class="math notranslate nohighlight">\(\theta\)</span> before taking the observation into account. <span class="math notranslate nohighlight">\(P(d|\theta)\)</span> can be easily computed by the available forward model. One therefore samples
+the posterior distribution <span class="math notranslate nohighlight">\(P(\theta|d)\)</span> over the <span class="math notranslate nohighlight">\(\theta\)</span> parameter space, which provides a statistical solution for <span class="math notranslate nohighlight">\(\theta\)</span> from its probability to produce the observed data <span class="math notranslate nohighlight">\(d\)</span>. (we take <span class="math notranslate nohighlight">\(P(d)=1\)</span> in the following as it is the same for all <span class="math notranslate nohighlight">\(\theta\)</span> being sampled in the process.)</p>
+<p>Such a statistical approach can also incorporate various uncertainies in reality, such as data collection errors, forward model uncertainties, which are not possible to include in the direct inverse method.</p>
+<p>CATMIP is a Markov-Chain Monte-Carlo (MCMC) method to sample the posterior distribution <span class="math notranslate nohighlight">\(P(\theta|d)\)</span>. It introduces an annealing process with transient distributions <span class="math notranslate nohighlight">\(P_m(\theta|d) = [P(d|\theta)]^{\beta_m} P(\theta)\)</span> and <span class="math notranslate nohighlight">\(\beta_m\)</span> increasing from 0 to 1, i.e., to gradully equilibrate the samples <span class="math notranslate nohighlight">\(\theta\)</span> being initialized from the prior to the desired posterior distribution.</p>
+<p>AlTar provides a framework for the above computation. It is based on the component-based programming by the pyre framework. The main components in an AlTar application are as follows, - Controller(default=annealer), which performs the MCMC simulation as prescribed by CATMIP. It also contains several components - Worker, which can be configured to run with single thread(default), multiple threads, CPU or GPU, and also keeps record of the simulation data such as <span class="math notranslate nohighlight">\(\theta\)</span>,
+prior/likelihood/posterior probabilities (in a CoolingStep object). - Sampler, which provides the sample updating process. The default sampler uses a Gaussian proposal and the Metropolis–Hastings algorithm for deciding acceptance/rejection of proposed samples. - Scheduler, which controls the annealing schedule (how <span class="math notranslate nohighlight">\(\beta\)</span> evolves from 0 to 1). The default scheduler is based on the Coefficient of Variance (COV), adjusted to maintain 50% the effective sample size. - Model, which controls
+the data likelihood computation from a prescribed forward model and a set of observed data. Several geophysical models are included in the package. Users can also develop their own models to take advantage of the Bayesian framework. - Job, for users to configure the size of the simulations, such as the number of chains, the number of threads, whether to use GPU. - Rng, the random number generator to be used in other components.</p>
+</div>
+<div class="section" id="2.-Create-an-AlTar-application-for-Linear-Model">
+<h2>2. Create an AlTar application for Linear Model<a class="headerlink" href="#2.-Create-an-AlTar-application-for-Linear-Model" title="Permalink to this headline">¶</a></h2>
+<p>The forward model of the linear model is <span class="math notranslate nohighlight">\({\vec d} = {\bf G} {\vec m}\)</span>. We create a dedicated AlTar application for it as follows (users can also use the default altar application while specifying <code class="docutils literal notranslate"><span class="pre">model=altar.models.linear</span></code> in the configuration file),</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">altar</span>
+<span class="kn">import</span> <span class="nn">altar.models.linear</span>
+
+<span class="c1"># make a specialized app that uses the linear model by default</span>
+<span class="k">class</span> <span class="nc">LinearApp</span><span class="p">(</span><span class="n">altar</span><span class="o">.</span><span class="n">shells</span><span class="o">.</span><span class="n">altar</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;altar.applications.linear&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A specialized AlTar application that exercises the Linear model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># user configurable component</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Users can use a pyre-config file to set various attributes/components in an AlTar application. If the settings are not present, default values will be used. For example, we use <a class="reference external" href="linear.pfg">linear.pfg</a> below for the linear model.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span>
+<span class="p">;</span> <span class="n">michael</span> <span class="n">a</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">aïvázis</span>
+<span class="p">;</span> <span class="n">orthologue</span>
+<span class="p">;</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">1998</span><span class="o">-</span><span class="mi">2019</span> <span class="nb">all</span> <span class="n">rights</span> <span class="n">reserved</span>
+<span class="p">;</span>
+
+<span class="p">;</span> <span class="n">the</span> <span class="n">application</span>
+<span class="p">;</span> <span class="n">the</span> <span class="n">name</span> <span class="n">should</span> <span class="n">be</span> <span class="n">the</span> <span class="n">same</span> <span class="k">as</span> <span class="n">the</span> <span class="n">AlTar</span> <span class="n">application</span> <span class="n">instance</span> <span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">linear</span><span class="p">:</span>
+    <span class="p">;</span> <span class="n">the</span> <span class="n">model</span> <span class="n">configuration</span>
+    <span class="n">model</span><span class="p">:</span>
+        <span class="p">;</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">test</span> <span class="n">case</span><span class="p">,</span> <span class="n">also</span> <span class="k">as</span> <span class="n">the</span> <span class="n">directory</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">files</span>
+        <span class="n">case</span> <span class="o">=</span> <span class="n">patch</span><span class="o">-</span><span class="mi">9</span>
+        <span class="p">;</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">free</span> <span class="n">parameters</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="mi">18</span>
+        <span class="p">;</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">observations</span>
+        <span class="n">observations</span> <span class="o">=</span> <span class="mi">108</span>
+
+        <span class="p">;</span> <span class="n">data</span> <span class="n">observations</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">txt</span>
+
+        <span class="p">;</span> <span class="n">data</span> <span class="n">covariance</span><span class="o">/</span><span class="n">uncertainties</span>
+        <span class="n">cd</span> <span class="o">=</span> <span class="n">cd</span><span class="o">.</span><span class="n">txt</span>
+
+        <span class="p">;</span> <span class="n">Green</span><span class="s1">&#39;s function</span>
+        <span class="n">green</span> <span class="o">=</span> <span class="n">green</span><span class="o">.</span><span class="n">txt</span>
+
+        <span class="p">;</span> <span class="n">prior</span> <span class="n">distribution</span> <span class="k">for</span> <span class="n">parameters</span>
+        <span class="p">;</span> <span class="n">use</span> <span class="n">a</span> <span class="n">prep</span> <span class="n">distribution</span> <span class="n">to</span> <span class="n">initialize</span> <span class="n">samples</span><span class="p">,</span> <span class="k">if</span> <span class="n">different</span>
+        <span class="n">prep</span><span class="p">:</span>
+            <span class="p">;</span> <span class="n">default</span> <span class="n">distribution</span> <span class="ow">is</span> <span class="n">gaussian</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="n">linear</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">}</span>
+            <span class="n">center</span> <span class="o">=</span> <span class="mf">0.1</span>
+            <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.6</span>
+
+        <span class="p">;</span> <span class="n">prior</span> <span class="n">distribution</span> <span class="n">to</span> <span class="n">compute</span> <span class="n">prior</span>
+        <span class="n">prior</span><span class="p">:</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="n">linear</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">}</span>
+            <span class="n">center</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+    <span class="p">;</span> <span class="n">run</span> <span class="n">configuration</span>
+    <span class="n">job</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">tasks</span> <span class="n">per</span> <span class="n">host</span>
+    <span class="n">job</span><span class="o">.</span><span class="n">gpus</span> <span class="o">=</span> <span class="mi">0</span>  <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">gpus</span> <span class="n">per</span> <span class="n">task</span>
+    <span class="n">job</span><span class="o">.</span><span class="n">chains</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span> <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">chains</span> <span class="n">per</span> <span class="n">task</span>
+
+
+<span class="p">;</span> <span class="n">end</span> <span class="n">of</span> <span class="n">file</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="3.-Create-an-instance-and-have-a-test-run">
+<h2>3. Create an instance and have a test run<a class="headerlink" href="#3.-Create-an-instance-and-have-a-test-run" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># create an instance</span>
+<span class="n">myapp</span> <span class="o">=</span> <span class="n">LinearApp</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="c1"># call initialize method to prepare its compone</span>
+<span class="n">myapp</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+<span class="c1"># to sample the posterior with CATMIP alogorithm</span>
+<span class="n">myapp</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">posterior</span><span class="p">(</span><span class="n">application</span><span class="o">=</span><span class="n">myapp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+altar: iteration: 0, beta: 0, scaling: 0.3
+altar: stats(accepted/invalid/rejected): (0, 0, 0)
+altar: step
+  β: 0
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.018337881631437083, 0.5052453298270653)
+   (0.014805859520560022, 0.4766894664140216)
+   (-0.01462564513078194, 0.5081654158571511)
+   (-0.002355673369142845, 0.5081162163836722)
+   (-0.04118865774270952, 0.5073394241501916)
+   (0.0017552032804668066, 0.5083596919672608)
+   (-0.0020480581810896586, 0.49203214603015305)
+   (0.006802537886870903, 0.5050897094148948)
+   (0.019792637990626735, 0.5078926959999586)
+   (-0.014077530688462712, 0.5285959116127767)
+   (-0.01637361479187935, 0.5061220237476346)
+   (0.009529041379845204, 0.4866321830486042)
+   (0.0005823928357463203, 0.5064351771426218)
+   (0.018808766714457793, 0.4980890641425079)
+   (-0.006404183895994609, 0.5022449427854057)
+   (-0.0036295692679261067, 0.5065645469133183)
+   (0.013157615041441287, 0.5009381741599271)
+   (0.0076002730544208795, 0.48574849817155236)
+resampling: unique samples 491 out of 1024
+altar: iteration: 1, beta: 0.000152, scaling: 0.5862847222222222
+altar: stats(accepted/invalid/rejected): (10948, 0, 9532)
+altar: step
+  β: 0.000152
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.028676633427721913, 0.4661978870718859)
+   (0.02649350767224517, 0.49319665420624786)
+   (0.014195843209434199, 0.4906533622730879)
+   (0.026924916481980286, 0.44761863764957877)
+   (-0.02575175383591173, 0.5043045944176819)
+   (0.02865493135017975, 0.48668750449548526)
+   (0.03135264531208115, 0.46726679579706853)
+   (0.013663491131162454, 0.48496252260721784)
+   (0.027493816296776167, 0.4834902234726608)
+   (0.24588782231711923, 0.4787607447259501)
+   (0.10490131937681525, 0.4685581131707325)
+   (0.07094626889536143, 0.47884017832206216)
+   (0.10080363832999412, 0.5002808471944974)
+   (0.16847745333025024, 0.5065637753989104)
+   (0.03483305083499414, 0.49221949721785596)
+   (0.24028260697182738, 0.4707606222156741)
+   (0.17886517285381945, 0.4812373506380423)
+   (0.031527310313312996, 0.4791188544967582)
+resampling: unique samples 519 out of 1024
+altar: iteration: 2, beta: 0.00036696732, scaling: 0.3279513888888889
+altar: stats(accepted/invalid/rejected): (4996, 0, 15484)
+altar: step
+  β: 0.00036696732
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.06430842950927515, 0.4452839000019507)
+   (0.05152179920017437, 0.47992403523164423)
+   (0.043557535300557525, 0.4822701547732041)
+   (0.08933389705027309, 0.4111520999590727)
+   (0.0025364491545699836, 0.4783940639196693)
+   (0.041256431746379156, 0.456027924354843)
+   (0.058769294366385005, 0.42423074568341806)
+   (0.0053821634653339, 0.491588743155336)
+   (0.012293728690114422, 0.4842888527936366)
+   (0.3984988852495371, 0.42345743247000084)
+   (0.26586051182509407, 0.46447724795863965)
+   (0.10858480426148388, 0.4794113621329104)
+   (0.18392791592291896, 0.47823057723360296)
+   (0.3090345949534557, 0.484447027809182)
+   (0.07373035885297215, 0.4734652357975846)
+   (0.42576718005066116, 0.4381141054809995)
+   (0.3228289098818816, 0.46113663395219423)
+   (0.08371424979800747, 0.5063069540382498)
+resampling: unique samples 515 out of 1024
+altar: iteration: 3, beta: 0.0006568608994772, scaling: 0.5607204861111111
+altar: stats(accepted/invalid/rejected): (10359, 0, 10121)
+altar: step
+  β: 0.0006568608994772
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.06730427644625027, 0.3991570599787552)
+   (0.054171023136960865, 0.4759402145940272)
+   (0.07521240702760465, 0.4707900973370123)
+   (0.13755705713885483, 0.3836385266230893)
+   (0.011106513619524803, 0.4667968280838141)
+   (0.09770983270063471, 0.4224646496347209)
+   (0.1277744741700336, 0.3940497458262799)
+   (0.008389190344330333, 0.4623387396039417)
+   (0.045848054047887325, 0.4505828938915713)
+   (0.5412261789183014, 0.4010757212994735)
+   (0.4247241053032638, 0.47118065478195803)
+   (0.17610658498353604, 0.4751396532213656)
+   (0.2689508261196125, 0.47700104906869095)
+   (0.39226256510466717, 0.47452166605538015)
+   (0.12250811657068451, 0.48939280269830276)
+   (0.5883201392523407, 0.41077187395386033)
+   (0.4474215352246556, 0.4516659206556815)
+   (0.15212604167054677, 0.48850515907416336)
+resampling: unique samples 529 out of 1024
+altar: iteration: 4, beta: 0.0010466047237264041, scaling: 0.34401041666666665
+altar: stats(accepted/invalid/rejected): (5366, 0, 15114)
+altar: step
+  β: 0.0010466047237264041
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.0781637867713033, 0.37946605806325795)
+   (0.036180222105524636, 0.4624059718120898)
+   (0.07595222778882162, 0.4565306325286752)
+   (0.14337170271266345, 0.35631946592539365)
+   (0.05499133053477938, 0.45992662646782917)
+   (0.13948143423305773, 0.37896685766277677)
+   (0.15840089563499388, 0.3662684358014715)
+   (0.060897638630698386, 0.48859817490404384)
+   (0.049710082349821196, 0.44663841496430545)
+   (0.6995894493586415, 0.37110218643681264)
+   (0.5446598542728511, 0.42564949090757276)
+   (0.22434646630774782, 0.4760910099017619)
+   (0.3470566014895832, 0.48591324941711816)
+   (0.4736918776291022, 0.4334059572995466)
+   (0.22279042794692083, 0.48823154891499687)
+   (0.7390720217881203, 0.37831897344398563)
+   (0.5054987036741215, 0.4307866294524524)
+   (0.22426309180213666, 0.4618095527774268)
+resampling: unique samples 505 out of 1024
+altar: iteration: 5, beta: 0.0016459767608921682, scaling: 0.5423177083333334
+altar: stats(accepted/invalid/rejected): (9935, 0, 10545)
+altar: step
+  β: 0.0016459767608921682
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.08484925791152481, 0.3392818571379875)
+   (0.046223229053878594, 0.47433489995660694)
+   (0.0924465342009616, 0.4276961475744531)
+   (0.153040998271941, 0.3135637184006295)
+   (0.09307983427171113, 0.4483027136769017)
+   (0.13754619043150398, 0.36064158689959547)
+   (0.17977441015777249, 0.3357727944944509)
+   (0.0924819191690415, 0.4770110045843617)
+   (0.049376701106971156, 0.4364001975438331)
+   (0.8269338600768099, 0.33704721495466466)
+   (0.6462235134479256, 0.4006511737939165)
+   (0.2659979780246277, 0.4538099429424584)
+   (0.3886006679254812, 0.47790508638647483)
+   (0.5662932430535753, 0.4496786004442714)
+   (0.25333519766132284, 0.48492955922482617)
+   (0.8251130885265302, 0.34296826605831665)
+   (0.6301336537796771, 0.4139689919947255)
+   (0.2904131780806678, 0.4553699584929785)
+resampling: unique samples 512 out of 1024
+altar: iteration: 6, beta: 0.0024746106001806278, scaling: 0.3612847222222222
+altar: stats(accepted/invalid/rejected): (5764, 0, 14716)
+altar: step
+  β: 0.0024746106001806278
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.09203381224107854, 0.30869770634881377)
+   (0.045637753707260066, 0.4610769139648856)
+   (0.12075057856537807, 0.4315669861201962)
+   (0.1476008900305953, 0.2952229474974433)
+   (0.100579716667759, 0.4586259304966932)
+   (0.15142597541110722, 0.32962356222615413)
+   (0.19244927624423505, 0.3032969028134646)
+   (0.1000021661489916, 0.4364353636114955)
+   (0.055503475617355746, 0.4177207952853854)
+   (0.9153160846453254, 0.3133953571170953)
+   (0.7290013772945501, 0.37944446514480906)
+   (0.3359240996184624, 0.4451151818448109)
+   (0.44573552883903994, 0.47070997756985117)
+   (0.6761547538893973, 0.44454526225859364)
+   (0.31616958489381963, 0.46940213968064454)
+   (0.9194117129087485, 0.32253654284663374)
+   (0.7208191346610415, 0.3967816373466015)
+   (0.32363576191247384, 0.46228988072910027)
+resampling: unique samples 507 out of 1024
+altar: iteration: 7, beta: 0.003711542083036404, scaling: 0.5198784722222222
+altar: stats(accepted/invalid/rejected): (9418, 0, 11062)
+altar: step
+  β: 0.003711542083036404
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.08112025898669097, 0.27114249865622725)
+   (0.022364273562725134, 0.4556534675494358)
+   (0.12811202257987264, 0.39859197405507435)
+   (0.17441117647372573, 0.2569226191692614)
+   (0.13311502280881884, 0.46026398876904545)
+   (0.1878522772558563, 0.3244409452936714)
+   (0.19318832260733795, 0.2787624763292982)
+   (0.1258250958229245, 0.4555306704877879)
+   (0.04307435494010967, 0.41250394185884426)
+   (0.9878300770500559, 0.2917416945922071)
+   (0.7873592925060312, 0.38805537738685136)
+   (0.4398084374274587, 0.42162069550947034)
+   (0.47771807810516176, 0.46666052385145657)
+   (0.7481793610929373, 0.41902117496315766)
+   (0.38159272064375316, 0.4641068304471415)
+   (0.9987475642123522, 0.29277839479710116)
+   (0.7901088824567224, 0.390936652394206)
+   (0.39258933077892877, 0.4525102871430267)
+resampling: unique samples 528 out of 1024
+altar: iteration: 8, beta: 0.005504861307286939, scaling: 0.36840277777777775
+altar: stats(accepted/invalid/rejected): (5928, 0, 14552)
+altar: step
+  β: 0.005504861307286939
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.09405846095484405, 0.24609470724835844)
+   (0.019053710022293256, 0.4472915981662028)
+   (0.15243204242025846, 0.385493007638077)
+   (0.16179025072654382, 0.23123133586488676)
+   (0.13896167766343967, 0.44128980886950325)
+   (0.19181921339762936, 0.2835697226403683)
+   (0.22627562485692884, 0.2503086779318177)
+   (0.1310839113853568, 0.4411375662969701)
+   (0.05846397927712409, 0.37360189505526736)
+   (1.0366027875509574, 0.2775254260218594)
+   (0.8472597019711501, 0.3605345909509739)
+   (0.5048150075561069, 0.42687814315561384)
+   (0.5066343290769844, 0.47672813097723576)
+   (0.7902788421768404, 0.41926586633211366)
+   (0.46100384831310315, 0.44441240118224423)
+   (1.0392557245225889, 0.26732994560652146)
+   (0.8548133697786432, 0.37644180856190534)
+   (0.47781567870736663, 0.4260113960589317)
+resampling: unique samples 511 out of 1024
+altar: iteration: 9, beta: 0.007921484494310231, scaling: 0.5055989583333333
+altar: stats(accepted/invalid/rejected): (9089, 0, 11391)
+altar: step
+  β: 0.007921484494310231
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.10427623820895968, 0.21422867859930353)
+   (0.029186152736737303, 0.44773763323116833)
+   (0.18221449439774143, 0.35588152164044023)
+   (0.1792492457653234, 0.20177277219085005)
+   (0.1437872777772411, 0.41557563174687295)
+   (0.19031229683251802, 0.2523771091503356)
+   (0.22307233233996718, 0.21485337110448)
+   (0.1308958871653373, 0.43978345097617416)
+   (0.06252247026858611, 0.3584855608553265)
+   (1.058993678029806, 0.25250617010560333)
+   (0.8825028865855142, 0.3389249447074365)
+   (0.5885149925331696, 0.4126404723008218)
+   (0.5427372174367779, 0.4644062405466688)
+   (0.8621275779614698, 0.4056788450411018)
+   (0.555131155767872, 0.4431776014655766)
+   (1.0450579539045157, 0.24878825532629636)
+   (0.8918936100312063, 0.3491668070240632)
+   (0.5702249536112949, 0.39245707376381467)
+resampling: unique samples 515 out of 1024
+altar: iteration: 10, beta: 0.011522729505595884, scaling: 0.3810329861111111
+altar: stats(accepted/invalid/rejected): (6219, 0, 14261)
+altar: step
+  β: 0.011522729505595884
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.10750173893172206, 0.17971250781361373)
+   (0.032543545302635486, 0.43385441823729004)
+   (0.19786974455215198, 0.3338086318651547)
+   (0.17355320673197644, 0.16598020457487228)
+   (0.1484928388169697, 0.3888952545948964)
+   (0.19853623207055562, 0.23342711876050265)
+   (0.22414771103663653, 0.18774429105766438)
+   (0.17288830713683062, 0.42361546675452255)
+   (0.07737341918827421, 0.3171124274982284)
+   (1.067436535848902, 0.22205127620733345)
+   (0.9104210561402385, 0.31041318850510463)
+   (0.708483394065162, 0.38539942031529495)
+   (0.5535991772637038, 0.4831394665945476)
+   (0.8901595374273731, 0.39456094586818463)
+   (0.6325972615037998, 0.4063262907561708)
+   (1.0627862074417171, 0.22873292386391403)
+   (0.9267820892978775, 0.32280954118857574)
+   (0.6352222130585927, 0.3868647206754948)
+resampling: unique samples 523 out of 1024
+altar: iteration: 11, beta: 0.017058202220364548, scaling: 0.49947916666666664
+altar: stats(accepted/invalid/rejected): (8948, 0, 11532)
+altar: step
+  β: 0.017058202220364548
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.11974771827807523, 0.15842513547913437)
+   (0.03939957810508857, 0.4213056693055002)
+   (0.22986220940265775, 0.29974773777845953)
+   (0.1715819188024488, 0.14702048552864283)
+   (0.1557078028283383, 0.38393064649408576)
+   (0.18256401473531872, 0.20347742400519397)
+   (0.2189210804780063, 0.16705926535470048)
+   (0.1811925030490336, 0.4005503301008226)
+   (0.0772304027652588, 0.29775777460348574)
+   (1.0631043880928333, 0.1999322649384311)
+   (0.9396363168316384, 0.2856931824340279)
+   (0.7560481013443694, 0.36122509486164256)
+   (0.5799428970848259, 0.4659429353449663)
+   (0.9270712993327579, 0.3651871208249516)
+   (0.7360024082917345, 0.4058982916840769)
+   (1.0591098344819434, 0.20901481499496344)
+   (0.9597895893919247, 0.2947946812045384)
+   (0.6990702851220106, 0.36625945652801634)
+resampling: unique samples 522 out of 1024
+altar: iteration: 12, beta: 0.02521661914193552, scaling: 0.38185763888888885
+altar: stats(accepted/invalid/rejected): (6238, 0, 14242)
+altar: step
+  β: 0.02521661914193552
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.12438640417948299, 0.1370494708359024)
+   (0.05546723422842907, 0.4029678485297288)
+   (0.23531017979416785, 0.2835565709908885)
+   (0.1752099155430952, 0.1188938983916044)
+   (0.13533188378540084, 0.3701863636344794)
+   (0.19138962885226465, 0.18374995419520362)
+   (0.2173296894604999, 0.13623377436780923)
+   (0.20723751584251035, 0.3909094979279481)
+   (0.09217645086510223, 0.2768093999709659)
+   (1.0452885478675964, 0.1903271255401074)
+   (0.9627429655224016, 0.26878560051067657)
+   (0.803842997713328, 0.35837594100813025)
+   (0.5865993672232953, 0.44280190278633685)
+   (0.9739733088082174, 0.3379055528381218)
+   (0.8196757250910751, 0.40245701512884213)
+   (1.0556673985446319, 0.18555643321744775)
+   (0.9682131134833971, 0.27946125317423665)
+   (0.7643821425467048, 0.34010599724024515)
+resampling: unique samples 507 out of 1024
+altar: iteration: 13, beta: 0.03662158469797487, scaling: 0.4906684027777778
+altar: stats(accepted/invalid/rejected): (8745, 0, 11735)
+altar: step
+  β: 0.03662158469797487
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.1251695340532644, 0.12190053719774946)
+   (0.06414252036824825, 0.37727292937167994)
+   (0.23924701742246313, 0.2494679082444192)
+   (0.1781920357567495, 0.10911999143814011)
+   (0.1385609728303219, 0.35420910791342736)
+   (0.1868135839017539, 0.16635171867036677)
+   (0.21302131449630532, 0.12293104089091628)
+   (0.18477524386150065, 0.37054274967846995)
+   (0.11841637532994409, 0.24703559796403654)
+   (1.0387554178518783, 0.17227760999408204)
+   (0.9821845605288893, 0.24461858532537373)
+   (0.8568964911652697, 0.32143224188050806)
+   (0.6208402875868916, 0.4500555421204621)
+   (0.9781499758195967, 0.31121595839521415)
+   (0.844308715138893, 0.37448862735124394)
+   (1.0441323692094533, 0.16521210921357515)
+   (0.9883656438719327, 0.24569524865892953)
+   (0.8314936344061226, 0.31013436658792537)
+resampling: unique samples 512 out of 1024
+altar: iteration: 14, beta: 0.05348070696576031, scaling: 0.3964409722222222
+altar: stats(accepted/invalid/rejected): (6574, 0, 13906)
+altar: step
+  β: 0.05348070696576031
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.13152920253183584, 0.10725554807183481)
+   (0.07338689930876718, 0.36264835928327543)
+   (0.23082772598449525, 0.23063296246212522)
+   (0.17946613854800933, 0.09409208001455331)
+   (0.1533779965070168, 0.3407881037249236)
+   (0.18058033187895184, 0.15474034216921206)
+   (0.21250933188587956, 0.10118555010095184)
+   (0.18699846288442348, 0.3397130881061431)
+   (0.1376495505740777, 0.22300381995205912)
+   (1.044109596680813, 0.15442874193748782)
+   (0.9768854634967494, 0.23602394064917845)
+   (0.8853554188807907, 0.28728897868539416)
+   (0.6388475079020838, 0.4604487873065888)
+   (0.9965472640263077, 0.2857383479290972)
+   (0.8976351518994171, 0.35000298382849676)
+   (1.0364729780667006, 0.15265713166430092)
+   (0.9846529249223352, 0.22372169726558633)
+   (0.8677540449484447, 0.2848018202990661)
+resampling: unique samples 518 out of 1024
+altar: iteration: 15, beta: 0.07714368929161629, scaling: 0.47708333333333336
+altar: stats(accepted/invalid/rejected): (8432, 0, 12048)
+altar: step
+  β: 0.07714368929161629
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.13914996602648633, 0.09199077570398029)
+   (0.09680796805254334, 0.3208041501002133)
+   (0.21944119836197282, 0.1944550272929473)
+   (0.177452326862454, 0.07628698296403094)
+   (0.1656705873559058, 0.32889896815515823)
+   (0.17395723649682532, 0.13901854599955096)
+   (0.20410349645258785, 0.08842164054212283)
+   (0.17208639551712987, 0.32067362831192187)
+   (0.14847538850159814, 0.20151852430892084)
+   (1.0345469173493553, 0.13546268702246214)
+   (0.9762572792581397, 0.1965478354933651)
+   (0.9150160214616044, 0.27162950013221493)
+   (0.6679938581495382, 0.4655732632129245)
+   (1.013079700453314, 0.2692614159095638)
+   (0.9083960913798599, 0.3398743700080908)
+   (1.0335686547656404, 0.1339789330641593)
+   (0.9811960069914254, 0.20504337731015027)
+   (0.9088944308247011, 0.27065168134779705)
+resampling: unique samples 514 out of 1024
+altar: iteration: 16, beta: 0.11036651647711809, scaling: 0.40338541666666666
+altar: stats(accepted/invalid/rejected): (6734, 0, 13746)
+altar: step
+  β: 0.11036651647711809
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.14894926437343936, 0.07788665252689668)
+   (0.11477022743281758, 0.296821703215721)
+   (0.21010451077374895, 0.17045483274498816)
+   (0.1727997400855307, 0.0650616962555598)
+   (0.1525789833438947, 0.3053539417922836)
+   (0.1764787912690823, 0.11921456956349723)
+   (0.19989735027961386, 0.0786030608469442)
+   (0.1865869474152982, 0.29551780740667316)
+   (0.14380581815828342, 0.18284525490182058)
+   (1.0213451069014086, 0.12266449590344425)
+   (0.9822318218664775, 0.18398241098569063)
+   (0.9430378835119134, 0.251348147663664)
+   (0.6842607074388799, 0.435387786623932)
+   (1.0444204329849118, 0.25020917072318877)
+   (0.9398400009072985, 0.3404641416975912)
+   (1.0343929510471117, 0.12058682682300392)
+   (0.9652801102373221, 0.1775427642999127)
+   (0.9327500006479859, 0.24230265696566686)
+resampling: unique samples 516 out of 1024
+altar: iteration: 17, beta: 0.1592963580708766, scaling: 0.47291666666666665
+altar: stats(accepted/invalid/rejected): (8336, 0, 12144)
+altar: step
+  β: 0.1592963580708766
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.1513671068205729, 0.06724144133541839)
+   (0.1265539855974153, 0.2651339721949274)
+   (0.21331698001917954, 0.15131077011594612)
+   (0.1712664850991973, 0.05671589624341472)
+   (0.15256651010572966, 0.27575199626745805)
+   (0.17317491137964092, 0.10469974604820435)
+   (0.2007277481692695, 0.07013278746566516)
+   (0.17998126937417497, 0.27030133172379545)
+   (0.15968593335940406, 0.16143197168890017)
+   (1.0134256796605388, 0.1090579579361102)
+   (0.9914255182649638, 0.16268288590741078)
+   (0.9454802733222, 0.23024448249826815)
+   (0.7053751036916435, 0.42778797593308365)
+   (1.0399216269243805, 0.23649147338748827)
+   (0.9634230591086003, 0.30902356293965755)
+   (1.0301903299989454, 0.11431203072951018)
+   (0.9687016655674875, 0.16909734128996434)
+   (0.9487609231670054, 0.22402927935395797)
+resampling: unique samples 507 out of 1024
+altar: iteration: 18, beta: 0.22907476035099383, scaling: 0.40598958333333335
+altar: stats(accepted/invalid/rejected): (6794, 0, 13686)
+altar: step
+  β: 0.22907476035099383
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.1497655870257825, 0.060570287393419915)
+   (0.13724080740348285, 0.23597152413387115)
+   (0.20261683556529747, 0.13711769935422435)
+   (0.1764675309589893, 0.0459331047210068)
+   (0.16428727237997515, 0.24465986840296153)
+   (0.17597334305576637, 0.08944156594554839)
+   (0.19636948332339402, 0.060675442816717134)
+   (0.1696346497813564, 0.23175139339015105)
+   (0.16059248880438862, 0.13817831323763666)
+   (1.015565331706598, 0.10121624396568135)
+   (0.9895848761161357, 0.1502743582947559)
+   (0.9658690543844358, 0.20822076483411317)
+   (0.723384301943037, 0.41506006794918643)
+   (1.0375321069528722, 0.21688779327116986)
+   (0.9730377141604777, 0.2846653436883489)
+   (1.0196962705375652, 0.09798714356781642)
+   (0.9804853936756506, 0.14705606001359925)
+   (0.9483503801918871, 0.1967513733131048)
+resampling: unique samples 511 out of 1024
+altar: iteration: 19, beta: 0.3262113405467686, scaling: 0.4670138888888889
+altar: stats(accepted/invalid/rejected): (8200, 0, 12280)
+altar: step
+  β: 0.3262113405467686
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.15185678347755993, 0.05060993969381035)
+   (0.1453421150431061, 0.21105151983581874)
+   (0.19673536790658305, 0.11952660977750759)
+   (0.17901682468279048, 0.0397760207611078)
+   (0.15245587494238566, 0.21533881510107708)
+   (0.1806195867692646, 0.07647238849606094)
+   (0.1920441592762922, 0.05157295024723066)
+   (0.16711277269664013, 0.21281055864677897)
+   (0.17074975951467475, 0.12187868083683141)
+   (1.0029508015587107, 0.08599323157140087)
+   (0.99926199850367, 0.12612933202211346)
+   (0.9760074024923344, 0.19118870897656312)
+   (0.776412732501422, 0.3770757116705103)
+   (1.0202694404576218, 0.19583455680972764)
+   (0.9753819532818221, 0.2655343419573896)
+   (1.0161631733619474, 0.08396195401951845)
+   (0.9770092335341335, 0.12506407684499837)
+   (0.9663050112761973, 0.1796296438176814)
+resampling: unique samples 513 out of 1024
+altar: iteration: 20, beta: 0.4616428610968681, scaling: 0.4197482638888889
+altar: stats(accepted/invalid/rejected): (7111, 0, 13369)
+altar: step
+  β: 0.4616428610968681
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.15658238982037118, 0.04491353276280612)
+   (0.14847260037289042, 0.18613158272994423)
+   (0.19530917451056745, 0.10310771067530185)
+   (0.17473232665048113, 0.03583408574646477)
+   (0.17423119875989154, 0.20428040084614266)
+   (0.17399441688417058, 0.07104472501685932)
+   (0.18835988541974408, 0.046895612406469916)
+   (0.1700550488952009, 0.18549388724968477)
+   (0.16721181899533638, 0.10588745633148301)
+   (1.0073600591215546, 0.07853088533910867)
+   (0.985305865662972, 0.11200064603776572)
+   (0.9692099173549931, 0.16346442730527574)
+   (0.7913203180778083, 0.36309340478990865)
+   (1.0304493885500587, 0.1687926980528447)
+   (0.9881189339129307, 0.2294279633052455)
+   (1.0047013417599664, 0.07568091070228987)
+   (0.9825832862574454, 0.11061571665072299)
+   (0.9748292546517628, 0.1627593083768032)
+resampling: unique samples 509 out of 1024
+altar: iteration: 21, beta: 0.6554514311019954, scaling: 0.45503472222222224
+altar: stats(accepted/invalid/rejected): (7924, 0, 12556)
+altar: step
+  β: 0.6554514311019954
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.16040883500604344, 0.04034474031412154)
+   (0.15389195242829853, 0.15645671400964686)
+   (0.19197638534303693, 0.0875318256396635)
+   (0.17328748479437378, 0.029775172667516458)
+   (0.17017691363255538, 0.17748977195444668)
+   (0.1764150477571, 0.06050428999680524)
+   (0.18714313239821267, 0.04228505110494634)
+   (0.1745059176393881, 0.16162499124527255)
+   (0.16161578755401676, 0.0886227661468199)
+   (1.000110870619611, 0.06820325198215178)
+   (0.9899695990771122, 0.0992681391607376)
+   (0.9759927944554293, 0.14205142762063955)
+   (0.8174158491168096, 0.3357317511312386)
+   (1.0233295994115958, 0.15810963490561597)
+   (0.9944946938410996, 0.20277367726566098)
+   (1.0006625790442354, 0.06752596674664138)
+   (0.98778045820503, 0.09886901972113725)
+   (0.9658669462661723, 0.1440808019711349)
+resampling: unique samples 501 out of 1024
+altar: iteration: 22, beta: 0.9345357719093792, scaling: 0.4262152777777778
+altar: stats(accepted/invalid/rejected): (7260, 0, 13220)
+altar: step
+  β: 0.9345357719093792
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.1641324728740856, 0.03533545429106574)
+   (0.15619156069876738, 0.13974150432442384)
+   (0.18879702304967252, 0.07582820394256325)
+   (0.173233629078967, 0.023460671413238068)
+   (0.17222158448424607, 0.14742116304821443)
+   (0.17370628363744378, 0.050980701329958744)
+   (0.1846954983570144, 0.03623319484701007)
+   (0.1668263679343938, 0.1467597003599463)
+   (0.16903093678670575, 0.081227746415758)
+   (0.9965645961926919, 0.05915012461346054)
+   (0.9915504069330998, 0.08641783053395871)
+   (0.981467761027237, 0.131573647832138)
+   (0.8609502109304281, 0.32382076155252054)
+   (1.0100122148790713, 0.14413952026430243)
+   (0.9861543946899872, 0.18741978657832256)
+   (0.9962821799498743, 0.05808766968601582)
+   (0.98722792935248, 0.08471812750417514)
+   (0.9762781359391332, 0.12746228495625403)
+resampling: unique samples 641 out of 1024
+altar: iteration: 23, beta: 1.0, scaling: 0.45303819444444443
+altar: stats(accepted/invalid/rejected): (7878, 0, 12602)
+altar: step
+  β: 1.0
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.1656482811525837, 0.0336925705251227)
+   (0.15286536378727797, 0.13798873008285867)
+   (0.1897899353182844, 0.07609184297577347)
+   (0.17433196069187012, 0.023617954560353774)
+   (0.1661300178223966, 0.14621649063422865)
+   (0.1756237736758064, 0.0503495196557259)
+   (0.18257210168135202, 0.03408649776768381)
+   (0.1709503327365636, 0.14294560508139073)
+   (0.16930620161521273, 0.07655422134985308)
+   (0.9949989468314373, 0.05903949913806912)
+   (0.989503438902692, 0.08573012494242761)
+   (0.9792930441344794, 0.1322652334846431)
+   (0.8690357684828713, 0.3091682864910447)
+   (1.0146286334405816, 0.1423374818223276)
+   (0.9878614192548045, 0.19028752780878203)
+   (0.9977545889436173, 0.05684572580884658)
+   (0.9822561612798978, 0.08225958834531748)
+   (0.9753218910113398, 0.12473799506775192)
+altar: step
+  β: 1.0
+  θ: (1024 samples) x (18 parameters)
+  parameters (mean, sd):
+   (0.1656482811525837, 0.0336925705251227)
+   (0.15286536378727797, 0.13798873008285867)
+   (0.1897899353182844, 0.07609184297577347)
+   (0.17433196069187012, 0.023617954560353774)
+   (0.1661300178223966, 0.14621649063422865)
+   (0.1756237736758064, 0.0503495196557259)
+   (0.18257210168135202, 0.03408649776768381)
+   (0.1709503327365636, 0.14294560508139073)
+   (0.16930620161521273, 0.07655422134985308)
+   (0.9949989468314373, 0.05903949913806912)
+   (0.989503438902692, 0.08573012494242761)
+   (0.9792930441344794, 0.1322652334846431)
+   (0.8690357684828713, 0.3091682864910447)
+   (1.0146286334405816, 0.1423374818223276)
+   (0.9878614192548045, 0.19028752780878203)
+   (0.9977545889436173, 0.05684572580884658)
+   (0.9822561612798978, 0.08225958834531748)
+   (0.9753218910113398, 0.12473799506775192)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+</pre></div></div>
+</div>
+<p>Some preocess information is shown to help users monitoring the annealing procedure, e.g.,</p>
+</div>
+<div class="section" id="4.-Show-the-statistics-of-the-final-results">
+<h2>4. Show the statistics of the final results<a class="headerlink" href="#4.-Show-the-statistics-of-the-final-results" title="Permalink to this headline">¶</a></h2>
+<p>The states of MCMC simulations are stored in a ‘step’ object. We can extrat theta, prior/data (likelihood)/posterior as well as other simulation information for ‘step’ and perform further analysis.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># to obtain the final step data</span>
+<span class="n">step</span><span class="o">=</span><span class="n">myapp</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">worker</span><span class="o">.</span><span class="n">step</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;beta =&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">.</span><span class="n">beta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;samples =&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;parameters =&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+<span class="c1"># to obtain theta matrix dim(samples, parameters)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">step</span><span class="o">.</span><span class="n">theta</span>
+<span class="n">mean_model</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">theta</span><span class="o">.</span><span class="n">mean_sd</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># axis=0 for averaging over samples</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+beta = 1.0
+samples = 1024
+parameters = 18
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">model</span> <span class="o">=</span> <span class="n">myapp</span><span class="o">.</span><span class="n">model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">green</span>
+<span class="n">model</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(108, 18)
+</pre></div></div>
+</div>
+<p>Show the posterior distribution as a histograms</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.mlab</span> <span class="k">as</span> <span class="nn">mlab</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">posterior</span> <span class="o">=</span> <span class="n">step</span><span class="o">.</span><span class="n">posterior</span>
+<span class="n">num_bins</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">6</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">num_bins</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="cuda/jupyter/linear/../../../_build/doctrees/nbsphinx/cuda_jupyter_linear_linear_13_0.png" src="cuda/jupyter/linear/../../../_build/doctrees/nbsphinx/cuda_jupyter_linear_linear_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="5.-Output">
+<h2>5. Output<a class="headerlink" href="#5.-Output" title="Permalink to this headline">¶</a></h2>
+<p>The default archiver of AlTar saves step information in <code class="docutils literal notranslate"><span class="pre">results/step_nnn.h5</span></code> (HDF5) files for step=nnn. You may use <code class="docutils literal notranslate"><span class="pre">h5py</span></code> package to read progress data. For example,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="c1"># open the final step h5 file in read mode</span>
+<span class="n">h5file</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;results/step_final.h5&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="c1"># show the root datasets</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;list of datasets&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">h5file</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="c1"># show the datasets in Bayesian</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;list of datasets in Bayesian&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">h5file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Bayesian&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="c1"># get the posterior, vector (samples)</span>
+<span class="n">posterior</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">h5file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Bayesian/posterior&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the dimension of posterior is the number of samples&quot;</span><span class="p">,</span> <span class="n">posterior</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="c1"># show the datasets in ParameterSets</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the list of parameter sets in ParameterSets&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">h5file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ParameterSets&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="c1"># get theta, a matrix(samples, parameters)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">h5file</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ParameterSets/theta&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the dimension of theta is (samples, parameter): &quot;</span><span class="p">,</span> <span class="n">theta</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># close h5file when all done</span>
+<span class="n">h5file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+list of datasets [&#39;Annealer&#39;, &#39;Bayesian&#39;, &#39;ParameterSets&#39;]
+list of datasets in Bayesian [&#39;likelihood&#39;, &#39;posterior&#39;, &#39;prior&#39;]
+the dimension of posterior is the number of samples 1024
+the list of parameter sets in ParameterSets [&#39;theta&#39;]
+the dimension of theta is (samples, parameter):  (1024, 18)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="6.-Play-with-other-configurations">
+<h2>6. Play with other configurations<a class="headerlink" href="#6.-Play-with-other-configurations" title="Permalink to this headline">¶</a></h2>
+<p>If you would like to run linear model with other configurations, edit the ‘linear.pfg’ file and use Kernel-&gt;“Restart &amp; Run All” to re-run the program.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

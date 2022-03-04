@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programming Guide &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Common Issues" href="Issues.html" />
+    <link rel="prev" title="Kinematic Slip Inversion" href="Kinematic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Manual.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Programming Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-organization">Code Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bayesian-model">Bayesian Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-with-the-bayesianl2-template">Model with the BayesianL2 template</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parametersets-psets">Parametersets(psets)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-observations-dataobs-with-l2-norm">Data observations(dataobs) with L2-norm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forward-modeling">Forward modeling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#c-c-cuda-extension-modules">C/C++/CUDA extension modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cuda-models">CUDA Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-types-and-structures">Data Types and Structures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configurable-properties">Configurable properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-vector-gsl">Matrix/Vector (GSL)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#convert-altar-array-to-gsl-vector">Convert altar array to gsl_vector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basic-matrix-vector-operations">Basic matrix/vector operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interfacing-as-numpy-arrays">Interfacing as numpy arrays</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Programming Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/Programming.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="programming-guide">
+<span id="id1"></span><h1>Programming Guide<a class="headerlink" href="#programming-guide" title="Permalink to this headline"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>This guide aims to help developers to write their own models for AlTar.</p>
+<ul>
+<li><p>AlTar’s framework is developed in Python while the compute-intensive routines are developed as C/C++ or CUDA(for GPUs) extension modules, to offer a user-friendly interface without scarifying the efficiency.</p></li>
+<li><p>AlTar follows the <code class="docutils literal notranslate"><span class="pre">components</span></code>-based programming model of <a class="reference external" href="https://github.com/pyre/pyre">pyre</a>. Components, as Python classes with extended functionalities, not only facilitate the modularized software development, but also offer user with great convenience to config settings and parameters <em>at runtime</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>to choose between different implementations of a prescribed functionality (protocol), e.g., to choose different Metropolis sampling algorithms;</p></li>
+<li><p>to turn features on or off, e.g., the debugger, profiler;</p></li>
+<li><p>parameters and other attributes are also implemented as configurable properties (traits).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>AlTar utilizes the job management system from <a class="reference external" href="https://github.com/pyre/pyre">pyre</a> to self-deploy the simulations to different platforms, single thread or multiple threads, single machine or clusters, CPU or GPUs.</p></li>
+</ul>
+</section>
+<section id="code-organization">
+<h2>Code Organization<a class="headerlink" href="#code-organization" title="Permalink to this headline"></a></h2>
+<p>New models can be added to the <code class="docutils literal notranslate"><span class="pre">altar/models</span></code> directory. We recommend the AlTar/pyre convention to organize the source code inside the directory.</p>
+<p>The simplest model can be constructed all by Python. The minimum set of files includes, e.g., for a new model named <code class="docutils literal notranslate"><span class="pre">regression</span></code>,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>altar/models/regression # root
+├── CMakeLists.txt # cmake script
+├── bin  # binary commands
+│   └── regression # command to invoke AlTar simulation for this model
+├── regression # python scripts
+│   ├── __init__.py # export modules at the package level
+│   ├── meta.py.in # metadata includes version/copyright/authors ...
+│   └── Regression.py # the main Python program
+└── examples # (optional) provide examples to users
+    ├── regression.pfg # an example of the configuration file
+    └── synthetic # a directory includes data files for the example
+</pre></div>
+</div>
+<p>If C/C++/Fortran routines are needed, which are wrapped as extension modules in Python, these additional files can be arranged as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>altar/models/regression # root
+├── lib # C/C++/Fortran routines compiled as shared libraries
+│   └── libregression # compiled to INSTALL_DIR/lib/libregression.so(dylib)
+│      ├── version.h # version header file
+│      ├── version.cc  # version code
+│      ├── Source.h  # C++ source code header file
+│      ├── Source.icc  # C++ source code header include file for static methods/variables
+│      └── Source.cc # # C++ source code
+├── ext  # CPython extension modules
+│   └── regression # compiled to regression.cpython-{}.so
+│      ├── capsules.h # Python Capsule (pass pointers of C++ objects) definitions
+│      ├── regression.cc  # extension module definition
+│      ├── source.h  # header file for wrappers
+│      ├── source.cc  # CPython wrappers for C/C++/Fortran routines/classes
+│      ├── metadata.h  # metadata header file includes version ...
+│      └── metadata.cc # # metadata source file includes version ...
+└── regression # python scripts
+    └── ext  # to host the regression.cpython-{}.so product
+       └── __init__.py # export extension modules at the package level
+</pre></div>
+</div>
+<p>GPU/CUDA models can be constructed in the same fashion. The following files will be added,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>altar/models/regression # root
+├── lib # C/C++/Fortran routines compiled as shared libraries
+│   └── libcudaregression # compiled to INSTALL_DIR/lib/libcudaregression.so(dylib)
+│      ├── version.h # version header file
+│      ├── version.cc  # version code
+│      ├── Source.h  # CUDA source code header file
+│      ├── Source.icc  # CUDA source code header include file for static methods/variables
+│      └── Source.cu # # CUDA source code
+├── ext  # CPython extension modules
+│   └── cudaregression # compiled to cudaregression.cpython-{}.so
+│      ├── capsules.h # Python Capsule (pass pointers of C++ objects) definitions
+│      ├── regression.cc  # extension module definition
+│      ├── source.h  # header file for wrappers
+│      ├── source.cc  # CPython wrappers for C/C++/Fortran routines/classes
+│      ├── metadata.h  # metadata header file includes version ...
+│      └── metadata.cc # # metadata source file includes version ...
+└── regression # python scripts
+    ├──cuda #
+    │  ├── __init__.py # export modules at the package level
+    │  ├── meta.py.in # metadata includes version/copyright/authors ...
+    │  └── cudaRegression.py # the main Python program
+    └── ext  # to host the regression.cpython-{}.so product
+       └── __init__.py # export cuda extension modules as well
+</pre></div>
+</div>
+<p>Additional compile/build scripts are also required, for either CMake or (new) MM build tools.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">CMAKE</span></code>, in addition to the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file under the model directory, these files need to be added to modified,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>altar # root directory
+├── .cmake # for cmake
+│   └── altar_regression.cmake # functions to build packages/lib/modules/driver(bin)
+└── CMakeLists.txt # to include the new model
+</pre></div>
+</div>
+<p>For (new) MM build tool,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>altar # root directory
+└── .mm # for cmake
+   ├── regression.def # new model configurations
+   └── altar.mm # to include the new model
+</pre></div>
+</div>
+<p>Details for the above files will be illustrated by specific examples in the following sections.</p>
+</section>
+<section id="bayesian-model">
+<span id="develop-bayesian-model"></span><h2>Bayesian Model<a class="headerlink" href="#bayesian-model" title="Permalink to this headline"></a></h2>
+<p>An AlTar application can be broadly separated into two parts, the MCMC framework for Bayesian statistics and a Bayesian Model who is responsible for calculating the prior/data likelihood/posterior probabilities for a given set of parameters <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Specifically, a Model is required to provide the methods as listed in the <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/altar/altar/models/Model.py">Model</a> protocol,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># services for the simulation controller</span>
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">application</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the state of the model given a {problem} specification</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">initializeSample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fill {step.theta} with an initial random sample from my prior distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">priorLikelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fill {step.prior} with the likelihoods of the samples in {step.theta} in the prior</span>
+<span class="sd">    distribution</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">dataLikelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fill {step.data} with the likelihoods of the samples in {step.theta} given the available</span>
+<span class="sd">    data. This is what is usually referred to as the &quot;forward model&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">posteriorLikelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given the {step.prior} and {step.data} likelihoods, compute a generalized posterior using</span>
+<span class="sd">    {step.beta} and deposit the result in {step.post}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">likelihoods</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convenience function that computes all three likelihoods at once given the current {step}</span>
+<span class="sd">    of the problem</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check whether the samples in {step.theta} are consistent with the model requirements and</span>
+<span class="sd">    update the {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="c1"># notifications</span>
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">annealer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Notification that a β step is about to start</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+<span class="k">def</span> <span class="nf">bottom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">annealer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Notification that a β step just ended</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>and these methods are called by the AlTar framework at respective places. (<code class="docutils literal notranslate"><span class="pre">&#64;altar.provides</span></code> decorated methods are similar to C++ virtual functions for which the derived classes must declare).</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">initialize</span></code> is to initialize various parameters and settings of the Model, as also being required for other components in AlTar. It takes <code class="docutils literal notranslate"><span class="pre">application</span></code>, the root component, as inputs in order to pull information from other components, e.g. obtaining the number of chains and the processor information (cpu/gpu) from the <code class="docutils literal notranslate"><span class="pre">job</span></code> component.</p></li>
+<li><p>Most other methods take <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/altar/altar/bayesian/CoolingStep.py">CoolingStep (step)</a> as inputs, which stores the process data including</p>
+<ul class="simple">
+<li><p>the parameters being sampled, <span class="math notranslate nohighlight">\(\theta\)</span>, in 2d array <code class="docutils literal notranslate"><span class="pre">shape=(samples,</span> <span class="pre">parameters)</span></code>,</p></li>
+<li><p>the prior, data likelihood, and posterior probability densities for samples, each in 1d vector <code class="docutils literal notranslate"><span class="pre">shape=samples</span></code>.</p></li>
+</ul>
+<p>Note that AlTar processes a batch of samples (number of Markov Chains) in parallel.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initializeSample</span></code> is to generate random samples from a prior distribution in the beginning of the simulations. Samples can also be loaded from pre-calculated values using the <code class="docutils literal notranslate"><span class="pre">preset</span></code> prior.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">priorLikelihood</span></code> computes the prior probability densities from the given prior distribution(s). During the simulation, when new proposed samples fall outside of the support of certain ranged distributions, the density is 0 and therefore the proposals are invalid. Because AlTar uses the logarithmic value of the densities, we need an extra <code class="docutils literal notranslate"><span class="pre">verify</span></code> method to check the ranged priors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataLikelihood</span></code> computes the data likelihood. It performs</p>
+<ul class="simple">
+<li><p>the forward modeling, calculating the data predictions from <span class="math notranslate nohighlight">\(\theta\)</span>,</p></li>
+<li><p>computes the residual between data predictions and observations,</p></li>
+<li><p>and return the data likelihood with a given Norm function (e.g., L2-Norm).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">posteriorLikelihood</span></code> computes the posterior probability densities from prior and data likelihood. For transitional <cite>posterior</cite> distributions in annealing schemes, it is simply <span class="math notranslate nohighlight">\(prior + \beta * data\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">top</span></code> and <code class="docutils literal notranslate"><span class="pre">bottom</span></code> methods are hooks for developers to insert model-specific procedures before or after each annealing step. For example, for models considering model uncertainties, these methods are the places to invoke computing Cp and updating the covariance matrix (Cd+Cp).</p></li>
+</ul>
+<p>Many models may share the same procedures to compute the prior, data likelihood, and posterior; they may differ in forward modeling. We offer some templates to simplify the model development.</p>
+</section>
+<section id="model-with-the-bayesianl2-template">
+<h2>Model with the BayesianL2 template<a class="headerlink" href="#model-with-the-bayesianl2-template" title="Permalink to this headline"></a></h2>
+<p>A <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/altar/altar/models/BayesianL2.py">BayesianL2</a> template assumes a fixed structure of contiguous parameter sets and the data observations with L2-norm. With these assumptions, all required model methods are pre-defined while developers are only required to define a <code class="docutils literal notranslate"><span class="pre">forwardModel</span></code> method which performs the forward modeling. This template offers the easiest approach to write a new model.</p>
+<p>We use the linear regression model to demonstrate how to construct a Bayesian model with the BayesianL2 template in the following. The linear regression model fits a group of data <span class="math notranslate nohighlight">\((x_n, y_n)\)</span> with a linear function</p>
+<div class="math notranslate nohighlight">
+\[y = slope \times x + intercept + \epsilon_i\]</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">slope</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept</span></code> are parameters to be sampled while <span class="math notranslate nohighlight">\(\epsilon_i\)</span> are random noises. The Python program for this example is available at <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/models/regression/regression/Linear.py">models/regression/regression/Linear.py</a>.</p>
+<section id="parametersets-psets">
+<h3>Parametersets(psets)<a class="headerlink" href="#parametersets-psets" title="Permalink to this headline"></a></h3>
+<p>In the linear regression model, <span class="math notranslate nohighlight">\(\theta = [slope, intercept]\)</span>. In principle, slope and intercept could have different prior distributions. Each set of parameters with the same prior distribution is defined as a (contiguous) parameter set. <span class="math notranslate nohighlight">\(\theta\)</span> can therefore be described as a parametersets (psets) with each parameter set arranged sequentially and contiguously in 1d vector (or columns in batched samples). In Python, <code class="docutils literal notranslate"><span class="pre">psets</span></code> is a <code class="docutils literal notranslate"><span class="pre">dict</span></code> with a collection of <code class="docutils literal notranslate"><span class="pre">contiguous</span></code> parameter set objects. We further define a list <code class="docutils literal notranslate"><span class="pre">psets_list</span></code> to assure the orders of parameter sets in <span class="math notranslate nohighlight">\(\theta\)</span> (it is also useful in model ensembles to select model-relevant parameter sets from the global <code class="docutils literal notranslate"><span class="pre">psets</span></code>).</p>
+<p>A description of <code class="docutils literal notranslate"><span class="pre">psets</span></code> in the configuration file <code class="docutils literal notranslate"><span class="pre">linear.pfg</span></code> appears as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span> <span class="n">parameter</span> <span class="n">sets</span>
+<span class="n">psets_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">]</span>
+<span class="n">psets</span><span class="p">:</span>
+    <span class="n">slope</span> <span class="o">=</span> <span class="n">contiguous</span>
+    <span class="n">intercept</span> <span class="o">=</span> <span class="n">contiguous</span>
+
+    <span class="n">slope</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">prep</span> <span class="o">=</span> <span class="n">uniform</span>
+        <span class="n">prep</span><span class="o">.</span><span class="n">support</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">prior</span> <span class="o">=</span> <span class="n">uniform</span>
+        <span class="n">prior</span><span class="o">.</span><span class="n">support</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">intercept</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">prep</span> <span class="o">=</span> <span class="n">uniform</span>
+        <span class="n">prep</span><span class="o">.</span><span class="n">support</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">prior</span> <span class="o">=</span> <span class="n">uniform</span>
+        <span class="n">prior</span><span class="o">.</span><span class="n">support</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where slope and intercept are each described as a <code class="docutils literal notranslate"><span class="pre">contiguous</span></code> parameter set and each set has its own <code class="docutils literal notranslate"><span class="pre">prep</span></code> (to initialize random samples and <code class="docutils literal notranslate"><span class="pre">prior</span></code> (for verify and prior probability) distributions.</p>
+<p>We use the static earthquake inversion as another example, where the sampling parameters are dip-slip (<span class="math notranslate nohighlight">\(D_d\)</span>), strike-slip (<span class="math notranslate nohighlight">\(D_s\)</span>) displacements for <span class="math notranslate nohighlight">\(N\)</span>-patches, and if necessary the inSAR ramping parameters (<span class="math notranslate nohighlight">\(R\)</span>). Each is described by a <code class="docutils literal notranslate"><span class="pre">contiguous</span></code> parameter set and assembled as a <code class="docutils literal notranslate"><span class="pre">psets</span></code>. (Each row of) <span class="math notranslate nohighlight">\(\theta\)</span> is therefore <span class="math notranslate nohighlight">\((D_{d1}, D_{d2}, \ldots, D_{dN}, D_{s1}, D_{s2}, \ldots, D_{sN}, R_1, R_2, \ldots)\)</span>. The order of sets <span class="math notranslate nohighlight">\(D_d\)</span>, <span class="math notranslate nohighlight">\(D_s\)</span> and <span class="math notranslate nohighlight">\(R\)</span> can be switched as long as it is consistent with the forward modeling, e.g., the Green’s functions. If you want to use different priors for strike slips in different patches, you may separate <span class="math notranslate nohighlight">\(D_s\)</span> into several parameter sets.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">psets</span></code>, various methods related to parameters, including <code class="docutils literal notranslate"><span class="pre">initializeSamples</span></code>, <code class="docutils literal notranslate"><span class="pre">verify</span></code> and <code class="docutils literal notranslate"><span class="pre">priorLikelihood</span></code>, are pre-defined in  BayesianL2 template. Users only need to specify its included parameter sets in the configuration file.</p>
+</section>
+<section id="data-observations-dataobs-with-l2-norm">
+<h3>Data observations(dataobs) with L2-norm<a class="headerlink" href="#data-observations-dataobs-with-l2-norm" title="Permalink to this headline"></a></h3>
+<p>L2-norm is recommended for models which need to incorporate various uncertainties. The data likelihood is computed as</p>
+<div class="math notranslate nohighlight">
+\[\log (Data Likelihood) = -\frac 12 \left[ d_{pred} - d_{obs}\right] C_{\chi}^{-1} \left[ d_{pred} - d_{obs}\right]^T + C\]</div>
+<p>where <span class="math notranslate nohighlight">\(d_{pred} = G(\theta)\)</span> are the data predictions from the forward model, <span class="math notranslate nohighlight">\(d_{pred}\)</span> the data observations, <span class="math notranslate nohighlight">\(C_\chi\)</span> the covariance matrix capturing data (Cd) and/or model(Cp) uncertainties, and <span class="math notranslate nohighlight">\(C\)</span> a normalization constant depending on the determinant of <span class="math notranslate nohighlight">\(C_\chi\)</span>.</p>
+<p>In BayesianL2 template, the observed data are described by a <code class="docutils literal notranslate"><span class="pre">dataobs</span></code> object with L2-norm. It includes</p>
+<ul class="simple">
+<li><p>observed data points (<code class="docutils literal notranslate"><span class="pre">dataobs.dataobs</span></code>) in 1d vector with <code class="docutils literal notranslate"><span class="pre">shape=observations</span></code>, <code class="docutils literal notranslate"><span class="pre">observations</span></code> is the number of observed data points;</p></li>
+<li><p>data covariance matrix (<code class="docutils literal notranslate"><span class="pre">dataobs.cd</span></code>) in 2d array with <code class="docutils literal notranslate"><span class="pre">shape=(observations,</span> <span class="pre">observations)</span></code>. (If only constant diagonal elements are available, use <code class="docutils literal notranslate"><span class="pre">cd_std</span></code> instead).</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">dataobs</span></code> is responsible for</p>
+<ul class="simple">
+<li><p>loading the data observations (<span class="math notranslate nohighlight">\(d_{obs}\)</span>) and the data covariance (<span class="math notranslate nohighlight">\(C_d\)</span>),</p></li>
+<li><p>calculating the Cholesky decomposition of the inverse <span class="math notranslate nohighlight">\(C_d\)</span> and saving it in <code class="docutils literal notranslate"><span class="pre">dataobs</span></code>,</p></li>
+<li><p>when called by the <code class="docutils literal notranslate"><span class="pre">model.dataLikelihood</span></code>, computing the L2-norm (likelihood) between data predictions and observations with L2-norm,</p></li>
+<li><p>for Cp models, updating the covariance matrix <span class="math notranslate nohighlight">\(C_\chi = C_d + C_p\)</span> (though still denoted as <span class="math notranslate nohighlight">\(C_d\)</span>),</p></li>
+<li><p>when needed, merging the covariance matrix with data in <code class="docutils literal notranslate"><span class="pre">initialize</span></code>, as controlled by a flag <code class="docutils literal notranslate"><span class="pre">dataobs.merge_cd_with_data=True/False</span></code>. This procedure improves performance greatly for models when the covariance matrix can also be merged with model parameters, such as the Green’s functions in the linear model, by avoiding repeating the matrix-vector (or matrix-matrix for batched) multiplication.</p></li>
+</ul>
+<p>For the linear regression model, the data points <span class="math notranslate nohighlight">\((x_n, y_n)\)</span> don’t fit perfectly into the <code class="docutils literal notranslate"><span class="pre">dataobs</span></code> description. Instead, we treat <span class="math notranslate nohighlight">\(y_n\)</span> as data observations and <span class="math notranslate nohighlight">\(x_n\)</span> as model parameters. We need to initialize them with the <code class="docutils literal notranslate"><span class="pre">initialize</span></code> method,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@altar</span><span class="o">.</span><span class="n">export</span>
+<span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">application</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the state of the model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># call the super class initialization</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">application</span><span class="o">=</span><span class="n">application</span><span class="p">)</span>
+    <span class="c1"># super class method loads and initializes dataobs with y_n</span>
+
+    <span class="c1"># model specific initialization after superclass</span>
+    <span class="c1"># grab data</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_file</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataobs</span><span class="o">.</span><span class="n">dataobs</span>
+
+    <span class="o">...</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>so that <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are now accessible by the forward modeling.</p>
+<p>Their descriptions in the configuration file <code class="docutils literal notranslate"><span class="pre">linear.pfg</span></code> appear as, e.g.,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>case = synthetic ; input directory
+dataobs:
+    observations = 200
+    data_file = y.txt
+    cd_std = 1.e-2
+x_file = x.txt
+</pre></div>
+</div>
+<p>where <span class="math notranslate nohighlight">\((x_n, y_n)\)</span> are separated into two text files (raw binary and H5 input files are also supported by the <code class="docutils literal notranslate"><span class="pre">loadFile</span></code> function).</p>
+<p>With L2-norm <code class="docutils literal notranslate"><span class="pre">dataobs</span></code>, the <code class="docutils literal notranslate"><span class="pre">dataLikelihood</span></code> method can be defined straightforwardly: it calls a <code class="docutils literal notranslate"><span class="pre">forwardModel</span></code> defined
+for a specific model and with the data predictions or residuals it calls dataobs’ norm method to compute the likelihood.</p>
+</section>
+<section id="forward-modeling">
+<h3>Forward modeling<a class="headerlink" href="#forward-modeling" title="Permalink to this headline"></a></h3>
+<p>As shown above, with <code class="docutils literal notranslate"><span class="pre">psets</span></code> and <code class="docutils literal notranslate"><span class="pre">dataobs</span></code>, the BayesianL2 template only requires developers to write a <code class="docutils literal notranslate"><span class="pre">forwardModel</span></code> or <code class="docutils literal notranslate"><span class="pre">forwardModelBatched</span></code> method to compute the data predictions from a given set of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Developers have the options to</p>
+<ul class="simple">
+<li><p>Choose whether to implement <code class="docutils literal notranslate"><span class="pre">forwardModelBatched</span></code> or <code class="docutils literal notranslate"><span class="pre">forwardModel</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">forwardModelBatched</span></code> computes the data predictions for all samples. A pre-defined version iterates over all samples (rows of <span class="math notranslate nohighlight">\(\theta\)</span>) and calls <code class="docutils literal notranslate"><span class="pre">forwardModel</span></code> which computes the data predictions for one sample. The batched mode sometimes improves the speed, e.g., in the linear model, one may use the matrix-matrix product (a routine commonly optimized for both CPU and GPU) to compute <span class="math notranslate nohighlight">\(d = G \theta\)</span>. In this case, a customized <code class="docutils literal notranslate"><span class="pre">forwardModelBatched</span></code> method may be defined to override the one pre-defined in BayesianL2.</p></li>
+<li><p>Choose to simply compute the data predictions or return the residuals between predictions and observations, depending on the performance or convenience;
+This is controlled by a flag <code class="docutils literal notranslate"><span class="pre">return_residual</span> <span class="pre">=</span> <span class="pre">True/False</span></code> which can be specified either in <code class="docutils literal notranslate"><span class="pre">model.initialize</span></code> code or in the configuration file <code class="docutils literal notranslate"><span class="pre">model.return_residual=True/False</span></code>.</p></li>
+<li><p>How to incorporate the data covariance (Cd). If the model uncertainties (Cp) are also considered, please refer to the examples such as <code class="docutils literal notranslate"><span class="pre">models/seismic/staticCp</span></code>.</p></li>
+</ul>
+<p>For the linear regression model, the simplest implementation is to use the <code class="docutils literal notranslate"><span class="pre">forwardModel</span></code> method for a single set of parameters, and the code appears as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">forwardModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">prediction</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Forward Model</span>
+<span class="sd">    :param theta: sampling parameters for one sample</span>
+<span class="sd">    :param prediction: data prediction or residual (prediction - observation)</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># grab the parameters from theta</span>
+
+    <span class="n">slope</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">intercept</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># calculate the residual between data prediction and observation</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observations</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">prediction</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">slope</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">intercept</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># all done</span>
+    <span class="k">return</span> <span class="bp">self</span>
+</pre></div>
+</div>
+<p>we also need to specify the flag <code class="docutils literal notranslate"><span class="pre">return_residual</span> <span class="pre">=</span> <span class="pre">True</span></code> accordingly.</p>
+<p>We can also use the batch method <code class="docutils literal notranslate"><span class="pre">forwardModelBatched</span></code>, where we can construct a 2d array <code class="docutils literal notranslate"><span class="pre">G=[[x1,</span> <span class="pre">x2,</span> <span class="pre">...,</span> <span class="pre">xN],</span> <span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">...</span> <span class="pre">,1]]</span></code>, and simply use the matrix-matrix product <code class="docutils literal notranslate"><span class="pre">gemm</span></code> to calculate the predictions for all samples <span class="math notranslate nohighlight">\(d_{pred} = G \theta\)</span>.</p>
+<p>We now complete a new model with the BayesianL2 template. Note that if either parameter sets or L2-<code class="docutils literal notranslate"><span class="pre">dataobs</span></code> descriptions doesn’t fit your model, you may write your own methods following the <code class="docutils literal notranslate"><span class="pre">Model</span></code> protocol.</p>
+<p>Please also note that vectors/matrices in AlTar are based on GSL, while they can operate as numpy arrays. But if you would like to use some numpy/scipy functions on numpy arrays, on you may create a numpy ndarray view or copy from GSL vectors/matrices. See <a class="reference internal" href="#matrix-vector-gsl"><span class="std std-ref">Matrix/Vector (GSL)</span></a> for more details.</p>
+</section>
+</section>
+<section id="c-c-cuda-extension-modules">
+<h2>C/C++/CUDA extension modules<a class="headerlink" href="#c-c-cuda-extension-modules" title="Permalink to this headline"></a></h2>
+<p>For certain procedures, the Python code might not be efficient and you might want to write them in other high performance programming languages. For example, the Linear Algebra libraries (BLAS, LAPACK) are written in FORTRAN/C while are accessible in Python by extension modules.</p>
+<p>While there are many convenient tools to write Python wrappers for C/C++/Fortran/CUDA functions, such as <code class="docutils literal notranslate"><span class="pre">cython</span></code>, <code class="docutils literal notranslate"><span class="pre">SWIG</span></code>, <code class="docutils literal notranslate"><span class="pre">Boost.Python</span></code>, <code class="docutils literal notranslate"><span class="pre">pybind11</span></code>, we recommend the native CPython method.</p>
+<p>Let’s use an example of vector copy.
+Define in <code class="docutils literal notranslate"><span class="pre">copy.h</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">vector_copy</span>
+<span class="n">extern</span> <span class="n">const</span> <span class="n">char</span> <span class="o">*</span> <span class="n">const</span> <span class="n">vector_copy__name__</span><span class="p">;</span>
+<span class="n">extern</span> <span class="n">const</span> <span class="n">char</span> <span class="o">*</span> <span class="n">const</span> <span class="n">vector_copy__doc__</span><span class="p">;</span>
+<span class="n">PyObject</span> <span class="o">*</span> <span class="n">vector_copy</span><span class="p">(</span><span class="n">PyObject</span> <span class="o">*</span><span class="p">,</span> <span class="n">PyObject</span> <span class="o">*</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The source code <code class="docutils literal notranslate"><span class="pre">copy.cc</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PyObject *
+vector_copy(PyObject *, PyObject * args) {
+// the arguments
+PyObject * sourceCapsule;
+PyObject * destinationCapsule;
+// unpack the argument tuple
+int status = PyArg_ParseTuple(
+                              args, &quot;O!O!:vector_copy&quot;,
+                              &amp;PyCapsule_Type, &amp;destinationCapsule,
+                              &amp;PyCapsule_Type, &amp;sourceCapsule
+                              );
+// if something went wrong
+if (!status) return 0;
+// bail out if the source capsule is not valid
+if (!PyCapsule_IsValid(sourceCapsule, capsule_t)) {
+    PyErr_SetString(PyExc_TypeError, &quot;invalid vector capsule for source&quot;);
+    return 0;
+}
+// bail out if the destination capsule is not valid
+if (!PyCapsule_IsValid(destinationCapsule, capsule_t)) {
+    PyErr_SetString(PyExc_TypeError, &quot;invalid vector capsule for destination&quot;);
+    return 0;
+}
+
+// get the vectors
+gsl_vector * source =
+    static_cast&lt;gsl_vector *&gt;(PyCapsule_GetPointer(sourceCapsule, capsule_t));
+gsl_vector * destination =
+    static_cast&lt;gsl_vector *&gt;(PyCapsule_GetPointer(destinationCapsule, capsule_t));
+// copy the data
+gsl_vector_memcpy(destination, source);
+
+// return None
+Py_INCREF(Py_None);
+return Py_None;
+}
+</pre></div>
+</div>
+</section>
+<section id="cuda-models">
+<h2>CUDA Models<a class="headerlink" href="#cuda-models" title="Permalink to this headline"></a></h2>
+<p>TBD</p>
+</section>
+<section id="data-types-and-structures">
+<h2>Data Types and Structures<a class="headerlink" href="#data-types-and-structures" title="Permalink to this headline"></a></h2>
+<section id="configurable-properties">
+<h3>Configurable properties<a class="headerlink" href="#configurable-properties" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">array</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">bool</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">catalog</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">complex</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">converter</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">date</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">decimal</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">dict</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">dimensional</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">envpath</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">envvar</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">facility</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">float</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">identity</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">inet</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">int</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">istream</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">list</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">normalizer</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">object</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">ostream</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">path</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">paths</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">property</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">set</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">str</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">strings</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">time</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">tuple</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">uri</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">uris</span>
+<span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">validator</span>
+</pre></div>
+</div>
+</section>
+<section id="matrix-vector-gsl">
+<span id="id2"></span><h3>Matrix/Vector (GSL)<a class="headerlink" href="#matrix-vector-gsl" title="Permalink to this headline"></a></h3>
+<p>The Matrix/Vector is based on GSL Matrix/Vector.</p>
+<p>GSL matrix shape (size1, size2) -&gt; (rows, cols) and is row-major.</p>
+<section id="convert-altar-array-to-gsl-vector">
+<h4>Convert altar array to gsl_vector<a class="headerlink" href="#convert-altar-array-to-gsl-vector" title="Permalink to this headline"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">gvector</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">array</span><span class="p">):</span> <span class="n">gvector</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-matrix-vector-operations">
+<h4>Basic matrix/vector operations<a class="headerlink" href="#basic-matrix-vector-operations" title="Permalink to this headline"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">))</span> <span class="c1"># create a new matrix with dimension rows x cols (row-major)</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span> <span class="c1"># initialize 0 to each element</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="c1">#</span>
+<span class="n">mat_clone</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="c1">#</span>
+<span class="n">mat1</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="interfacing-as-numpy-arrays">
+<h4>Interfacing as numpy arrays<a class="headerlink" href="#interfacing-as-numpy-arrays" title="Permalink to this headline"></a></h4>
+<p>As there are more utilities available for numpy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>, you may view or copy GSL vectors/matrices are numpy arrays.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a gsl vector</span>
+<span class="n">gslv</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># create a numpy array view (data changes to npa_view will change gslv)</span>
+<span class="n">npa_view</span> <span class="o">=</span> <span class="n">gslv</span><span class="o">.</span><span class="n">ndarray</span><span class="p">()</span>
+<span class="c1"># create a numpy array view (data changes to npa_view don&#39;t affect gslv)</span>
+<span class="n">npa_copy</span> <span class="o">=</span> <span class="n">gslv</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Kinematic.html" class="btn btn-neutral float-left" title="Kinematic Slip Inversion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Issues.html" class="btn btn-neutral float-right" title="Common Issues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

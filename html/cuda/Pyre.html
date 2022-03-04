@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pyre Basics &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="AlTar Framework" href="AlTarFramework.html" />
+    <link rel="prev" title="QuickStart" href="QuickStart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Manual.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuickStart.html">QuickStart</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pyre Basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#protocols-and-components">Protocols and Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyre-config-format-pfg">Pyre Config Format (<code class="docutils literal notranslate"><span class="pre">.pfg</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="AlTarFramework.html">AlTar Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Models.html">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="Manual.html">User Guide</a> &raquo;</li>
+      <li>Pyre Basics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/Pyre.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="pyre-basics">
+<span id="pyre-framework"></span><h1>Pyre Basics<a class="headerlink" href="#pyre-basics" title="Permalink to this headline"></a></h1>
+<p>AlTar’s architecture is based on the <a class="reference external" href="https://github.com/pyre/pyre">pyre</a> framework. Before the official documentation for pyre is released, we offer here a brief introduction to pyre, its programming design and its configuration file format which are necessary for AlTar users.</p>
+<section id="protocols-and-components">
+<h2>Protocols and Components<a class="headerlink" href="#protocols-and-components" title="Permalink to this headline"></a></h2>
+<p>Python offers a modular programming design with modules and classes while pyre extends the functionalities of python classes to facilitate their integrations and configurations, through <em>components</em>.</p>
+<p>A prescribed functionality is defined as a <em>protocol</em> (similar to an abstract class). For example, various distributions are used in AlTar, mainly serving as prior distributions. We first define a protocol,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># the protocol</span>
+<span class="k">class</span> <span class="nc">Distribution</span><span class="p">(</span><span class="n">altar</span><span class="o">.</span><span class="n">protocol</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;altar.distributions&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The protocol that all AlTar probability distributions must satisfy</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># required behaviors</span>
+    <span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize with the given random number generator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="c1"># model support</span>
+    <span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+    <span class="k">def</span> <span class="nf">initializeSample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fill my portion of {theta} with initial random values from my distribution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+    <span class="k">def</span> <span class="nf">priorLikelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">prior</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fill my portion of {prior} with the likelihoods of the samples in {theta}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@altar</span><span class="o">.</span><span class="n">provides</span>
+    <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check whether my portion of the samples in {theta} are consistent with my constraints, and</span>
+<span class="sd">        update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="o">...</span> <span class="o">...</span>
+
+    <span class="c1"># framework hooks</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">pyre_default</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Supply a default implementation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># use the uniform distribution</span>
+        <span class="kn">from</span> <span class="nn">.Uniform</span> <span class="kn">import</span> <span class="n">Uniform</span> <span class="k">as</span> <span class="n">default</span>
+        <span class="c1"># and return it</span>
+        <span class="k">return</span> <span class="n">default</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&#64;altar.provides</span></code> decorator specifies the behaviors (methods) that its implementations must define. An implementation, for example, the Uniform distribution, is defined as a <em>component</em>,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Uniform</span><span class="p">(</span><span class="n">altar</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;altar.distributions.uniform&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The uniform probability distribution</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># user configurable state</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">int</span><span class="p">()</span>
+    <span class="n">parameters</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the number of model parameters that i take care of&quot;</span>
+
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">offset</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the starting point of my parameters in the overall model state&quot;</span>
+
+    <span class="c1"># user configurable state</span>
+    <span class="n">support</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">support</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the support interval of the prior distribution&quot;</span>
+
+
+    <span class="c1"># protocol obligations</span>
+    <span class="nd">@altar</span><span class="o">.</span><span class="n">export</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize with the given random number generator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># set up my pdf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdf</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">pdf</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="o">.</span><span class="n">rng</span><span class="p">,</span> <span class="n">support</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">support</span><span class="p">)</span>
+        <span class="c1"># all done</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="nd">@altar</span><span class="o">.</span><span class="n">export</span>
+    <span class="k">def</span> <span class="nf">initializeSample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fill my portion of {theta} with initial random values from my distribution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># grab the portion of the sample that&#39;s mine</span>
+        <span class="n">θ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">restrict</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span>
+        <span class="c1"># fill it with random numbers from my initializer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdf</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
+        <span class="c1"># and return</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+    <span class="nd">@altar</span><span class="o">.</span><span class="n">export</span>
+    <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check whether my portion of the samples in {theta} are consistent with my constraints, and</span>
+<span class="sd">        update {mask}, a vector with zeroes for valid samples and non-zero for invalid ones</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="o">...</span> <span class="o">...</span>
+
+        <span class="c1"># all done; return the rejection map</span>
+        <span class="k">return</span> <span class="n">mask</span>
+
+    <span class="o">...</span> <span class="o">...</span>
+
+    <span class="c1"># private data</span>
+    <span class="n">pdf</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># the pdf implementation</span>
+</pre></div>
+</div>
+<p>where the required behaviors specific to the Uniform distribution are defined. Besides behaviors, a component may also include attributes such as</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Properties, configurable parameters in terms of basic Python data type, such as an integer [defined as <code class="docutils literal notranslate"><span class="pre">altar.properties.int()</span></code>;</p></li>
+<li><p>Sub-Components, configurable attributes in terms of components;</p></li>
+<li><p>Non-configurable attributes, regular Python objects such as static properties or objects determined at runtime, e.g., the <em>pdf</em> function in <code class="docutils literal notranslate"><span class="pre">Distribution</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>Components are building blocks of AlTar. For example, Distribution can be used as the prior distribution in a Bayesian model,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bayesian</span><span class="p">(</span><span class="n">altar</span><span class="o">.</span><span class="n">component</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;altar.models.bayesian&quot;</span><span class="p">,</span> <span class="n">implements</span><span class="o">=</span><span class="n">model</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The base class of AlTar models that are compatible with Bayesian explorations</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+    <span class="n">prior</span> <span class="o">=</span> <span class="n">altar</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">distribution</span><span class="p">()</span>
+    <span class="n">prior</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;the prior distribution&quot;</span>
+
+    <span class="o">...</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>Here, prior is a configurable component, for which users can specify at runtime by <code class="docutils literal notranslate"><span class="pre">model.prior=uniform</span></code> or any other distributions implementing the Distribution-protocol. Since the protocol defines the uniform distribution as its default implementation, if none is specified at runtime, the uniform distribution is used by default.</p>
+<p>Note also that <em>components</em> are abstract methods and can be only be instantiated by an AlTar application instance. If you create a component instance in a Python shell, it will not behave as a regular Python class.</p>
+</section>
+<section id="pyre-config-format-pfg">
+<span id="pyre-config-format"></span><h2>Pyre Config Format (<code class="docutils literal notranslate"><span class="pre">.pfg</span></code>)<a class="headerlink" href="#pyre-config-format-pfg" title="Permalink to this headline"></a></h2>
+<p>Configurations of properties and components can be passed to the program as command line arguments, or more conveniently, by a configuration file. Three types of configuration files are supported by <a class="reference external" href="https://github.com/pyre/pyre">pyre</a>/AlTar: <code class="docutils literal notranslate"><span class="pre">.pml</span></code> (XML-style), <code class="docutils literal notranslate"><span class="pre">.cfg</span></code> (an INI-style format used in AlTar 1.1), and <code class="docutils literal notranslate"><span class="pre">.pfg</span></code> (YAML/JSON-style). We recommend <code class="docutils literal notranslate"><span class="pre">.pfg</span></code> for its human-readable data serialization format.</p>
+<p>An example of <code class="docutils literal notranslate"><span class="pre">.pfg</span></code> file is provided in <a class="reference internal" href="QuickStart.html#quickstart"><span class="std std-ref">QuickStart</span></a>, for the linear model.</p>
+<p>Some basic rules of <code class="docutils literal notranslate"><span class="pre">.pfg</span></code> format are</p>
+<ul>
+<li><p>Whitespace indentation is used for denoting structure, or hierarchy; however, tab characters are not allowed.</p></li>
+<li><p>Hierarchy of components can be specified by indentation, or by explicit full path, or by a combination of partial path with indentation. For example, these three configurations are equivalent:</p>
+<blockquote>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>; method 1: all by indentation
+linear:
+    job:
+        tasks = 1
+        gpus = 0
+        chains = 2**10
+
+; method 2: all by full path
+linear.job.tasks = 1
+linear.job.gpus = 0
+linear.job.chains = 2**10
+
+; method 3: combination with partial path and indentation
+linear:
+    job.tasks = 1
+    job.gpus = 0
+    job.chains = 2**10
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>If a component is not specified or listed in the configuration file, a default value/implementation specified in the Python program will be used instead.</p></li>
+<li><p>Strings such as paths, names, don’t need quotation marks.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QuickStart.html" class="btn btn-neutral float-left" title="QuickStart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="AlTarFramework.html" class="btn btn-neutral float-right" title="AlTar Framework" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

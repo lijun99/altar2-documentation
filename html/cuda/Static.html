@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Static Slip Inversion &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Static Slip Inversion with Cp: Epistemic Uncertainties" href="cp.html" />
+    <link rel="prev" title="Models" href="Models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Manual.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuickStart.html">QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pyre.html">Pyre Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AlTarFramework.html">AlTar Framework</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Models.html">Models</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Static Slip Inversion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#static-source-model">Static Source model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configurations">Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output">Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#moment-distribution">Moment Distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#forward-model-application">Forward Model Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities">Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cp.html">Static Slip Inversion with Cp: Epistemic Uncertainties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Kinematic.html">Kinematic Slip Inversion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="Manual.html">User Guide</a> &raquo;</li>
+          <li><a href="Models.html">Models</a> &raquo;</li>
+      <li>Static Slip Inversion</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/Static.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="static-slip-inversion">
+<span id="static-inversion"></span><h1>Static Slip Inversion<a class="headerlink" href="#static-slip-inversion" title="Permalink to this headline"></a></h1>
+<section id="static-source-model">
+<h2>Static Source model<a class="headerlink" href="#static-source-model" title="Permalink to this headline"></a></h2>
+<p>The finite fault earthquake source models infer the spatial distribution and temporal evolution of coseismic slips at fault plane(s) from the observed surface or subsurface displacements.</p>
+<p>In the static source model, the spatial distributions of coseismic slips are determined. We model the fault plane(s) as a set of patches; each patch treated as a point source with two orthogonal displacement components, slips along the strike and dip directions. Each slip on the fault plane can be translated into surface deformation, e.g., by the Okada model, which is derived from a Green’s function solution to the elastic half space problem. The observed surface deformation at a given location is the linear combination due to (strike/dip) slips of all patches.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the static inversion, the patches can be of any shape or area as long as each patch can be treated a single point source. Note that the kinematic inversion currently only supports a rectangle fault divided into <span class="math notranslate nohighlight">\(n_{dd} \times n_{as}\)</span> square patches. If you plan for a joint static-kinematic inversion, you need to run the static inversion on the square patches as well.</p>
+</div>
+<p>Therefore, the forward model can be expressed as a linear model</p>
+<div class="math notranslate nohighlight">
+\[{\bf d}^{pred} = \mathcal{G}  {\boldsymbol \theta}.\]</div>
+<p>where <span class="math notranslate nohighlight">\({\boldsymbol \theta}\)</span> (also denoted as <span class="math notranslate nohighlight">\({\bf m}\)</span> in geophysics literatures) is a vector with <span class="math notranslate nohighlight">\(N_{param}=2N_{patch}\)</span> components, representing the slips along the strike and dip directions for <span class="math notranslate nohighlight">\(N_{patch}\)</span> patches; <span class="math notranslate nohighlight">\({\bf d}\)</span> is a vector of observed surface deformations (may include vertical and east, north horizontal components) at different locations, with <span class="math notranslate nohighlight">\(N_{obs}\)</span> observations; and  <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is a <span class="math notranslate nohighlight">\(2N_{patch} \times N_{obs}\)</span> matrix, pre-calculated Green’s functions connecting a slip source to a deformation component at an observation location.</p>
+<p>A generalized forward model could also include other linear parameters, for example, the InSAR ramp parameters <span class="math notranslate nohighlight">\((a, b, c)\)</span>, used to fit the spurious ramp-like displacement fields <span class="math notranslate nohighlight">\(a+bx+cy\)</span> from InSAR interferograms, where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are the locations of the data in local Cartesian coordinates.</p>
+</section>
+<section id="input">
+<h2>Input<a class="headerlink" href="#input" title="Permalink to this headline"></a></h2>
+<p>To run the static inversion, in addition to an AlTar configuration file (see next section), you are required to prepare three input files,</p>
+<dl class="field-list simple">
+<dt class="field-odd">data.txt</dt>
+<dd class="field-odd"><p>the observed data with <span class="math notranslate nohighlight">\(N_{obs}\)</span> observations, a vector in one row or one column.</p>
+</dd>
+<dt class="field-even">cd.txt</dt>
+<dd class="field-even"><p>covariance of data representing measurement errors/uncertainties, prepared in a <span class="math notranslate nohighlight">\(N_{obs} \times N_{obs}\)</span> matrix (could have off-diagonal terms for correlated errors).  A constant could be used (with <em>cd_std</em> option) if all data are uncorrelated and have the same variance. Epistemic uncertainties such as elastic heterogeneity and fault geometry uncertainties may also be included, see <a class="reference internal" href="StaticCp.html#static-inversion-cp"><span class="std std-ref">Static Slip Inversion with Cp</span></a> for more details.</p>
+</dd>
+<dt class="field-odd">green.txt</dt>
+<dd class="field-odd"><p>the pre-calculated Green’s functions, prepared in a <span class="math notranslate nohighlight">\(N_{obs} \times N_{param}\)</span> matrix, with <span class="math notranslate nohighlight">\(N_{param}\)</span> as the leading dimension, i.e., data arranged in row-major as</p>
+</dd>
+</dl>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>G[Obs1][Param1] G[Obs1][Param2] ... G[Obs1][ParamNparam]
+G[Obs2][Param2] G[Obs2][Param2] ... G[Obs2][ParamNparam]
+... ...
+G[ObsNobs][Param1] G[ObsNobs][Param2] ... G[ObsNobs][ParamNparam]
+</pre></div>
+</div>
+<p>You may use any other names for these files but need to specify them in the configuration file. These files are arranged under the same directory which can be specified by <code class="docutils literal notranslate"><span class="pre">case</span></code> setting in the configuration file.</p>
+<p>In addition to plain text inputs with suffix <code class="docutils literal notranslate"><span class="pre">.txt</span></code>, AlTar 2 also accepts binary data, including</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Raw binary format with suffix <code class="docutils literal notranslate"><span class="pre">.bin</span></code> or <code class="docutils literal notranslate"><span class="pre">.dat</span></code>. The precision should be consistent with the numerical precision specified by <code class="docutils literal notranslate"><span class="pre">job.gpuprecision</span></code>. Its size should match the size of the corresponding quantity. For example, the Green’s function has in total <span class="math notranslate nohighlight">\(N_{obs} \times N_{param}\)</span> elements. They will be reshaped by the program.</p></li>
+<li><p>HDF5 files with suffix <code class="docutils literal notranslate"><span class="pre">.h5</span></code>. HDF5 files are preferred because they include the data shape and precision in metadata. AlTar2 performs the reshaping and precision conversions if necessary.</p></li>
+</ul>
+</div></blockquote>
+<p>AlTar2 recognizes the data format automatically by the file suffixes.</p>
+<p>There are some software packages which can pre-calculate the Green’s functions and/or prepare the input files for AlTar, e.g., <a class="reference external" href="http://www.geologie.ens.fr/~jolivet/csi/">CSI</a>. Please refer to its manual and tutorials for more details.</p>
+</section>
+<section id="configurations">
+<h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline"></a></h2>
+<p>A configuration file for the static inversion appears as</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>; application instance name
+slipmodel:
+
+    ; model to be sampled
+    model = altar.models.seismic.cuda.static
+    model:
+
+        ; the name of the test case, also as the directory for input files
+        case = 9patch
+
+        ; number of patches
+        patches = 9
+
+        ; green&#39;s function (observations, parameters)
+        green = static.gf.h5
+
+        ; data observations
+        dataobs = altar.cuda.data.datal2
+        dataobs:
+            observations = 108
+            data_file = static.data.h5
+            cd_file = static.Cd.h5
+            ; or use a constant cd
+            ; cd_std = 1e-4
+
+        ; list of parameter sets
+        ; the order should be consistent with the green&#39;s function
+        psets_list = [strikeslip, dipslip, ramp]
+
+        ; define parameter sets
+        psets:
+            strikeslip = altar.cuda.models.parameterset
+            dipslip = altar.cuda.models.parameterset
+            ramp = altar.cuda.models.parameterset
+
+            strikeslip:
+                count = {slipmodel.model.patches}
+                prior = altar.cuda.distributions.gaussian
+                prior.mean = 0
+                prior.sigma = 0.5
+
+            dipslip:
+                count = {slipmodel.model.patches}
+                prep = altar.models.seismic.cuda.moment
+                prep:
+                    Mw_mean = 7.3
+                    Mw_sigma = 0.2
+                    Mu = [30] ; in GPa
+                    area = [400] ; patch area in km^2
+                prior = altar.cuda.distributions.uniform
+                prior.support = (-0.5, 20)
+
+            ramp:
+                count = 3
+                prior = altar.cuda.distribution.uniform
+                prior.support = (-1, 1)
+
+    controller:
+        sampler = altar.cuda.bayesian.metropolis
+        archiver:
+            output_dir = results/static ; output directory
+            output_freq = 3 ; output frequency in beta steps
+
+
+    ; run configuration
+    job:
+        tasks = 1 ; number of tasks per host
+        gpus = 1  ; number of gpus per task
+        gpuprecision = float32 ; double(float64) or single(float32) precision for gpu computations
+        ;gpuids = [0] ; a list gpu device ids for tasks on each host, default range(job.gpus)
+        chains = 2**10 ; number of chains per task
+        steps = 1000 ; MC burn-in steps for each beta step
+</pre></div>
+</div>
+<p>We explain each section below.</p>
+<section id="application-instance-name">
+<h3>Application Instance Name<a class="headerlink" href="#application-instance-name" title="Permalink to this headline"></a></h3>
+<p>We use a shell command <code class="docutils literal notranslate"><span class="pre">slipmodel</span></code> for all seismic slip models, including static and kinematic inversions, which uses <code class="docutils literal notranslate"><span class="pre">slipmodel</span></code> as the application instance name. Therefore, please use <code class="docutils literal notranslate"><span class="pre">slipmodel</span></code> as the root in the configuration file. By the <a class="reference external" href="https://github.com/pyre/pyre">pyre</a> convention, the shell command searches and loads configurations from the file <code class="docutils literal notranslate"><span class="pre">slipmodel.pfg</span></code> in current path. If you name your configuration file as <code class="docutils literal notranslate"><span class="pre">slipmodel.pfg</span></code>,  you may simply run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel
+</pre></div>
+</div>
+<p>to invoke simulations for any slip models.  If you want to name the configuration file as something else, e.g., <code class="docutils literal notranslate"><span class="pre">static.pfg</span></code>, <code class="docutils literal notranslate"><span class="pre">static_mpi.pfg</span></code>, or <code class="docutils literal notranslate"><span class="pre">Nepal_static.pfg</span></code>, you may specify the configuration file from the command line by the <code class="docutils literal notranslate"><span class="pre">--config</span></code> option,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel  --config<span class="o">=</span>static.pfg
+</pre></div>
+</div>
+</section>
+<section id="model">
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline"></a></h3>
+<p>For static inversion, you need to specify <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">=</span> <span class="pre">altar.models.seismic.cuda.static</span></code> (or the CPU version, <code class="docutils literal notranslate"><span class="pre">model=altar.models.seismic.static</span></code>).</p>
+<p><strong>Model Attributes</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">case</dt>
+<dd class="field-odd"><p>the directory where all input files are located;</p>
+</dd>
+<dt class="field-even">patches</dt>
+<dd class="field-even"><p>the number of patches, or point sources;</p>
+</dd>
+<dt class="field-odd">green</dt>
+<dd class="field-odd"><p>the file name for the Green’s functions, as prepared from the instructions above;</p>
+</dd>
+<dt class="field-even">dataobs</dt>
+<dd class="field-even"><p>a component to process the data observations and calculate the data likelihood with L2 norm, with details provided in <a class="reference internal" href="#data-observations"><span class="std std-ref">Data Observations</span></a>;</p>
+</dd>
+<dt class="field-odd">psets_lists</dt>
+<dd class="field-odd"><p>a list of parameter sets, the order will be used for many purposes, e.g., enforcing the order of parameters in <span class="math notranslate nohighlight">\(\theta\)</span>;</p>
+</dd>
+<dt class="field-even">psets</dt>
+<dd class="field-even"><p>components to describe the parameter sets, with details provided in <a class="reference internal" href="#static-parameter-sets"><span class="std std-ref">Parameter Sets</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="data-observations">
+<span id="id1"></span><h3>Data Observations<a class="headerlink" href="#data-observations" title="Permalink to this headline"></a></h3>
+<p>The observed data are handled by a component named <code class="docutils literal notranslate"><span class="pre">dataobs</span></code>. We use exclusively the L2 norm for the likelihood computation because it accommodates the uncertainty quantification from the data covariance matrix (Cd). Therefore,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dataobs = altar.cuda.data.datal2
+dataobs:
+    observations = 108
+    data_file = static.data.h5
+    cd_file = static.Cd.h5
+    ; cd_std = 1e-2
+</pre></div>
+</div>
+<p>For the data observations with the data covariance matrix <code class="docutils literal notranslate"><span class="pre">datal2</span></code>, the following attributes are required</p>
+<dl class="field-list simple">
+<dt class="field-odd">observations</dt>
+<dd class="field-odd"><p>the number of data observations</p>
+</dd>
+<dt class="field-even">data_file</dt>
+<dd class="field-even"><p>the name of the file containing the data observations, a vector with <code class="docutils literal notranslate"><span class="pre">observations</span></code> elements</p>
+</dd>
+<dt class="field-odd">cd_file</dt>
+<dd class="field-odd"><p>the name of the file containing the data covariance,  a matrix with <code class="docutils literal notranslate"><span class="pre">observations</span> <span class="pre">x</span> <span class="pre">observations</span></code> elements</p>
+</dd>
+<dt class="field-even">cd_std</dt>
+<dd class="field-even"><p>if the data covariance has only constant diagonal elements, you may use this option instead of <code class="docutils literal notranslate"><span class="pre">cd_file</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="parameter-sets">
+<span id="static-parameter-sets"></span><h3>Parameter Sets<a class="headerlink" href="#parameter-sets" title="Permalink to this headline"></a></h3>
+<p>A parameter set is a group of parameters which share the same prior distributions and are arranged continuously in <span class="math notranslate nohighlight">\({\boldsymbol \theta}\)</span>. In static model, we use the following parameter sets <code class="docutils literal notranslate"><span class="pre">strikeslip</span></code>, <code class="docutils literal notranslate"><span class="pre">dipslip</span></code>, and optionally, <code class="docutils literal notranslate"><span class="pre">ramp</span></code> (you may use any other names for the parameter sets as long as they are intuitive).</p>
+<p>The order of the parameter sets in <span class="math notranslate nohighlight">\({\boldsymbol \theta}\)</span> is enforced by the attribute <code class="docutils literal notranslate"><span class="pre">psets_list</span></code>,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>psets_list = [strikeslip, dipslip, ramp]
+</pre></div>
+</div>
+<p>If the number of patches is 9 and there are 3 InSAR ramp parameters for one set of interferograms. The 21 parameters in
+<span class="math notranslate nohighlight">\({\boldsymbol \theta}\)</span> are (0-8), strike slips of 9 patches; (9-17), dip slipd of 9 patches; and (18-20), ramp parameters. The order of the parameter sets can be varied, but has to be consistent with that in the Green’s function matrix.</p>
+<p>For each parameter set, you need to define it as a parameterset, e.g., <code class="docutils literal notranslate"><span class="pre">strikeslip</span> <span class="pre">=</span> <span class="pre">altar.cuda.models.parameterset</span></code> or (<code class="docutils literal notranslate"><span class="pre">strikeslip</span> <span class="pre">=</span> <span class="pre">contiguous</span></code> for CPU models). Its attributes include</p>
+<dl class="field-list simple">
+<dt class="field-odd">count</dt>
+<dd class="field-odd"><p>the number of parameters in this set. <code class="docutils literal notranslate"><span class="pre">{slipmodel.model.patches}</span></code> is another way to assign values with pre-defined parameters;</p>
+</dd>
+<dt class="field-even">prior</dt>
+<dd class="field-even"><p>the prior distribution to initialize random samples in the beginning, and compute prior probabilities during the sampling process. See <a class="reference internal" href="Priors.html#prior-distributions"><span class="std std-ref">(Prior) Distributions</span></a> for choices of priors.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">prep</span></code> (optional), a distribution to initialize samples only. If it is defined, <code class="docutils literal notranslate"><span class="pre">prep</span></code> distribution is used to initialize samples while <code class="docutils literal notranslate"><span class="pre">prior</span></code> distribution is used for computing prior probabilities. If <code class="docutils literal notranslate"><span class="pre">prep</span></code> is not defined, <code class="docutils literal notranslate"><span class="pre">prior</span></code> distribution is used for both.</p></li>
+</ul>
+<p><strong>Example</strong></p>
+<p>For dip-slip faults, you may use a <code class="docutils literal notranslate"><span class="pre">uniform</span></code> prior to limit the range of dip slips while using a <a class="reference internal" href="#moment-distribution"><span class="std std-ref">Moment Distribution</span></a> to initialize samples so that the moment magnitude is consistent with an estimate scale <span class="math notranslate nohighlight">\(M_w\)</span>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dipslip = altar.cuda.models.parameterset
+dipslip:
+    count = {slipmodel.model.patches}
+    prep = altar.models.seismic.cuda.moment
+    prep:
+        Mw_mean = 7.3 ; mean moment magnitude scale
+        Mw_sigma = 0.2 ; sd for moment magnitude scale
+        Mu = [30] ; in GPa
+        area = [400] ; patch area in km^2
+    prior = altar.cuda.distributions.uniform
+    prior:
+        support = (-0.5, 20)
+</pre></div>
+</div>
+<p>Meanwhile, a Gaussian distribution centered at 0 may be used for strike slips</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>strikeslip = altar.cuda.models.parameterset
+strikeslip:
+    count = {cudastatic.model.patches}
+    prior = altar.cuda.distributions.gaussian
+    prior:
+        mean = 0
+        sigma = 0.5
+</pre></div>
+</div>
+<p>Since the same distribution is also used to initialize samples, no <code class="docutils literal notranslate"><span class="pre">prep</span></code> setting is needed.</p>
+<p>For InSAR ramps, either a uniform or a Gaussian prior can be used</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ramp = altar.cuda.models.parameterset
+ramp:
+    count = 3
+    prior = altar.cuda.distributions.uniform
+    prior.support = (-0.5, 0.5)
+</pre></div>
+</div>
+<p>If you prefer to use different priors for different patches, for example, to limit the range of slips far away from the hypocenter, you can further divide the strikeslip/dipslip into several parameter sets, such as</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>psets_list = [strikeslip_p1-3, strikeslip_p4-6, strikeslip_p7-9, ...]
+</pre></div>
+</div>
+<p>and define each parameter set by specifying its count and range.</p>
+</section>
+<section id="controller">
+<h3>Controller<a class="headerlink" href="#controller" title="Permalink to this headline"></a></h3>
+<p>Please refer to <a class="reference internal" href="AlTarFramework.html#controller"><span class="std std-ref">Controller/Annealer</span></a> for Bayesian framework configurations. You may use this section to choose and customize the <code class="docutils literal notranslate"><span class="pre">sampler</span></code> - to process MCMC (e.g, <code class="docutils literal notranslate"><span class="pre">altar.cuda.bayesian.metropolis</span></code> or <code class="docutils literal notranslate"><span class="pre">altar.cuda.bayesian.adaptivemetropolis</span></code>), <code class="docutils literal notranslate"><span class="pre">archiver</span></code> - to record the results (default is <code class="docutils literal notranslate"><span class="pre">H5Recorder</span></code>), and <code class="docutils literal notranslate"><span class="pre">scheduler</span></code> - to control the annealing schedule (default is <code class="docutils literal notranslate"><span class="pre">COV</span></code> scheduler).</p>
+</section>
+<section id="job">
+<h3>Job<a class="headerlink" href="#job" title="Permalink to this headline"></a></h3>
+<p>Please refer to <a class="reference internal" href="AlTarFramework.html#job-management"><span class="std std-ref">Job</span></a> on details how to deploy AlTar simulation to different platforms, e.g., single GPU,  multiple GPUs on one computer (with mpi), or multiple GPUs distributed in different nodes of a cluster (with mpi and PBS/Slurm scheduler).</p>
+</section>
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this headline"></a></h2>
+<p>By default, the static inversion simulation results are stored in HDF5 files, see <a class="reference internal" href="AlTarFramework.html#h5recorder"><span class="std std-ref">H5Recorder</span></a> for more details.</p>
+</section>
+<section id="moment-distribution">
+<span id="id2"></span><h2>Moment Distribution<a class="headerlink" href="#moment-distribution" title="Permalink to this headline"></a></h2>
+<p>For strike (dip) faults, we may want the generated seismic moment from all strike (dip) slips to be consistent with the estimated moment magnitude scale <span class="math notranslate nohighlight">\(M_w\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[M_w = (\log M_0 -9.1)/1.5\]</div>
+<p><span class="math notranslate nohighlight">\(M_0\)</span> is the scalar seismic moment, defined by</p>
+<div class="math notranslate nohighlight">
+\[M_0 = \mu \sum_{p=1}^{N_{patch}}  A_p D_p\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the shear modulus of the rocks involved in the earthquake (in pascals), <span class="math notranslate nohighlight">\(A_p\)</span> and <span class="math notranslate nohighlight">\(D_p\)</span> are the area (in square meters) and the slip (in meters) of a patch.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">Moment</span></code> distribution is designed to generate random slips for this purpose : it generates a random <span class="math notranslate nohighlight">\(M_w\)</span> from a Gaussian distribution <span class="math notranslate nohighlight">\(M_w \sim N(Mw_{mean}, Mw_{\sigma})\)</span>, then distributes the corresponding <span class="math notranslate nohighlight">\(M_0/\mu\)</span> to different patches with a Dirichlet distribution (i.e., the sum is a constant), and divides the values by the patch area to obtain slips.</p>
+<p><strong>Example</strong></p>
+<p>The Moment distribution is used as a <code class="docutils literal notranslate"><span class="pre">prep</span></code> distribution to initialize samples in a parameter set,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prep = altar.models.seismic.cuda.moment
+prep:
+    Mw_mean = 7.3 ; mean moment magnitude scale
+    Mw_sigma = 0.2 ; sd for moment magnitude scale
+    Mu = [30] ; in GPa
+    area = [400] ; patch area in km^2
+</pre></div>
+</div>
+<p><strong>Attributes</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Mw_mean</dt>
+<dd class="field-odd"><p>the mean value of the moment magnitude scale.</p>
+</dd>
+<dt class="field-even">Mw_sigma</dt>
+<dd class="field-even"><p>the standard deviation of the moment magnitude scale.</p>
+</dd>
+<dt class="field-odd">Mu</dt>
+<dd class="field-odd"><p>the shear modulus of the rocks (in GPa), a list with <span class="math notranslate nohighlight">\(N_{patch}\)</span> elements. If only one element, the same value will be used for all patches.</p>
+</dd>
+<dt class="field-even">area</dt>
+<dd class="field-even"><p>the patch area (in square kilometers), also a list with <span class="math notranslate nohighlight">\(N_{patch}\)</span> elements. If the areas for all patches are the same, you may input only one value <code class="docutils literal notranslate"><span class="pre">area</span> <span class="pre">=</span> <span class="pre">[400]</span></code>. If the areas are different, you may input the list as <code class="docutils literal notranslate"><span class="pre">area</span> <span class="pre">=</span> <span class="pre">[400,</span> <span class="pre">300,</span> <span class="pre">200,</span> <span class="pre">300,</span> <span class="pre">...]</span></code>, or use a file option below.</p>
+</dd>
+<dt class="field-odd">area_patch_file</dt>
+<dd class="field-odd"><p>a text file as input for patch areas, a vector with <span class="math notranslate nohighlight">\(N_{patch}\)</span> elements, e.g., <code class="docutils literal notranslate"><span class="pre">area_patch_file</span> <span class="pre">=</span> <span class="pre">area.txt</span></code>.</p>
+</dd>
+<dt class="field-even">slip_sign</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">positive</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">negative</span></code>. By default, the moment distribution generates all positive slips, i.e., the displacement is along the positive axis along the dip or strike direction. If the slips are along the opposite direction, use <code class="docutils literal notranslate"><span class="pre">negative</span></code> to generate negative slips.</p>
+</dd>
+</dl>
+<p>Note also since <code class="docutils literal notranslate"><span class="pre">Mu</span></code> and <code class="docutils literal notranslate"><span class="pre">area</span></code> appear as products for each patch, you may also use, e.g., <code class="docutils literal notranslate"><span class="pre">Mu=[1]</span></code> and input their products to <code class="docutils literal notranslate"><span class="pre">area</span></code> or <code class="docutils literal notranslate"><span class="pre">area_patch_file</span></code>.</p>
+</section>
+<section id="forward-model-application">
+<span id="static-forward-model"></span><h2>Forward Model Application<a class="headerlink" href="#forward-model-application" title="Permalink to this headline"></a></h2>
+<p>When analyzing the results, you may need to run the forward problem once for an obtained mean, medium, or MAP model, or a synthetic model, to produce data predictions and compare with data observations. For the static model, it is straightforward: obtain the mean model (vector), read the Green’s function (matrix), and perform a matrix-vector multiplication.</p>
+<p>AlTar2 also provides an option to run the forward problem only instead of the full-scale Bayesian simulation, with a slightly modified configuration file. Please follow the steps below.</p>
+<p>The first step is to prepare a model file, e.g., <code class="docutils literal notranslate"><span class="pre">static_mean_model.txt</span></code>, including a set of parameters (a vector of <span class="math notranslate nohighlight">\(N_{param}\)</span> elements), and copy the file to the input directory - the <code class="docutils literal notranslate"><span class="pre">case</span></code> directory. To obtain the mean model from the simulations, see <a class="reference internal" href="#static-model-utilities"><span class="std std-ref">Utilities</span></a> below.</p>
+<p>The second step is to modify the configuration file, e.g, <code class="docutils literal notranslate"><span class="pre">static.pfg</span></code>, by adding the following settings under <code class="docutils literal notranslate"><span class="pre">model</span></code> configuration,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>slipmodel:
+
+    ; model to be sampled
+    model = altar.models.seismic.cuda.static
+    model:
+
+        ; settings for running forward problem only
+        ; forward theta input
+        theta_input = static_mean_model.txt
+        ; forward output file
+        forward_output = static_forward_prediction.h5
+
+        ... ...
+        ; the rest is the same
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">theta_input</dt>
+<dd class="field-odd"><p>the input model file, a text, binary or HDF5 file.</p>
+</dd>
+<dt class="field-even">theta_dataset</dt>
+<dd class="field-even"><p>to specify the dataset name in an HDF5 file.</p>
+</dd>
+<dt class="field-odd">forward_output</dt>
+<dd class="field-odd"><p>the output file including the predicted data in HDF5 format.</p>
+</dd>
+</dl>
+<p>Note that the forward problem option runs with one GPU (and one thread), please make adjustment to the <code class="docutils literal notranslate"><span class="pre">job</span></code> configuration if necessary,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>job:
+    tasks = 1 ; number of tasks per host
+    gpus = 1  ; number of gpus per task
+    gpuprecision = float32 ; double(float64) or single(float32) precision for gpu computations
+    ;gpuids = [0] ; a list gpu device ids for tasks on each host, default range(job.gpus)
+    ... ...
+</pre></div>
+</div>
+<p>The third step is to run a command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel.plexus forward --config<span class="o">=</span>static.pfg
+</pre></div>
+</div>
+<p>Check the generated <code class="docutils literal notranslate"><span class="pre">static_forward_prediction.h5</span></code> file for the predicted data from the input model.</p>
+<p>Please check the <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/models/seismic/examples">examples</a> directory from the source code for a complete sample.</p>
+<p><code class="docutils literal notranslate"><span class="pre">slipmodel.plexus</span></code> is a new AlTar application which supports multiple options/workflows how to run the program, a functionality provided by the pyre plexus application class. It currently offers three options,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel.plexus about <span class="c1"># show application info</span>
+$ slipmodel.plexus sample --config<span class="o">=</span>...  <span class="c1"># full simulation, equivalent to slipmodel command</span>
+$ slipmodel.plexus forward --config<span class="o">=</span>... <span class="c1"># forward modeling only</span>
+$ slipmodel.plexus  <span class="c1">#  call about (as default) to show application info</span>
+</pre></div>
+</div>
+<p>The same configuration file can be used for either options. To run the Bayesian simulations, you may use the same file and run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ slipmodel --config<span class="o">=</span>static.pfg
+<span class="c1"># or</span>
+$ slipmodel.plexus sample --config<span class="o">=</span>static.pfg
+</pre></div>
+</div>
+<p>the settings for the forward problem option have no effect on the simulation workflow and vice versa.</p>
+</section>
+<section id="utilities">
+<span id="static-model-utilities"></span><h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline"></a></h2>
+<p>We also provide some utilities (in Python) which may be useful to analyze the data or data conversions. Some of scripts may require user modification. Before we can finalize them into standard features, these utilities are currently located at <a class="reference external" href="https://github.com/lijun99/altar/tree/cuda/models/seismic/examples/utils">seismic/examples/utils</a> directory of the source code.</p>
+<section id="hdf5-converter-tool">
+<span id="hdf5-converter"></span><h3>HDF5 Converter tool<a class="headerlink" href="#hdf5-converter-tool" title="Permalink to this headline"></a></h3>
+<p>We recommend HDF5 as the input format. A conversion tool <code class="docutils literal notranslate"><span class="pre">H5Converter</span></code> is provided if you need to convert any <code class="docutils literal notranslate"><span class="pre">.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">.bin</span></code> files (e.g., from AlTar 1.1) to <code class="docutils literal notranslate"><span class="pre">.h5</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Examples</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Convert a text file to hdf5</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>H5Converter --inputs<span class="o">=</span>static.gf.txt
+</pre></div>
+</div>
+<p>Convert a binary file to hdf5, additional information such as the precision (default=float32) and the shape (default = 1d vector and will be reshaped to 2d in program if needed) of the output can be added by</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>H5Converter --inputs<span class="o">=</span>kinematicG.gf.bin --precision<span class="o">=</span><span class="s1">&#39;float32&#39;</span> --shape<span class="o">=[</span><span class="m">100</span>,11000<span class="o">]</span>
+</pre></div>
+</div>
+<p>Merge several files into one hdf5, e.g., to prepare the sensitivity kernels for Cp,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>H5Converter --inputs<span class="o">=[</span>static.kernel.pertL1.txt,static.kernel.pertL2.txt<span class="o">]</span> --output<span class="o">=</span>static.kernel.h5
+</pre></div>
+</div>
+<p>For help on all available options</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>H5Converter --help
+</pre></div>
+</div>
+</section>
+<section id="plot-histograms-of-bayesian-probabilities">
+<h3>Plot histograms of Bayesian probabilities<a class="headerlink" href="#plot-histograms-of-bayesian-probabilities" title="Permalink to this headline"></a></h3>
+<p>You may want to check the distributions of the (log) prior/likelihood/posterior probabilities, which usually a good indication for the simulation performance. The utility is named <code class="docutils literal notranslate"><span class="pre">plotBayesian</span></code>.</p>
+<p>Taking the source code example as an example,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># go to the result directory</span>
+<span class="nb">cd</span> results/static
+<span class="c1"># run plotBayesian for the final step output,</span>
+<span class="c1"># which shows the histograms of (log) prior/likelihood/posterior</span>
+../../utils/plotBayesian
+<span class="c1"># to show output from a different beta step</span>
+../../utils/plotBayesian --step<span class="o">=</span>step_000.h5
+<span class="c1"># to change the number of bins for the histogram</span>
+../../utils/plotBayesian --bin<span class="o">=</span><span class="m">20</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">plotBayesian</span></code> utility generates a <code class="docutils literal notranslate"><span class="pre">Bayesian_histograms.pdf</span></code> file for the plot.  You may change the script to show the plot on GUI directly or save it to a different format.</p>
+</section>
+<section id="compute-the-mean-model">
+<h3>Compute the mean model<a class="headerlink" href="#compute-the-mean-model" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">meanModelStatic.py</span></code> under the <code class="docutils literal notranslate"><span class="pre">utils</span></code> directory can be used to compute the mean model of the samples in a given beta step. It also serves as a tool to convert AlTar2 H5 output to AlTar-1.1 H5 output.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># go the result directory</span>
+<span class="nb">cd</span> results/static
+<span class="c1"># run the utility</span>
+python3 ../../utils/meanModelStatic.py
+</pre></div>
+</div>
+<p>which prints out the mean values and variances of all parameters, as well as saving them to text files. It also converts <code class="docutils literal notranslate"><span class="pre">step_final.h5</span></code> to AlTar-1.1 H5 format, <code class="docutils literal notranslate"><span class="pre">step_final_v1.h5</span></code>.</p>
+<p>For a different beta step output, you need to change <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> in the script.</p>
+<p>The script can also be used for other models, not limited to <code class="docutils literal notranslate"><span class="pre">static</span></code>: you will just need to change <code class="docutils literal notranslate"><span class="pre">psets_list</span></code> to the same as your simulation script.</p>
+</section>
+<section id="compare-the-data-predications-and-observations">
+<h3>Compare the data predications and observations<a class="headerlink" href="#compare-the-data-predications-and-observations" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">checkDataPrediction.py</span></code> reads the data predictions from the forward modeling application and compares them with the input data observations. You may need to change the input files in the script.</p>
+</section>
+<section id="convert-altar2-output-to-altar-1-1-output">
+<h3>Convert AlTar2 output to AlTar-1.1 output<a class="headerlink" href="#convert-altar2-output-to-altar-1-1-output" title="Permalink to this headline"></a></h3>
+<p>AlTar2’s H5 output differs from AlTar-1.1 H5 output in rearranging the samples in their parameter sets. You may use the <code class="docutils literal notranslate"><span class="pre">meanModelStatic.py</span></code> utility above to convert them.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Models.html" class="btn btn-neutral float-left" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cp.html" class="btn btn-neutral float-right" title="Static Slip Inversion with Cp: Epistemic Uncertainties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

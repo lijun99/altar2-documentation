@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; AlTar 2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QuickStart" href="QuickStart.html" />
+    <link rel="prev" title="User Guide" href="Manual.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlTar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Manual.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuickStart.html">QuickStart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pyre.html">Pyre Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AlTarFramework.html">AlTar Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Models.html">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Programming.html">Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Common Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlTar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="Manual.html">User Guide</a> &raquo;</li>
+      <li>Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/Overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="overview">
+<span id="id1"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h1>
+<p>AlTar is a software package implementing the <a class="reference internal" href="Background.html#catmip"><span class="std std-ref">CATPMIP algorithm</span></a> and other Markov-Chain Monte-Carlo algorithms for Bayesian inference. It adopts the component-based software architecture and the job management system from the <a class="reference external" href="https://github.com/pyre/pyre">pyre</a> framework, aiming to make high performance scientific computations more accessible to researchers with minimum knowledge of software engineering.</p>
+<p>An AlTar application includes the following root components,</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the Bayesian framework (controller/annealer), which performs the MCMC sampling of the Bayesian posterior distribution;</p></li>
+<li><p>a model, which performs the forward modelling and feeds the resulting data likelihood to the Bayesian framework;</p></li>
+<li><p>job, which manages the size of a simulation and its deployment to different platforms;</p></li>
+</ul>
+</div></blockquote>
+<p>while each component can be configured from the configuration file, e.g., switching between different algorithms/implementations, turning on/off features, and of course, changing the value of a parameter.</p>
+<p>To run AlTar simulations, it is usually done by a simple command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">anAlTarApp</span> <span class="o">--</span><span class="n">config</span><span class="o">=</span><span class="n">anAlTarApp</span><span class="o">.</span><span class="n">pfg</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">anAlTarApp</span></code> is an AlTar application tailed for a given inverse problem, while <code class="docutils literal notranslate"><span class="pre">anAlTarApp.pfg</span></code> is a configuration file you where specify settings for your simulation.</p>
+<p>We have provided examples with each implemented inverse problem. You may use them as templates to prepare your own simulation. This Guides aims to provide detailed instructions on how to configure each component, which is organized as follows,</p>
+<ul>
+<li><p><a class="reference internal" href="QuickStart.html#quickstart"><span class="std std-ref">Quickstart</span></a>: to demonstrate how to run AlTar simulations with a linear inverse problem;</p></li>
+<li><p><a class="reference internal" href="Pyre.html#pyre-framework"><span class="std std-ref">An introduction to pyre</span></a>: to offer a brief introduction to components and the <code class="docutils literal notranslate"><span class="pre">.pfg</span></code> configuration file format;</p></li>
+<li><p><a class="reference internal" href="AlTarFramework.html#altar-framework"><span class="std std-ref">The AlTar framework</span></a>: how to configure the components of the MCMC simulation;</p></li>
+<li><p><a class="reference internal" href="AlTarFramework.html#job-management"><span class="std std-ref">Job Management</span></a>: how to configure the job deployment to different platforms;</p></li>
+<li><p>Models: to provide instructions on how to prepare data and run simulations for inverse problems in geophysics,</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="Static.html#static-inversion"><span class="std std-ref">Static inversion of earthquake source models</span></a>;</p></li>
+<li><p><a class="reference internal" href="StaticCp.html#static-inversion-cp"><span class="std std-ref">Static inversion with Cp (forward model uncertainty)</span></a>;</p></li>
+<li><p><a class="reference internal" href="Kinematic.html#kinematic-inversion"><span class="std std-ref">Kinematic inversion of earthquake source models</span></a>;</p></li>
+<li><p>Mogi source model for volcanoes (TBD);</p></li>
+<li><p>Compound dislocation model (CDM) for volcanoes (TBD).</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Users may also develop new models for other inverse problems. A <a class="reference internal" href="Programming.html#programming-guide"><span class="std std-ref">Programming Guide</span></a> is also provided.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Manual.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="QuickStart.html" class="btn btn-neutral float-right" title="QuickStart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2020 ParaSim Inc., 2010-2020 California Institute of Technology..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

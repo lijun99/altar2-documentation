@@ -2,4 +2,4 @@ sphinx-autoapi
 sphinx_rtd_theme
 ipykernel
 nbsphinx
-myst_parser
+myst-parser
