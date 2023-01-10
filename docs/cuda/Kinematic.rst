@@ -28,7 +28,7 @@ The predicted observations can be calculated by,
 
 .. math::
 
-    d_{prediction} ({\vec x}, t) = {\cal G}_b({\vec x}, {\vec \xi}; t-t') {\bf M}_b({\vec \xi}, t')
+    d_{prediction} ({\vec x}, t) = \sum_{{\vec \xi}, t'}{\cal G}_b({\vec x}, {\vec \xi}; t-t') {\bf M}_b({\vec \xi}, t')
 
 which is a linear model (note that the Eikonal equation is non-linear). Here, :math:`{\cal G}_b({\vec x}, {\vec \xi}; t-t')` (big G) are the kinematic Green's functions relating the source :math:`{\bf M}_b({\vec \xi}, t')` to an observation location at a given time :math:`({\vec x}, t)`. The kinematic Green's functions are pre-calculated as inputs to AlTar. There are some existing software packages for the calculation, e.g., the frequency-wavenumber integration code of `Zhu and Rivera <https://doi.org/10.1046/j.1365-246X.2002.01610.x>`__, or `AXITRA <https://github.com/coutanto/axitra>`__.
 
