@@ -519,11 +519,13 @@ Compile and install pyre
 
     cd ${HOME}/tools/src/pyre
     mkdir build && cd build
-    cmake .. -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_CUDA_ARCHITECTURES="60" -DBLA_VENDOR=OpenBLAS
+    cmake .. -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_CUDA_ARCHITECTURES=native -DBLA_VENDOR=OpenBLAS -DPython3_EXECUTABLE=$CONDA_PREFIX/bin/python3
+
     make -j && make install
 
-where ``INSTALL_PREFIX`` is the installation path and ``PREFIX_PATH`` is the path to search the prerequisite packages. Replace ``60`` with appropriate compute capability number(s) for your GPU(s). See :ref:`GPU architecture(s) <GPU architecture>` for more details.
+where ``INSTALL_PREFIX`` is the installation path and ``PREFIX_PATH`` is the path to search the prerequisite packages. Replace ``native`` with appropriate compute capability number(s) for your GPU(s). See :ref:`GPU architecture(s) <GPU architecture>` for more details.
 
+**Note**: ``FindPython3`` in new versions of ``cmake`` sometimes finds the system python3 interpreter instead of the conda installed one, please add ``-DPython3_EXECUTABLE=$CONDA_PREFIX/bin/python3`` as above to assist the search. The new standard is to use ``FindPython`` instead; we will update the pyre/altar cmake files.
 
 Install AlTar
 -------------
@@ -534,7 +536,8 @@ Since pyre is installed to ``$CONDA_PREFIX``, there is no need to set the PATHs.
 
     cd ${HOME}/tools/src/altar
     mkdir build && cd build
-    cmake .. -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_CUDA_ARCHITECTURES="60"
+    cmake .. -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_CUDA_ARCHITECTURES=native -DPython3_EXECUTABLE=$CONDA_PREFIX/bin/python3
+
     make -j && make install
 
 Please read :ref:`CMake Options <CMake Options>` if you have some problems or need more customizations. Please also read :ref:`Installation instructions <General Steps>` on how to make tests.
