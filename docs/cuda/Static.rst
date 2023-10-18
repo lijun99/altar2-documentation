@@ -328,7 +328,7 @@ Note also since ``Mu`` and ``area`` appear as products for each patch, you may a
 Forward Model Application
 -------------------------
 
-When analyzing the results, you may need to run the forward problem once for an obtained mean, medium, or MAP model, or a synthetic model, to produce data predictions and compare with data observations. For the static model, it is straightforward: obtain the mean model (vector), read the Green's function (matrix), and perform a matrix-vector multiplication.
+When analyzing the results, you may need to run the forward problem once for an obtained mean, median, or MAP model, or a synthetic model, to produce data predictions and compare with data observations. For the static model, it is straightforward: obtain the mean model (vector), read the Green's function (matrix), and perform a matrix-vector multiplication.
 
 AlTar2 also provides an option to run the forward problem only instead of the full-scale Bayesian simulation, with a slightly modified configuration file. Please follow the steps below.
 
