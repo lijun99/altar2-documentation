@@ -98,7 +98,7 @@ extlinks = {
     'altar_src': ('https://github.com/lijun99/altar/tree/cuda/%s', None),
     'pyre_src': ('https://github.com/lijun99/pyre/tree/cuda/%s', None),
     'altar_doc_src': ('https://github.com/lijun99/altar2-documentation/tree/cuda/%s', None),
-    'tutorials': ('https://github.com/lijun99/altar2-documentation/tree/cuda/jupyter/%s', 'Tutorials:')
+    'tutorials': ('https://github.com/lijun99/altar2-documentation/tree/cuda/jupyter/%s', 'Tutorials:%s')
 }
 
 # --- latex pdf ---------
