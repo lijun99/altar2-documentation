@@ -414,7 +414,7 @@ Install the required libraries and packages by Conda:
 
 .. code-block:: bash
 
-    $ conda install git make cmake hdf5 h5py openmpi gsl openblas postgresql numpy scipy
+    $ conda install git make cmake hdf5 h5py openmpi gsl openblas postgresql numpy scipy setuptools
 
 
 C++ Compiler
