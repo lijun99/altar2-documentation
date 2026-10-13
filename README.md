@@ -1,3 +1,5 @@
+> **Note:** documentation for future developments is merged into the [lijun99/altar](https://github.com/lijun99/altar) repo (`develop` branch), with the new documentation hosted at [altar2.readthedocs.io](https://altar2.readthedocs.io). The content below is preserved for the `cuda` branch.
+
 ## AlTar 2.0 Release
 
 ### About AlTar
